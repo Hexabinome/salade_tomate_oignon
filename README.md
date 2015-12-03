@@ -1,2 +1,2 @@
-# salade_tomate_oignon
+# Salade Tomate Oignon
 STO, choisis ton restaurant différemment
