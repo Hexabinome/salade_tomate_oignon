@@ -25,3 +25,5 @@ proguard/
 
 # Log Files
 *.log
+.idea
+salade_tomate_oignon.iml
