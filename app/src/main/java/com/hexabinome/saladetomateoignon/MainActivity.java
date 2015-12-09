@@ -1,42 +1,41 @@
 package com.hexabinome.saladetomateoignon;
 
 import android.graphics.Color;
+import android.net.Uri;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
-import com.hexabinome.saladetomateoignon.view.SlidingTabLayout;
-import com.hexabinome.saladetomateoignon.view.ViewPagerAdapter;
+import com.hexabinome.saladetomateoignon.fragment.CantinderFragment;
+import com.hexabinome.saladetomateoignon.fragment.CustomFragmentPagerAdapter;
+import com.hexabinome.saladetomateoignon.fragment.FavorisFragment;
+import com.hexabinome.saladetomateoignon.fragment.PreferencesFragment;
 
-public class MainActivity extends AppCompatActivity {
+
+
+public class MainActivity extends AppCompatActivity implements CantinderFragment.OnFragmentInteractionListener, FavorisFragment.OnFragmentInteractionListener,PreferencesFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CharSequence tabTitle[] = new CharSequence[3];
-        tabTitle[0] = "Favoris";
-        tabTitle[1] = "Cantinder";
-        tabTitle[2] = "Preferences";
+         // Get the ViewPager and set it's PagerAdapter so that it can display items
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 
-        ViewPagerAdapter coucou = new ViewPagerAdapter(getSupportFragmentManager(),tabTitle,3);
+        viewPager.setAdapter(new CustomFragmentPagerAdapter(getSupportFragmentManager(),
+                MainActivity.this));
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        viewPager.setAdapter(coucou);
+        // Give the TabLayout the ViewPager
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
+        tabLayout.setupWithViewPager(viewPager);
 
-        SlidingTabLayout slidingTabLayout = (SlidingTabLayout) findViewById(R.id.tabs);
+    }
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
-        slidingTabLayout.setDistributeEvenly(true);
-        slidingTabLayout.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
-            @Override
-            public int getIndicatorColor(int position) {
-                return Color.WHITE;
-            }
-        });
-        slidingTabLayout.setViewPager(viewPager);
     }
 }
