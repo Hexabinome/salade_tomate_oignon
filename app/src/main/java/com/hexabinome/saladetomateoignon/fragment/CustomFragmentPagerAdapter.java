@@ -9,7 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 public class CustomFragmentPagerAdapter extends FragmentPagerAdapter {
 
     final int PAGE_COUNT = 3;
-    private String tabTitles[] = new String[] { "Favoris", "Cantinder", "Preferences" };
+    private String tabTitles[] = new String[] { "Favoris", "Cantinder", "Préférences" };
 
 
     private Context context;

@@ -10,4 +10,10 @@
         android:layout_height="match_parent"
         android:text="Favoris" />
 
+    <ListView
+        android:id="@+id/preference_listview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="20dp"/>
 </FrameLayout>
