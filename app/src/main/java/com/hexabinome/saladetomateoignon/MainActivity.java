@@ -1,12 +1,10 @@
 package com.hexabinome.saladetomateoignon;
 
-import android.graphics.Color;
 import android.net.Uri;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 
 import com.hexabinome.saladetomateoignon.fragment.CantinderFragment;
 import com.hexabinome.saladetomateoignon.fragment.CustomFragmentPagerAdapter;
@@ -15,7 +13,7 @@ import com.hexabinome.saladetomateoignon.fragment.PreferencesFragment;
 
 
 
-public class MainActivity extends AppCompatActivity implements CantinderFragment.OnFragmentInteractionListener, FavorisFragment.OnFragmentInteractionListener,PreferencesFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements CantinderFragment.OnCantinderFragmentInteractionListener, FavorisFragment.OnFavorisFragmentInteractionListener,PreferencesFragment.OnPreferencesFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +33,17 @@ public class MainActivity extends AppCompatActivity implements CantinderFragment
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void onFavorisFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void onCantinderFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void onPreferencesFragmentInteraction(Uri uri) {
 
     }
 }
