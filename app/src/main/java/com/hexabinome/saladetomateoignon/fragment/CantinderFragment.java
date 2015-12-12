@@ -21,7 +21,7 @@ import com.hexabinome.saladetomateoignon.R;
 public class CantinderFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
+    private static final String RESTAURANT = "nextRestaurant";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
@@ -39,7 +39,7 @@ public class CantinderFragment extends Fragment {
     public static CantinderFragment newInstance(String param1, String param2) {
         CantinderFragment fragment = new CantinderFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
+        args.putString(RESTAURANT, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
@@ -49,7 +49,7 @@ public class CantinderFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam1 = getArguments().getString(RESTAURANT);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
@@ -91,5 +91,24 @@ public class CantinderFragment extends Fragment {
     public interface OnCantinderFragmentInteractionListener {
         // TODO: Update argument type and name
         void onCantinderFragmentInteraction(Uri uri);
+    }
+
+    /**
+     * Refuse le restaurant actuellement affiché
+     * Passe au restaurant suivant
+     * @param view
+     */
+    public void declineRestaurant(View view) {
+
+    }
+
+    /**
+     * Accepte le restaurant actuellement affiché.
+     * Ajoute le restaurant actuel, affiche le bouton détail du restaurant, et passe au restaurant
+     * suivant
+     * @param view
+     */
+    public void acceptRestaurant(View view) {
+
     }
 }

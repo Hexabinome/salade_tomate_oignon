@@ -14,4 +14,26 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <!-- Cantinder fragment styles -->
+    <style name="Cantinder.ActionButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">180dp</item>
+        <item name="android:layout_weight">.50</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="Cantinder.InformationTextView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">.50</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="Cantinder.InformationTextViewLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_margin">10dp</item>
+    </style>
+
 </resources>

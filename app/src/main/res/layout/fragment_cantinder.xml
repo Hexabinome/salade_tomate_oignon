@@ -4,10 +4,64 @@
     android:layout_height="match_parent"
     tools:context="com.hexabinome.saladetomateoignon.fragment.CantinderFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Cantinder" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
 
+        <!-- Partie présentation restaurant -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:layout_marginTop="10dp"
+                android:text="TACOS"/>
+
+            <LinearLayout
+                style="@style/Cantinder.InformationTextViewLayout">
+                <TextView
+                    style="@style/Cantinder.InformationTextView"
+                    android:textAlignment="center"
+                    android:text="TATA"/>
+                <TextView
+                    style="@style/Cantinder.InformationTextView"
+                    android:textAlignment="center"
+                    android:text="TOTO"/>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/Cantinder.InformationTextViewLayout">
+                <TextView
+                    style="@style/Cantinder.InformationTextView"
+                    android:text="TITI"/>
+                <TextView
+                    style="@style/Cantinder.InformationTextView"
+                    android:text="TUTU"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Partie boutons decline/accept -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:padding="10dp"
+            android:orientation="horizontal">
+            <ImageButton
+                android:src="@drawable/decline"
+                style="@style/Cantinder.ActionButton"
+                android:onClick="declineRestaurant"/>
+            <ImageButton
+                android:src="@drawable/accept"
+                style="@style/Cantinder.ActionButton"
+                android:onClick="acceptRestaurant"/>
+        </LinearLayout>
+    </LinearLayout>
 </FrameLayout>
