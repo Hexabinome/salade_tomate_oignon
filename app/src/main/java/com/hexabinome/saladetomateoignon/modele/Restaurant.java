@@ -1,4 +1,4 @@
-package com.hexabinome.saladetomateoignon.Modele;
+package com.hexabinome.saladetomateoignon.modele;
 
 /**
  * Created by robinroyer on 10/12/2015.

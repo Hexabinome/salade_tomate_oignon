@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.hexabinome.saladetomateoignon.Modele.Mock;
+import com.hexabinome.saladetomateoignon.modele.Mock;
 import com.hexabinome.saladetomateoignon.R;
 
 import java.util.ArrayList;

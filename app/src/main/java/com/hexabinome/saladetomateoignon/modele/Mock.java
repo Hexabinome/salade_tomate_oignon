@@ -1,4 +1,4 @@
-package com.hexabinome.saladetomateoignon.Modele;
+package com.hexabinome.saladetomateoignon.modele;
 
 import java.util.ArrayList;
 
