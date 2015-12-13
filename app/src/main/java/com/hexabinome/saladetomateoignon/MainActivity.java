@@ -15,18 +15,23 @@ import com.hexabinome.saladetomateoignon.fragment.preferences.PreferencesFragmen
 
 public class MainActivity extends AppCompatActivity implements CantinderFragment.OnCantinderFragmentInteractionListener, FavorisFragment.OnFavorisFragmentInteractionListener,PreferencesFragment.OnPreferencesFragmentInteractionListener {
 
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    public final static String POSITION = "POSITION";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
          // Get the ViewPager and set it's PagerAdapter so that it can display items
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
         CustomFragmentPagerAdapter customFragmentPagerAdapter = new CustomFragmentPagerAdapter(getSupportFragmentManager(), MainActivity.this);
         viewPager.setAdapter(customFragmentPagerAdapter);
 
         // Give the TabLayout the ViewPager
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
+         tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
 
         // Iterate over all tabs and set the custom view
@@ -35,6 +40,18 @@ public class MainActivity extends AppCompatActivity implements CantinderFragment
             tab.setCustomView(customFragmentPagerAdapter.getTabView(i));
         }
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(POSITION,tabLayout.getSelectedTabPosition());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        viewPager.setCurrentItem(savedInstanceState.getInt(POSITION));
     }
 
     @Override
