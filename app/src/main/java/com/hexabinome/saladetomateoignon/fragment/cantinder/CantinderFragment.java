@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.hexabinome.saladetomateoignon.R;
 
@@ -18,7 +20,7 @@ import com.hexabinome.saladetomateoignon.R;
  * Use the {@link CantinderFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CantinderFragment extends Fragment {
+public class CantinderFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String RESTAURANT = "nextRestaurant";
@@ -29,6 +31,10 @@ public class CantinderFragment extends Fragment {
     private String mParam2;
 
     private OnCantinderFragmentInteractionListener mListener;
+
+
+    private ImageButton declineButton;
+    private ImageButton acceptButton;
 
     public CantinderFragment() {
         // Required empty public constructor
@@ -57,8 +63,14 @@ public class CantinderFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cantinder, container, false);
+        View inflatedView = inflater.inflate(R.layout.fragment_cantinder, container, false);
+        declineButton = (ImageButton) inflatedView.findViewById(R.id.declineButton);
+        acceptButton = (ImageButton) inflatedView.findViewById(R.id.acceptButton);
+
+        declineButton.setOnClickListener(this);
+        acceptButton.setOnClickListener(this);
+
+        return inflatedView;
     }
 
     @Override
@@ -76,6 +88,15 @@ public class CantinderFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v == acceptButton){
+            acceptRestaurant();
+        } else if(v == declineButton){
+            declineRestaurant();
+        }
     }
 
     /**
@@ -96,19 +117,17 @@ public class CantinderFragment extends Fragment {
     /**
      * Refuse le restaurant actuellement affiché
      * Passe au restaurant suivant
-     * @param view
      */
-    public void declineRestaurant(View view) {
-
+    public void declineRestaurant() {
+        Toast.makeText(getContext(), "Decline",Toast.LENGTH_SHORT).show();
     }
 
     /**
      * Accepte le restaurant actuellement affiché.
      * Ajoute le restaurant actuel, affiche le bouton détail du restaurant, et passe au restaurant
      * suivant
-     * @param view
      */
-    public void acceptRestaurant(View view) {
-
+    public void acceptRestaurant() {
+        Toast.makeText(getContext(), "Accepter",Toast.LENGTH_SHORT).show();
     }
 }
