@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.hexabinome.saladetomateoignon.Modele.Mock;
 import com.hexabinome.saladetomateoignon.R;
 
 import java.util.ArrayList;
@@ -32,7 +33,6 @@ public class FavorisFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private OnFavorisFragmentInteractionListener mListener;
-
 
 
     public FavorisFragment() {
@@ -71,10 +71,26 @@ public class FavorisFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        View inflatedView = inflater.inflate(R.layout.fragment_favoris, container, false);
 
+        ListView preferenceListView;
+        ArrayAdapter mArrayAdapter;
+
+        ArrayList preferenceList;
+        preferenceList = Mock.getRestaurantLaDoua();
+
+
+        // Access the ListView
+        preferenceListView = (ListView) inflatedView.findViewById(R.id.preference_listview);
+
+        // Create an ArrayAdapter for the ListView
+        mArrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, preferenceList);
+
+        // Set the ListView to use the ArrayAdapter
+        preferenceListView.setAdapter(mArrayAdapter);
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favoris, container, false);
+        return inflatedView;
     }
 
 

@@ -70,24 +70,9 @@ public class PreferencesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        ListView preferenceListView;
-        ArrayAdapter mArrayAdapter;
+        View inflatedView = inflater.inflate(R.layout.fragment_preferences, container, false);
 
-        ArrayList preferenceList;
-        preferenceList = Mock.getRestaurantLaDoua();
-
-
-        View v = inflater.inflate(R.layout.fragment_favoris, null);
-        // Access the ListView
-        preferenceListView = (ListView) v.findViewById(R.id.preference_listview);
-
-        // Create an ArrayAdapter for the ListView
-        mArrayAdapter = new ArrayAdapter(container.getContext(), android.R.layout.simple_list_item_1, preferenceList);
-
-        // Set the ListView to use the ArrayAdapter
-        preferenceListView.setAdapter(mArrayAdapter);
-
-        return inflater.inflate(R.layout.fragment_preferences, container, false);
+        return inflatedView;
     }
 
     @Override
