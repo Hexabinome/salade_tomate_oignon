@@ -22,13 +22,18 @@ public class MainActivity extends AppCompatActivity implements CantinderFragment
 
          // Get the ViewPager and set it's PagerAdapter so that it can display items
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-
-        viewPager.setAdapter(new CustomFragmentPagerAdapter(getSupportFragmentManager(),
-                MainActivity.this));
+        CustomFragmentPagerAdapter customFragmentPagerAdapter = new CustomFragmentPagerAdapter(getSupportFragmentManager(), MainActivity.this);
+        viewPager.setAdapter(customFragmentPagerAdapter);
 
         // Give the TabLayout the ViewPager
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        // Iterate over all tabs and set the custom view
+        for (int i = 0; i < tabLayout.getTabCount(); i++) {
+            TabLayout.Tab tab = tabLayout.getTabAt(i);
+            tab.setCustomView(customFragmentPagerAdapter.getTabView(i));
+        }
 
     }
 
