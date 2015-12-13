@@ -6,6 +6,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.hexabinome.saladetomateoignon.fragment.cantinder.CantinderFragment;
+import com.hexabinome.saladetomateoignon.fragment.favoris.FavorisFragment;
+import com.hexabinome.saladetomateoignon.fragment.preferences.PreferencesFragment;
+
 public class CustomFragmentPagerAdapter extends FragmentPagerAdapter {
 
     final int PAGE_COUNT = 3;

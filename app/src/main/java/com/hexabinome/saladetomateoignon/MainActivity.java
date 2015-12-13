@@ -6,10 +6,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.hexabinome.saladetomateoignon.fragment.CantinderFragment;
+import com.hexabinome.saladetomateoignon.fragment.cantinder.CantinderFragment;
 import com.hexabinome.saladetomateoignon.fragment.CustomFragmentPagerAdapter;
-import com.hexabinome.saladetomateoignon.fragment.FavorisFragment;
-import com.hexabinome.saladetomateoignon.fragment.PreferencesFragment;
+import com.hexabinome.saladetomateoignon.fragment.favoris.FavorisFragment;
+import com.hexabinome.saladetomateoignon.fragment.preferences.PreferencesFragment;
 
 
 

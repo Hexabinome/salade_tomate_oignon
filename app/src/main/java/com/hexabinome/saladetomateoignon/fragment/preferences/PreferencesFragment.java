@@ -1,4 +1,4 @@
-package com.hexabinome.saladetomateoignon.fragment;
+package com.hexabinome.saladetomateoignon.fragment.preferences;
 
 import android.content.Context;
 import android.net.Uri;
@@ -7,23 +7,18 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
-import com.hexabinome.saladetomateoignon.modele.Mock;
 import com.hexabinome.saladetomateoignon.R;
-
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link OnFavorisFragmentInteractionListener} interface
+ * {@link OnPreferencesFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link FavorisFragment#newInstance} factory method to
+ * Use the {@link PreferencesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FavorisFragment extends Fragment {
+public class PreferencesFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -32,10 +27,10 @@ public class FavorisFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private OnFavorisFragmentInteractionListener mListener;
 
+    private OnPreferencesFragmentInteractionListener mListener;
 
-    public FavorisFragment() {
+    public PreferencesFragment() {
         // Required empty public constructor
     }
 
@@ -45,11 +40,11 @@ public class FavorisFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment FavorisFragment.
+     * @return A new instance of fragment PreferencesFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static FavorisFragment newInstance(String param1, String param2) {
-        FavorisFragment fragment = new FavorisFragment();
+    public static PreferencesFragment newInstance(String param1, String param2) {
+        PreferencesFragment fragment = new PreferencesFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,44 +59,25 @@ public class FavorisFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        super.onCreate(savedInstanceState);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View inflatedView = inflater.inflate(R.layout.fragment_favoris, container, false);
+        View inflatedView = inflater.inflate(R.layout.fragment_preferences, container, false);
 
-        ListView preferenceListView;
-        ArrayAdapter mArrayAdapter;
-
-        ArrayList preferenceList;
-        preferenceList = Mock.getRestaurantLaDoua();
-
-
-        // Access the ListView
-        preferenceListView = (ListView) inflatedView.findViewById(R.id.preference_listview);
-
-        // Create an ArrayAdapter for the ListView
-        mArrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, preferenceList);
-
-        // Set the ListView to use the ArrayAdapter
-        preferenceListView.setAdapter(mArrayAdapter);
-
-        // Inflate the layout for this fragment
         return inflatedView;
     }
-
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFavorisFragmentInteractionListener) {
-            mListener = (OnFavorisFragmentInteractionListener) context;
+        if (context instanceof OnPreferencesFragmentInteractionListener) {
+            mListener = (OnPreferencesFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFavorisFragmentInteractionListener");
+                    + " must implement OnPreferencesFragmentInteractionListener");
         }
     }
 
@@ -121,8 +97,8 @@ public class FavorisFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFavorisFragmentInteractionListener {
+    public interface OnPreferencesFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFavorisFragmentInteraction(Uri uri);
+        void onPreferencesFragmentInteraction(Uri uri);
     }
 }
