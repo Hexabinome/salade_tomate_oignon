@@ -57,7 +57,7 @@ public class CustomFragmentPagerAdapter extends FragmentPagerAdapter {
         View v = LayoutInflater.from(context).inflate(R.layout.custom_tab, null);
         TextView tv = (TextView) v.findViewById(R.id.tabName);
         tv.setText(tabTitles[position]);
-        ImageView img = (ImageView) v.findViewById(R.id.image);
+        ImageView img = (ImageView) v.findViewById(R.id.tab_image);
         img.setImageResource(imagesId[position]);
         return v;
     }
