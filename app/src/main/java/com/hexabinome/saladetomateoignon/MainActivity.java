@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements
                 tab.setCustomView(customFragmentPagerAdapter.getTabView(i));
         }
 
+        // set the tab showed at launch
+        viewPager.setCurrentItem(1);
     }
 
     @Override
