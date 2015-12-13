@@ -71,6 +71,8 @@ public class FavorisFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        //TODO : change the layout of the list
+        
         View inflatedView = inflater.inflate(R.layout.fragment_favoris, container, false);
 
         ListView preferenceListView;
@@ -81,7 +83,7 @@ public class FavorisFragment extends Fragment {
 
 
         // Access the ListView
-        preferenceListView = (ListView) inflatedView.findViewById(R.id.preference_listview);
+        preferenceListView = (ListView) inflatedView.findViewById(R.id.favoris_listview);
 
         // Create an ArrayAdapter for the ListView
         mArrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, preferenceList);
@@ -89,8 +91,12 @@ public class FavorisFragment extends Fragment {
         // Set the ListView to use the ArrayAdapter
         preferenceListView.setAdapter(mArrayAdapter);
 
+
+        // deleting previous view
+        ((ViewGroup) preferenceListView.getParent()).removeView(preferenceListView);
+
         // Inflate the layout for this fragment
-        return inflatedView;
+        return preferenceListView;
     }
 
 

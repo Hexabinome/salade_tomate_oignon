@@ -16,7 +16,7 @@ public class Restaurant {
 
     @Override
     public String toString(){
-        return "Name : " + getName() + "Price : " +getPrice();
+        return getName() + "         " +getPrice() + " €";
     }
 
     // getter to display our restaurants

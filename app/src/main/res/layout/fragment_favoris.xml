@@ -10,7 +10,7 @@
         android:text="Favoris" />
 
     <ListView
-        android:id="@+id/preference_listview"
+        android:id="@+id/favoris_listview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="20dp"/>
