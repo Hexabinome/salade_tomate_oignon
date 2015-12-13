@@ -25,24 +25,24 @@
                 android:text="TACOS"/>
 
             <LinearLayout
-                style="@style/Cantinder.InformationTextViewLayout">
+                style="@style/InformationTextViewLayout">
                 <TextView
-                    style="@style/Cantinder.InformationTextView"
+                    style="@style/InformationTextView"
                     android:textAlignment="center"
                     android:text="TATA"/>
                 <TextView
-                    style="@style/Cantinder.InformationTextView"
+                    style="@style/InformationTextView"
                     android:textAlignment="center"
                     android:text="TOTO"/>
             </LinearLayout>
 
             <LinearLayout
-                style="@style/Cantinder.InformationTextViewLayout">
+                style="@style/InformationTextViewLayout">
                 <TextView
-                    style="@style/Cantinder.InformationTextView"
+                    style="@style/InformationTextView"
                     android:text="TITI"/>
                 <TextView
-                    style="@style/Cantinder.InformationTextView"
+                    style="@style/InformationTextView"
                     android:text="TUTU"/>
             </LinearLayout>
         </LinearLayout>
@@ -56,11 +56,11 @@
             android:orientation="horizontal">
             <ImageButton
                 android:src="@drawable/decline"
-                style="@style/Cantinder.ActionButton"
+                style="@style/ActionButton"
                 android:onClick="declineRestaurant"/>
             <ImageButton
                 android:src="@drawable/accept"
-                style="@style/Cantinder.ActionButton"
+                style="@style/ActionButton"
                 android:onClick="acceptRestaurant"/>
         </LinearLayout>
     </LinearLayout>
