@@ -85,11 +85,12 @@ public class MainActivity extends AppCompatActivity implements
         View view = tab.getCustomView();
         if(view != null){
             TextView textView = (TextView) view.findViewById(R.id.tabName);
-            textView.setTextColor(ContextCompat.getColor(this,R.color.colorPrimary));
+            textView.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
 
             ImageView imageView = (ImageView) view.findViewById(R.id.tab_image);
             imageView.setColorFilter(ContextCompat.getColor(this,R.color.colorPrimary));
 
+            viewPager.setCurrentItem(tab.getPosition());
         }
     }
 
