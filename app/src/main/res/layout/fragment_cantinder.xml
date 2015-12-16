@@ -6,6 +6,19 @@
 
     tools:context=".fragment.cantinder.CantinderFragment">
 
+
+    <Button
+        android:id="@+id/detailRestaurant"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="30dp"
+        android:visibility="invisible"
+        android:text="@string/Cantinder_DetailRestaurant"
+        android:textSize="10sp"
+        />
+
     <!-- Partie présentation restaurant -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,8 +31,7 @@
             android:id="@+id/restaurantTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="TACOS"
+            android:text="@string/CantinderTest_Title"
             android:textAlignment="center" />
 
         <LinearLayout style="@style/InformationTextViewLayout">
@@ -27,12 +39,12 @@
             <TextView
                 android:id="@+id/restaurantTempsAttente"
                 style="@style/InformationTextView"
-                android:text="TATA" />
+                android:text="@string/CantinderTest_TempsAttente" />
 
             <TextView
                 android:id="@+id/restaurantPrice"
                 style="@style/InformationTextView"
-                android:text="TOTO" />
+                android:text="@string/CantinderTest_Price" />
         </LinearLayout>
 
         <LinearLayout style="@style/InformationTextViewLayout">
@@ -40,12 +52,12 @@
             <TextView
                 android:id="@+id/restaurantDistance"
                 style="@style/InformationTextView"
-                android:text="TITI" />
+                android:text="@string/CantinderTest_Distance" />
 
             <TextView
                 android:id="@+id/restaurantGrade"
                 style="@style/InformationTextView"
-                android:text="TUTU" />
+                android:text="@string/CantinderTest_Grade" />
         </LinearLayout>
     </LinearLayout>
 

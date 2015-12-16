@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +17,10 @@ import com.hexabinome.saladetomateoignon.modele.Mock;
 import com.hexabinome.saladetomateoignon.modele.Restaurant;
 
 import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,6 +35,8 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
     private OnCantinderFragmentInteractionListener mListener;
 
     private Restaurant currentRestaurant;
+    private Restaurant previousRestaurant;
+    private List<Restaurant> refused = new ArrayList<Restaurant>(); // TODO reinit when come back to this fragment
 
     private TextView restaurantTitle;
     private TextView restaurantPrice;
@@ -39,6 +46,8 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 
     private ImageButton declineButton;
     private ImageButton acceptButton;
+    private Button detailButton;
+
 
     public CantinderFragment() {
         // Required empty public constructor
@@ -63,9 +72,11 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         View inflatedView = inflater.inflate(R.layout.fragment_cantinder, container, false);
         declineButton = (ImageButton) inflatedView.findViewById(R.id.declineButton);
         acceptButton = (ImageButton) inflatedView.findViewById(R.id.acceptButton);
+        detailButton = (Button) inflatedView.findViewById(R.id.detailRestaurant);
 
         declineButton.setOnClickListener(this);
         acceptButton.setOnClickListener(this);
+        detailButton.setOnClickListener(this);
 
         restaurantTitle = (TextView) inflatedView.findViewById(R.id.restaurantTitle);
         restaurantTempsAttente = (TextView) inflatedView.findViewById(R.id.restaurantTempsAttente);
@@ -98,10 +109,12 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == acceptButton.getId()){
+        if (v.getId() == acceptButton.getId()){
             acceptRestaurant();
-        } else if(v.getId() == declineButton.getId()){
+        } else if (v.getId() == declineButton.getId()){
             declineRestaurant();
+        } else if (v.getId() == detailButton.getId()) {
+            detailRestaurant();
         }
     }
 
@@ -125,7 +138,14 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
      * Passe au restaurant suivant
      */
     public void declineRestaurant() {
-        Toast.makeText(getContext(), "Decline", Toast.LENGTH_SHORT).show();
+        detailButton.setVisibility(View.INVISIBLE);
+
+        if (currentRestaurant != null) {
+            refused.add(currentRestaurant);
+        }
+
+        currentRestaurant = getNextRestaurant();
+        displayRestaurant();
     }
 
     /**
@@ -134,24 +154,72 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
      * suivant
      */
     public void acceptRestaurant() {
-        Toast.makeText(getContext(), "Accepter", Toast.LENGTH_SHORT).show();
+
+        if (currentRestaurant != null) {
+            // Add current restaurant to favorties
+            favorites.add(currentRestaurant);
+            // Display button to go to current restaurant details
+            detailButton.setVisibility(View.VISIBLE);
+        }
+
+        // Next restaurant
+        currentRestaurant = getNextRestaurant();
+        displayRestaurant();
+    }
+
+    public void detailRestaurant() {
+        Toast.makeText(getContext(), "Go to detail of " + previousRestaurant.getName(), Toast.LENGTH_SHORT).show();
     }
 
     /**
      * Gets the next restaurant, corresponding to the preferences and not already in the favorites
-     * @return The next restaurant that might match
+     * @return The next restaurant that might match. Null if no restaurant left (all in favorites)
      */
     private Restaurant getNextRestaurant() {
-        return Mock.getRestaurantLaDoua().get(0);
+        previousRestaurant = currentRestaurant;
+        for (Restaurant r : getMostMatchingRestaurants()) {
+            if (!isFavorite(r) && !isRefused(r)) {
+                return r;
+            }
+        }
+
+        Toast.makeText(getContext(), "No restaurant found", Toast.LENGTH_SHORT).show();
+        return null;
+        //throw new RuntimeException("All restaurants are favorites or no restaurant found");
     }
 
+    private List<Restaurant> getMostMatchingRestaurants() {
+        // TODO add logic with preferences
+        return Mock.getRestaurantLaDoua();
+    }
+
+    private List<Restaurant> favorites = new ArrayList<Restaurant>();
+    private boolean isFavorite(Restaurant r) {
+        // TODO use user favorite list
+        return favorites.contains(r);
+    }
+
+    private boolean isRefused(Restaurant r) {
+        return refused.contains(r);
+    }
+
+    /**
+     * Fills restaurant displays
+     */
     private void displayRestaurant() {
-        if (restaurantTitle.isCursorVisible()) {
-            restaurantTitle.setText(currentRestaurant.getName());
-            restaurantDistance.setText(currentRestaurant.getDistance().toString());
-            restaurantPrice.setText(currentRestaurant.getPrice().toString());
-            restaurantTempsAttente.setText(currentRestaurant.getTempsAttenteMoy().toString());
-            restaurantGrade.setText(currentRestaurant.getGrade().toString());
+        String name = "", distance = "", price = "", tempsAtt = "", grade = "";
+        if (restaurantTitle.isCursorVisible() && currentRestaurant != null) {
+            name = currentRestaurant.getName();
+            distance = currentRestaurant.getDistance().toString();
+            price = currentRestaurant.getPrice().toString();
+            tempsAtt = currentRestaurant.getTempsAttenteMoy().toString();
+            grade = currentRestaurant.getGrade().toString();
         }
+
+        restaurantTitle.setText(name);
+        restaurantDistance.setText(distance);
+        restaurantPrice.setText(price);
+        restaurantTempsAttente.setText(tempsAtt);
+        restaurantGrade.setText(grade);
     }
 }

@@ -1,6 +1,5 @@
 package com.hexabinome.saladetomateoignon.modele;
 
-import java.util.Date;
 
 /**
  * Created by robinroyer on 10/12/2015.
@@ -21,23 +20,23 @@ public class Restaurant {
         this.grade = grade;
     }
 
+    public String getName() { return name; }
 
-    @Override
-    public String toString(){
-        return getName() + "         " +getPrice() + " €";
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
+    public Double getPrice() { return price; }
 
     public Double getTempsAttenteMoy() { return tempsAttenteMoy; }
 
     public Double getDistance() { return distance; }
 
     public Integer getGrade() { return grade; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || !(o instanceof Restaurant)) {
+            return false;
+        }
+
+        Restaurant r = (Restaurant)o;
+        return this.getName().equals(r.getName());
+    }
 }
