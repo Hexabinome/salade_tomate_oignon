@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
 import com.hexabinome.saladetomateoignon.fragment.cantinder.CantinderFragment;
 import com.hexabinome.saladetomateoignon.fragment.CustomFragmentPagerAdapter;
@@ -28,12 +29,16 @@ public class MainActivity extends AppCompatActivity implements
     private TabLayout tabLayout;
     private ViewPager viewPager;
     public final static String POSITION = "POSITION";
+    private Toolbar toolbar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
 
         // Get the ViewPager and set it's PagerAdapter so that it can display items
         viewPager = (ViewPager) findViewById(R.id.viewpager);
