@@ -7,4 +7,10 @@
     <string name="err_msg_email">Email invalide</string>
     <string name="err_msg_password">Veuillez saisir votre mot de passe</string>
     <string name="action_about">A propos</string>
+    <string-array name="country_arrays">
+        <item>Vegan</item>
+        <item>Swagetarien</item>
+        <item>Beaucoup du beuf</item>
+        <item>Sans Porc</item>
+    </string-array>
 </resources>

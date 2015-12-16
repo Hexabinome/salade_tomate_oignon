@@ -19,10 +19,6 @@
         android:textColor="@color/colorPrimary"
         android:textSize="50dp" />
 
-    <Space
-        android:layout_width="fill_parent"
-        android:layout_height="20dp" />
-
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="fill_parent"
@@ -49,7 +45,6 @@
             android:layout_weight="0.15">
 
             <SeekBar
-                android:id="@+id/seek1"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -57,10 +52,6 @@
                 android:secondaryProgress="20" />
         </RelativeLayout>
     </LinearLayout>
-
-    <Space
-        android:layout_width="fill_parent"
-        android:layout_height="15dp" />
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -97,10 +88,6 @@
         </RelativeLayout>
 
     </LinearLayout>
-
-    <Space
-        android:layout_width="fill_parent"
-        android:layout_height="15dp" />
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -139,10 +126,6 @@
         </RelativeLayout>
     </LinearLayout>
 
-    <Space
-        android:layout_width="fill_parent"
-        android:layout_height="15dp" />
-
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -158,6 +141,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
                 android:text="Note"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimary"
@@ -180,9 +166,115 @@
         </RelativeLayout>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/connectionButton"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="fill_parent"
-        android:layout_height="40dp"
-        android:text="Deconnexion" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.25">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:text="Type de\nrestaurant"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="26dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="right"
+            android:layout_weight="0.15">
+
+            <CheckBox
+                android:id="@+id/checkBox2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:checked="true"
+                android:onClick="onCheckboxClicked"
+                android:text="Resto U           "
+                android:textColor="@color/colorPrimary" />
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/checkBox3"
+                android:checked="true"
+                android:onClick="onCheckboxClicked"
+                android:text="Fast Food       "
+                android:textColor="@color/colorPrimary" />
+
+            <CheckBox
+                android:id="@+id/checkBox3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/checkBox2"
+                android:checked="true"
+                android:onClick="onCheckboxClicked"
+                android:text="Swaggetarien"
+                android:textColor="@color/colorPrimary" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.25">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Regime    "
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="26dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.15">
+
+            <Spinner
+                android:textColor="@color/colorPrimary"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:entries="@array/country_arrays"
+                android:theme="@style/MooTheme"
+                android:prompt="@string/country_prompt" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/deconnexion"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimary"
+        android:text="Deconnexion"
+        android:textColor="@android:color/white" />
 </LinearLayout>
