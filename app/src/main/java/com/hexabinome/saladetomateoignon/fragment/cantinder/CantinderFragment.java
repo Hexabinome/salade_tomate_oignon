@@ -8,9 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hexabinome.saladetomateoignon.R;
+import com.hexabinome.saladetomateoignon.modele.Mock;
+import com.hexabinome.saladetomateoignon.modele.Restaurant;
+
+import org.w3c.dom.Text;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,17 +26,16 @@ import com.hexabinome.saladetomateoignon.R;
  * create an instance of this fragment.
  */
 public class CantinderFragment extends Fragment implements View.OnClickListener {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String RESTAURANT = "nextRestaurant";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private OnCantinderFragmentInteractionListener mListener;
 
+    private Restaurant currentRestaurant;
+
+    private TextView restaurantTitle;
+    private TextView restaurantPrice;
+    private TextView restaurantDistance;
+    private TextView restaurantTempsAttente;
+    private TextView restaurantGrade;
 
     private ImageButton declineButton;
     private ImageButton acceptButton;
@@ -45,19 +49,12 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
     public static CantinderFragment newInstance(String param1, String param2) {
         CantinderFragment fragment = new CantinderFragment();
         Bundle args = new Bundle();
-        args.putString(RESTAURANT, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(RESTAURANT);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -69,6 +66,15 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 
         declineButton.setOnClickListener(this);
         acceptButton.setOnClickListener(this);
+
+        restaurantTitle = (TextView) inflatedView.findViewById(R.id.restaurantTitle);
+        restaurantTempsAttente = (TextView) inflatedView.findViewById(R.id.restaurantTempsAttente);
+        restaurantDistance = (TextView) inflatedView.findViewById(R.id.restaurantDistance);
+        restaurantPrice = (TextView) inflatedView.findViewById(R.id.restaurantPrice);
+        restaurantGrade = (TextView) inflatedView.findViewById(R.id.restaurantGrade);
+
+        currentRestaurant = getNextRestaurant();
+        displayRestaurant();
 
         return inflatedView;
     }
@@ -92,9 +98,9 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        if(v == acceptButton){
+        if(v.getId() == acceptButton.getId()){
             acceptRestaurant();
-        } else if(v == declineButton){
+        } else if(v.getId() == declineButton.getId()){
             declineRestaurant();
         }
     }
@@ -119,7 +125,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
      * Passe au restaurant suivant
      */
     public void declineRestaurant() {
-        Toast.makeText(getContext(), "Decline",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Decline", Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -128,6 +134,24 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
      * suivant
      */
     public void acceptRestaurant() {
-        Toast.makeText(getContext(), "Accepter",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Accepter", Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Gets the next restaurant, corresponding to the preferences and not already in the favorites
+     * @return The next restaurant that might match
+     */
+    private Restaurant getNextRestaurant() {
+        return Mock.getRestaurantLaDoua().get(0);
+    }
+
+    private void displayRestaurant() {
+        if (restaurantTitle.isCursorVisible()) {
+            restaurantTitle.setText(currentRestaurant.getName());
+            restaurantDistance.setText(currentRestaurant.getDistance().toString());
+            restaurantPrice.setText(currentRestaurant.getPrice().toString());
+            restaurantTempsAttente.setText(currentRestaurant.getTempsAttenteMoy().toString());
+            restaurantGrade.setText(currentRestaurant.getGrade().toString());
+        }
     }
 }

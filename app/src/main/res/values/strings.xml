@@ -6,4 +6,5 @@
     <string name="hint_password">Mot de passe</string>
     <string name="err_msg_email">Email invalide</string>
     <string name="err_msg_password">Veuillez saisir votre mot de passe</string>
+    <string name="action_about">A propos</string>
 </resources>
