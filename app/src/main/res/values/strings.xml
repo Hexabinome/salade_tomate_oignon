@@ -2,4 +2,9 @@
     <string name="app_name">Salade Tomate Oignon</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Mot de passe</string>
+    <string name="err_msg_email">Email invalide</string>
+    <string name="err_msg_password">Veuillez saisir votre mot de passe</string>
+    <string name="action_about">A propos</string>
 </resources>

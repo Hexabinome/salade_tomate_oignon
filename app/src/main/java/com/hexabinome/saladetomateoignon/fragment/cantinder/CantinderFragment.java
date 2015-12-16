@@ -8,9 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hexabinome.saladetomateoignon.R;
+import com.hexabinome.saladetomateoignon.modele.Mock;
+import com.hexabinome.saladetomateoignon.modele.Restaurant;
+
+import org.w3c.dom.Text;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +29,13 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 
     private OnCantinderFragmentInteractionListener mListener;
 
+    private Restaurant currentRestaurant;
+
+    private TextView restaurantTitle;
+    private TextView restaurantPrice;
+    private TextView restaurantDistance;
+    private TextView restaurantTempsAttente;
+    private TextView restaurantGrade;
 
     private ImageButton declineButton;
     private ImageButton acceptButton;
@@ -55,6 +67,15 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         declineButton.setOnClickListener(this);
         acceptButton.setOnClickListener(this);
 
+        restaurantTitle = (TextView) inflatedView.findViewById(R.id.restaurantTitle);
+        restaurantTempsAttente = (TextView) inflatedView.findViewById(R.id.restaurantTempsAttente);
+        restaurantDistance = (TextView) inflatedView.findViewById(R.id.restaurantDistance);
+        restaurantPrice = (TextView) inflatedView.findViewById(R.id.restaurantPrice);
+        restaurantGrade = (TextView) inflatedView.findViewById(R.id.restaurantGrade);
+
+        currentRestaurant = getNextRestaurant();
+        displayRestaurant();
+
         return inflatedView;
     }
 
@@ -77,9 +98,9 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        if(v == acceptButton){
+        if(v.getId() == acceptButton.getId()){
             acceptRestaurant();
-        } else if(v == declineButton){
+        } else if(v.getId() == declineButton.getId()){
             declineRestaurant();
         }
     }
@@ -114,5 +135,23 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
      */
     public void acceptRestaurant() {
         Toast.makeText(getContext(), "Accepter", Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Gets the next restaurant, corresponding to the preferences and not already in the favorites
+     * @return The next restaurant that might match
+     */
+    private Restaurant getNextRestaurant() {
+        return Mock.getRestaurantLaDoua().get(0);
+    }
+
+    private void displayRestaurant() {
+        if (restaurantTitle.isCursorVisible()) {
+            restaurantTitle.setText(currentRestaurant.getName());
+            restaurantDistance.setText(currentRestaurant.getDistance().toString());
+            restaurantPrice.setText(currentRestaurant.getPrice().toString());
+            restaurantTempsAttente.setText(currentRestaurant.getTempsAttenteMoy().toString());
+            restaurantGrade.setText(currentRestaurant.getGrade().toString());
+        }
     }
 }

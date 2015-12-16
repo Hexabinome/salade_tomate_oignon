@@ -15,6 +15,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/restaurantTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -24,23 +25,25 @@
         <LinearLayout style="@style/InformationTextViewLayout">
 
             <TextView
+                android:id="@+id/restaurantTempsAttente"
                 style="@style/InformationTextView"
-                android:text="TATA"
-                android:textAlignment="center" />
+                android:text="TATA" />
 
             <TextView
+                android:id="@+id/restaurantPrice"
                 style="@style/InformationTextView"
-                android:text="TOTO"
-                android:textAlignment="center" />
+                android:text="TOTO" />
         </LinearLayout>
 
         <LinearLayout style="@style/InformationTextViewLayout">
 
             <TextView
+                android:id="@+id/restaurantDistance"
                 style="@style/InformationTextView"
                 android:text="TITI" />
 
             <TextView
+                android:id="@+id/restaurantGrade"
                 style="@style/InformationTextView"
                 android:text="TUTU" />
         </LinearLayout>
