@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.hexabinome.saladetomateoignon.R;
 import com.hexabinome.saladetomateoignon.fragment.cantinder.CantinderFragment;
+import com.hexabinome.saladetomateoignon.fragment.cantinder.SwipeTestFragment;
 import com.hexabinome.saladetomateoignon.fragment.favoris.FavorisFragment;
 import com.hexabinome.saladetomateoignon.fragment.preferences.PreferencesFragment;
 
@@ -31,7 +32,7 @@ public class CustomFragmentPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         if(position == 0){
-            return new FavorisFragment();
+            return new SwipeTestFragment();
         } else if(position == 1 )
         {
             return new CantinderFragment();
