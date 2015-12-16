@@ -1,5 +1,6 @@
 package com.hexabinome.saladetomateoignon;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,7 +19,7 @@ import android.widget.EditText;
 public class LoginActivity extends AppCompatActivity {
     private EditText inputEmail, inputPassword;
     private TextInputLayout inputLayoutEmail, inputLayoutPassword;
-    private Button btnSignIn;
+    private Button btnSignIn, btnSignUp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,16 +29,23 @@ public class LoginActivity extends AppCompatActivity {
         inputLayoutEmail = (TextInputLayout) findViewById(R.id.input_layout_email);
         inputLayoutPassword = (TextInputLayout) findViewById(R.id.input_layout_password);
         btnSignIn = (Button) findViewById(R.id.signinButton);
-
+        btnSignUp = (Button) findViewById(R.id.signupButton);
 
         inputEmail.addTextChangedListener(new LoginTextWatcher(inputEmail));
         inputPassword.addTextChangedListener(new LoginTextWatcher(inputPassword));
 
-        btnSignIn.setOnClickListener(new View.OnClickListener(){
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 submitForm();
+            }
+        });
+
+        btnSignUp.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(LoginActivity.this, SubscribeActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -52,7 +60,8 @@ public class LoginActivity extends AppCompatActivity {
         {
             return;
         }
-        //changer d'activité
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
     private boolean validateEmail() {
         String email = inputEmail.getText().toString().trim();

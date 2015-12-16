@@ -4,8 +4,14 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Mot de passe</string>
+    <string name="hint_firstname">Prénom</string>
+    <string name="hint_lastname">Nom</string>
+    <string name="hint_verify_password">Confirmer</string>
     <string name="err_msg_email">Email invalide</string>
     <string name="err_msg_password">Veuillez saisir votre mot de passe</string>
+    <string name="err_msg_first_name">Prénom invalide</string>
+    <string name="err_msg_last_name">Nom invalide</string>
+    <string name="err_msg_confirm_password">Les mots de passe ne correspondent pas</string>
     <string name="action_about">A propos</string>
     <string name="Cantinder_DetailRestaurant">Previous restaurant details</string>
     <string name="CantinderTest_Title">TACOS - Snack du campus</string>
