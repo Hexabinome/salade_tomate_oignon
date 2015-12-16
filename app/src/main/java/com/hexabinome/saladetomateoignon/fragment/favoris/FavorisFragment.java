@@ -86,7 +86,7 @@ public class FavorisFragment extends Fragment {
         preferenceListView = (ListView) inflatedView.findViewById(R.id.favoris_listview);
 
         // Create an ArrayAdapter for the ListView
-        mArrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, preferenceList);
+        mArrayAdapter = new RestaurantAdapter(preferenceList,getContext());
 
         // Set the ListView to use the ArrayAdapter
         preferenceListView.setAdapter(mArrayAdapter);
