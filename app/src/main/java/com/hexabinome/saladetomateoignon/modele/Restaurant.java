@@ -1,20 +1,24 @@
 package com.hexabinome.saladetomateoignon.modele;
 
+import java.util.Date;
+
 /**
  * Created by robinroyer on 10/12/2015.
  */
 public class Restaurant {
     //TODO: ADD PHOTOS OF RESTAURANTS
     private String name;
-    private double price;
-    private double tempsAttenteMoy;
-    private double distance; // TODO à remplacer par position, puis calculer la distance
+    private Double price;
+    private Double tempsAttenteMoy;
+    private Double distance; // TODO à remplacer par position, puis calculer la distance
+    private int grade;
 
-    public Restaurant(String myname, double myprice, double tempsAttenteMoy, double distance) {
+    public Restaurant(String myname, double myprice, double tempsAttenteMoy, double distance, int grade) {
         price = myprice;
         name = myname;
         this.tempsAttenteMoy = tempsAttenteMoy;
         this.distance = distance;
+        this.grade = grade;
     }
 
 
@@ -27,11 +31,13 @@ public class Restaurant {
         return name;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public double getTempsAttenteMoy() { return tempsAttenteMoy; }
+    public Double getTempsAttenteMoy() { return tempsAttenteMoy; }
 
-    public double getDistance() { return distance; }
+    public Double getDistance() { return distance; }
+
+    public int getGrade() { return grade; }
 }
