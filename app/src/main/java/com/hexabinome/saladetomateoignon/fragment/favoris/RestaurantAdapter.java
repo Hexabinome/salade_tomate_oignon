@@ -60,7 +60,7 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
                                             @Override
                                             public void onClick(View v) {
                                                 Animation anim = AnimationUtils.loadAnimation(
-                                                        getContext(), android.R.anim.slide_out_right
+                                                        getContext(), android.R.anim.fade_out
                                                 );
                                                 anim.setDuration(500);
                                                 v.startAnimation(anim );
