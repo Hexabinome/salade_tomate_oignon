@@ -7,4 +7,11 @@
     <string name="err_msg_email">Email invalide</string>
     <string name="err_msg_password">Veuillez saisir votre mot de passe</string>
     <string name="action_about">A propos</string>
+
+    <string name="Cantinder_DetailRestaurant">Previous restaurant details</string>
+    <string name="CantinderTest_Title">TACOS - Snack du campus</string>
+    <string name="CantinderTest_TempsAttente">10</string>
+    <string name="CantinderTest_Distance">1.4</string>
+    <string name="CantinderTest_Grade">4</string>
+    <string name="CantinderTest_Price">4.5</string>
 </resources>
