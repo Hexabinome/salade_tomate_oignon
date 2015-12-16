@@ -17,6 +17,10 @@ import com.hexabinome.saladetomateoignon.modele.Restaurant;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -125,7 +129,8 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
      * Passe au restaurant suivant
      */
     public void declineRestaurant() {
-        Toast.makeText(getContext(), "Decline", Toast.LENGTH_SHORT).show();
+        currentRestaurant = getNextRestaurant();
+        displayRestaurant();
     }
 
     /**
@@ -134,17 +139,44 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
      * suivant
      */
     public void acceptRestaurant() {
-        Toast.makeText(getContext(), "Accepter", Toast.LENGTH_SHORT).show();
+        // Add current restaurant to favorties
+        favorites.add(currentRestaurant);
+        // Display button to go to current restaurant details
+
+        // Next restaurant
+        currentRestaurant = getNextRestaurant();
+        displayRestaurant();
     }
 
     /**
      * Gets the next restaurant, corresponding to the preferences and not already in the favorites
-     * @return The next restaurant that might match
+     * @return The next restaurant that might match. Null if no restaurant left (all in favorites)
      */
     private Restaurant getNextRestaurant() {
-        return Mock.getRestaurantLaDoua().get(0);
+
+        for (Restaurant r : getMostMatchingRestaurants()) {
+            if (!isFavorite(r)) {
+                return r;
+            }
+        }
+
+        return null;
     }
 
+    private List<Restaurant> getMostMatchingRestaurants() {
+        // TODO add logic with preferences
+        return Mock.getRestaurantLaDoua();
+    }
+
+    private List<Restaurant> favorites = new ArrayList<Restaurant>();
+    private boolean isFavorite(Restaurant r) {
+        // TODO use user favorite list
+        return favorites.contains(r);
+    }
+
+    /**
+     * Fills restaurant displays
+     */
     private void displayRestaurant() {
         if (restaurantTitle.isCursorVisible()) {
             restaurantTitle.setText(currentRestaurant.getName());

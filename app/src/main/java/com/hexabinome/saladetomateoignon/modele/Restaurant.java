@@ -40,4 +40,14 @@ public class Restaurant {
     public Double getDistance() { return distance; }
 
     public Integer getGrade() { return grade; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || !(o instanceof Restaurant)) {
+            return false;
+        }
+
+        Restaurant r = (Restaurant)o;
+        return this.getName().equals(r.getName());
+    }
 }
