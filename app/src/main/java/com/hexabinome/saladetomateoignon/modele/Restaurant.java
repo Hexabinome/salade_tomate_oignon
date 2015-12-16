@@ -11,7 +11,7 @@ public class Restaurant {
     private Double price;
     private Double tempsAttenteMoy;
     private Double distance; // TODO à remplacer par position, puis calculer la distance
-    private int grade;
+    private Integer grade;
 
     public Restaurant(String myname, double myprice, double tempsAttenteMoy, double distance, int grade) {
         price = myprice;
@@ -39,5 +39,5 @@ public class Restaurant {
 
     public Double getDistance() { return distance; }
 
-    public int getGrade() { return grade; }
+    public Integer getGrade() { return grade; }
 }

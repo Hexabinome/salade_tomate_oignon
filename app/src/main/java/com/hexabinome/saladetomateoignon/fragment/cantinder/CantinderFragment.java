@@ -55,9 +55,6 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        currentRestaurant = getNextRestaurant();
-        displayRestaurant();
     }
 
     @Override
@@ -75,6 +72,9 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         restaurantDistance = (TextView) inflatedView.findViewById(R.id.restaurantDistance);
         restaurantPrice = (TextView) inflatedView.findViewById(R.id.restaurantPrice);
         restaurantGrade = (TextView) inflatedView.findViewById(R.id.restaurantGrade);
+
+        currentRestaurant = getNextRestaurant();
+        displayRestaurant();
 
         return inflatedView;
     }
@@ -146,10 +146,12 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
     }
 
     private void displayRestaurant() {
-        restaurantTitle.setText(currentRestaurant.getName());
-        restaurantDistance.setText(currentRestaurant.getDistance().toString());
-        restaurantPrice.setText(currentRestaurant.getPrice().toString());
-        restaurantTempsAttente.setText(currentRestaurant.getTempsAttenteMoy().toString());
-        restaurantGrade.setText(currentRestaurant.getGrade());
+        if (restaurantTitle.isCursorVisible()) {
+            restaurantTitle.setText(currentRestaurant.getName());
+            restaurantDistance.setText(currentRestaurant.getDistance().toString());
+            restaurantPrice.setText(currentRestaurant.getPrice().toString());
+            restaurantTempsAttente.setText(currentRestaurant.getTempsAttenteMoy().toString());
+            restaurantGrade.setText(currentRestaurant.getGrade().toString());
+        }
     }
 }
