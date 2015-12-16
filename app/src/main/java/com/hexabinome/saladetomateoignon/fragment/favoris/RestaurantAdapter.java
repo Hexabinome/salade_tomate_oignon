@@ -1,9 +1,13 @@
 package com.hexabinome.saladetomateoignon.fragment.favoris;
 
 import android.content.Context;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
@@ -45,12 +49,26 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
          TextView priceView = (TextView) convertView.findViewById(R.id.price);
          TextView distanceView = (TextView) convertView.findViewById(R.id.distance);
 
-         Restaurant p = restaurantList.get(pos);
+         final Restaurant p = restaurantList.get(pos);
 
          tv.setText(p.getName());
          priceView.setText("" + p.getPrice() + " €");
          distanceView.setText("" + p.getDistance() + " Km");
 
+
+         convertView.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                Animation anim = AnimationUtils.loadAnimation(
+                                                        getContext(), android.R.anim.slide_out_right
+                                                );
+                                                anim.setDuration(500);
+                                                v.startAnimation(anim );
+
+                                                Log.d("on click"," you have click on : " + p);
+                                            }
+                                        }
+         );
 
          return convertView;
      }

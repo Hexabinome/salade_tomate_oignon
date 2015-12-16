@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.ListView;
 
 import com.hexabinome.saladetomateoignon.modele.Mock;
 import com.hexabinome.saladetomateoignon.R;
+import com.hexabinome.saladetomateoignon.modele.Restaurant;
 
 import java.util.ArrayList;
 
@@ -95,6 +97,8 @@ public class FavorisFragment extends Fragment {
         // deleting previous view
         ((ViewGroup) preferenceListView.getParent()).removeView(preferenceListView);
 
+
+
         // Inflate the layout for this fragment
         return preferenceListView;
     }
@@ -116,6 +120,7 @@ public class FavorisFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
 
     /**
      * This interface must be implemented by activities that contain this
