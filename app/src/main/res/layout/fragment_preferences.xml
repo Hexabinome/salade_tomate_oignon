@@ -11,7 +11,7 @@
     android:weightSum="1"
     tools:context=".fragment.preferences.PreferencesFragment">
 
-    <TextView
+    TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Preferences"
@@ -263,8 +263,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:entries="@array/country_arrays"
-                android:theme="@style/MooTheme"
-                android:prompt="@string/country_prompt" />
+                android:theme="@style/MooTheme"/>
 
         </RelativeLayout>
     </LinearLayout>
