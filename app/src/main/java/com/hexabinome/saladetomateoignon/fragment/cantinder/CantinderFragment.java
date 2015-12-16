@@ -21,14 +21,6 @@ import com.hexabinome.saladetomateoignon.R;
  * create an instance of this fragment.
  */
 public class CantinderFragment extends Fragment implements View.OnClickListener {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String RESTAURANT = "nextRestaurant";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private OnCantinderFragmentInteractionListener mListener;
 
@@ -45,19 +37,12 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
     public static CantinderFragment newInstance(String param1, String param2) {
         CantinderFragment fragment = new CantinderFragment();
         Bundle args = new Bundle();
-        args.putString(RESTAURANT, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(RESTAURANT);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -119,7 +104,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
      * Passe au restaurant suivant
      */
     public void declineRestaurant() {
-        Toast.makeText(getContext(), "Decline",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Decline", Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -128,6 +113,6 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
      * suivant
      */
     public void acceptRestaurant() {
-        Toast.makeText(getContext(), "Accepter",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Accepter", Toast.LENGTH_SHORT).show();
     }
 }

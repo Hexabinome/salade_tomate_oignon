@@ -17,24 +17,11 @@ public final class Mock {
     public static ArrayList<Restaurant> getRestaurantLaDoua(){
         ArrayList <Restaurant> preference = new ArrayList<Restaurant>();
         //TODO : create a real list of the restaurants around INSA
-        preference.add(new Restaurant("Restaurant universitaire", 3.20));
-        preference.add(new Restaurant("Beurk", 4.40));
-        preference.add(new Restaurant("Olivier", 4.40));
-        preference.add(new Restaurant("grillon", 4.40));
-        preference.add(new Restaurant("La grignotte", 5.30));
-        preference.add(new Restaurant("Le Castor et Pollux", 4.40));
-        preference.add(new Restaurant("Restaurant universitaire", 3.20));
-        preference.add(new Restaurant("Beurk", 4.40));
-        preference.add(new Restaurant("Olivier", 4.40));
-        preference.add(new Restaurant("grillon", 4.40));
-        preference.add(new Restaurant("La grignotte", 5.30));
-        preference.add(new Restaurant("Le Castor et Pollux", 4.40));
-        preference.add(new Restaurant("Restaurant universitaire", 3.20));
-        preference.add(new Restaurant("Beurk", 4.40));
-        preference.add(new Restaurant("Olivier", 4.40));
-        preference.add(new Restaurant("grillon", 4.40));
-        preference.add(new Restaurant("La grignotte", 5.30));
-        preference.add(new Restaurant("Le Castor et Pollux", 4.40));
+        preference.add(new Restaurant("Restaurant universitaire", 3.20, 15, 1.3));
+        preference.add(new Restaurant("Olivier", 4.40, 25, 1.7));
+        preference.add(new Restaurant("Grillon", 4.40, 20, 1.8));
+        preference.add(new Restaurant("La grignotte", 5.30, 5, 1.7));
+        preference.add(new Restaurant("Le Castor et Pollux", 4.40, 10, 0.5));
 
         return preference;
     }

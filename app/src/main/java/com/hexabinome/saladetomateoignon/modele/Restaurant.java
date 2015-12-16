@@ -6,11 +6,15 @@ package com.hexabinome.saladetomateoignon.modele;
 public class Restaurant {
     //TODO: ADD PHOTOS OF RESTAURANTS
     private String name;
-    private Double price;
+    private double price;
+    private double tempsAttenteMoy;
+    private double distance; // TODO à remplacer par position, puis calculer la distance
 
-    public Restaurant(String myname, Double myprice){
+    public Restaurant(String myname, double myprice, double tempsAttenteMoy, double distance) {
         price = myprice;
         name = myname;
+        this.tempsAttenteMoy = tempsAttenteMoy;
+        this.distance = distance;
     }
 
 
@@ -19,12 +23,15 @@ public class Restaurant {
         return getName() + "         " +getPrice() + " €";
     }
 
-    // getter to display our restaurants
     public String getName() {
         return name;
     }
 
-    public Double getPrice() {
+    public double getPrice() {
         return price;
     }
+
+    public double getTempsAttenteMoy() { return tempsAttenteMoy; }
+
+    public double getDistance() { return distance; }
 }
