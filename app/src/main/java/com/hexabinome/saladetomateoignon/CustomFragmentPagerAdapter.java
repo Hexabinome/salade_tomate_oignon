@@ -1,4 +1,4 @@
-package com.hexabinome.saladetomateoignon.fragment;
+package com.hexabinome.saladetomateoignon;
 
 
 import android.content.Context;
@@ -32,10 +32,10 @@ public class CustomFragmentPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         if(position == 0){
-            return new SwipeTestFragment();
+            return new FavorisFragment();
         } else if(position == 1 )
         {
-            return new CantinderFragment();
+            return new SwipeTestFragment();
         }
         else
         {

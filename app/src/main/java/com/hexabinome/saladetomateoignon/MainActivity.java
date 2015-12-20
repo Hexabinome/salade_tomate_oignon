@@ -16,7 +16,6 @@ import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
 import com.hexabinome.saladetomateoignon.fragment.cantinder.CantinderFragment;
-import com.hexabinome.saladetomateoignon.fragment.CustomFragmentPagerAdapter;
 import com.hexabinome.saladetomateoignon.fragment.favoris.FavorisFragment;
 import com.hexabinome.saladetomateoignon.fragment.preferences.PreferencesFragment;
 
