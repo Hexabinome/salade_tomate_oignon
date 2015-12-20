@@ -1,94 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".LoginActivity"
-    android:orientation="vertical"
-    android:weightSum="1">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:background="@android:color/white"
+              android:descendantFocusability="beforeDescendants"
+              android:focusable="false"
+              android:focusableInTouchMode="true"
+              android:orientation="vertical"
+              android:paddingBottom="50dp"
+              android:paddingLeft="16dp"
+              android:paddingRight="16dp"
+              android:paddingTop="50dp"
+              tools:context=".LoginActivity">
 
-    <TextView android:text="Cantinder" android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textSize="50dp"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimary"/>
-    <Space
-        android:layout_width="fill_parent"
-        android:layout_height="30dp" />
+    <ImageView
+        android:id="@+id/contentIcon"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginBottom="30dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/dish2_icon"/>
+
     <android.support.design.widget.TextInputLayout
         android:id="@+id/input_layout_email"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
         <EditText
             android:id="@+id/input_email"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
             android:hint="@string/hint_email"/>
     </android.support.design.widget.TextInputLayout>
-    <Space
-        android:layout_width="fill_parent"
-        android:layout_height="30dp" />
+
     <android.support.design.widget.TextInputLayout
         android:id="@+id/input_layout_password"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
         <EditText
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
             android:id="@+id/input_password"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:background="@color/colorPrimary"
-            android:hint="@string/hint_password"/>
+            android:hint="@string/hint_password"
+            android:inputType="textPassword"/>
     </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:enabled="false"
+        android:id="@+id/signinButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+
+        android:backgroundTint="@color/colorPrimary"
+        android:text="Connexion"/>
+
+    <Button
+        android:id="@+id/signupButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+
+        android:backgroundTint="@color/colorPrimary"
+        android:text="S'inscrire"/>
+
+
     <Space
         android:layout_width="fill_parent"
         android:layout_height="30dp" />
-    <Button
-        android:text="Connexion"
-        android:id="@+id/signinButton"
-        android:layout_width="fill_parent"
-        android:layout_height="40dp" />
-    <Space
-        android:layout_width="fill_parent"
-        android:layout_height="20dp" />
+
     <ImageButton
-        android:src="@drawable/facebooklogo"
         android:layout_width="fill_parent"
         android:layout_height="60dp"
-        android:scaleType="fitCenter"
         android:adjustViewBounds="true"
-        android:background="@android:color/white"/>
+        android:background="@android:color/white"
+        android:scaleType="fitCenter"
+        android:src="@drawable/facebooklogo"/>
     <Space
         android:layout_width="fill_parent"
         android:layout_height="20dp" />
+
     <ImageButton
-        android:src="@drawable/googlelogo"
         android:layout_width="fill_parent"
         android:layout_height="40dp"
-        android:scaleType="fitCenter"
         android:adjustViewBounds="true"
-        android:background="@android:color/white"/>
-
+        android:background="@android:color/white"
+        android:scaleType="fitCenter"
+        android:src="@drawable/googlelogo"/>
     <Space
         android:layout_width="fill_parent"
         android:layout_height="20dp" />
     <ImageButton
-        android:src="@drawable/twitterlogo"
         android:layout_width="fill_parent"
         android:layout_height="60dp"
-        android:scaleType="fitCenter"
         android:adjustViewBounds="true"
-        android:background="@android:color/white"/>
+        android:background="@android:color/white"
+        android:scaleType="fitCenter"
+        android:src="@drawable/twitterlogo"/>
 
     <Space
         android:layout_width="fill_parent"
-        android:layout_height="20dp" />
+        android:layout_height="20dp"/>
 
-    <Button
-        android:text="S'inscrire"
-        android:id="@+id/signupButton"
-        android:layout_width="fill_parent"
-        android:layout_height="40dp" />
+
 </LinearLayout>
