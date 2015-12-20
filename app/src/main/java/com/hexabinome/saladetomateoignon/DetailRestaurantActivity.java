@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 public class DetailRestaurantActivity extends AppCompatActivity {
 
@@ -20,6 +21,10 @@ public class DetailRestaurantActivity extends AppCompatActivity {
 
         Toolbar toolbar =   (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setTitle("test");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         ViewCompat.setTransitionName(findViewById(R.id.appBarLayout), "Name");
 
@@ -27,13 +32,16 @@ public class DetailRestaurantActivity extends AppCompatActivity {
         collapsingToolbarLayout.setTitle("Titre");
         collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
-        mRecyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
+//        mRecyclerView.setLayoutManager(mLayoutManager);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 }

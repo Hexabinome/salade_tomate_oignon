@@ -20,6 +20,9 @@
         </activity>
         <activity android:name=".SubscribeActivity" >
         </activity>
+        <activity android:name=".DetailRestaurantActivity" android:parentActivityName=".MainActivity">
+
+        </activity>
     </application>
 
 </manifest>

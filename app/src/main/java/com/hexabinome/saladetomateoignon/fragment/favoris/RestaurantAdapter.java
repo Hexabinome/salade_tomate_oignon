@@ -53,7 +53,7 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
          distanceView.setText("" + p.getDistance() + " Km");
 
 
-         convertView.setOnClickListener(new View.OnClickListener() {
+       /*  convertView.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
                                                 Animation anim = AnimationUtils.loadAnimation(
@@ -65,7 +65,7 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
                                                 Log.d("on click"," you have click on : " + p);
                                             }
                                         }
-         );
+         );*/
 
          return convertView;
      }

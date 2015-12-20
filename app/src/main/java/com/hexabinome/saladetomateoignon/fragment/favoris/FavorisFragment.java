@@ -1,6 +1,7 @@
 package com.hexabinome.saladetomateoignon.fragment.favoris;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,9 +9,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.hexabinome.saladetomateoignon.DetailRestaurantActivity;
 import com.hexabinome.saladetomateoignon.modele.Mock;
 import com.hexabinome.saladetomateoignon.R;
 import com.hexabinome.saladetomateoignon.modele.Restaurant;
@@ -78,7 +81,7 @@ public class FavorisFragment extends Fragment {
         View inflatedView = inflater.inflate(R.layout.fragment_favoris, container, false);
 
         ListView preferenceListView;
-        ArrayAdapter mArrayAdapter;
+        RestaurantAdapter mArrayAdapter;
 
         ArrayList preferenceList;
         preferenceList = Mock.getRestaurantLaDoua();
@@ -97,6 +100,14 @@ public class FavorisFragment extends Fragment {
         // deleting previous view
         ((ViewGroup) preferenceListView.getParent()).removeView(preferenceListView);
 
+        preferenceListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), DetailRestaurantActivity.class);
+
+                startActivity(intent);
+            }
+        });
 
 
         // Inflate the layout for this fragment
