@@ -67,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
     private boolean validateEmail() {
         String email = inputEmail.getText().toString().trim();
