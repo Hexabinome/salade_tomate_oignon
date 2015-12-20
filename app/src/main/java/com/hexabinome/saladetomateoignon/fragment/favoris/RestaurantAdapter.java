@@ -1,7 +1,6 @@
 package com.hexabinome.saladetomateoignon.fragment.favoris;
 
 import android.content.Context;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,13 +8,11 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.hexabinome.saladetomateoignon.R;
 import com.hexabinome.saladetomateoignon.modele.Restaurant;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,7 +49,7 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
          final Restaurant p = restaurantList.get(pos);
 
          tv.setText(p.getName());
-         priceView.setText("" + p.getPrice() + " €");
+         priceView.setText("" + p.getPrix() + " €");
          distanceView.setText("" + p.getDistance() + " Km");
 
 

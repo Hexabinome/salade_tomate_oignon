@@ -16,11 +16,8 @@ import com.hexabinome.saladetomateoignon.R;
 import com.hexabinome.saladetomateoignon.modele.Mock;
 import com.hexabinome.saladetomateoignon.modele.Restaurant;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -211,9 +208,9 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         if (restaurantTitle.isCursorVisible() && currentRestaurant != null) {
             name = currentRestaurant.getName();
             distance = currentRestaurant.getDistance().toString();
-            price = currentRestaurant.getPrice().toString();
+            price = currentRestaurant.getPrix().toString();
             tempsAtt = currentRestaurant.getTempsAttenteMoy().toString();
-            grade = currentRestaurant.getGrade().toString();
+            grade = currentRestaurant.getNote().toString();
         }
 
         restaurantTitle.setText(name);
