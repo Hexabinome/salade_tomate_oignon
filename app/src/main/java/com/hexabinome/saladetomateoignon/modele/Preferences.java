@@ -33,6 +33,16 @@ public class Preferences {
         this.note = note;
     }
 
+    public static Preferences getDefaultPreferences(){
+        double distance = 1.0; // 1 km
+        int tempsDattente =  15; // 15mn
+        double prix = 4.5; // 4.5 €
+        Restaurant.TypeRegime type = Restaurant.TypeRegime.PAS_DE_REGIME;
+        int note = 3; // 3/5
+
+        return new Preferences(distance,tempsDattente,prix,type,note);
+    }
+
     public List<Restaurant.TypePointDeRestauration> getTypePointDeRestaurations() {
         return typePointDeRestaurations;
     }
@@ -79,5 +89,17 @@ public class Preferences {
 
     public void setTypeRegime(Restaurant.TypeRegime typeRegime) {
         this.typeRegime = typeRegime;
+    }
+
+    @Override
+    public String toString() {
+        return "Preferences{" +
+                "typePointDeRestaurations=" + typePointDeRestaurations +
+                ", distance=" + distance +
+                ", tempsDattente=" + tempsDattente +
+                ", prix=" + prix +
+                ", note=" + note +
+                ", typeRegime=" + typeRegime +
+                '}';
     }
 }

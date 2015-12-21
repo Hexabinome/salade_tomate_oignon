@@ -19,6 +19,7 @@
     <string name="CantinderTest_Distance">1.4</string>
     <string name="CantinderTest_Grade">4</string>
     <string name="CantinderTest_Price">4.5</string>
+    <string name="preference_file_key">com.hexabinome.saladetomateoignon</string>
     <string-array name="country_arrays">
         <item>Vegan</item>
         <item>Swagetarien</item>

@@ -14,11 +14,11 @@ public class Utilisateur {
     private Preferences preferences;
     private String prenom;
 
-    public Utilisateur(String nom,String prenom,String email, String motDePasse, Preferences preferences){
+    public Utilisateur(String nom,String prenom,String email, String motDePasse){
         this.nom = nom;
         this.email = email;
         this.motDePasse = motDePasse;
-        this.preferences = preferences;
+        this.preferences = Preferences.getDefaultPreferences();
         this.prenom = prenom;
 
     }
@@ -61,5 +61,16 @@ public class Utilisateur {
 
     public void setPreferences(Preferences preferences) {
         this.preferences = preferences;
+    }
+
+    @Override
+    public String toString() {
+        return "Utilisateur{" +
+                "nom='" + nom + '\'' +
+                ", email='" + email + '\'' +
+                ", motDePasse='" + motDePasse + '\'' +
+                ", preferences=" + preferences +
+                ", prenom='" + prenom + '\'' +
+                '}';
     }
 }
