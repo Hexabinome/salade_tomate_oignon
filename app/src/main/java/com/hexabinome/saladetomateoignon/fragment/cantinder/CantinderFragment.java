@@ -84,8 +84,6 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         acceptButton.setOnClickListener(this);
         detailButton.setOnClickListener(this);
 
-        currentUser = PrefUtils.recupererUtilisateur(getActivity());
-
         restaurantTitle = (TextView) inflatedView.findViewById(R.id.restaurantTitle);
         restaurantTempsAttente = (TextView) inflatedView.findViewById(R.id.restaurantTempsAttente);
         restaurantDistance = (TextView) inflatedView.findViewById(R.id.restaurantDistance);
@@ -103,6 +101,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         super.onAttach(context);
         if (context instanceof OnCantinderFragmentInteractionListener) {
             mListener = (OnCantinderFragmentInteractionListener) context;
+            currentUser = PrefUtils.recupererUtilisateur(getActivity());
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFavorisFragmentInteractionListener");
@@ -177,6 +176,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 
     public void detailRestaurant() {
         Toast.makeText(getContext(), "Go to detail of " + previousRestaurant.getName(), Toast.LENGTH_SHORT).show();
+        // TODO go to detail activity
     }
 
     /**
