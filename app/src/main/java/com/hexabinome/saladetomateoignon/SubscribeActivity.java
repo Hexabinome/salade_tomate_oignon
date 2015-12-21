@@ -3,6 +3,7 @@ package com.hexabinome.saladetomateoignon;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -12,15 +13,28 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class SubscribeActivity extends AppCompatActivity {
+
     private EditText inputFirstName, inputLastName, inputEmail, inputPassword, inputVerifyPassword;
     private TextInputLayout inputLayoutFirstName, inputLayoutLastName, inputLayoutEmail,
             inputLayoutPassword, inputLayoutVerifyPassword;
     private Button btnValidate;
 
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subscribe);
+
+
+
+        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         inputFirstName = (EditText) findViewById(R.id.input_firstname);
         inputLastName = (EditText) findViewById(R.id.input_lastname);
         inputEmail = (EditText) findViewById(R.id.input_email);

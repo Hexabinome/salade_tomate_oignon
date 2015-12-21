@@ -18,7 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SubscribeActivity" >
+        <activity android:name=".SubscribeActivity" android:label="Inscription" android:parentActivityName=".LoginActivity">
         </activity>
         <activity android:name=".DetailRestaurantActivity" android:parentActivityName=".MainActivity">
 
