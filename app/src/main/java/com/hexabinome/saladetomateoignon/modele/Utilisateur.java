@@ -12,17 +12,27 @@ public class Utilisateur {
 
 
     private Preferences preferences;
+    private String prenom;
 
-    public Utilisateur(String nom,String email, String motDePasse, Preferences preferences){
+    public Utilisateur(String nom,String prenom,String email, String motDePasse, Preferences preferences){
         this.nom = nom;
         this.email = email;
         this.motDePasse = motDePasse;
         this.preferences = preferences;
+        this.prenom = prenom;
 
     }
 
     public String getNom() {
         return nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
     public void setNom(String nom) {
