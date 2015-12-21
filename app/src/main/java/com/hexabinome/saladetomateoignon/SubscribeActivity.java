@@ -1,5 +1,6 @@
 package com.hexabinome.saladetomateoignon;
 
+import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.hexabinome.saladetomateoignon.modele.Utilisateur;
 
 public class SubscribeActivity extends AppCompatActivity {
 
@@ -73,7 +76,15 @@ public class SubscribeActivity extends AppCompatActivity {
         {
             return;
         }
-        //changer d'activité pour main activity
+        //changer d'activité pour main activity, passer directement sur le fragment préférences ?
+        Utilisateur user = new Utilisateur(
+                inputLastName.getText().toString(),
+                inputFirstName.getText().toString(),
+                inputEmail.getText().toString(),
+                inputPassword.getText().toString());
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+
     }
 
     private boolean validateFirstName() {
