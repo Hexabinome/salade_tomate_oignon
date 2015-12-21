@@ -17,9 +17,14 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class LoginActivity extends AppCompatActivity {
+
+
     private EditText inputEmail, inputPassword;
     private TextInputLayout inputLayoutEmail, inputLayoutPassword;
     private Button btnSignIn, btnSignUp;
+
+    private boolean isValidEmail=false, isValidPassword = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -29,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_login);
+
         inputEmail = (EditText) findViewById(R.id.input_email);
         inputPassword = (EditText) findViewById(R.id.input_password);
         inputLayoutEmail = (TextInputLayout) findViewById(R.id.input_layout_email);
@@ -46,37 +52,37 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        btnSignUp.setOnClickListener(new View.OnClickListener(){
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, SubscribeActivity.class);
                 startActivity(intent);
             }
         });
     }
 
-    private void submitForm()
-    {
-        if(!validateEmail())
-        {
+    private void submitForm() {
+        if (!validateEmail()) {
             return;
         }
-        if(!validatePassword())
-        {
+        if (!validatePassword()) {
             return;
         }
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
+
     private boolean validateEmail() {
         String email = inputEmail.getText().toString().trim();
 
         if (email.isEmpty() || !isValidEmail(email)) {
             inputLayoutEmail.setError(getString(R.string.err_msg_email));
             requestFocus(inputEmail);
+            isValidEmail = false;
             return false;
         } else {
+            isValidEmail = true;
             inputLayoutEmail.setErrorEnabled(false);
         }
         return true;
@@ -85,14 +91,17 @@ public class LoginActivity extends AppCompatActivity {
     private boolean validatePassword() {
         if (inputPassword.getText().toString().trim().isEmpty()) {
             inputLayoutPassword.setError(getString(R.string.err_msg_password));
+            isValidPassword = false;
             requestFocus(inputPassword);
             return false;
         } else {
+            isValidPassword = true;
             inputLayoutPassword.setErrorEnabled(false);
         }
 
         return true;
     }
+
     private static boolean isValidEmail(String email) {
         return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
@@ -102,34 +111,41 @@ public class LoginActivity extends AppCompatActivity {
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }
     }
-     private class LoginTextWatcher implements TextWatcher {
-         private View view;
 
-         private LoginTextWatcher(View view){
-             this.view = view;
-         }
+    private class LoginTextWatcher implements TextWatcher {
+        private View view;
 
-         @Override
-         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        private LoginTextWatcher(View view) {
+            this.view = view;
+        }
 
-         }
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-         @Override
-         public void onTextChanged(CharSequence s, int start, int before, int count) {
+        }
 
-         }
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-         @Override
-         public void afterTextChanged(Editable s) {
-             switch(view.getId()){
-                 case R.id.input_email:
-                     validateEmail();
-                     break;
-                 case R.id.input_password:
-                     validatePassword();
-                     break;
-             }
+        }
 
-         }
-     }
+        @Override
+        public void afterTextChanged(Editable s) {
+            switch (view.getId()) {
+                case R.id.input_email:
+                    validateEmail();
+                    break;
+                case R.id.input_password:
+                    validatePassword();
+                    break;
+            }
+
+            if(isValidEmail && isValidPassword){
+                btnSignIn.setEnabled(true);
+            } else {
+                btnSignIn.setEnabled(false);
+            }
+
+        }
+    }
 }

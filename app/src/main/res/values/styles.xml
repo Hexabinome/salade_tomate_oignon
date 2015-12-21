@@ -39,6 +39,8 @@
         <item name="android:layout_margin">10dp</item>
     </style>
 
+
+
     <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
         <item name="tabTextAppearance">@style/MyTabTextAppearance</item>
     </style>
