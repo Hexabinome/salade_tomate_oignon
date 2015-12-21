@@ -41,7 +41,12 @@ public class MainActivity extends AppCompatActivity implements
 
         // Get the ViewPager and set it's PagerAdapter so that it can display items
         viewPager = (ViewPager) findViewById(R.id.viewpager);
-        CustomFragmentPagerAdapter customFragmentPagerAdapter = new CustomFragmentPagerAdapter(getSupportFragmentManager(), MainActivity.this);
+        CustomFragmentPagerAdapter customFragmentPagerAdapter = new CustomFragmentPagerAdapter(getSupportFragmentManager(), this);
+
+        customFragmentPagerAdapter.addFragment(new FavorisFragment(),"Favoris",R.drawable.ic_star2);
+        customFragmentPagerAdapter.addFragment(new CantinderFragment(),"Cantinder", R.drawable.ic_eye);
+        customFragmentPagerAdapter.addFragment(new PreferencesFragment(),"Préférences",R.drawable.ic_preferences);
+
         viewPager.setAdapter(customFragmentPagerAdapter);
 
         // Give the TabLayout the ViewPager

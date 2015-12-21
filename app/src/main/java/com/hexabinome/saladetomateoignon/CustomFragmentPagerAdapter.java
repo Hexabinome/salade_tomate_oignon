@@ -10,17 +10,16 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hexabinome.saladetomateoignon.R;
-import com.hexabinome.saladetomateoignon.fragment.cantinder.CantinderFragment;
-import com.hexabinome.saladetomateoignon.fragment.cantinder.SwipeTestFragment;
-import com.hexabinome.saladetomateoignon.fragment.favoris.FavorisFragment;
-import com.hexabinome.saladetomateoignon.fragment.preferences.PreferencesFragment;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CustomFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    final int PAGE_COUNT = 3;
-    private String tabTitles[] = new String[] { "Favoris", "Cantinder", "Préférences" };
-    private int imagesId[] = {R.drawable.ic_star2,R.drawable.ic_eye,R.drawable.ic_preferences};
+    private int imagesId[] = {R.drawable.ic_star2, R.drawable.ic_eye, R.drawable.ic_preferences};
+
+    private List<Integer> fragmentsImageId = new ArrayList<>();
+    private List<Fragment> mFragments = new ArrayList<>();
+    private List<String> mFragmentTitles = new ArrayList<>();
 
     private Context context;
 
@@ -31,35 +30,32 @@ public class CustomFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        if(position == 0){
-            return new FavorisFragment();
-        } else if(position == 1 )
-        {
-            return new SwipeTestFragment();
-        }
-        else
-        {
-            return new PreferencesFragment();
-        }
+        return mFragments.get(position);
+    }
+
+    public void addFragment(Fragment fragment, String titles, int imageId) {
+        mFragments.add(fragment);
+        mFragmentTitles.add(titles);
+        fragmentsImageId.add(imageId);
     }
 
     @Override
     public int getCount() {
-        return PAGE_COUNT;
+        return mFragments.size();
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return tabTitles[position];
+        return mFragmentTitles.get(position);
     }
 
 
-    public View getTabView(int position){
+    public View getTabView(int position) {
         View v = LayoutInflater.from(context).inflate(R.layout.custom_tab, null);
         TextView tv = (TextView) v.findViewById(R.id.tabName);
-        tv.setText(tabTitles[position]);
+        tv.setText(mFragmentTitles.get(position));
         ImageView img = (ImageView) v.findViewById(R.id.tab_image);
-        img.setImageResource(imagesId[position]);
+        img.setImageResource(fragmentsImageId.get(position));
         return v;
     }
 }
