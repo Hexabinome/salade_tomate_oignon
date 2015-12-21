@@ -12,12 +12,19 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hexabinome.saladetomateoignon.PrefUtils;
 import com.hexabinome.saladetomateoignon.R;
 import com.hexabinome.saladetomateoignon.modele.Mock;
+import com.hexabinome.saladetomateoignon.modele.Preferences;
 import com.hexabinome.saladetomateoignon.modele.Restaurant;
+import com.hexabinome.saladetomateoignon.modele.Utilisateur;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,6 +37,8 @@ import java.util.List;
 public class CantinderFragment extends Fragment implements View.OnClickListener {
 
     private OnCantinderFragmentInteractionListener mListener;
+
+    private Utilisateur currentUser;
 
     private Restaurant currentRestaurant;
     private Restaurant previousRestaurant;
@@ -74,6 +83,8 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         declineButton.setOnClickListener(this);
         acceptButton.setOnClickListener(this);
         detailButton.setOnClickListener(this);
+
+        currentUser = PrefUtils.recupererUtilisateur(getActivity());
 
         restaurantTitle = (TextView) inflatedView.findViewById(R.id.restaurantTitle);
         restaurantTempsAttente = (TextView) inflatedView.findViewById(R.id.restaurantTempsAttente);
@@ -154,7 +165,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 
         if (currentRestaurant != null) {
             // Add current restaurant to favorties
-            favorites.add(currentRestaurant);
+            currentUser.addToFavorites(currentRestaurant);
             // Display button to go to current restaurant details
             detailButton.setVisibility(View.VISIBLE);
         }
@@ -185,15 +196,63 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         //throw new RuntimeException("All restaurants are favorites or no restaurant found");
     }
 
-    private List<Restaurant> getMostMatchingRestaurants() {
-        // TODO add logic with preferences
-        return Mock.getRestaurantLaDoua();
+    private SortedSet<Restaurant> getMostMatchingRestaurants() {
+        SortedSet<Restaurant> mostMatchingRestaurants = new TreeSet<>(new Comparator<Restaurant>() {
+            private Preferences pref;
+
+            /**
+             * Tends to negative if good (because the biggest score is the geatest and will be at the end, we want the best to be at the beginning)
+             * @param r
+             * @return
+             */
+            private double getScore(Restaurant r) {
+                double score = 0;
+                if (r.getDistance() > pref.getDistance()) {
+                    score--;
+                }
+                else {
+                    score++;
+                }
+
+                if (r.getNote() > pref.getNote()) {
+                    score--;
+                }
+                else {
+                    score++;
+                }
+
+                if (r.getPrix() > pref.getPrix()) {
+                    score--;
+                }
+                else {
+                    score++;
+                }
+
+                if (r.getTempsAttenteMoy() > pref.getTempsDattente()) {
+                    score--;
+                }
+                else {
+                    score++;
+                }
+                return score;
+            }
+
+            @Override
+            public int compare(Restaurant lhs, Restaurant rhs) {
+                pref = currentUser.getPreferences();
+                double scoreLeft = getScore(lhs);
+                double scoreRight = getScore(rhs);
+                return (int) (scoreRight - scoreLeft);
+            }
+        });
+
+        mostMatchingRestaurants.addAll(Mock.getRestaurantLaDoua());
+
+        return mostMatchingRestaurants;
     }
 
-    private List<Restaurant> favorites = new ArrayList<Restaurant>();
     private boolean isFavorite(Restaurant r) {
-        // TODO use user favorite list
-        return favorites.contains(r);
+        return currentUser.isFavorite(r);
     }
 
     private boolean isRefused(Restaurant r) {

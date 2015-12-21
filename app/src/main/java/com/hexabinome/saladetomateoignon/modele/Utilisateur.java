@@ -1,16 +1,18 @@
 package com.hexabinome.saladetomateoignon.modele;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Created by haidara on 20/12/15.
  */
 public class Utilisateur {
 
-
     private String prenom;
     private String nom;
     private String email;
     private String motDePasse;
-
+    private Set<Restaurant> favoris = new HashSet<Restaurant>();
 
     private Preferences preferences;
 
@@ -61,6 +63,14 @@ public class Utilisateur {
 
     public void setPreferences(Preferences preferences) {
         this.preferences = preferences;
+    }
+
+    public void addToFavorites(Restaurant r) {
+        favoris.add(r);
+    }
+
+    public boolean isFavorite(Restaurant r) {
+        return favoris.contains(r);
     }
 
     @Override
