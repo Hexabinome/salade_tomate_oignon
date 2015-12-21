@@ -15,8 +15,6 @@ import java.util.List;
 
 public class CustomFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    private int imagesId[] = {R.drawable.ic_star2, R.drawable.ic_eye, R.drawable.ic_preferences};
-
     private List<Integer> fragmentsImageId = new ArrayList<>();
     private List<Fragment> mFragments = new ArrayList<>();
     private List<String> mFragmentTitles = new ArrayList<>();

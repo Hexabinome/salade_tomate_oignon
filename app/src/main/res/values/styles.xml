@@ -12,6 +12,11 @@
         <item name="android:buttonStyle">@style/ButtonStyle</item>
     </style>
 
+    <style name="CustomApptheme" parent="AppTheme">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
 
 
     <style name="AppTheme.NoActionBar">

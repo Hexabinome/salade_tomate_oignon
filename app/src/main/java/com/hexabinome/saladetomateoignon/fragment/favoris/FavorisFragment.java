@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.gson.Gson;
 import com.hexabinome.saladetomateoignon.DetailRestaurantActivity;
 import com.hexabinome.saladetomateoignon.modele.Mock;
 import com.hexabinome.saladetomateoignon.R;
@@ -81,7 +82,7 @@ public class FavorisFragment extends Fragment {
         View inflatedView = inflater.inflate(R.layout.fragment_favoris, container, false);
 
         ListView preferenceListView;
-        RestaurantAdapter mArrayAdapter;
+        final RestaurantAdapter mArrayAdapter;
 
         ArrayList preferenceList;
         preferenceList = Mock.getRestaurantLaDoua();
@@ -104,7 +105,9 @@ public class FavorisFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), DetailRestaurantActivity.class);
-
+                Restaurant restaurant = mArrayAdapter.getItem(position);
+                String restaurantJson = new Gson().toJson(restaurant);
+                intent.putExtra(DetailRestaurantActivity.RESTAURANT_EXTRA,restaurantJson);
                 startActivity(intent);
             }
         });
