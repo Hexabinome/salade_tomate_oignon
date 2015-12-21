@@ -6,7 +6,7 @@
     <string name="hint_password">Mot de passe</string>
     <string name="hint_firstname">Prénom</string>
     <string name="hint_lastname">Nom</string>
-    <string name="hint_verify_password">Confirmer</string>
+    <string name="hint_verify_password">Confirmer mot de passe</string>
     <string name="err_msg_email">Email invalide</string>
     <string name="err_msg_password">Veuillez saisir votre mot de passe</string>
     <string name="err_msg_first_name">Prénom invalide</string>

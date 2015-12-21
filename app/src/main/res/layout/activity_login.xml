@@ -53,22 +53,16 @@
         android:id="@+id/signinButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-
+        android:layout_marginTop="15dp"
         android:backgroundTint="@color/colorPrimary"
         android:text="Connexion"/>
 
     <Button
-        android:id="@+id/signupButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:id="@+id/signupButton"
         android:layout_marginTop="5dp"
-
-        android:backgroundTint="@color/colorPrimary"
         android:text="S'inscrire"/>
-
 
     <Space
         android:layout_width="fill_parent"
@@ -102,10 +96,5 @@
         android:background="@android:color/white"
         android:scaleType="fitCenter"
         android:src="@drawable/twitterlogo"/>
-
-    <Space
-        android:layout_width="fill_parent"
-        android:layout_height="20dp"/>
-
 
 </LinearLayout>
