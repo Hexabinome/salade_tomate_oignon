@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout android:id="@+id/main_content"
-                                                 xmlns:android="http://schemas.android.com/apk/res/android"
-                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                 xmlns:tools="http://schemas.android.com/tools"
-                                                 android:layout_width="match_parent"
-                                                 android:layout_height="match_parent"
-                                                 android:fitsSystemWindows="true"
-                                                 tools:context=".DetailRestaurantActivity">
+<android.support.design.widget.CoordinatorLayout
+    android:id="@+id/main_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".DetailRestaurantActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -57,39 +58,54 @@
             android:paddingTop="24dp">
 
             <LinearLayout
-                android:layout_margin="@dimen/activity_horizontal_margin"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_horizontal_margin"
                 android:orientation="horizontal">
-                <Button
-                    android:layout_width="0dp"
+
+                <TextView
+                    android:id="@+id/note"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:drawableTop="@drawable/ic_location"
-                    android:background="@null"
-                    android:text="1 km"
+                    android:layout_weight="0.25"
+                    android:gravity="center"
+                    android:drawableTop="@drawable/ic_star"
+                    android:text="3.5/5"
                     android:textAppearance="@style/LabelTextAppearance"
                     />
 
-                <Button
-                    android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="0.25"
+                    android:gravity="center"
                     android:drawableTop="@drawable/ic_euro"
-                    android:background="@null"
                     android:text="3.2 €"
-                    android:textAppearance="@style/LabelTextAppearance"
-                    />
+                    android:textAppearance="@style/LabelTextAppearance"/>
 
-                <Button
-                    android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/restaurantTempsAttente"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="0.25"
+                    android:gravity="center"
                     android:drawableTop="@drawable/ic_watch"
-                    android:background="@null"
                     android:text="15 mn d'attente moyen"
                     android:textAppearance="@style/LabelTextAppearance"
                     />
+
+                <TextView
+                    android:id="@+id/distance"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    android:drawableTop="@drawable/ic_location"
+                    android:text="1 km"
+                    android:textAppearance="@style/LabelTextAppearance"/>
+
             </LinearLayout>
 
 

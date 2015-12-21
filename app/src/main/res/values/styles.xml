@@ -86,6 +86,7 @@
     <style name="LabelTextAppearance" parent="@android:style/TextAppearance.Material.Caption">
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@android:color/black</item>
         <item name="android:fontFeatureSettings">smcp, onum</item>
         <item name="android:letterSpacing">0.02</item>
     </style>
