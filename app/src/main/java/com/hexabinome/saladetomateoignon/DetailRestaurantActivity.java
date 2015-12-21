@@ -1,5 +1,6 @@
 package com.hexabinome.saladetomateoignon;
 
+import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -11,13 +12,15 @@ import android.view.MenuItem;
 
 public class DetailRestaurantActivity extends AppCompatActivity {
 
-    RecyclerView mRecyclerView;
 
-    LinearLayoutManager mLayoutManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.detail_restaurant);
+        setContentView(R.layout.activity_detail_restaurant);
+
+        Intent intent = getIntent();
+
 
         Toolbar toolbar =   (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -26,22 +29,18 @@ public class DetailRestaurantActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        ViewCompat.setTransitionName(findViewById(R.id.appBarLayout), "Name");
-
-        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collapsingToolbarLayout.setTitle("Titre");
-        collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
-
-
-
-        // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(this);
-//        mRecyclerView.setLayoutManager(mLayoutManager);
 
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
+        int id = item.getItemId();
+        switch (id){
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
