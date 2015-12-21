@@ -12,6 +12,7 @@
     <string name="err_msg_first_name">Prénom invalide</string>
     <string name="err_msg_last_name">Nom invalide</string>
     <string name="err_msg_confirm_password">Les mots de passe ne correspondent pas</string>
+    <string name="err_unknown_user">L utilisateur n est pas valide</string>
     <string name="action_about">A propos</string>
     <string name="Cantinder_DetailRestaurant">Previous restaurant details</string>
     <string name="CantinderTest_Title">TACOS - Snack du campus</string>

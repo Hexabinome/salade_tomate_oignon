@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.hexabinome.saladetomateoignon.modele.Mock;
 import com.hexabinome.saladetomateoignon.modele.Utilisateur;
 
 public class SubscribeActivity extends AppCompatActivity {
@@ -24,17 +25,18 @@ public class SubscribeActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
 
+    private boolean isValidEmail = false, isValidPassword = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subscribe);
 
 
-
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
 
-        if(getSupportActionBar() != null){
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
@@ -60,10 +62,10 @@ public class SubscribeActivity extends AppCompatActivity {
     }
 
     private void submitForm() {
-        if(!validateFirstName()){
+        if (!validateFirstName()) {
             return;
         }
-        if(!validateLastName()){
+        if (!validateLastName()) {
             return;
         }
         if (!validateEmail()) {
@@ -72,8 +74,7 @@ public class SubscribeActivity extends AppCompatActivity {
         if (!validatePassword()) {
             return;
         }
-        if(!confirmPassword())
-        {
+        if (!confirmPassword()) {
             return;
         }
         //changer d'activité pour main activity, passer directement sur le fragment préférences ?
@@ -82,8 +83,13 @@ public class SubscribeActivity extends AppCompatActivity {
                 inputFirstName.getText().toString(),
                 inputEmail.getText().toString(),
                 inputPassword.getText().toString());
+        //On ajoute l'utilisateur a la liste des utilisateurs de test
+        Mock.addUtilisateur(user);
+        //On enregistre l'utilisateur dans les preferences de l'appli
+        PrefUtils.sauvegardeUtilisateur(this, user);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        finish();
 
     }
 
@@ -99,6 +105,7 @@ public class SubscribeActivity extends AppCompatActivity {
         }
         return true;
     }
+
     private boolean validateLastName() {
         String LastName = inputLastName.getText().toString().trim();
 
@@ -111,14 +118,17 @@ public class SubscribeActivity extends AppCompatActivity {
         }
         return true;
     }
+
     private boolean validateEmail() {
         String email = inputEmail.getText().toString().trim();
 
         if (email.isEmpty() || !isValidEmail(email)) {
             inputLayoutEmail.setError(getString(R.string.err_msg_email));
             requestFocus(inputEmail);
+            isValidEmail = false;
             return false;
         } else {
+            isValidEmail = true;
             inputLayoutEmail.setErrorEnabled(false);
         }
         return true;
@@ -128,8 +138,10 @@ public class SubscribeActivity extends AppCompatActivity {
         if (inputPassword.getText().toString().trim().isEmpty()) {
             inputLayoutPassword.setError(getString(R.string.err_msg_password));
             requestFocus(inputPassword);
+            isValidPassword = false;
             return false;
         } else {
+            isValidPassword = true;
             inputLayoutPassword.setErrorEnabled(false);
         }
 
@@ -149,6 +161,7 @@ public class SubscribeActivity extends AppCompatActivity {
 
         return true;
     }
+
     private static boolean isValidEmail(String email) {
         return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
@@ -158,10 +171,11 @@ public class SubscribeActivity extends AppCompatActivity {
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }
     }
+
     private class SignupTextWatcher implements TextWatcher {
         private View view;
 
-        private SignupTextWatcher(View view){
+        private SignupTextWatcher(View view) {
             this.view = view;
         }
 
@@ -177,7 +191,7 @@ public class SubscribeActivity extends AppCompatActivity {
 
         @Override
         public void afterTextChanged(Editable s) {
-            switch(view.getId()){
+            switch (view.getId()) {
                 case R.id.input_email:
                     validateEmail();
                     break;
@@ -193,6 +207,11 @@ public class SubscribeActivity extends AppCompatActivity {
                 case R.id.input_verify_password:
                     confirmPassword();
                     break;
+            }
+            if (isValidEmail && isValidPassword) {
+                btnValidate.setEnabled(true);
+            } else {
+                btnValidate.setEnabled(false);
             }
 
         }

@@ -2,22 +2,18 @@ package com.hexabinome.saladetomateoignon;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.hexabinome.saladetomateoignon.modele.Preferences;
+import com.hexabinome.saladetomateoignon.modele.Mock;
 import com.hexabinome.saladetomateoignon.modele.Utilisateur;
 
 public class LoginActivity extends AppCompatActivity {
@@ -27,10 +23,20 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputLayout inputLayoutEmail, inputLayoutPassword;
     private Button btnSignIn, btnSignUp;
 
-    private boolean isValidEmail=false, isValidPassword = false;
+    private boolean isValidEmail = false, isValidPassword = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //generation des utilisateurs de test
+        Mock.generateUsers();
+        //verification des preferences de l'appli
+        if (PrefUtils.recupererUtilisateur(this) != null) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
 
@@ -67,8 +73,14 @@ public class LoginActivity extends AppCompatActivity {
 
     private void submitForm() {
 
-        // TODO : sauvegarder l'utilisateur
+        Utilisateur user = Mock.getUtilisateur(inputEmail.getText().toString(), inputPassword.getText().toString());
+        if (user == null) {
+            //l'utilisateur n'existe pas
+            inputLayoutEmail.setError(getString(R.string.err_unknown_user));
+            return;
+        }
 
+        PrefUtils.sauvegardeUtilisateur(this, user);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
@@ -141,7 +153,7 @@ public class LoginActivity extends AppCompatActivity {
                     break;
             }
 
-            if(isValidEmail && isValidPassword){
+            if (isValidEmail && isValidPassword) {
                 btnSignIn.setEnabled(true);
             } else {
                 btnSignIn.setEnabled(false);

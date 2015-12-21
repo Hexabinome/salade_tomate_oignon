@@ -1,6 +1,9 @@
 package com.hexabinome.saladetomateoignon.modele;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Cette classe permettra de générer des données pour l'interface graphique.
@@ -8,11 +11,35 @@ import java.util.ArrayList;
  * @author Mohamed El Mouctar HAIDARA
  */
 public final class Mock {
-
+    private static Map<String,Utilisateur> utilisateurs;
     private Mock(){
 
     }
 
+    public static void generateUsers()
+    {
+        utilisateurs = new HashMap<String, Utilisateur>();
+        utilisateurs.put("DWobrock@insa-lyon.fr", new Utilisateur("Wobrock", "David", "DWobrock@insa-lyon.fr", "1234"));
+        utilisateurs.put("JCornevin@insa-lyon.fr", new Utilisateur("Cornevin", "Jolan", "JCornevin@insa-lyon.fr", "1234"));
+        utilisateurs.put("RRoyer@insa-lyon.fr", new Utilisateur("Royer", "Robin", "RRoyer@insa-lyon.fr", "1234"));
+
+    }
+
+    public static Utilisateur getUtilisateur(String email, String motDePasse){
+        Utilisateur user = utilisateurs.get(email);
+        if(user ==null ||!user.getMotDePasse().equals(motDePasse))
+        {
+            return null;
+        }
+        else
+        {
+            return user;
+        }
+    }
+
+    public static void addUtilisateur(Utilisateur user) {
+        utilisateurs.put(user.getEmail(), user);
+    }
 
     public static ArrayList<Restaurant> getRestaurantLaDoua(){
         ArrayList <Restaurant> preference = new ArrayList<Restaurant>();
@@ -27,4 +54,6 @@ public final class Mock {
 
         return preference;
     }
+
+
 }
