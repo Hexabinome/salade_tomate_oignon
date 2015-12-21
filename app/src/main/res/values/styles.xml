@@ -64,4 +64,9 @@
         <item name="android:popupBackground">@android:color/white</item>
         <item name="android:actionMenuTextColor">@android:color/background_dark</item>
     </style>
+
+
+    <style name="toolbar_theme" parent="@style/Base.ThemeOverlay.AppCompat.Dark">
+        <item name="colorControlNormal">@android:color/white</item>
+    </style>
 </resources>
