@@ -1,40 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="fill_parent"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:padding="18sp">
+    android:padding="14sp">
 
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textStyle="bold"
-            />
-
-        <TextView
-            android:id="@+id/price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="italic"
-            android:layout_weight="1"
-            android:layout_below="@id/name"
-            android:layout_marginTop="8dp"
-
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textStyle="bold"
         />
 
-        <TextView
-            android:id="@+id/distance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="italic"
-            android:layout_below="@id/name"
-            android:layout_alignRight="@id/name"
-            android:layout_marginTop="8dp"
-            />
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="20sp"
+        android:textStyle="italic"
+        android:layout_below="@id/name"
+        android:layout_marginTop="8dp"
+        android:layout_centerVertical="true"
+        />
 
+    <RatingBar
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rating"
+        android:textStyle="italic"
+        android:layout_below="@id/name"
+        android:layout_marginTop="8dp"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:isIndicator="true"
+    />
 
-
+    <TextView
+        android:id="@+id/dist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="italic"
+        android:layout_below="@id/name"
+        android:layout_alignRight="@id/name"
+        android:layout_marginTop="8dp"
+        android:layout_centerVertical="true"
+        />
 </RelativeLayout>
 
 

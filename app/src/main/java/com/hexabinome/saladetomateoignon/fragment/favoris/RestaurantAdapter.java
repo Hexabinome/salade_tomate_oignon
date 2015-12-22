@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.hexabinome.saladetomateoignon.R;
@@ -44,12 +45,15 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
          // Now we can fill the layout with the right values
          TextView tv = (TextView) convertView.findViewById(R.id.name);
          TextView priceView = (TextView) convertView.findViewById(R.id.price);
-         TextView distanceView = (TextView) convertView.findViewById(R.id.distance);
+         RatingBar rateBar = (RatingBar) convertView.findViewById(R.id.rating);
+         TextView distanceView = (TextView) convertView.findViewById(R.id.dist);
+
 
          final Restaurant p = restaurantList.get(pos);
 
          tv.setText(p.getName());
          priceView.setText("" + p.getPrix() + " €");
+         rateBar.setNumStars(p.getNote());
          distanceView.setText("" + p.getDistance() + " Km");
 
 
