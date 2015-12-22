@@ -44,9 +44,10 @@
             android:gravity="center">
 
             <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+                android:id="@+id/prefDistanceRestaurant"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:dsb_min="10"
+                app:dsb_min="50"
                 app:dsb_max="2000"
                 app:dsb_progressColor="@color/colorPrimary"
                 app:dsb_trackColor="@color/colorPrimaryDark"
@@ -83,6 +84,7 @@
             android:gravity="center">
 
             <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+                android:id="@+id/prefTempsAttente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:dsb_min="5"
@@ -124,10 +126,11 @@
             android:gravity="center">
 
             <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+                android:id="@+id/prefPrixRestaurant"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:dsb_min="3"
-                app:dsb_max="50"
+                app:dsb_max="25"
                 app:dsb_progressColor="@color/colorPrimary"
                 app:dsb_trackColor="@color/colorPrimaryDark"
                 app:dsb_indicatorColor="@color/colorPrimaryDark"
@@ -167,7 +170,7 @@
             android:gravity="center">
 
             <RatingBar
-                android:id="@+id/reviewStars"
+                android:id="@+id/prefNote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -276,6 +279,7 @@
             android:layout_weight="0.15">
 
             <Spinner
+                android:id="@+id/regime"
                 android:textColor="@color/colorPrimaryDark"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"

@@ -82,10 +82,11 @@ public class Restaurant {
     }
 
     public enum TypeRegime {
+        PAS_DE_REGIME,
         VEGETALIEN,
         VEGETARIEN,
-        SANS_PORC,
-        PAS_DE_REGIME
+        SANS_PORC
+
     }
 
     public enum TypePointDeRestauration {

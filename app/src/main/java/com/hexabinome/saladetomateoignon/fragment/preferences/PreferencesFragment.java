@@ -9,11 +9,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RatingBar;
+import android.widget.Spinner;
 
 import com.hexabinome.saladetomateoignon.LoginActivity;
-import com.hexabinome.saladetomateoignon.MainActivity;
 import com.hexabinome.saladetomateoignon.PrefUtils;
 import com.hexabinome.saladetomateoignon.R;
+import com.hexabinome.saladetomateoignon.modele.Preferences;
+import com.hexabinome.saladetomateoignon.modele.Restaurant;
+import com.hexabinome.saladetomateoignon.modele.Utilisateur;
+
+import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -82,6 +88,21 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
                 startActivity(intent);
             }
         });
+        //load user
+        Utilisateur user = PrefUtils.recupererUtilisateur(getActivity());
+        Preferences preferences = user.getPreferences();
+        DiscreteSeekBar distance = (DiscreteSeekBar) inflatedView.findViewById(R.id.prefDistanceRestaurant);
+        DiscreteSeekBar attente = (DiscreteSeekBar) inflatedView.findViewById(R.id.prefTempsAttente);
+        DiscreteSeekBar prix = (DiscreteSeekBar) inflatedView.findViewById(R.id.prefPrixRestaurant);
+        RatingBar note = (RatingBar) inflatedView.findViewById(R.id.prefNote);
+        Spinner regime = (Spinner) inflatedView.findViewById(R.id.regime);
+        distance.setProgress(preferences.getDistance());
+        attente.setProgress(preferences.getTempsDattente());
+        prix.setProgress(preferences.getPrix());
+        note.setRating((float) preferences.getNote());
+
+        Restaurant.TypeRegime prefRegime = preferences.getTypeRegime();
+        regime.setSelection(prefRegime.ordinal());
         return inflatedView;
     }
 

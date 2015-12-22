@@ -12,11 +12,11 @@ public class Preferences {
 
 
 
-    private double distance;
+    private int distance;
 
     private int tempsDattente;
 
-    private double prix;
+    private int prix;
 
     private double note;
 
@@ -24,7 +24,7 @@ public class Preferences {
     private Restaurant.TypeRegime typeRegime;
 
 
-    public Preferences(double distance, int tempsDattente, double prix, Restaurant.TypeRegime typeRegime, double note){
+    public Preferences(int distance, int tempsDattente, int prix, Restaurant.TypeRegime typeRegime, double note){
         this.distance = distance;
         this.tempsDattente = tempsDattente;
         this.prix = prix;
@@ -34,9 +34,9 @@ public class Preferences {
     }
 
     public static Preferences getDefaultPreferences(){
-        double distance = 1.0; // 1 km
+        int distance = 500; // 500m
         int tempsDattente =  15; // 15mn
-        double prix = 4.5; // 4.5 €
+        int prix = 5; // 5 €
         Restaurant.TypeRegime type = Restaurant.TypeRegime.PAS_DE_REGIME;
         int note = 3; // 3/5
 
@@ -51,11 +51,11 @@ public class Preferences {
         this.typePointDeRestaurations = typePointDeRestaurations;
     }
 
-    public double getDistance() {
+    public int getDistance() {
         return distance;
     }
 
-    public void setDistance(double distance) {
+    public void setDistance(int distance) {
         this.distance = distance;
     }
 
@@ -67,11 +67,11 @@ public class Preferences {
         this.tempsDattente = tempsDattente;
     }
 
-    public double getPrix() {
+    public int getPrix() {
         return prix;
     }
 
-    public void setPrix(double prix) {
+    public void setPrix(int prix) {
         this.prix = prix;
     }
 
