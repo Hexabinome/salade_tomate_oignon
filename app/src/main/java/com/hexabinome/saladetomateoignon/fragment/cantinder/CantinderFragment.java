@@ -266,10 +266,10 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         String name = "", distance = "", price = "", tempsAtt = "", grade = "";
         if (restaurantTitle.isCursorVisible() && currentRestaurant != null) {
             name = currentRestaurant.getName();
-            distance = currentRestaurant.getDistance().toString();
-            price = currentRestaurant.getPrix().toString();
-            tempsAtt = currentRestaurant.getTempsAttenteMoy().toString();
-            grade = currentRestaurant.getNote().toString();
+            distance = String.valueOf(currentRestaurant.getDistance());
+            price = String.valueOf(currentRestaurant.getPrix());
+            tempsAtt = String.valueOf(currentRestaurant.getTempsAttenteMoy());
+            grade = String.valueOf(currentRestaurant.getNote());
         }
 
         restaurantTitle.setText(name);

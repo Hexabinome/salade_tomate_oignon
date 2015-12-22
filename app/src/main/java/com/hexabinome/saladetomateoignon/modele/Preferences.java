@@ -18,13 +18,13 @@ public class Preferences {
 
     private double prix;
 
-    private int note;
+    private double note;
 
 
     private Restaurant.TypeRegime typeRegime;
 
 
-    public Preferences(double distance, int tempsDattente, double prix, Restaurant.TypeRegime typeRegime, int note){
+    public Preferences(double distance, int tempsDattente, double prix, Restaurant.TypeRegime typeRegime, double note){
         this.distance = distance;
         this.tempsDattente = tempsDattente;
         this.prix = prix;
@@ -75,11 +75,11 @@ public class Preferences {
         this.prix = prix;
     }
 
-    public int getNote() {
+    public double getNote() {
         return note;
     }
 
-    public void setNote(int note) {
+    public void setNote(double note) {
         this.note = note;
     }
 

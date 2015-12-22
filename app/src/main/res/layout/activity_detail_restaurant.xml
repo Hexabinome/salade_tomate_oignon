@@ -71,39 +71,40 @@
                     android:layout_weight="0.25"
                     android:gravity="center"
                     android:drawableTop="@drawable/ic_star"
-                    android:text="3.5/5"
+                    android:text="@string/note_restaurant"
                     android:textAppearance="@style/LabelTextAppearance"
                     />
 
                 <TextView
-                    android:id="@+id/price"
+                    android:id="@+id/priceRestaurant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.25"
                     android:gravity="center"
                     android:drawableTop="@drawable/ic_euro"
-                    android:text="3.2 €"
+                    android:text="@string/prix_restaurant"
                     android:textAppearance="@style/LabelTextAppearance"/>
 
                 <TextView
-                    android:id="@+id/restaurantTempsAttente"
+                    android:id="@+id/restaurantTemps"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.25"
                     android:gravity="center"
                     android:drawableTop="@drawable/ic_watch"
-                    android:text="15 mn d'attente moyen"
+                    android:text="@string/temps"
                     android:textAppearance="@style/LabelTextAppearance"
                     />
 
                 <TextView
-                    android:id="@+id/distance"
+
+                    android:id="@+id/distanceRestaurant"
                     android:gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.25"
                     android:drawableTop="@drawable/ic_location"
-                    android:text="1 km"
+                    android:text="@string/distance_restaurant"
                     android:textAppearance="@style/LabelTextAppearance"/>
 
             </LinearLayout>
