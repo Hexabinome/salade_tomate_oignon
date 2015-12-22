@@ -16,7 +16,7 @@ public class PrefUtils {
     public static final String UTILISATEUR = "__UTILISATEUR__" ;
     public static final String PREFS_FIRST_LAUNCH = "__FIRST__";
 
-    public static void sauvegardeUtilisateur(Activity activity, Utilisateur value) {
+    public static void sauvegardeUtilisateur(Context activity, Utilisateur value) {
         SharedPreferences sharedPreferences = activity.getSharedPreferences(activity.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -38,7 +38,7 @@ public class PrefUtils {
     }
 
 
-    public static void saveBooleanToPrefs(Activity activity, String key, Boolean value) {
+    public static void saveBooleanToPrefs(Context activity, String key, Boolean value) {
         SharedPreferences preferences = activity.getSharedPreferences(activity.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
 
@@ -46,17 +46,17 @@ public class PrefUtils {
         editor.commit();
     }
 
-    public static String getStringFromPrefs(Activity activity, String key, String defaultValue) {
+    public static String getStringFromPrefs(Context activity, String key, String defaultValue) {
         SharedPreferences preferences = activity.getSharedPreferences(activity.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         return preferences.getString(key,defaultValue);
     }
 
-    public static boolean getBooleanFromPrefs(Activity activity,String key, Boolean defaultValue){
+    public static boolean getBooleanFromPrefs(Context activity,String key, Boolean defaultValue){
         SharedPreferences preferences = activity.getSharedPreferences(activity.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         return preferences.getBoolean(key, defaultValue);
     }
 
-    public static void resetPrefs(Activity activity){
+    public static void resetPrefs(Context activity){
         SharedPreferences preferences = activity.getSharedPreferences(activity.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.clear().commit();

@@ -55,10 +55,10 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
          Utilisateur utilisateur = PrefUtils.recupererUtilisateur(context);
 
          tv.setText(p.getName());
-         priceView.setText("" + p.getPrix() + " €");
+         priceView.setText(String.format(context.getString(R.string.prix_restaurant),p.getPrix()));
 
          rateBar.setNumStars((int)p.getNote());
-         distanceView.setText("" + p.getDistance(utilisateur.getLongitude(),utilisateur.getLatitude()) + " Km");
+         distanceView.setText(String.format(context.getString(R.string.distance_restaurant),p.getDistance(utilisateur.getLongitude(),utilisateur.getLatitude())));
 
 
 
