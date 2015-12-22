@@ -53,7 +53,12 @@ public class SubscribeActivity extends AppCompatActivity {
         inputLayoutVerifyPassword = (TextInputLayout) findViewById(R.id.input_layout_verify_password);
 
         btnValidate = (Button) findViewById(R.id.validateButton);
-
+        btnValidate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                submitForm();
+            }
+        });
         inputFirstName.addTextChangedListener(new SignupTextWatcher(inputFirstName));
         inputLastName.addTextChangedListener(new SignupTextWatcher(inputLastName));
         inputEmail.addTextChangedListener(new SignupTextWatcher(inputEmail));

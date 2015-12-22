@@ -1,13 +1,18 @@
 package com.hexabinome.saladetomateoignon.fragment.preferences;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.hexabinome.saladetomateoignon.LoginActivity;
+import com.hexabinome.saladetomateoignon.MainActivity;
+import com.hexabinome.saladetomateoignon.PrefUtils;
 import com.hexabinome.saladetomateoignon.R;
 
 /**
@@ -18,7 +23,7 @@ import com.hexabinome.saladetomateoignon.R;
  * Use the {@link PreferencesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PreferencesFragment extends Fragment {
+public class PreferencesFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -30,6 +35,7 @@ public class PreferencesFragment extends Fragment {
 
     private OnPreferencesFragmentInteractionListener mListener;
 
+    private Button btnDisconnect;
     public PreferencesFragment() {
         // Required empty public constructor
     }
@@ -59,6 +65,7 @@ public class PreferencesFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
@@ -66,7 +73,15 @@ public class PreferencesFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View inflatedView = inflater.inflate(R.layout.fragment_preferences, container, false);
-
+        btnDisconnect = (Button) inflatedView.findViewById(R.id.disconnect);
+        btnDisconnect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                PrefUtils.resetPrefs(getActivity());
+                startActivity(intent);
+            }
+        });
         return inflatedView;
     }
 
@@ -85,6 +100,11 @@ public class PreferencesFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 
     /**
