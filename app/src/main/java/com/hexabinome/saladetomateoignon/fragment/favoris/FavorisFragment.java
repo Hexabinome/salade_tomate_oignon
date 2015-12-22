@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +15,11 @@ import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.hexabinome.saladetomateoignon.DetailRestaurantActivity;
+import com.hexabinome.saladetomateoignon.PrefUtils;
 import com.hexabinome.saladetomateoignon.modele.Mock;
 import com.hexabinome.saladetomateoignon.R;
 import com.hexabinome.saladetomateoignon.modele.Restaurant;
+import com.hexabinome.saladetomateoignon.modele.Utilisateur;
 
 import java.util.ArrayList;
 
@@ -84,8 +87,13 @@ public class FavorisFragment extends Fragment {
         ListView preferenceListView;
         final RestaurantAdapter mArrayAdapter;
 
+
+        Utilisateur user = PrefUtils.recupererUtilisateur(getContext());
+
+        Log.d("trace",user.toString());
+
         ArrayList preferenceList;
-        preferenceList = sortRestaurantList(Mock.getRestaurantLaDoua());
+        preferenceList = sortRestaurantList(Mock.getRestaurantLaDoua(), user);
 
 
         // Access the ListView
@@ -155,10 +163,11 @@ public class FavorisFragment extends Fragment {
     }
 
 
-    private ArrayList <Restaurant> sortRestaurantList(ArrayList<Restaurant> restaurants){
+    private ArrayList <Restaurant> sortRestaurantList(ArrayList<Restaurant> restaurants, Utilisateur user){
 
         // sort the restaurants Note > price > distance
         ArrayList<Restaurant> sortedList = new ArrayList<Restaurant>();
+
 
         Restaurant prev = null;
         Restaurant cur = null;
@@ -169,14 +178,26 @@ public class FavorisFragment extends Fragment {
 
             for (int i = 0; i < restaurants.size(); i++) {
                 cur = restaurants.get(i);
-                if (cur.getNote() >= prev.getNote()){
-                    if(cur.getPrix() <= prev.getPrix()){
-                        if(cur.getDistance(0,0) < prev.getDistance(0,0)) {
+                if (cur.getNote() > prev.getNote()) {
+                    prev = cur;
+                }
+                else if (cur.getNote() == prev.getNote()){
+
+                    if(cur.getPrix() < prev.getPrix()) {
+                        prev = cur;
+                    }
+                    else if (cur.getPrix() == prev.getPrix()){
+                        if(cur.getDistance(user.getLongitude(),user.getLatitude()) < prev.getDistance(user.getLongitude(),user.getLatitude())) {
                             prev = cur;
                         }
                     }
                 }
             }
+            Log.d("trace","" +prev.getNote());
+            Log.d("trace","" +prev.getPrix());
+            Log.d("trace","" +prev.getDistance(user.getLongitude(),user.getLatitude()));
+
+
             sortedList.add(prev);
             restaurants.remove(prev);
         }
