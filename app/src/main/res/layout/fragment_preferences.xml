@@ -200,40 +200,45 @@
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_gravity="right"
-            android:layout_weight="0.15">
+            android:layout_weight="0.15"
+            android:gravity="center">
 
+            <CheckBox
+                android:id="@+id/checkBox1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Resto U"
+                android:textColor="@color/colorPrimaryDark" />
             <CheckBox
                 android:id="@+id/checkBox2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_below="@+id/checkBox1"
                 android:checked="true"
-                android:onClick="onCheckboxClicked"
-                android:text="Resto U           "
-                android:textColor="@color/colorPrimary" />
-
-            <CheckBox
-                android:id="@+id/checkBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_below="@+id/checkBox3"
-                android:checked="true"
-                android:onClick="onCheckboxClicked"
-                android:text="Fast Food       "
-                android:textColor="@color/colorPrimary" />
+                android:text="Supermarché"
+                android:textColor="@color/colorPrimaryDark" />
 
             <CheckBox
                 android:id="@+id/checkBox3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_below="@+id/checkBox2"
                 android:checked="true"
-                android:onClick="onCheckboxClicked"
-                android:text="Swaggetarien"
-                android:textColor="@color/colorPrimary" />
+                android:text="Fast Food"
+                android:textColor="@color/colorPrimaryDark" />
+
+
+            <CheckBox
+                android:id="@+id/checkBox4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/checkBox3"
+                android:checked="true"
+                android:text="Commerce"
+                android:textColor="@color/colorPrimaryDark" />
+
+
 
         </RelativeLayout>
     </LinearLayout>
@@ -268,11 +273,11 @@
             android:layout_weight="0.15">
 
             <Spinner
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorPrimaryDark"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:entries="@array/country_arrays"
+                android:entries="@array/regime_arrays"
                 android:theme="@style/MooTheme"/>
 
         </RelativeLayout>
