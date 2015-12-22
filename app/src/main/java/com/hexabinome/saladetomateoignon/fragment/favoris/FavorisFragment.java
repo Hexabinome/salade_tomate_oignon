@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +19,7 @@ import com.hexabinome.saladetomateoignon.R;
 import com.hexabinome.saladetomateoignon.modele.Restaurant;
 
 import java.util.ArrayList;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -85,14 +85,17 @@ public class FavorisFragment extends Fragment {
         final RestaurantAdapter mArrayAdapter;
 
         ArrayList preferenceList;
-        preferenceList = Mock.getRestaurantLaDoua();
+        preferenceList = sortRestaurantList(Mock.getRestaurantLaDoua());
 
 
         // Access the ListView
         preferenceListView = (ListView) inflatedView.findViewById(R.id.favoris_listview);
 
+
+
         // Create an ArrayAdapter for the ListView
         mArrayAdapter = new RestaurantAdapter(preferenceList,getContext());
+
 
         // Set the ListView to use the ArrayAdapter
         preferenceListView.setAdapter(mArrayAdapter);
@@ -107,7 +110,7 @@ public class FavorisFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), DetailRestaurantActivity.class);
                 Restaurant restaurant = mArrayAdapter.getItem(position);
                 String restaurantJson = new Gson().toJson(restaurant);
-                intent.putExtra(DetailRestaurantActivity.RESTAURANT_EXTRA,restaurantJson);
+                intent.putExtra(DetailRestaurantActivity.RESTAURANT_EXTRA, restaurantJson);
                 startActivity(intent);
             }
         });
@@ -149,5 +152,34 @@ public class FavorisFragment extends Fragment {
     public interface OnFavorisFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFavorisFragmentInteraction(Uri uri);
+    }
+
+
+    private ArrayList <Restaurant> sortRestaurantList(ArrayList<Restaurant> restaurants){
+
+        // sort the restaurants Note > price > distance
+        ArrayList<Restaurant> sortedList = new ArrayList<Restaurant>();
+
+        Restaurant prev = null;
+        Restaurant cur = null;
+
+        while(!restaurants.isEmpty()) {
+
+            prev = restaurants.get(0);
+
+            for (int i = 0; i < restaurants.size(); i++) {
+                cur = restaurants.get(i);
+                if (cur.getNote() >= prev.getNote()){
+                    if(cur.getPrix() >= prev.getPrix()){
+                        if(cur.getDistance(0,0) > prev.getDistance(0,0)) {
+                            prev = cur;
+                        }
+                    }
+                }
+            }
+            sortedList.add(prev);
+            restaurants.remove(prev);
+        }
+        return  sortedList;
     }
 }

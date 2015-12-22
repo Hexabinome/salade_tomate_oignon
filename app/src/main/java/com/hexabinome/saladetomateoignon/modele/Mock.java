@@ -3,6 +3,7 @@ package com.hexabinome.saladetomateoignon.modele;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -57,6 +58,7 @@ public final class Mock {
                 Restaurant.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE, null, 4.873614, 45.78108,"Comme son nom l'indique, c'est Beurk"));
         preference.add(new Restaurant("Supermarché : Carrefour Market", 5.60, 10, 1,
                 Restaurant.TypePointDeRestauration.SUPERMARCHE, null, 4.875102, 45.776971, "Carrefour Market, enseigne française de supermarchés appartenant au groupe Carrefour"));
+
 
         return preference;
     }
