@@ -170,8 +170,8 @@ public class FavorisFragment extends Fragment {
             for (int i = 0; i < restaurants.size(); i++) {
                 cur = restaurants.get(i);
                 if (cur.getNote() >= prev.getNote()){
-                    if(cur.getPrix() >= prev.getPrix()){
-                        if(cur.getDistance(0,0) > prev.getDistance(0,0)) {
+                    if(cur.getPrix() <= prev.getPrix()){
+                        if(cur.getDistance(0,0) < prev.getDistance(0,0)) {
                             prev = cur;
                         }
                     }
