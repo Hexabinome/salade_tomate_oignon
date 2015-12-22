@@ -11,8 +11,10 @@ import android.widget.ArrayAdapter;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.hexabinome.saladetomateoignon.PrefUtils;
 import com.hexabinome.saladetomateoignon.R;
 import com.hexabinome.saladetomateoignon.modele.Restaurant;
+import com.hexabinome.saladetomateoignon.modele.Utilisateur;
 
 import java.util.List;
 
@@ -50,11 +52,14 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
 
 
          final Restaurant p = restaurantList.get(pos);
+         Utilisateur utilisateur = PrefUtils.recupererUtilisateur(context);
 
          tv.setText(p.getName());
          priceView.setText("" + p.getPrix() + " €");
-         rateBar.setNumStars(p.getNote());
-         distanceView.setText("" + p.getDistance() + " Km");
+
+         rateBar.setNumStars((int)p.getNote());
+         distanceView.setText("" + p.getDistance(utilisateur.getLongitude(),utilisateur.getLatitude()) + " Km");
+
 
 
        /*  convertView.setOnClickListener(new View.OnClickListener() {

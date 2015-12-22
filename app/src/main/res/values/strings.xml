@@ -34,6 +34,6 @@
     the big cheese.</string>
     <string name="temps">%d mn d\'attente moyen</string>
     <string name="prix_restaurant">%.2f €</string>
-    <string name="distance_restaurant">%.2f km</string>
+    <string name="distance_restaurant">%.2f m</string>
     <string name="note_restaurant">%.1f/5</string>
 </resources>

@@ -26,7 +26,7 @@ public class PrefUtils {
         editor.commit();
     }
 
-    public static Utilisateur recupererUtilisateur(Activity activity){
+    public static Utilisateur recupererUtilisateur(Context activity){
         SharedPreferences preferences = activity.getSharedPreferences(activity.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
         String utilisateurString = preferences.getString(UTILISATEUR,null);

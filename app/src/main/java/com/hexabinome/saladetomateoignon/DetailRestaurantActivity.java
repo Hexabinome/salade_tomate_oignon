@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.hexabinome.saladetomateoignon.modele.Restaurant;
+import com.hexabinome.saladetomateoignon.modele.Utilisateur;
 
 public class DetailRestaurantActivity extends AppCompatActivity {
 
@@ -37,6 +38,8 @@ public class DetailRestaurantActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
+        Utilisateur utilisateur = PrefUtils.recupererUtilisateur(this);
+
         noteTextview = (TextView) findViewById(R.id.note);
         priceTextView = (TextView) findViewById(R.id.priceRestaurant);
         timeTextView = (TextView) findViewById(R.id.restaurantTemps);
@@ -44,7 +47,7 @@ public class DetailRestaurantActivity extends AppCompatActivity {
 
         timeTextView.setText(String.format(getString(R.string.temps),restaurant.getTempsAttenteMoy()));
         priceTextView.setText(String.format(getString(R.string.prix_restaurant),restaurant.getPrix()));
-        distanceTextView.setText(String.format(getString(R.string.distance_restaurant),restaurant.getDistance()));
+        distanceTextView.setText(String.format(getString(R.string.distance_restaurant),restaurant.getDistance(utilisateur.getLongitude(),utilisateur.getLatitude())));
         noteTextview.setText(String.format(getString(R.string.note_restaurant),restaurant.getNote()));
 
     }

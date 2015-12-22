@@ -14,6 +14,8 @@ public class Utilisateur {
     private String motDePasse;
     private Set<Restaurant> favoris = new HashSet<Restaurant>();
 
+    private double longitude,latitude;
+
     private Preferences preferences;
 
     public Utilisateur(String nom,String prenom,String email, String motDePasse){
@@ -24,6 +26,18 @@ public class Utilisateur {
         this.preferences = Preferences.getDefaultPreferences();
         this.prenom = prenom;
 
+        // default position to IT department
+        this.longitude = 4.872990;
+        this.latitude = 45.783924;
+
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
     }
 
     public String getPrenom() {

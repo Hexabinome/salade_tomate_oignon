@@ -207,7 +207,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
              */
             private double getScore(Restaurant r) {
                 double score = 0;
-                if (r.getDistance() > pref.getDistance()) {
+                if (r.getDistance(currentUser.getLongitude(),currentUser.getLatitude()) > pref.getDistance()) {
                     score--;
                 }
                 else {
@@ -266,7 +266,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         String name = "", distance = "", price = "", tempsAtt = "", grade = "";
         if (restaurantTitle.isCursorVisible() && currentRestaurant != null) {
             name = currentRestaurant.getName();
-            distance = String.valueOf(currentRestaurant.getDistance());
+            distance = String.valueOf(currentRestaurant.getDistance(currentUser.getLongitude(),currentUser.getLatitude()));
             price = String.valueOf(currentRestaurant.getPrix());
             tempsAtt = String.valueOf(currentRestaurant.getTempsAttenteMoy());
             grade = String.valueOf(currentRestaurant.getNote());

@@ -1,7 +1,9 @@
 package com.hexabinome.saladetomateoignon.modele;
 
 
-import java.util.ArrayList;
+
+import android.location.Location;
+
 import java.util.List;
 
 /**
@@ -12,22 +14,25 @@ public class Restaurant {
     private String name;
     private double prix;
     private int tempsAttenteMoy;
-    private double distance; // TODO à remplacer par position, puis calculer la distance
     private double note;
     private TypePointDeRestauration typePointDeRestauration;
     private List<TypeRegime> regimeList;
+   private Location location;
 
 
-    public Restaurant(String myname, double myprice, int tempsAttenteMoy, double distance,
-                      double note, TypePointDeRestauration typePointDeRestauration, List<TypeRegime> regimes) {
+    public Restaurant(String myname, double myprice, int tempsAttenteMoy,
+                      double note, TypePointDeRestauration typePointDeRestauration, List<TypeRegime> regimes, double longitude, double latitude) {
         this.prix = myprice;
         this.name = myname;
         this.tempsAttenteMoy = tempsAttenteMoy;
-        this.distance = distance;
         this.note = note;
         this.typePointDeRestauration = typePointDeRestauration;
         this.regimeList = regimes;
+        location = new Location(this.name);
+        location.setLongitude(longitude);
+        location.setLatitude(latitude);
     }
+
 
     public String getName() {
         return name;
@@ -41,8 +46,12 @@ public class Restaurant {
         return tempsAttenteMoy;
     }
 
-    public double getDistance() {
-        return distance;
+    public double getDistance(double destinationLongitude, double destinationLatitude) {
+        Location destionation = new Location("UserLocation");
+        destionation.setLatitude(destinationLatitude);
+        destionation.setLongitude(destinationLongitude);
+
+        return location.distanceTo(destionation);
     }
 
     public double getNote() {
