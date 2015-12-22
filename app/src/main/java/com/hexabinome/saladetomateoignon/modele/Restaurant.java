@@ -1,7 +1,6 @@
 package com.hexabinome.saladetomateoignon.modele;
 
 
-
 import android.location.Location;
 
 import java.util.List;
@@ -17,22 +16,35 @@ public class Restaurant {
     private double note;
     private TypePointDeRestauration typePointDeRestauration;
     private List<TypeRegime> regimeList;
-   private Location location;
+    private Location location;
+    private String description;
 
 
     public Restaurant(String myname, double myprice, int tempsAttenteMoy,
-                      double note, TypePointDeRestauration typePointDeRestauration, List<TypeRegime> regimes, double longitude, double latitude) {
+                      double note, TypePointDeRestauration typePointDeRestauration, List<TypeRegime> regimes, double longitude, double latitude, String description) {
         this.prix = myprice;
         this.name = myname;
         this.tempsAttenteMoy = tempsAttenteMoy;
         this.note = note;
         this.typePointDeRestauration = typePointDeRestauration;
         this.regimeList = regimes;
-        location = new Location(this.name);
-        location.setLongitude(longitude);
-        location.setLatitude(latitude);
+        this.location = new Location(this.name);
+        this.location.setLongitude(longitude);
+        this.location.setLatitude(latitude);
+        this.description = description;
     }
 
+    public TypePointDeRestauration getTypePointDeRestauration() {
+        return typePointDeRestauration;
+    }
+
+    public List<TypeRegime> getRegimeList() {
+        return regimeList;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 
     public String getName() {
         return name;

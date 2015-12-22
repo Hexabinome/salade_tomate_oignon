@@ -20,7 +20,8 @@ public class DetailRestaurantActivity extends AppCompatActivity {
 
     private Restaurant restaurant;
 
-    private TextView noteTextview,priceTextView,timeTextView, distanceTextView;
+    private TextView noteTextview,priceTextView,timeTextView, distanceTextView,descriptionTextView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +45,13 @@ public class DetailRestaurantActivity extends AppCompatActivity {
         priceTextView = (TextView) findViewById(R.id.priceRestaurant);
         timeTextView = (TextView) findViewById(R.id.restaurantTemps);
         distanceTextView = (TextView) findViewById(R.id.distanceRestaurant);
+        descriptionTextView = (TextView) findViewById(R.id.description);
 
         timeTextView.setText(String.format(getString(R.string.temps),restaurant.getTempsAttenteMoy()));
         priceTextView.setText(String.format(getString(R.string.prix_restaurant),restaurant.getPrix()));
-        distanceTextView.setText(String.format(getString(R.string.distance_restaurant),restaurant.getDistance(utilisateur.getLongitude(),utilisateur.getLatitude())));
+        distanceTextView.setText(String.format(getString(R.string.distance_restaurant),restaurant.getDistance(utilisateur.getLongitude(), utilisateur.getLatitude())));
         noteTextview.setText(String.format(getString(R.string.note_restaurant),restaurant.getNote()));
+        descriptionTextView.setText(restaurant.getDescription());
 
     }
 
