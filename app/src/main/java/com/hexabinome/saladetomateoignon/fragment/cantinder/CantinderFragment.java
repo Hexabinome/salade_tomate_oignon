@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +50,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
     private TextView restaurantDistance;
     private TextView restaurantTempsAttente;
     private TextView restaurantGrade;
+    private RatingBar rateBar;
 
     private ImageButton declineButton;
     private ImageButton acceptButton;
@@ -88,7 +90,8 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         restaurantTempsAttente = (TextView) inflatedView.findViewById(R.id.restaurantTempsAttente);
         restaurantDistance = (TextView) inflatedView.findViewById(R.id.restaurantDistance);
         restaurantPrice = (TextView) inflatedView.findViewById(R.id.restaurantPrice);
-        restaurantGrade = (TextView) inflatedView.findViewById(R.id.restaurantGrade);
+//        restaurantGrade = (TextView) inflatedView.findViewById(R.id.restaurantGrade);
+        rateBar = (RatingBar) inflatedView.findViewById(R.id.restaurantGrade);
 
         currentRestaurant = getNextRestaurant();
         displayRestaurant();
@@ -263,19 +266,21 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
      * Fills restaurant displays
      */
     private void displayRestaurant() {
-        String name = "", distance = "", price = "", tempsAtt = "", grade = "";
+        String name = "", distance = "", price = "", tempsAtt = "";
+        int grade = 0;
         if (restaurantTitle.isCursorVisible() && currentRestaurant != null) {
             name = currentRestaurant.getName();
-            distance = String.valueOf(currentRestaurant.getDistance(currentUser.getLongitude(),currentUser.getLatitude()));
+            distance = String.valueOf((int) currentRestaurant.getDistance(currentUser.getLongitude(), currentUser.getLatitude()));
             price = String.valueOf(currentRestaurant.getPrix());
             tempsAtt = String.valueOf(currentRestaurant.getTempsAttenteMoy());
-            grade = String.valueOf(currentRestaurant.getNote());
+            grade = (int)currentRestaurant.getNote();
+
         }
 
         restaurantTitle.setText(name);
-        restaurantDistance.setText(distance);
-        restaurantPrice.setText(price);
-        restaurantTempsAttente.setText(tempsAtt);
-        restaurantGrade.setText(grade);
+        restaurantDistance.setText(distance + " métres");
+        restaurantPrice.setText(price + "€");
+        restaurantTempsAttente.setText(tempsAtt + " minutes");
+        rateBar.setNumStars(grade);
     }
 }
