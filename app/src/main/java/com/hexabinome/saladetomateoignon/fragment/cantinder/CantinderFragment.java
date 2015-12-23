@@ -1,5 +1,6 @@
 package com.hexabinome.saladetomateoignon.fragment.cantinder;
 
+import android.animation.LayoutTransition;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,8 +8,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,7 +53,6 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
     private TextView restaurantPrice;
     private TextView restaurantDistance;
     private TextView restaurantTempsAttente;
-    private TextView restaurantGrade;
     private RatingBar rateBar;
 
     private ImageButton declineButton;
@@ -110,6 +113,8 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         }
     }
 
+
+
     @Override
     public void onDetach() {
         super.onDetach();
@@ -145,14 +150,18 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
      * Passe au restaurant suivant
      */
     public void declineRestaurant() {
-
-
         if (currentRestaurant != null) {
             refused.add(currentRestaurant);
         }
 
+
+        Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(this.getContext(), R.anim.dislike);
+        getView().startAnimation(hyperspaceJumpAnimation);
+
+
         currentRestaurant = getNextRestaurant();
         displayRestaurant();
+
     }
 
     /**
@@ -165,9 +174,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         if (currentRestaurant != null) {
             // Add current restaurant to favorties
             currentUser.addToFavorites(currentRestaurant);
-
         }
-
         // Next restaurant
         currentRestaurant = getNextRestaurant();
         displayRestaurant();
@@ -270,7 +277,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         }
 
         restaurantTitle.setText(name);
-        restaurantDistance.setText(distance + " métres");
+        restaurantDistance.setText(distance + " mètres");
         restaurantPrice.setText(price + "€");
         restaurantTempsAttente.setText(tempsAtt + " minutes");
         rateBar.setNumStars(grade);
