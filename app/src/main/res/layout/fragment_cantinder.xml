@@ -9,14 +9,14 @@
 
     <Button
         android:id="@+id/detailRestaurant"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
+        android:layout_width="00dp"
+        android:layout_height="0dp"
         android:layout_gravity="end"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
         android:visibility="invisible"
         android:text="@string/Cantinder_DetailRestaurant"
-        android:textSize="10sp"
+        android:textSize="0sp"
         />
 
     <!-- Partie présentation restaurant -->
@@ -25,14 +25,23 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center_vertical"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@color/colorPrimary"
+            android:layout_marginTop="20sp"
+            />
 
         <TextView
             android:id="@+id/restaurantTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/CantinderTest_Title"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:layout_marginTop="20sp"/>
 
         <LinearLayout style="@style/InformationTextViewLayout">
 
@@ -70,13 +79,16 @@
         android:padding="10dp">
 
         <ImageButton
-            android:id="@+id/declineButton"
+            android:background = "@drawable/roundedbutton"
+            android:id="@+id/reject"
             style="@style/ActionButton"
-            android:src="@drawable/decline" />
+            android:src="@drawable/dislike"
+            />
 
         <ImageButton
-            android:id="@+id/acceptButton"
+            android:background = "@drawable/roundedbutton"
+            android:id="@+id/accept"
             style="@style/ActionButton"
-            android:src="@drawable/accept" />
+            android:src="@drawable/like" />
     </LinearLayout>
 </LinearLayout>
