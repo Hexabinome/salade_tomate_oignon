@@ -1,6 +1,5 @@
 package com.hexabinome.saladetomateoignon.fragment.cantinder;
 
-import android.animation.LayoutTransition;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,9 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +25,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.SortedSet;
-import java.util.TreeMap;
 import java.util.TreeSet;
 
 /**
@@ -176,6 +172,8 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
             currentUser.addToFavorites(currentRestaurant);
         }
         // Next restaurant
+        Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(this.getContext(), R.anim.like);
+        getView().startAnimation(hyperspaceJumpAnimation);
         currentRestaurant = getNextRestaurant();
         displayRestaurant();
     }

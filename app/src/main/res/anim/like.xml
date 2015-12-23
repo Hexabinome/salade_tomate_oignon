@@ -4,14 +4,15 @@
 
     <translate
         android:fromXDelta="0"
-        android:toXDelta="-1500"
+        android:toXDelta="1500"
         android:duration="250"
         />
 
     <rotate
         android:fromDegrees="0"
-        android:toDegrees="-90"
-        android:pivotX="0%"
+        android:toDegrees="90"
+        android:toYScale="0.0"
+        android:pivotX="100%"
         android:pivotY="100%"
         android:duration="250" />
 </set>
