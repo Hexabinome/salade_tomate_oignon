@@ -54,7 +54,6 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 
     private ImageButton declineButton;
     private ImageButton acceptButton;
-    private Button detailButton;
 
 
     public CantinderFragment() {
@@ -123,8 +122,6 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
             acceptRestaurant();
         } else if (v.getId() == declineButton.getId()){
             declineRestaurant();
-        } else if (v.getId() == detailButton.getId()) {
-            detailRestaurant();
         }
     }
 
@@ -148,7 +145,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
      * Passe au restaurant suivant
      */
     public void declineRestaurant() {
-        detailButton.setVisibility(View.INVISIBLE);
+
 
         if (currentRestaurant != null) {
             refused.add(currentRestaurant);
@@ -168,8 +165,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         if (currentRestaurant != null) {
             // Add current restaurant to favorties
             currentUser.addToFavorites(currentRestaurant);
-            // Display button to go to current restaurant details
-            detailButton.setVisibility(View.VISIBLE);
+
         }
 
         // Next restaurant
@@ -177,10 +173,6 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         displayRestaurant();
     }
 
-    public void detailRestaurant() {
-        Toast.makeText(getContext(), "Go to detail of " + previousRestaurant.getName(), Toast.LENGTH_SHORT).show();
-        // TODO go to detail activity
-    }
 
     /**
      * Gets the next restaurant, corresponding to the preferences and not already in the favorites
