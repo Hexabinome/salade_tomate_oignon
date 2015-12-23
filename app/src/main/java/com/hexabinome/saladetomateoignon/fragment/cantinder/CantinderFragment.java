@@ -80,11 +80,11 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         View inflatedView = inflater.inflate(R.layout.fragment_cantinder, container, false);
         declineButton = (ImageButton) inflatedView.findViewById(R.id.reject);
         acceptButton = (ImageButton) inflatedView.findViewById(R.id.accept);
-        detailButton = (Button) inflatedView.findViewById(R.id.detailRestaurant);
+
 
         declineButton.setOnClickListener(this);
         acceptButton.setOnClickListener(this);
-        detailButton.setOnClickListener(this);
+
 
         restaurantTitle = (TextView) inflatedView.findViewById(R.id.restaurantTitle);
         restaurantTempsAttente = (TextView) inflatedView.findViewById(R.id.restaurantTempsAttente);

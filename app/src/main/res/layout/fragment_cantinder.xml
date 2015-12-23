@@ -7,18 +7,6 @@
     tools:context=".fragment.cantinder.CantinderFragment">
 
 
-    <Button
-        android:id="@+id/detailRestaurant"
-        android:layout_width="00dp"
-        android:layout_height="0dp"
-        android:layout_gravity="end"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
-        android:visibility="invisible"
-        android:text="@string/Cantinder_DetailRestaurant"
-        android:textSize="0sp"
-        />
-
     <!-- Partie présentation restaurant -->
     <LinearLayout
         android:background="@drawable/cantinder_board_layout"
@@ -36,7 +24,7 @@
         <android.support.v7.widget.AppCompatImageView
             android:layout_width="match_parent"
             android:layout_height="130dp"
-            android:src="@color/colorPrimary"
+            android:src="@drawable/image_restaurant"
             />
 
         <TextView
@@ -48,26 +36,37 @@
             android:textAlignment="center"
             android:layout_marginTop="20sp"/>
 
-        <LinearLayout style="@style/InformationTextViewLayout">
+        <RelativeLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
 
             <TextView
                 android:id="@+id/restaurantTempsAttente"
-                style="@style/InformationTextView"
-                android:text="@string/CantinderTest_TempsAttente" />
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/CantinderTest_TempsAttente"
+                android:layout_marginLeft="@dimen/cantinder_board_horizontal_margin"/>
 
             <TextView
                 android:id="@+id/restaurantPrice"
-                style="@style/InformationTextView"
-                android:text="@string/CantinderTest_Price" />
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/CantinderTest_Price"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/cantinder_board_horizontal_margin"/>
+        </RelativeLayout>
 
-        <LinearLayout style="@style/InformationTextViewLayout">
+        <RelativeLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
 
             <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
                 android:id="@+id/restaurantDistance"
                 style="@style/InformationTextView"
                 android:text="@string/CantinderTest_Distance"
-                 />
+                android:layout_marginLeft="@dimen/cantinder_board_horizontal_margin" />
 
             <RatingBar
                 style="?android:attr/ratingBarStyleSmall"
@@ -76,9 +75,10 @@
                 android:id="@+id/restaurantGrade"
                 android:textStyle="italic"
                 android:isIndicator="true"
-
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/cantinder_board_horizontal_margin"
                 />
-        </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 
     <!-- Partie boutons decline/accept -->
