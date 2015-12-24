@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,19 +33,25 @@ import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 public class PreferencesFragment extends Fragment implements View.OnClickListener {
 
 
+    /**
+     * Boolean to know if the Fragment has been attached to the Activity
+     */
+    boolean isReady = false;
 
     private OnPreferencesFragmentInteractionListener mListener;
-
-    private Utilisateur user;
 
     private Button btnDisconnect;
     private Restaurant.TypeRegime regimeSelectionne;
     private Spinner regimeSpinner;
 
-    DiscreteSeekBar distanceSeekBar, attenteSeekBar,prixSeekBar;
+    DiscreteSeekBar distanceSeekBar, attenteSeekBar, prixSeekBar;
     RatingBar noteRatingBar;
 
+    private Preferences preferences;
+    Utilisateur user;
 
+
+    private static final String TAG = "PreferencesFragment";
 
     public PreferencesFragment() {
         // Required empty public constructor
@@ -64,15 +71,17 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         btnDisconnect = (Button) inflatedView.findViewById(R.id.disconnect);
         btnDisconnect.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 PrefUtils.resetPrefs(getActivity());
+                getActivity().finish();
                 startActivity(intent);
+
             }
         });
         //load user
         user = PrefUtils.recupererUtilisateur(getActivity());
-        Preferences preferences;
+
         if (user != null) {
             preferences = user.getPreferences();
         } else {
@@ -91,8 +100,8 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         prixSeekBar.setProgress(preferences.getPrix());
         noteRatingBar.setRating((float) preferences.getNote());
 
-        Restaurant.TypeRegime prefRegime = preferences.getTypeRegime();
-        regimeSpinner.setSelection(prefRegime.ordinal());
+        Log.d(TAG,"onCreateView");
+
         return inflatedView;
     }
 
@@ -105,12 +114,15 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
             throw new RuntimeException(context.toString()
                     + " must implement OnPreferencesFragmentInteractionListener");
         }
+
+        isReady = true;
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
+        isReady = false;
     }
 
     @Override
@@ -118,9 +130,12 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
 
     }
 
-    private void configureSpinner(){
+    /**
+     * Configure spinner interaction
+     */
+    private void configureSpinner() {
 
-        ArrayAdapter<Restaurant.TypeRegime> regimeArrayAdapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_item);
+        ArrayAdapter<Restaurant.TypeRegime> regimeArrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item);
         regimeArrayAdapter.addAll(Restaurant.TypeRegime.values());
         regimeArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         regimeSpinner.setAdapter(regimeArrayAdapter);
@@ -131,6 +146,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
 
                 regimeSelectionne = (Restaurant.TypeRegime) parent.getItemAtPosition(position);
 
+
             }
 
             @Override
@@ -138,16 +154,56 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
 
             }
         });
+
+        regimeSpinner.setSelection(preferences.getTypeRegime().ordinal());
+    }
+
+    private void updatePreferences(){
+        preferences.setDistance(distanceSeekBar.getProgress());
+        preferences.setTempsDattente(attenteSeekBar.getProgress());
+        preferences.setNote(noteRatingBar.getRating());
+        preferences.setPrix(prixSeekBar.getProgress());
+        preferences.setTypeRegime(regimeSelectionne);
+    }
+
+    private void saveUserPreferences(){
+        user.setPreferences(preferences);
+        PrefUtils.sauvegardeUtilisateur(getActivity(),user);
     }
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if(!isVisibleToUser){
-            // TODO : save preferences
-            if(mListener != null)
-                mListener.onPreferencesFragmentInteraction();
+        if (!isVisibleToUser && isReady) {
+            mListener.onPreferencesFragmentInteraction();
+            updatePreferences();
+
+            saveUserPreferences();
+
+            Log.d("Preferences Fragement","setUserVisibleHint");
+
+
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        Log.d(TAG, "onDestroyView");
+        super.onDestroyView();
+    }
+
+    @Override
+    public void onPause() {
+        Log.d(TAG,"onPause");
+        super.onPause();
+    }
+
+    @Override
+    public void onStop() {
+        Log.d(TAG,"onStrop");
+
+        super.onPause();
+
     }
 
     /**

@@ -90,8 +90,6 @@ public class FavorisFragment extends Fragment {
 
         Utilisateur user = PrefUtils.recupererUtilisateur(getContext());
 
-        Log.d("trace",user.toString());
-
         ArrayList preferenceList;
         preferenceList = sortRestaurantList(Mock.getRestaurantLaDoua(), user);
 

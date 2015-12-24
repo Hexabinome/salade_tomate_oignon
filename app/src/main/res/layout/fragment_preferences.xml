@@ -143,7 +143,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+                  android:baselineAligned="false">
 
         <RelativeLayout
             android:layout_width="fill_parent"
@@ -173,10 +174,9 @@
                 android:id="@+id/prefNote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:numStars="5"
-                android:rating="3"
-                android:stepSize="0.5" />
+                android:stepSize="1" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -185,7 +185,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+                  android:baselineAligned="false">
 
         <RelativeLayout
             android:layout_width="fill_parent"
