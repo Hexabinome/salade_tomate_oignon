@@ -27,7 +27,9 @@ import com.hexabinome.saladetomateoignon.modele.Utilisateur;
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -54,15 +56,18 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
     private Restaurant.TypeRegime regimeSelectionne;
     private Spinner regimeSpinner;
 
-    DiscreteSeekBar distanceSeekBar, attenteSeekBar, prixSeekBar;
-    RatingBar noteRatingBar;
+    private DiscreteSeekBar distanceSeekBar, attenteSeekBar, prixSeekBar;
+    private RatingBar noteRatingBar;
 
     private Preferences preferences;
-    Utilisateur user;
+    private Utilisateur user;
 
-    RelativeLayout checkBoxesLayout;
+    /**
+     * Relative layout for checkboxes
+     */
+    private RelativeLayout checkBoxesLayout;
 
-    List<CheckBox> list = new ArrayList<>();
+    Map<Restaurant.TypePointDeRestauration,CheckBox> checkBoxMap = new HashMap<>();
 
 
     private static final String TAG = "PreferencesFragment";
@@ -131,6 +136,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
 
         int offsetId = 1994;
 
+        // checkboxes creation
         for (Restaurant.TypePointDeRestauration typePointDeRestauration : Restaurant.TypePointDeRestauration.values()){
             CheckBox checkBox = new CheckBox(getContext());
             checkBox.setId(typePointDeRestauration.ordinal()+offsetId);
@@ -145,8 +151,17 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
             checkBox.setTextColor(ContextCompat.getColor(getContext(), R.color.colorPrimaryDark));
             checkBoxesLayout.addView(checkBox, layoutParams);
 
+            checkBox.setTag(typePointDeRestauration);
+            checkBoxMap.put(typePointDeRestauration,checkBox);
+
 
         }
+
+        // checkboxes enabling
+        for(Restaurant.TypePointDeRestauration typePointDeRestauration : preferences.getTypePointDeRestaurations()){
+            checkBoxMap.get(typePointDeRestauration).setChecked(true);
+        }
+
 
     }
 
@@ -179,10 +194,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         regimeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
                 regimeSelectionne = (Restaurant.TypeRegime) parent.getItemAtPosition(position);
-
-
             }
 
             @Override
@@ -200,6 +212,16 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         preferences.setNote(noteRatingBar.getRating());
         preferences.setPrix(prixSeekBar.getProgress());
         preferences.setTypeRegime(regimeSelectionne);
+
+        preferences.getTypePointDeRestaurations().clear();
+
+        for(CheckBox checkBox : checkBoxMap.values()){
+            if(checkBox.isChecked()){
+                preferences.getTypePointDeRestaurations().add((Restaurant.TypePointDeRestauration) checkBox.getTag());
+            }
+        }
+
+
     }
 
     private void saveUserPreferences() {
