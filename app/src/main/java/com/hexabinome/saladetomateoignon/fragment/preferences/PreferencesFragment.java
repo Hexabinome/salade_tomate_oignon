@@ -8,6 +8,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.Spinner;
@@ -26,52 +28,32 @@ import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
  * Activities that contain this fragment must implement the
  * {@link OnPreferencesFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link PreferencesFragment#newInstance} factory method to
- * create an instance of this fragment.
  */
 public class PreferencesFragment extends Fragment implements View.OnClickListener {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+
 
     private OnPreferencesFragmentInteractionListener mListener;
 
+    private Utilisateur user;
+
     private Button btnDisconnect;
+    private Restaurant.TypeRegime regimeSelectionne;
+    private Spinner regimeSpinner;
+
+    DiscreteSeekBar distanceSeekBar, attenteSeekBar,prixSeekBar;
+    RatingBar noteRatingBar;
+
+
+
     public PreferencesFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment PreferencesFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static PreferencesFragment newInstance(String param1, String param2) {
-        PreferencesFragment fragment = new PreferencesFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-
     }
 
     @Override
@@ -89,20 +71,28 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
             }
         });
         //load user
-        Utilisateur user = PrefUtils.recupererUtilisateur(getActivity());
-        Preferences preferences = user.getPreferences();
-        DiscreteSeekBar distance = (DiscreteSeekBar) inflatedView.findViewById(R.id.prefDistanceRestaurant);
-        DiscreteSeekBar attente = (DiscreteSeekBar) inflatedView.findViewById(R.id.prefTempsAttente);
-        DiscreteSeekBar prix = (DiscreteSeekBar) inflatedView.findViewById(R.id.prefPrixRestaurant);
-        RatingBar note = (RatingBar) inflatedView.findViewById(R.id.prefNote);
-        Spinner regime = (Spinner) inflatedView.findViewById(R.id.regime);
-        distance.setProgress(preferences.getDistance());
-        attente.setProgress(preferences.getTempsDattente());
-        prix.setProgress(preferences.getPrix());
-        note.setRating((float) preferences.getNote());
+        user = PrefUtils.recupererUtilisateur(getActivity());
+        Preferences preferences;
+        if (user != null) {
+            preferences = user.getPreferences();
+        } else {
+            preferences = Preferences.getDefaultPreferences();
+        }
+        distanceSeekBar = (DiscreteSeekBar) inflatedView.findViewById(R.id.prefDistanceRestaurant);
+        attenteSeekBar = (DiscreteSeekBar) inflatedView.findViewById(R.id.prefTempsAttente);
+        prixSeekBar = (DiscreteSeekBar) inflatedView.findViewById(R.id.prefPrixRestaurant);
+        noteRatingBar = (RatingBar) inflatedView.findViewById(R.id.prefNote);
+
+        regimeSpinner = (Spinner) inflatedView.findViewById(R.id.regime);
+        configureSpinner();
+
+        distanceSeekBar.setProgress(preferences.getDistance());
+        attenteSeekBar.setProgress(preferences.getTempsDattente());
+        prixSeekBar.setProgress(preferences.getPrix());
+        noteRatingBar.setRating((float) preferences.getNote());
 
         Restaurant.TypeRegime prefRegime = preferences.getTypeRegime();
-        regime.setSelection(prefRegime.ordinal());
+        regimeSpinner.setSelection(prefRegime.ordinal());
         return inflatedView;
     }
 
@@ -128,6 +118,38 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
 
     }
 
+    private void configureSpinner(){
+
+        ArrayAdapter<Restaurant.TypeRegime> regimeArrayAdapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_item);
+        regimeArrayAdapter.addAll(Restaurant.TypeRegime.values());
+        regimeArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        regimeSpinner.setAdapter(regimeArrayAdapter);
+
+        regimeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                regimeSelectionne = (Restaurant.TypeRegime) parent.getItemAtPosition(position);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(!isVisibleToUser){
+            // TODO : save preferences
+            if(mListener != null)
+                mListener.onPreferencesFragmentInteraction();
+        }
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -139,7 +161,6 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnPreferencesFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onPreferencesFragmentInteraction(Uri uri);
+        void onPreferencesFragmentInteraction();
     }
 }

@@ -111,8 +111,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onPreferencesFragmentInteraction(Uri uri) {
-
+    public void onPreferencesFragmentInteraction() {
+        // TODO : tell favoris fragment to update
     }
 
     @Override

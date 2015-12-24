@@ -83,9 +83,9 @@ public class Restaurant {
 
     public enum TypeRegime {
         PAS_DE_REGIME("Pas de régime"),
+        SANS_PORC("Sans porc"),
         VEGETALIEN("Végétalien"),
-        VEGETARIEN("Végétarien"),
-        SANS_PORC("Sans porc");
+        VEGETARIEN("Végétarien");
 
         private String name;
 
@@ -99,10 +99,10 @@ public class Restaurant {
     }
 
     public enum TypePointDeRestauration {
+        COMMERCE("Commerce"),
         FASTFOOD("Fast food"),
-        SUPERMARCHE("Supermarché"),
         RESTAURANT_UNIVERSITAIRE("Restaurant universitaire"),
-        COMMERCE("Commerce");
+        SUPERMARCHE("Supermarché");
 
         private String name;
 

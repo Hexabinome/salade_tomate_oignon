@@ -21,12 +21,6 @@
     <string name="CantinderTest_Grade">4</string>
     <string name="CantinderTest_Price">4.5</string>
     <string name="preference_file_key">com.hexabinome.saladetomateoignon</string>
-    <string-array name="regime_arrays">
-        <item>Pas de régime</item>
-        <item>Vegetalien</item>
-        <item>Vegetarien</item>
-        <item>Sans Porc</item>
-    </string-array>
     <string name="cheese_ipsum">Jarlsberg lancashire edam. Dolcelatte hard cheese brie st. agur blue
     cheese caerphilly bavarian bergkase cheese and biscuits mascarpone. Cheeseburger swiss bavarian
     bergkase cream cheese fromage frais cheesy feet port-salut airedale. St. agur blue cheese rubber
