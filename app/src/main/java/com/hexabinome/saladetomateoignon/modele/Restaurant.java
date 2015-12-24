@@ -82,17 +82,37 @@ public class Restaurant {
     }
 
     public enum TypeRegime {
-        PAS_DE_REGIME,
-        VEGETALIEN,
-        VEGETARIEN,
-        SANS_PORC
+        PAS_DE_REGIME("Pas de régime"),
+        VEGETALIEN("Végétalien"),
+        VEGETARIEN("Végétarien"),
+        SANS_PORC("Sans porc");
 
+        private String name;
+
+        TypeRegime(String name){
+            this.name = name;
+        }
+        @Override
+        public String toString() {
+            return name;
+        }
     }
 
     public enum TypePointDeRestauration {
-        FASTFOOD,
-        SUPERMARCHE,
-        RESTAURANT_UNIVERSITAIRE,
-        COMMERCE
+        FASTFOOD("Fast food"),
+        SUPERMARCHE("Supermarché"),
+        RESTAURANT_UNIVERSITAIRE("Restaurant universitaire"),
+        COMMERCE("Commerce");
+
+        private String name;
+
+        TypePointDeRestauration(String name){
+            this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return name;
+        }
     }
 }
