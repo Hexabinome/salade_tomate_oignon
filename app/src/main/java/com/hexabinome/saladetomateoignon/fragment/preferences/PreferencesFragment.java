@@ -177,34 +177,19 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         if (!isVisibleToUser && isReady) {
             mListener.onPreferencesFragmentInteraction();
             updatePreferences();
-
             saveUserPreferences();
-
-            Log.d("Preferences Fragement","setUserVisibleHint");
 
 
         }
     }
 
     @Override
-    public void onDestroyView() {
-        Log.d(TAG, "onDestroyView");
-        super.onDestroyView();
-    }
-
-    @Override
     public void onPause() {
-        Log.d(TAG,"onPause");
+        updatePreferences();
+        saveUserPreferences();
         super.onPause();
     }
 
-    @Override
-    public void onStop() {
-        Log.d(TAG,"onStrop");
-
-        super.onPause();
-
-    }
 
     /**
      * This interface must be implemented by activities that contain this

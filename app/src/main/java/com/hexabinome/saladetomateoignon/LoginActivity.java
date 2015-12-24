@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputLayout inputLayoutEmail, inputLayoutPassword;
     private Button btnSignIn, btnSignUp;
 
-    private boolean isValidEmail = false, isValidPassword = false;
+    private boolean isValidEmail = true, isValidPassword = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
