@@ -1,10 +1,11 @@
 package com.hexabinome.saladetomateoignon.fragment.preferences;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +13,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
-import com.hexabinome.saladetomateoignon.LoginActivity;
 import com.hexabinome.saladetomateoignon.PrefUtils;
 import com.hexabinome.saladetomateoignon.R;
 import com.hexabinome.saladetomateoignon.modele.Preferences;
@@ -23,6 +25,9 @@ import com.hexabinome.saladetomateoignon.modele.Restaurant;
 import com.hexabinome.saladetomateoignon.modele.Utilisateur;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -54,6 +59,10 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
 
     private Preferences preferences;
     Utilisateur user;
+
+    RelativeLayout checkBoxesLayout;
+
+    List<CheckBox> list = new ArrayList<>();
 
 
     private static final String TAG = "PreferencesFragment";
@@ -91,12 +100,14 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         regimeSpinner = (Spinner) inflatedView.findViewById(R.id.regime);
         configureSpinner();
 
+        checkBoxesLayout = (RelativeLayout) inflatedView.findViewById(R.id.checkboxLayout);
+
         distanceSeekBar.setProgress(preferences.getDistance());
         attenteSeekBar.setProgress(preferences.getTempsDattente());
         prixSeekBar.setProgress(preferences.getPrix());
         noteRatingBar.setRating((float) preferences.getNote());
 
-        Log.d(TAG,"onCreateView");
+        configureCheckBoxes();
 
         return inflatedView;
     }
@@ -114,6 +125,31 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         isReady = true;
     }
 
+
+
+    private void configureCheckBoxes(){
+
+        int offsetId = 1994;
+
+        for (Restaurant.TypePointDeRestauration typePointDeRestauration : Restaurant.TypePointDeRestauration.values()){
+            CheckBox checkBox = new CheckBox(getContext());
+            checkBox.setId(typePointDeRestauration.ordinal()+offsetId);
+            checkBox.setText(typePointDeRestauration.toString());
+
+
+            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+            if(checkBox.getId() > offsetId){
+                layoutParams.addRule(RelativeLayout.BELOW, checkBox.getId() -1 );
+            }
+
+            checkBox.setTextColor(ContextCompat.getColor(getContext(), R.color.colorPrimaryDark));
+            checkBoxesLayout.addView(checkBox, layoutParams);
+
+
+        }
+
+    }
+
     @Override
     public void onDetach() {
         super.onDetach();
@@ -123,7 +159,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.disconnect){
+        if (v.getId() == R.id.disconnect) {
             mListener.onPreferencesDisconnectButtonClicked();
             disconnectClicked = true;
 
@@ -158,7 +194,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         regimeSpinner.setSelection(preferences.getTypeRegime().ordinal());
     }
 
-    private void updatePreferences(){
+    private void updatePreferences() {
         preferences.setDistance(distanceSeekBar.getProgress());
         preferences.setTempsDattente(attenteSeekBar.getProgress());
         preferences.setNote(noteRatingBar.getRating());
@@ -166,9 +202,9 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         preferences.setTypeRegime(regimeSelectionne);
     }
 
-    private void saveUserPreferences(){
+    private void saveUserPreferences() {
         user.setPreferences(preferences);
-        PrefUtils.sauvegardeUtilisateur(getContext(),user);
+        PrefUtils.sauvegardeUtilisateur(getContext(), user);
     }
 
     @Override
@@ -183,7 +219,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onPause() {
-        if(! disconnectClicked){
+        if (!disconnectClicked) {
             updatePreferences();
             saveUserPreferences();
         }
