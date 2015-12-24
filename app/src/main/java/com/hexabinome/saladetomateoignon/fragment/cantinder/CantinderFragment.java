@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,6 +55,8 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
     private ImageButton declineButton;
     private ImageButton acceptButton;
 
+    private LinearLayout cantinder_layout;
+
 
     public CantinderFragment() {
         // Required empty public constructor
@@ -79,6 +82,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         declineButton = (ImageButton) inflatedView.findViewById(R.id.reject);
         acceptButton = (ImageButton) inflatedView.findViewById(R.id.accept);
 
+        cantinder_layout = (LinearLayout) inflatedView.findViewById(R.id.cantinder_board);
 
         declineButton.setOnClickListener(this);
         acceptButton.setOnClickListener(this);
@@ -152,7 +156,8 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 
 
         Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(this.getContext(), R.anim.dislike);
-        getView().startAnimation(hyperspaceJumpAnimation);
+//        getView().startAnimation(hyperspaceJumpAnimation);
+        cantinder_layout.startAnimation(hyperspaceJumpAnimation);
 
 
         currentRestaurant = getNextRestaurant();
@@ -172,8 +177,11 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
             currentUser.addToFavorites(currentRestaurant);
         }
         // Next restaurant
+
+
         Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(this.getContext(), R.anim.like);
-        getView().startAnimation(hyperspaceJumpAnimation);
+        //getView().startAnimation(hyperspaceJumpAnimation);
+        cantinder_layout.startAnimation(hyperspaceJumpAnimation);
         currentRestaurant = getNextRestaurant();
         displayRestaurant();
     }

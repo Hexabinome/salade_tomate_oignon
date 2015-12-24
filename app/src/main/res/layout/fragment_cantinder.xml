@@ -9,6 +9,7 @@
 
     <!-- Partie présentation restaurant -->
     <LinearLayout
+        android:id="@+id/cantinder_board"
         android:background="@drawable/cantinder_board_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
