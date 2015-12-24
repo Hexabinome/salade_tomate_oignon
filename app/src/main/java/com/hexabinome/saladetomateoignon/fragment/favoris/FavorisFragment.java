@@ -191,10 +191,6 @@ public class FavorisFragment extends Fragment {
                     }
                 }
             }
-            Log.d("trace","" +prev.getNote());
-            Log.d("trace","" +prev.getPrix());
-            Log.d("trace","" +prev.getDistance(user.getLongitude(),user.getLatitude()));
-
 
             sortedList.add(prev);
             restaurants.remove(prev);
