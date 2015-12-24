@@ -146,4 +146,13 @@ public class MainActivity extends AppCompatActivity implements
     public void onTabReselected(TabLayout.Tab tab) {
 
     }
+
+    @Override
+    public void onBackPressed() {
+        if(viewPager.getCurrentItem() == 1){
+            super.onBackPressed();
+        } else {
+            viewPager.setCurrentItem(1,true);
+        }
+    }
 }
