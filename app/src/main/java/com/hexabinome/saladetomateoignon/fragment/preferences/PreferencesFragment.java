@@ -38,6 +38,11 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
      */
     boolean isReady = false;
 
+    /**
+     * Boolean to know if user clicked on the disconnect button
+     */
+    boolean disconnectClicked = false;
+
     private OnPreferencesFragmentInteractionListener mListener;
 
     private Button btnDisconnect;
@@ -69,16 +74,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
 
         View inflatedView = inflater.inflate(R.layout.fragment_preferences, container, false);
         btnDisconnect = (Button) inflatedView.findViewById(R.id.disconnect);
-        btnDisconnect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                PrefUtils.resetPrefs(getActivity());
-                getActivity().finish();
-                startActivity(intent);
-
-            }
-        });
+        btnDisconnect.setOnClickListener(this);
         //load user
         user = PrefUtils.recupererUtilisateur(getActivity());
 
@@ -127,7 +123,11 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
+        if(v.getId() == R.id.disconnect){
+            mListener.onPreferencesDisconnectButtonClicked();
+            disconnectClicked = true;
 
+        }
     }
 
     /**
@@ -168,7 +168,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
 
     private void saveUserPreferences(){
         user.setPreferences(preferences);
-        PrefUtils.sauvegardeUtilisateur(getActivity(),user);
+        PrefUtils.sauvegardeUtilisateur(getContext(),user);
     }
 
     @Override
@@ -178,15 +178,15 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
             mListener.onPreferencesFragmentInteraction();
             updatePreferences();
             saveUserPreferences();
-
-
         }
     }
 
     @Override
     public void onPause() {
-        updatePreferences();
-        saveUserPreferences();
+        if(! disconnectClicked){
+            updatePreferences();
+            saveUserPreferences();
+        }
         super.onPause();
     }
 
@@ -203,5 +203,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
      */
     public interface OnPreferencesFragmentInteractionListener {
         void onPreferencesFragmentInteraction();
+
+        void onPreferencesDisconnectButtonClicked();
     }
 }

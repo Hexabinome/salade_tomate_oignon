@@ -1,5 +1,6 @@
 package com.hexabinome.saladetomateoignon;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -113,6 +114,14 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onPreferencesFragmentInteraction() {
         // TODO : tell favoris fragment to update
+    }
+
+    @Override
+    public void onPreferencesDisconnectButtonClicked() {
+        PrefUtils.resetPrefs(this);
+        Intent intent = new Intent(this, LoginActivity.class);
+        finish();
+        startActivity(intent);
     }
 
     @Override
