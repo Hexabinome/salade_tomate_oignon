@@ -57,6 +57,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 
     private LinearLayout cantinder_layout;
     private LinearLayout cantinder_like_dislike_layout;
+    private LinearLayout cantinder_empty_cardBoard_layout;
 
 
     public CantinderFragment() {
@@ -85,6 +86,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 
         cantinder_layout = (LinearLayout) inflatedView.findViewById(R.id.cantinder_board);
         cantinder_like_dislike_layout = (LinearLayout) inflatedView.findViewById(R.id.cantinder_like_dislike_layout);
+        cantinder_empty_cardBoard_layout = (LinearLayout) inflatedView.findViewById(R.id.empty_cardBoard_layout);
 
         declineButton.setOnClickListener(this);
         acceptButton.setOnClickListener(this);
@@ -284,6 +286,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         }else{
             cantinder_layout.setVisibility(View.GONE);
             cantinder_like_dislike_layout.setVisibility(View.GONE);
+//            cantinder_empty_cardBoard_layout.setVisibility(View.VISIBLE);
         }
 
         restaurantTitle.setText(name);
