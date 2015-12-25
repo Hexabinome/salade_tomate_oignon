@@ -1,7 +1,7 @@
 package com.hexabinome.saladetomateoignon.fragment.cantinder;
 
 import android.content.Context;
-import android.net.Uri;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -27,6 +27,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
+
+import info.hoang8f.widget.FButton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -54,6 +56,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 
     private ImageButton declineButton;
     private ImageButton acceptButton;
+    private FButton emptyCantinderButton;
 
     private LinearLayout cantinder_layout;
     private LinearLayout cantinder_like_dislike_layout;
@@ -83,6 +86,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         View inflatedView = inflater.inflate(R.layout.fragment_cantinder, container, false);
         declineButton = (ImageButton) inflatedView.findViewById(R.id.reject);
         acceptButton = (ImageButton) inflatedView.findViewById(R.id.accept);
+        emptyCantinderButton = (FButton) inflatedView.findViewById(R.id.empty_cardBoard_button);
 
         cantinder_layout = (LinearLayout) inflatedView.findViewById(R.id.cantinder_board);
         cantinder_like_dislike_layout = (LinearLayout) inflatedView.findViewById(R.id.cantinder_like_dislike_layout);
@@ -90,7 +94,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 
         declineButton.setOnClickListener(this);
         acceptButton.setOnClickListener(this);
-
+        emptyCantinderButton.setOnClickListener(this);
 
         restaurantTitle = (TextView) inflatedView.findViewById(R.id.restaurantTitle);
         restaurantTempsAttente = (TextView) inflatedView.findViewById(R.id.restaurantTempsAttente);
@@ -131,6 +135,8 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
             acceptRestaurant();
         } else if (v.getId() == declineButton.getId()){
             declineRestaurant();
+        } else if (v.getId() == emptyCantinderButton.getId()){
+//            mListener.onCantinderFragmentInteraction(1);
         }
     }
 
@@ -146,7 +152,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
      */
     public interface OnCantinderFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onCantinderFragmentInteraction(Uri uri);
+        void onCantinderFragmentInteraction(int tabNumber);
     }
 
     /**
