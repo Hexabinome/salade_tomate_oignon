@@ -56,6 +56,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
     private ImageButton acceptButton;
 
     private LinearLayout cantinder_layout;
+    private LinearLayout cantinder_like_dislike_layout;
 
 
     public CantinderFragment() {
@@ -83,6 +84,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         acceptButton = (ImageButton) inflatedView.findViewById(R.id.accept);
 
         cantinder_layout = (LinearLayout) inflatedView.findViewById(R.id.cantinder_board);
+        cantinder_like_dislike_layout = (LinearLayout) inflatedView.findViewById(R.id.cantinder_like_dislike_layout);
 
         declineButton.setOnClickListener(this);
         acceptButton.setOnClickListener(this);
@@ -279,7 +281,9 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
             price = String.valueOf(currentRestaurant.getPrix());
             tempsAtt = String.valueOf(currentRestaurant.getTempsAttenteMoy());
             grade = (int)currentRestaurant.getNote();
-
+        }else{
+            cantinder_layout.setVisibility(View.GONE);
+            cantinder_like_dislike_layout.setVisibility(View.GONE);
         }
 
         restaurantTitle.setText(name);

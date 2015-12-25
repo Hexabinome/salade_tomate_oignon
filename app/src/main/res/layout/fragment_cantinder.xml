@@ -84,6 +84,7 @@
 
     <!-- Partie boutons decline/accept -->
     <LinearLayout
+        android:id="@+id/cantinder_like_dislike_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
