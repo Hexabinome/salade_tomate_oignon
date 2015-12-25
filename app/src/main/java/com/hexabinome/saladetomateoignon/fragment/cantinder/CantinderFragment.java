@@ -286,7 +286,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         }else{
             cantinder_layout.setVisibility(View.GONE);
             cantinder_like_dislike_layout.setVisibility(View.GONE);
-//            cantinder_empty_cardBoard_layout.setVisibility(View.VISIBLE);
+            cantinder_empty_cardBoard_layout.setVisibility(View.VISIBLE);
         }
 
         restaurantTitle.setText(name);
