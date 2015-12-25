@@ -26,59 +26,52 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
 
     private List<Restaurant> restaurantList;
 
-    private LayoutInflater layoutInflater;
     private Context context;
 
-    public RestaurantAdapter(List <Restaurant> restaurantList, Context ctx) {
+    public RestaurantAdapter(List<Restaurant> restaurantList, Context ctx) {
         super(ctx, R.layout.row_layout, restaurantList);
         this.restaurantList = restaurantList;
         this.context = ctx;
     }
 
 
-     public View getView(int pos, View convertView, ViewGroup parent)
-     {
-         // First let's verify the convertView is not null
-         if (convertView == null) {
+
+    public View getView(int pos, View convertView, ViewGroup parent) {
+        ViewHolder viewHolder;
+        // First let's verify the convertView is not null
+        if (convertView == null) {
+
             // This a new view we inflate the new layout
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.row_layout, parent, false);
-         }
-         // Now we can fill the layout with the right values
-         TextView tv = (TextView) convertView.findViewById(R.id.name);
-         TextView priceView = (TextView) convertView.findViewById(R.id.price);
-         RatingBar rateBar = (RatingBar) convertView.findViewById(R.id.rating);
-         TextView distanceView = (TextView) convertView.findViewById(R.id.dist);
 
+            viewHolder = new ViewHolder();
+            // Now we can fill the layout with the right values
+            viewHolder.nameTextView = (TextView) convertView.findViewById(R.id.name);
+            viewHolder.priceTextView = (TextView) convertView.findViewById(R.id.price);
+            viewHolder.ratingBar = (RatingBar) convertView.findViewById(R.id.rating);
+            viewHolder.distanceTextView = (TextView) convertView.findViewById(R.id.dist);
 
-         final Restaurant p = restaurantList.get(pos);
-         Utilisateur utilisateur = PrefUtils.recupererUtilisateur(context);
+            convertView.setTag(viewHolder);
 
-         tv.setText(p.getName());
-         priceView.setText(String.format(context.getString(R.string.prix_restaurant),p.getPrix()));
-
-         rateBar.setNumStars((int)p.getNote());
-         distanceView.setText(String.format(context.getString(R.string.distance_restaurant),p.getDistance(utilisateur.getLongitude(),utilisateur.getLatitude())));
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
 
 
 
-       /*  convertView.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                Animation anim = AnimationUtils.loadAnimation(
-                                                        getContext(), android.R.anim.fade_out
-                                                );
-                                                anim.setDuration(500);
-                                                v.startAnimation(anim );
+        final Restaurant p = restaurantList.get(pos);
+        final Utilisateur utilisateur = PrefUtils.recupererUtilisateur(context);
 
-                                                Log.d("on click"," you have click on : " + p);
-                                            }
-                                        }
-         );*/
+        viewHolder.nameTextView.setText(p.getName());
+        viewHolder.priceTextView.setText(String.format(context.getString(R.string.prix_restaurant), p.getPrix()));
 
-         return convertView;
-     }
+        viewHolder.ratingBar.setNumStars((int) p.getNote());
+        viewHolder.distanceTextView.setText(String.format(context.getString(R.string.distance_restaurant), p.getDistance(utilisateur.getLongitude(), utilisateur.getLatitude())));
 
+
+        return convertView;
+    }
 
 
     @Override
@@ -97,8 +90,14 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
     }
 
 
-    private static class ViewHolder{
-        // TODO : put the fields for each item in the list
+    /**
+     * http://www.javacodegeeks.com/2013/09/android-viewholder-pattern-example.html
+     */
+    private static class ViewHolder {
+        public TextView nameTextView;
+        public TextView priceTextView;
+        public RatingBar ratingBar;
+        public TextView distanceTextView;
     }
 
     public void setRestaurantList(List<Restaurant> restaurantList) {

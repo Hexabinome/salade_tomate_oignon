@@ -1,53 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:padding="14sp">
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:padding="14sp">
 
     <TextView
         android:id="@+id/name"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:textStyle="bold"
         />
 
     <TextView
-        android:text="@string/prix_restaurant"
         android:id="@+id/price"
         android:layout_width="wrap_content"
         android:layout_height="20sp"
-        android:textStyle="italic"
         android:layout_below="@id/name"
-        android:layout_marginTop="8dp"
         android:layout_centerVertical="true"
+        android:layout_marginTop="8dp"
+        android:text="@string/prix_restaurant"
+        android:textStyle="italic"
         />
 
     <RatingBar
+        android:id="@+id/rating"
         style="?android:attr/ratingBarStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/rating"
-        android:textStyle="italic"
         android:layout_below="@id/name"
-        android:layout_marginTop="8dp"
-        android:layout_centerVertical="true"
-        android:gravity="center"
         android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
         android:isIndicator="true"
-    />
+        android:textStyle="italic"
+        />
 
     <TextView
         android:id="@+id/dist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="italic"
+        android:layout_alignEnd="@id/name"
         android:layout_below="@id/name"
-        android:layout_alignRight="@id/name"
+        android:layout_centerVertical="true"
         android:layout_marginTop="8dp"
         android:text="@string/distance_restaurant"
-        android:layout_centerVertical="true"
+        android:textStyle="italic"
         />
 </RelativeLayout>
 
