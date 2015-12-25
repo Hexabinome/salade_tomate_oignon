@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onPreferencesFragmentInteraction() {
+    public void onPreferencesFragmentNotVisible(boolean isPreferencesChanged) {
         // TODO : tell favoris fragment to update
     }
 

@@ -1,14 +1,17 @@
 package com.hexabinome.saladetomateoignon.modele;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * Created by haidara on 20/12/15.
  */
 public class Preferences {
 
-    private List<Restaurant.TypePointDeRestauration> typePointDeRestaurations;
+    private Set<Restaurant.TypePointDeRestauration> typePointDeRestaurations;
 
     private int distance;
 
@@ -26,9 +29,15 @@ public class Preferences {
         this.distance = distance;
         this.tempsDattente = tempsDattente;
         this.prix = prix;
-        this.typePointDeRestaurations = new ArrayList<>();
+        this.typePointDeRestaurations = new HashSet<>();
         this.typeRegime = typeRegime;
         this.note = note;
+    }
+
+    public Preferences(Preferences preferences) {
+        this(preferences.getDistance(), preferences.getTempsDattente(), preferences.getPrix(), preferences.getTypeRegime(), preferences.getNote());
+        Set<Restaurant.TypePointDeRestauration> set = new HashSet<>(preferences.getTypePointDeRestaurations());
+        setTypePointDeRestaurations(set);
     }
 
     public static Preferences getDefaultPreferences() {
@@ -36,17 +45,35 @@ public class Preferences {
         int tempsDattente = 15; // 15mn
         int prix = 5; // 5 €
         Restaurant.TypeRegime type = Restaurant.TypeRegime.PAS_DE_REGIME;
-        int note = 3; // 3/5
+        int note = 3; // 3
 
         return new Preferences(distance, tempsDattente, prix, type, note);
     }
 
-    public List<Restaurant.TypePointDeRestauration> getTypePointDeRestaurations() {
+    public Set<Restaurant.TypePointDeRestauration> getTypePointDeRestaurations() {
         return typePointDeRestaurations;
     }
 
-    public void setTypePointDeRestaurations(List<Restaurant.TypePointDeRestauration> typePointDeRestaurations) {
+    public void setTypePointDeRestaurations(Set<Restaurant.TypePointDeRestauration> typePointDeRestaurations) {
         this.typePointDeRestaurations = typePointDeRestaurations;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Preferences that = (Preferences) o;
+        return Objects.equals(getDistance(), that.getDistance()) &&
+                Objects.equals(getTempsDattente(), that.getTempsDattente()) &&
+                Objects.equals(getPrix(), that.getPrix()) &&
+                Objects.equals(getNote(), that.getNote()) &&
+                Objects.equals(getTypePointDeRestaurations(), that.getTypePointDeRestaurations()) &&
+                Objects.equals(getTypeRegime(), that.getTypeRegime());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getTypePointDeRestaurations(), getDistance(), getTempsDattente(), getPrix(), getNote(), getTypeRegime());
     }
 
     public int getDistance() {

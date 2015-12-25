@@ -2,10 +2,8 @@ package com.hexabinome.saladetomateoignon.fragment.preferences;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +15,7 @@ import android.widget.CheckBox;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.hexabinome.saladetomateoignon.PrefUtils;
 import com.hexabinome.saladetomateoignon.R;
@@ -26,9 +25,7 @@ import com.hexabinome.saladetomateoignon.modele.Utilisateur;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -59,7 +56,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
     private DiscreteSeekBar distanceSeekBar, attenteSeekBar, prixSeekBar;
     private RatingBar noteRatingBar;
 
-    private Preferences preferences;
+    private Preferences preferences,oldPreferences;
     private Utilisateur user;
 
     /**
@@ -97,6 +94,9 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         } else {
             preferences = Preferences.getDefaultPreferences();
         }
+
+        oldPreferences = new Preferences(preferences);
+
         distanceSeekBar = (DiscreteSeekBar) inflatedView.findViewById(R.id.prefDistanceRestaurant);
         attenteSeekBar = (DiscreteSeekBar) inflatedView.findViewById(R.id.prefTempsAttente);
         prixSeekBar = (DiscreteSeekBar) inflatedView.findViewById(R.id.prefPrixRestaurant);
@@ -233,9 +233,23 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (!isVisibleToUser && isReady) {
-            mListener.onPreferencesFragmentInteraction();
             updatePreferences();
             saveUserPreferences();
+
+          //  Log.d(TAG,preferences.toString());
+            //Log.d(TAG,oldPreferences.toString());
+
+
+            if(preferences.equals(oldPreferences)) {
+                mListener.onPreferencesFragmentNotVisible(false);
+              //  Toast.makeText(getContext(), "Equals", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                mListener.onPreferencesFragmentNotVisible(true);
+             //   Toast.makeText(getContext(),"Not equals",Toast.LENGTH_SHORT).show();
+            }
+
+            oldPreferences = new Preferences(preferences);
         }
     }
 
@@ -260,7 +274,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnPreferencesFragmentInteractionListener {
-        void onPreferencesFragmentInteraction();
+        void onPreferencesFragmentNotVisible(boolean isPreferencesChanged);
 
         void onPreferencesDisconnectButtonClicked();
     }
