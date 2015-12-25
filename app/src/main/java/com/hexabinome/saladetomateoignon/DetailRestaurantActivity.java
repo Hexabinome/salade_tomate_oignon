@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.hexabinome.saladetomateoignon.modele.Mock;
 import com.hexabinome.saladetomateoignon.modele.Restaurant;
 import com.hexabinome.saladetomateoignon.modele.Utilisateur;
 
@@ -21,6 +22,8 @@ public class DetailRestaurantActivity extends AppCompatActivity {
     private Restaurant restaurant;
 
     private TextView noteTextview,priceTextView,timeTextView, distanceTextView,descriptionTextView;
+
+    private ImageView imageView;
 
 
     @Override
@@ -46,12 +49,16 @@ public class DetailRestaurantActivity extends AppCompatActivity {
         timeTextView = (TextView) findViewById(R.id.restaurantTemps);
         distanceTextView = (TextView) findViewById(R.id.distanceRestaurant);
         descriptionTextView = (TextView) findViewById(R.id.description);
+        imageView = (ImageView) findViewById(R.id.imageRestaurant);
 
         timeTextView.setText(String.format(getString(R.string.temps),restaurant.getTempsAttenteMoy()));
         priceTextView.setText(String.format(getString(R.string.prix_restaurant),restaurant.getPrix()));
-        distanceTextView.setText(String.format(getString(R.string.distance_restaurant),restaurant.getDistance(utilisateur.getLongitude(), utilisateur.getLatitude())));
-        noteTextview.setText(String.format(getString(R.string.note_restaurant),restaurant.getNote()));
+        distanceTextView.setText(String.format(getString(R.string.distance_restaurant), restaurant.getDistance(utilisateur.getLongitude(), utilisateur.getLatitude())));
+        noteTextview.setText(String.format(getString(R.string.note_restaurant), restaurant.getNote()));
         descriptionTextView.setText(restaurant.getDescription());
+        if(restaurant.getIdPhoto() != Restaurant.NO_PHOTO){
+            imageView.setImageDrawable(getDrawable(restaurant.getIdPhoto()));
+        }
 
     }
 

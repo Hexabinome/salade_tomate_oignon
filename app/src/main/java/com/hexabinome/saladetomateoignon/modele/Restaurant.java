@@ -9,7 +9,6 @@ import java.util.List;
  * Created by robinroyer on 10/12/2015.
  */
 public class Restaurant {
-    //TODO: ADD PHOTOS OF RESTAURANTS
     private String name;
     private double prix;
     private int tempsAttenteMoy;
@@ -18,10 +17,12 @@ public class Restaurant {
     private List<TypeRegime> regimeList;
     private Location location;
     private String description;
+    private int idPhoto;
 
+    public static final int NO_PHOTO = -1;
 
     public Restaurant(String myname, double myprice, int tempsAttenteMoy,
-                      double note, TypePointDeRestauration typePointDeRestauration, List<TypeRegime> regimes, double longitude, double latitude, String description) {
+                      double note, TypePointDeRestauration typePointDeRestauration, List<TypeRegime> regimes, double longitude, double latitude, String description,int idPhoto ) {
         this.prix = myprice;
         this.name = myname;
         this.tempsAttenteMoy = tempsAttenteMoy;
@@ -32,6 +33,11 @@ public class Restaurant {
         this.location.setLongitude(longitude);
         this.location.setLatitude(latitude);
         this.description = description;
+        this.idPhoto = idPhoto;
+    }
+
+    public int getIdPhoto() {
+        return idPhoto;
     }
 
     public TypePointDeRestauration getTypePointDeRestauration() {
@@ -99,6 +105,7 @@ public class Restaurant {
     }
 
     public enum TypePointDeRestauration {
+        CAFETERIA("Caféteria"),
         COMMERCE("Commerce"),
         FASTFOOD("Fast food"),
         RESTAURANT_UNIVERSITAIRE("Restaurant universitaire"),
