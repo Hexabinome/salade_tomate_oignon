@@ -45,6 +45,12 @@ public class FavorisFragment extends Fragment {
         // Required empty public constructor
     }
 
+    boolean isPreferencesChanged = false;
+
+    public void setIsPreferencesChanged(boolean isPreferencesChanged) {
+        this.isPreferencesChanged = isPreferencesChanged;
+    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -115,9 +121,10 @@ public class FavorisFragment extends Fragment {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if(isVisibleToUser){
+        if(isVisibleToUser && isPreferencesChanged){
             animationAdapter.reset();
             animationAdapter.notifyDataSetChanged();
+            isPreferencesChanged = false;
         }
     }
 

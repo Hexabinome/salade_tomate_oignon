@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements
     private ViewPager viewPager;
     public final static String POSITION = "POSITION";
     private Toolbar toolbar;
+    CustomFragmentPagerAdapter customFragmentPagerAdapter;
 
 
     @Override
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements
 
         // Get the ViewPager and set it's PagerAdapter so that it can display items
         viewPager = (ViewPager) findViewById(R.id.viewpager);
-        CustomFragmentPagerAdapter customFragmentPagerAdapter = new CustomFragmentPagerAdapter(getSupportFragmentManager(), this);
+        customFragmentPagerAdapter = new CustomFragmentPagerAdapter(getSupportFragmentManager(), this);
 
         customFragmentPagerAdapter.addFragment(new FavorisFragment(),"Favoris",R.drawable.ic_star2);
         customFragmentPagerAdapter.addFragment(new CantinderFragment(),"Cantinder", R.drawable.ic_eye);
@@ -61,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements
             if (tab != null)
                 tab.setCustomView(customFragmentPagerAdapter.getTabView(i));
         }
+
+
 
         // set the tab showed at launch
         viewPager.setCurrentItem(1);
@@ -114,6 +117,10 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onPreferencesFragmentNotVisible(boolean isPreferencesChanged) {
         // TODO : tell favoris fragment to update
+        if(isPreferencesChanged){
+            FavorisFragment favorisFragment = (FavorisFragment) customFragmentPagerAdapter.getItem(0);
+            favorisFragment.setIsPreferencesChanged(true);
+        }
     }
 
     @Override
