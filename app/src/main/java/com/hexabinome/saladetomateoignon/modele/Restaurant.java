@@ -60,6 +60,8 @@ public class Restaurant {
         return prix;
     }
 
+    public Location getLocation(){ return this.location; }
+
     public int getTempsAttenteMoy() {
         return tempsAttenteMoy;
     }

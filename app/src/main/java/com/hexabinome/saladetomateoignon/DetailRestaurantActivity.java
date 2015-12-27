@@ -8,13 +8,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.support.v4.app.FragmentActivity;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 
 import com.google.gson.Gson;
 import com.hexabinome.saladetomateoignon.modele.Mock;
 import com.hexabinome.saladetomateoignon.modele.Restaurant;
 import com.hexabinome.saladetomateoignon.modele.Utilisateur;
 
-public class DetailRestaurantActivity extends AppCompatActivity {
+public class DetailRestaurantActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     public static final String RESTAURANT_EXTRA = "restaurant_courant";
 
@@ -23,8 +32,9 @@ public class DetailRestaurantActivity extends AppCompatActivity {
 
     private TextView noteTextview,priceTextView,timeTextView, distanceTextView,descriptionTextView;
 
-    private ImageView imageView;
 
+    private ImageView imageView;
+    private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +44,11 @@ public class DetailRestaurantActivity extends AppCompatActivity {
         Intent intent = getIntent();
         final String restaurant_json = intent.getStringExtra(RESTAURANT_EXTRA);
         restaurant = new Gson().fromJson(restaurant_json, Restaurant.class);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -77,5 +92,19 @@ public class DetailRestaurantActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        double latitude = restaurant.getLocation().getLatitude();
+        double longitude = restaurant.getLocation().getLongitude();
+
+        LatLng restaurant_to_show = new LatLng(latitude, longitude);
+
+        mMap.addMarker(new MarkerOptions().position(restaurant_to_show).title(restaurant.getName()));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(restaurant_to_show));
+
     }
 }
