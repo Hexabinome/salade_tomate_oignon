@@ -4,6 +4,7 @@ import android.content.Context;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -136,7 +137,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         } else if (v.getId() == declineButton.getId()){
             declineRestaurant();
         } else if (v.getId() == emptyCantinderButton.getId()){
-//            mListener.onCantinderFragmentInteraction(1);
+            mListener.onCantinderFragmentInteraction(0);
         }
     }
 

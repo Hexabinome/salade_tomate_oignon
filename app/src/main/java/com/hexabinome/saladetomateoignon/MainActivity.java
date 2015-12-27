@@ -112,6 +112,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onCantinderFragmentInteraction(int tabNumber) {
         viewPager.setCurrentItem(tabNumber,true);
+
     }
 
     @Override
