@@ -98,6 +98,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        //TODO: refactor in model in a getLatLng
         double latitude = restaurant.getLocation().getLatitude();
         double longitude = restaurant.getLocation().getLongitude();
 
@@ -105,6 +106,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
 
         mMap.addMarker(new MarkerOptions().position(restaurant_to_show).title(restaurant.getName()));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(restaurant_to_show));
-
+        // zoom to la doua
+        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(restaurant.LADOUA_LATLNGBOUNDS, 0));
     }
 }

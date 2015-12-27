@@ -3,6 +3,9 @@ package com.hexabinome.saladetomateoignon.modele;
 
 import android.location.Location;
 
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+
 import java.util.List;
 
 /**
@@ -19,6 +22,7 @@ public class Restaurant {
     private String description;
     private int idPhoto;
 
+    public static LatLngBounds LADOUA_LATLNGBOUNDS = new LatLngBounds(new LatLng(45.77476, 4.86031), new LatLng(45.78827,4.88769));
     public static final int NO_PHOTO = -1;
 
     public Restaurant(String myname, double myprice, int tempsAttenteMoy,
