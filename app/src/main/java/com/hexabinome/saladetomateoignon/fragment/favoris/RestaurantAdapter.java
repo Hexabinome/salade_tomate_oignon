@@ -1,19 +1,16 @@
 package com.hexabinome.saladetomateoignon.fragment.favoris;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.hexabinome.saladetomateoignon.PrefUtils;
 import com.hexabinome.saladetomateoignon.R;
-import com.hexabinome.saladetomateoignon.modele.Restaurant;
+import com.hexabinome.saladetomateoignon.modele.PointDeRestauration;
 import com.hexabinome.saladetomateoignon.modele.Utilisateur;
 
 import java.util.List;
@@ -21,16 +18,16 @@ import java.util.List;
 /**
  * Cette class permet de remplir chaque item de la liste
  */
-public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
+public class RestaurantAdapter extends ArrayAdapter<PointDeRestauration> {
 
 
-    private List<Restaurant> restaurantList;
+    private List<PointDeRestauration> pointDeRestaurationList;
 
     private Context context;
 
-    public RestaurantAdapter(List<Restaurant> restaurantList, Context ctx) {
-        super(ctx, R.layout.row_layout, restaurantList);
-        this.restaurantList = restaurantList;
+    public RestaurantAdapter(List<PointDeRestauration> pointDeRestaurationList, Context ctx) {
+        super(ctx, R.layout.row_layout, pointDeRestaurationList);
+        this.pointDeRestaurationList = pointDeRestaurationList;
         this.context = ctx;
     }
 
@@ -60,7 +57,7 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
 
 
 
-        final Restaurant p = restaurantList.get(pos);
+        final PointDeRestauration p = pointDeRestaurationList.get(pos);
         final Utilisateur utilisateur = PrefUtils.recupererUtilisateur(context);
 
         viewHolder.nameTextView.setText(p.getName());
@@ -76,12 +73,12 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
 
     @Override
     public int getCount() {
-        return restaurantList.size();
+        return pointDeRestaurationList.size();
     }
 
     @Override
-    public Restaurant getItem(int position) {
-        return restaurantList.get(position);
+    public PointDeRestauration getItem(int position) {
+        return pointDeRestaurationList.get(position);
     }
 
     @Override
@@ -100,7 +97,7 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
         public TextView distanceTextView;
     }
 
-    public void setRestaurantList(List<Restaurant> restaurantList) {
-        this.restaurantList = restaurantList;
+    public void setPointDeRestaurationList(List<PointDeRestauration> pointDeRestaurationList) {
+        this.pointDeRestaurationList = pointDeRestaurationList;
     }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by robinroyer on 10/12/2015.
  */
-public class Restaurant {
+public class PointDeRestauration {
     private String name;
     private double prix;
     private int tempsAttenteMoy;
@@ -25,8 +25,8 @@ public class Restaurant {
     public static LatLngBounds LADOUA_LATLNGBOUNDS = new LatLngBounds(new LatLng(45.77476, 4.86031), new LatLng(45.78827,4.88769));
     public static final int NO_PHOTO = -1;
 
-    public Restaurant(String myname, double myprice, int tempsAttenteMoy,
-                      double note, List<TypePointDeRestauration> typePointDeRestauration, List<TypeRegime> regimes, double longitude, double latitude, String description,int idPhoto ) {
+    public PointDeRestauration(String myname, double myprice, int tempsAttenteMoy,
+                               double note, List<TypePointDeRestauration> typePointDeRestauration, List<TypeRegime> regimes, double longitude, double latitude, String description, int idPhoto) {
         this.prix = myprice;
         this.name = myname;
         this.tempsAttenteMoy = tempsAttenteMoy;
@@ -85,11 +85,11 @@ public class Restaurant {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || !(o instanceof Restaurant)) {
+        if (o == null || !(o instanceof PointDeRestauration)) {
             return false;
         }
 
-        Restaurant r = (Restaurant) o;
+        PointDeRestauration r = (PointDeRestauration) o;
         return this.getName().equals(r.getName());
     }
 
@@ -114,7 +114,7 @@ public class Restaurant {
         CAFETERIA("Caféteria"),
         COMMERCE("Commerce"),
         FASTFOOD("Fast food"),
-        RESTAURANT_UNIVERSITAIRE("Restaurant universitaire"),
+        RESTAURANT_UNIVERSITAIRE("PointDeRestauration universitaire"),
         SUPERMARCHE("Supermarché");
 
         private String name;

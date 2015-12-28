@@ -4,7 +4,6 @@ import android.content.Context;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +18,8 @@ import android.widget.Toast;
 import com.hexabinome.saladetomateoignon.PrefUtils;
 import com.hexabinome.saladetomateoignon.R;
 import com.hexabinome.saladetomateoignon.modele.Mock;
+import com.hexabinome.saladetomateoignon.modele.PointDeRestauration;
 import com.hexabinome.saladetomateoignon.modele.Preferences;
-import com.hexabinome.saladetomateoignon.modele.Restaurant;
 import com.hexabinome.saladetomateoignon.modele.Utilisateur;
 
 import java.util.ArrayList;
@@ -45,9 +44,9 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 
     private Utilisateur currentUser;
 
-    private Restaurant currentRestaurant;
-    private Restaurant previousRestaurant;
-    private List<Restaurant> refused = new ArrayList<Restaurant>(); // TODO reinit when come back to this fragment
+    private PointDeRestauration currentPointDeRestauration;
+    private PointDeRestauration previousPointDeRestauration;
+    private List<PointDeRestauration> refused = new ArrayList<PointDeRestauration>(); // TODO reinit when come back to this fragment
 
     private TextView restaurantTitle;
     private TextView restaurantPrice;
@@ -104,7 +103,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 //        restaurantGrade = (TextView) inflatedView.findViewById(R.id.restaurantGrade);
         rateBar = (RatingBar) inflatedView.findViewById(R.id.restaurantGrade);
 
-        currentRestaurant = getNextRestaurant();
+        currentPointDeRestauration = getNextRestaurant();
         displayRestaurant();
 
         return inflatedView;
@@ -162,8 +161,8 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
      * Passe au restaurant suivant
      */
     public void declineRestaurant() {
-        if (currentRestaurant != null) {
-            refused.add(currentRestaurant);
+        if (currentPointDeRestauration != null) {
+            refused.add(currentPointDeRestauration);
         }
 
 
@@ -172,7 +171,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         cantinder_layout.startAnimation(hyperspaceJumpAnimation);
 
 
-        currentRestaurant = getNextRestaurant();
+        currentPointDeRestauration = getNextRestaurant();
         displayRestaurant();
 
     }
@@ -184,9 +183,9 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
      */
     public void acceptRestaurant() {
 
-        if (currentRestaurant != null) {
+        if (currentPointDeRestauration != null) {
             // Add current restaurant to favorties
-            currentUser.addToFavorites(currentRestaurant);
+            currentUser.addToFavorites(currentPointDeRestauration);
         }
         // Next restaurant
 
@@ -194,7 +193,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(this.getContext(), R.anim.like);
         //getView().startAnimation(hyperspaceJumpAnimation);
         cantinder_layout.startAnimation(hyperspaceJumpAnimation);
-        currentRestaurant = getNextRestaurant();
+        currentPointDeRestauration = getNextRestaurant();
         displayRestaurant();
     }
 
@@ -203,9 +202,9 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
      * Gets the next restaurant, corresponding to the preferences and not already in the favorites
      * @return The next restaurant that might match. Null if no restaurant left (all in favorites)
      */
-    private Restaurant getNextRestaurant() {
-        previousRestaurant = currentRestaurant;
-        for (Restaurant r : getMostMatchingRestaurants()) {
+    private PointDeRestauration getNextRestaurant() {
+        previousPointDeRestauration = currentPointDeRestauration;
+        for (PointDeRestauration r : getMostMatchingRestaurants()) {
             if (!isFavorite(r) && !isRefused(r)) {
                 return r;
             }
@@ -216,8 +215,8 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         //throw new RuntimeException("All restaurants are favorites or no restaurant found");
     }
 
-    private SortedSet<Restaurant> getMostMatchingRestaurants() {
-        SortedSet<Restaurant> mostMatchingRestaurants = new TreeSet<>(new Comparator<Restaurant>() {
+    private SortedSet<PointDeRestauration> getMostMatchingRestaurants() {
+        SortedSet<PointDeRestauration> mostMatchingPointDeRestaurations = new TreeSet<>(new Comparator<PointDeRestauration>() {
             private Preferences pref;
 
             /**
@@ -225,7 +224,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
              * @param r
              * @return
              */
-            private double getScore(Restaurant r) {
+            private double getScore(PointDeRestauration r) {
                 double score = 0;
                 if (r.getDistance(currentUser.getLongitude(),currentUser.getLatitude()) > pref.getDistance()) {
                     score--;
@@ -258,7 +257,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
             }
 
             @Override
-            public int compare(Restaurant lhs, Restaurant rhs) {
+            public int compare(PointDeRestauration lhs, PointDeRestauration rhs) {
                 pref = currentUser.getPreferences();
                 double scoreLeft = getScore(lhs);
                 double scoreRight = getScore(rhs);
@@ -266,16 +265,16 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
             }
         });
 
-        mostMatchingRestaurants.addAll(Mock.getRestaurantLaDoua());
+        mostMatchingPointDeRestaurations.addAll(Mock.getRestaurantLaDoua());
 
-        return mostMatchingRestaurants;
+        return mostMatchingPointDeRestaurations;
     }
 
-    private boolean isFavorite(Restaurant r) {
+    private boolean isFavorite(PointDeRestauration r) {
         return currentUser.isFavorite(r);
     }
 
-    private boolean isRefused(Restaurant r) {
+    private boolean isRefused(PointDeRestauration r) {
         return refused.contains(r);
     }
 
@@ -285,12 +284,12 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
     private void displayRestaurant() {
         String name = "", distance = "", price = "", tempsAtt = "";
         int grade = 0;
-        if (restaurantTitle.isCursorVisible() && currentRestaurant != null) {
-            name = currentRestaurant.getName();
-            distance = String.valueOf((int) currentRestaurant.getDistance(currentUser.getLongitude(), currentUser.getLatitude()));
-            price = String.valueOf(currentRestaurant.getPrix());
-            tempsAtt = String.valueOf(currentRestaurant.getTempsAttenteMoy());
-            grade = (int)currentRestaurant.getNote();
+        if (restaurantTitle.isCursorVisible() && currentPointDeRestauration != null) {
+            name = currentPointDeRestauration.getName();
+            distance = String.valueOf((int) currentPointDeRestauration.getDistance(currentUser.getLongitude(), currentUser.getLatitude()));
+            price = String.valueOf(currentPointDeRestauration.getPrix());
+            tempsAtt = String.valueOf(currentPointDeRestauration.getTempsAttenteMoy());
+            grade = (int) currentPointDeRestauration.getNote();
         }else{
             cantinder_layout.setVisibility(View.GONE);
             cantinder_like_dislike_layout.setVisibility(View.GONE);

@@ -12,7 +12,7 @@ public class Utilisateur {
     private String nom;
     private String email;
     private String motDePasse;
-    private Set<Restaurant> favoris = new HashSet<Restaurant>();
+    private Set<PointDeRestauration> favoris = new HashSet<PointDeRestauration>();
 
     private double longitude,latitude;
 
@@ -79,11 +79,11 @@ public class Utilisateur {
         this.preferences = preferences;
     }
 
-    public void addToFavorites(Restaurant r) {
+    public void addToFavorites(PointDeRestauration r) {
         favoris.add(r);
     }
 
-    public boolean isFavorite(Restaurant r) {
+    public boolean isFavorite(PointDeRestauration r) {
         return favoris.contains(r);
     }
 

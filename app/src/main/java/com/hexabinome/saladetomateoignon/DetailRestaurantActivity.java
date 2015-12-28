@@ -8,7 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.support.v4.app.FragmentActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -19,8 +18,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 
 import com.google.gson.Gson;
-import com.hexabinome.saladetomateoignon.modele.Mock;
-import com.hexabinome.saladetomateoignon.modele.Restaurant;
+import com.hexabinome.saladetomateoignon.modele.PointDeRestauration;
 import com.hexabinome.saladetomateoignon.modele.Utilisateur;
 
 public class DetailRestaurantActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -28,7 +26,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
     public static final String RESTAURANT_EXTRA = "restaurant_courant";
 
 
-    private Restaurant restaurant;
+    private PointDeRestauration pointDeRestauration;
 
     private TextView noteTextview,priceTextView,timeTextView, distanceTextView,descriptionTextView;
 
@@ -43,7 +41,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
 
         Intent intent = getIntent();
         final String restaurant_json = intent.getStringExtra(RESTAURANT_EXTRA);
-        restaurant = new Gson().fromJson(restaurant_json, Restaurant.class);
+        pointDeRestauration = new Gson().fromJson(restaurant_json, PointDeRestauration.class);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -53,7 +51,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle(restaurant.getName());
+            getSupportActionBar().setTitle(pointDeRestauration.getName());
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
@@ -66,13 +64,13 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         descriptionTextView = (TextView) findViewById(R.id.description);
         imageView = (ImageView) findViewById(R.id.imageRestaurant);
 
-        timeTextView.setText(String.format(getString(R.string.temps),restaurant.getTempsAttenteMoy()));
-        priceTextView.setText(String.format(getString(R.string.prix_restaurant),restaurant.getPrix()));
-        distanceTextView.setText(String.format(getString(R.string.distance_restaurant), restaurant.getDistance(utilisateur.getLongitude(), utilisateur.getLatitude())));
-        noteTextview.setText(String.format(getString(R.string.note_restaurant), restaurant.getNote()));
-        descriptionTextView.setText(restaurant.getDescription());
-        if(restaurant.getIdPhoto() != Restaurant.NO_PHOTO){
-            imageView.setImageDrawable(getDrawable(restaurant.getIdPhoto()));
+        timeTextView.setText(String.format(getString(R.string.temps), pointDeRestauration.getTempsAttenteMoy()));
+        priceTextView.setText(String.format(getString(R.string.prix_restaurant), pointDeRestauration.getPrix()));
+        distanceTextView.setText(String.format(getString(R.string.distance_restaurant), pointDeRestauration.getDistance(utilisateur.getLongitude(), utilisateur.getLatitude())));
+        noteTextview.setText(String.format(getString(R.string.note_restaurant), pointDeRestauration.getNote()));
+        descriptionTextView.setText(pointDeRestauration.getDescription());
+        if(pointDeRestauration.getIdPhoto() != PointDeRestauration.NO_PHOTO){
+            imageView.setImageDrawable(getDrawable(pointDeRestauration.getIdPhoto()));
         }
 
     }
@@ -99,14 +97,14 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         mMap = googleMap;
 
         //TODO: refactor in model in a getLatLng
-        double latitude = restaurant.getLocation().getLatitude();
-        double longitude = restaurant.getLocation().getLongitude();
+        double latitude = pointDeRestauration.getLocation().getLatitude();
+        double longitude = pointDeRestauration.getLocation().getLongitude();
 
         LatLng restaurant_to_show = new LatLng(latitude, longitude);
 
-        mMap.addMarker(new MarkerOptions().position(restaurant_to_show).title(restaurant.getName()));
+        mMap.addMarker(new MarkerOptions().position(restaurant_to_show).title(pointDeRestauration.getName()));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(restaurant_to_show));
         // zoom to la doua
-        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(restaurant.LADOUA_LATLNGBOUNDS, 0));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(pointDeRestauration.LADOUA_LATLNGBOUNDS, 0));
     }
 }

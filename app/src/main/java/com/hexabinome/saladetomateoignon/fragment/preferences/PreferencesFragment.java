@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +14,11 @@ import android.widget.CheckBox;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.hexabinome.saladetomateoignon.PrefUtils;
 import com.hexabinome.saladetomateoignon.R;
+import com.hexabinome.saladetomateoignon.modele.PointDeRestauration;
 import com.hexabinome.saladetomateoignon.modele.Preferences;
-import com.hexabinome.saladetomateoignon.modele.Restaurant;
 import com.hexabinome.saladetomateoignon.modele.Utilisateur;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
@@ -50,7 +48,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
     private OnPreferencesFragmentInteractionListener mListener;
 
     private Button btnDisconnect;
-    private Restaurant.TypeRegime regimeSelectionne;
+    private PointDeRestauration.TypeRegime regimeSelectionne;
     private Spinner regimeSpinner;
 
     private DiscreteSeekBar distanceSeekBar, attenteSeekBar, prixSeekBar;
@@ -64,7 +62,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
      */
     private RelativeLayout checkBoxesLayout;
 
-    Map<Restaurant.TypePointDeRestauration,CheckBox> checkBoxMap = new HashMap<>();
+    Map<PointDeRestauration.TypePointDeRestauration,CheckBox> checkBoxMap = new HashMap<>();
 
 
     private static final String TAG = "PreferencesFragment";
@@ -137,7 +135,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         int offsetId = 1994;
 
         // checkboxes creation
-        for (Restaurant.TypePointDeRestauration typePointDeRestauration : Restaurant.TypePointDeRestauration.values()){
+        for (PointDeRestauration.TypePointDeRestauration typePointDeRestauration : PointDeRestauration.TypePointDeRestauration.values()){
             CheckBox checkBox = new CheckBox(getContext());
             checkBox.setId(typePointDeRestauration.ordinal()+offsetId);
             checkBox.setText(typePointDeRestauration.toString());
@@ -158,7 +156,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         }
 
         // checkboxes enabling
-        for(Restaurant.TypePointDeRestauration typePointDeRestauration : preferences.getTypePointDeRestaurations()){
+        for(PointDeRestauration.TypePointDeRestauration typePointDeRestauration : preferences.getTypePointDeRestaurations()){
             checkBoxMap.get(typePointDeRestauration).setChecked(true);
         }
 
@@ -186,15 +184,15 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
      */
     private void configureSpinner() {
 
-        ArrayAdapter<Restaurant.TypeRegime> regimeArrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item);
-        regimeArrayAdapter.addAll(Restaurant.TypeRegime.values());
+        ArrayAdapter<PointDeRestauration.TypeRegime> regimeArrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item);
+        regimeArrayAdapter.addAll(PointDeRestauration.TypeRegime.values());
         regimeArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         regimeSpinner.setAdapter(regimeArrayAdapter);
 
         regimeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                regimeSelectionne = (Restaurant.TypeRegime) parent.getItemAtPosition(position);
+                regimeSelectionne = (PointDeRestauration.TypeRegime) parent.getItemAtPosition(position);
             }
 
             @Override
@@ -217,7 +215,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
 
         for(CheckBox checkBox : checkBoxMap.values()){
             if(checkBox.isChecked()){
-                preferences.getTypePointDeRestaurations().add((Restaurant.TypePointDeRestauration) checkBox.getTag());
+                preferences.getTypePointDeRestaurations().add((PointDeRestauration.TypePointDeRestauration) checkBox.getTag());
             }
         }
 

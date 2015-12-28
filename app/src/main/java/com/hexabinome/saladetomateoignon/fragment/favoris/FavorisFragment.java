@@ -5,13 +5,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
@@ -19,7 +16,7 @@ import com.hexabinome.saladetomateoignon.DetailRestaurantActivity;
 import com.hexabinome.saladetomateoignon.PrefUtils;
 import com.hexabinome.saladetomateoignon.modele.Mock;
 import com.hexabinome.saladetomateoignon.R;
-import com.hexabinome.saladetomateoignon.modele.Restaurant;
+import com.hexabinome.saladetomateoignon.modele.PointDeRestauration;
 import com.hexabinome.saladetomateoignon.modele.Utilisateur;
 import com.nhaarman.listviewanimations.appearance.simple.AlphaInAnimationAdapter;
 
@@ -68,7 +65,7 @@ public class FavorisFragment extends Fragment {
 
         Utilisateur user = PrefUtils.recupererUtilisateur(getContext());
 
-        List<Restaurant> preferenceList = sortRestaurantList(Mock.getRestaurantLaDoua(), user);
+        List<PointDeRestauration> preferenceList = sortRestaurantList(Mock.getRestaurantLaDoua(), user);
 
         // Access the ListView
 
@@ -89,8 +86,8 @@ public class FavorisFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), DetailRestaurantActivity.class);
-                Restaurant restaurant = mArrayAdapter.getItem(position);
-                String restaurantJson = new Gson().toJson(restaurant);
+                PointDeRestauration pointDeRestauration = mArrayAdapter.getItem(position);
+                String restaurantJson = new Gson().toJson(pointDeRestauration);
                 intent.putExtra(DetailRestaurantActivity.RESTAURANT_EXTRA, restaurantJson);
                 startActivity(intent);
             }
@@ -144,21 +141,21 @@ public class FavorisFragment extends Fragment {
     }
 
 
-    private List<Restaurant> sortRestaurantList(List<Restaurant> restaurants, Utilisateur user) {
+    private List<PointDeRestauration> sortRestaurantList(List<PointDeRestauration> pointDeRestaurations, Utilisateur user) {
 
         // sort the restaurants Note > price > distance
-        List<Restaurant> sortedList = new ArrayList<Restaurant>();
+        List<PointDeRestauration> sortedList = new ArrayList<PointDeRestauration>();
 
 
-        Restaurant prev = null;
-        Restaurant cur = null;
+        PointDeRestauration prev = null;
+        PointDeRestauration cur = null;
 
-        while (!restaurants.isEmpty()) {
+        while (!pointDeRestaurations.isEmpty()) {
 
-            prev = restaurants.get(0);
+            prev = pointDeRestaurations.get(0);
 
-            for (int i = 0; i < restaurants.size(); i++) {
-                cur = restaurants.get(i);
+            for (int i = 0; i < pointDeRestaurations.size(); i++) {
+                cur = pointDeRestaurations.get(i);
                 if (cur.getNote() > prev.getNote()) {
                     prev = cur;
                 } else if (cur.getNote() == prev.getNote()) {
@@ -174,7 +171,7 @@ public class FavorisFragment extends Fragment {
             }
 
             sortedList.add(prev);
-            restaurants.remove(prev);
+            pointDeRestaurations.remove(prev);
         }
         return sortedList;
     }
