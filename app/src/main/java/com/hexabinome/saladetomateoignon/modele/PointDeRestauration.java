@@ -12,7 +12,7 @@ import java.util.Set;
 /**
  * Created by robinroyer on 10/12/2015.
  */
-public class PointDeRestauration {
+public class PointDeRestauration implements Comparable<PointDeRestauration> {
     private String name;
     private double prix;
     private int tempsAttenteMoy;
@@ -99,6 +99,14 @@ public class PointDeRestauration {
 
     public static Builder builder(){
         return new Builder();
+    }
+
+    @Override
+    public int compareTo(PointDeRestauration another) {
+        if(this.equals(another))
+            return 0;
+        else
+            return 1;
     }
 
     public static class Builder{

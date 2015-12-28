@@ -144,7 +144,7 @@ public class FavorisFragment extends Fragment {
     }
 
 
-    private List<PointDeRestauration> sortRestaurantList(List<PointDeRestauration> pointDeRestaurations, Utilisateur user) {
+    private static List<PointDeRestauration> sortRestaurantList(List<PointDeRestauration> pointDeRestaurations, Utilisateur user) {
 
         // sort the restaurants Note > price > distance
         List<PointDeRestauration> sortedList = new ArrayList<PointDeRestauration>();

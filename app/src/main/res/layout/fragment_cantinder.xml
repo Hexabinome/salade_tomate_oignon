@@ -38,7 +38,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="center_vertical"
         android:orientation="vertical"
         android:weightSum="1"
         android:elevation="@dimen/cardview_default_elevation"
@@ -46,13 +45,15 @@
         android:layout_marginRight="15dp"
         android:layout_marginTop="10dp">
 
-        <android.support.v7.widget.AppCompatImageView
+        <ImageView
+            android:scaleType="centerCrop"
             android:layout_width="match_parent"
-            android:layout_height="130dp"
+            android:layout_height="280dp"
             android:src="@drawable/image_restaurant"
             />
 
         <TextView
+            android:textAppearance="@style/LabelTextAppearance"
             android:id="@+id/restaurantTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -66,13 +67,15 @@
             android:layout_width="match_parent">
 
             <TextView
+                android:textAppearance="@style/LabelTextAppearance"
                 android:id="@+id/restaurantTempsAttente"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="@string/CantinderTest_TempsAttente"
-                android:layout_marginLeft="@dimen/cantinder_board_horizontal_margin"/>
+                android:layout_marginStart="@dimen/cantinder_board_horizontal_margin"/>
 
             <TextView
+                android:textAppearance="@style/LabelTextAppearance"
                 android:id="@+id/restaurantPrice"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
@@ -90,6 +93,7 @@
                 android:layout_width="wrap_content"
                 android:id="@+id/restaurantDistance"
                 style="@style/InformationTextView"
+                android:textAppearance="@style/LabelTextAppearance"
                 android:text="@string/CantinderTest_Distance"
                 android:layout_marginLeft="@dimen/cantinder_board_horizontal_margin" />
 

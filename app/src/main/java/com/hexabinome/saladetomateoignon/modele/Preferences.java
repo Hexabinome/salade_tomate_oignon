@@ -44,6 +44,9 @@ public class Preferences {
         int prix = 5; // 5 €
         PointDeRestauration.TypeRegime type = PointDeRestauration.TypeRegime.PAS_DE_REGIME;
         int note = 3; // 3
+        Set<PointDeRestauration.TypePointDeRestauration> set = new HashSet<>();
+        set.add(PointDeRestauration.TypePointDeRestauration.CAFETERIA);
+        set.add(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE);
 
         return new Preferences(distance, tempsDattente, prix, type, note);
     }

@@ -21,6 +21,12 @@ import com.hexabinome.saladetomateoignon.modele.Mock;
 import com.hexabinome.saladetomateoignon.modele.PointDeRestauration;
 import com.hexabinome.saladetomateoignon.modele.Preferences;
 import com.hexabinome.saladetomateoignon.modele.Utilisateur;
+import com.hexabinome.saladetomateoignon.modele.filtres.FiltreDistance;
+import com.hexabinome.saladetomateoignon.modele.filtres.FiltreNote;
+import com.hexabinome.saladetomateoignon.modele.filtres.FiltrePrix;
+import com.hexabinome.saladetomateoignon.modele.filtres.FiltreTempsDAttente;
+import com.hexabinome.saladetomateoignon.modele.filtres.FiltreTypePointDeRestauration;
+import com.hexabinome.saladetomateoignon.modele.filtres.FiltreTypeRegime;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -35,8 +41,6 @@ import info.hoang8f.widget.FButton;
  * Activities that contain this fragment must implement the
  * {@link OnCantinderFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link CantinderFragment#newInstance} factory method to
- * create an instance of this fragment.
  */
 public class CantinderFragment extends Fragment implements View.OnClickListener {
 
@@ -258,10 +262,34 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
             }
         });
 
-        mostMatchingPointDeRestaurations.addAll(Mock.getRestaurantLaDoua());
+        List<PointDeRestauration> filteredList = filtrePointDeRestauration(Mock.getRestaurantLaDoua(),currentUser);
 
-        return mostMatchingPointDeRestaurations;
+
+      //  mostMatchingPointDeRestaurations.addAll(Mock.getRestaurantLaDoua());
+
+        return new TreeSet<>(filteredList);
     }
+
+    private static List<PointDeRestauration> filtrePointDeRestauration(List<PointDeRestauration> pointDeRestaurationList,Utilisateur utilisateur){
+        FiltrePrix filtrePrix = new FiltrePrix();
+        FiltreDistance filtreDistance = new FiltreDistance(utilisateur.getLongitude(),utilisateur.getLatitude());
+        FiltreNote filtreNote = new FiltreNote();
+        FiltreTempsDAttente filtreTempsDAttente = new FiltreTempsDAttente();
+        FiltreTypeRegime filtreTypeRegime = new FiltreTypeRegime();
+        FiltreTypePointDeRestauration filtreTypePointDeRestauration = new FiltreTypePointDeRestauration();
+        List<PointDeRestauration> listFiltered = new ArrayList<>(pointDeRestaurationList);
+
+        listFiltered = filtreNote.appliqueFiltre(listFiltered,utilisateur.getPreferences().getNote());
+        listFiltered = filtrePrix.appliqueFiltre(listFiltered,(double)utilisateur.getPreferences().getPrix());
+        listFiltered = filtreDistance.appliqueFiltre(listFiltered,utilisateur.getPreferences().getDistance());
+        listFiltered = filtreTypePointDeRestauration.appliqueFiltre(listFiltered,utilisateur.getPreferences().getTypePointDeRestaurations());
+        listFiltered = filtreTempsDAttente.appliqueFiltre(listFiltered,utilisateur.getPreferences().getTempsDattente());
+        listFiltered = filtreTypeRegime.appliqueFiltre(listFiltered,utilisateur.getPreferences().getTypeRegime());
+
+
+        return listFiltered;
+    }
+
 
     private boolean isFavorite(PointDeRestauration r) {
         return currentUser.isFavorite(r);

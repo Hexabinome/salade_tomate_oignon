@@ -14,6 +14,8 @@ public class FiltreTypePointDeRestauration implements Filtre<Set<PointDeRestaura
     public List<PointDeRestauration> appliqueFiltre(final List<PointDeRestauration> pointDeRestaurations, Set<PointDeRestauration.TypePointDeRestauration> typePointDeRestaurationSet) {
         List<PointDeRestauration> deRestaurationArrayList = new ArrayList<>();
 
+
+
         for(PointDeRestauration pointDeRestauration : pointDeRestaurations){
             for(PointDeRestauration.TypePointDeRestauration typePointDeRestauration : typePointDeRestaurationSet){
                 if(pointDeRestauration.getTypePointDeRestauration() != null && pointDeRestauration.getTypePointDeRestauration().contains(typePointDeRestauration)){
