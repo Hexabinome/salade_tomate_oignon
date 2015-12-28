@@ -7,6 +7,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by robinroyer on 10/12/2015.
@@ -16,8 +17,8 @@ public class PointDeRestauration {
     private double prix;
     private int tempsAttenteMoy;
     private double note;
-    private List<TypePointDeRestauration> typePointDeRestauration;
-    private List<TypeRegime> regimeList;
+    private Set<TypePointDeRestauration> typePointDeRestauration;
+    private Set<TypeRegime> regimeList;
     private Location location;
     private String description;
     private int idPhoto;
@@ -26,7 +27,7 @@ public class PointDeRestauration {
     public static final int NO_PHOTO = -1;
 
     public PointDeRestauration(String myname, double myprice, int tempsAttenteMoy,
-                               double note, List<TypePointDeRestauration> typePointDeRestauration, List<TypeRegime> regimes, double longitude, double latitude, String description, int idPhoto) {
+                               double note, Set<TypePointDeRestauration> typePointDeRestauration, Set<TypeRegime> regimes, double longitude, double latitude, String description, int idPhoto) {
         this.prix = myprice;
         this.name = myname;
         this.tempsAttenteMoy = tempsAttenteMoy;
@@ -44,11 +45,11 @@ public class PointDeRestauration {
         return idPhoto;
     }
 
-    public List<TypePointDeRestauration> getTypePointDeRestauration() {
+    public Set<TypePointDeRestauration> getTypePointDeRestauration() {
         return typePointDeRestauration;
     }
 
-    public List<TypeRegime> getRegimeList() {
+    public Set<TypeRegime> getRegimeList() {
         return regimeList;
     }
 
