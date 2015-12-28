@@ -50,10 +50,10 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 
     private PointDeRestauration currentPointDeRestauration;
     private PointDeRestauration previousPointDeRestauration;
-    private List<PointDeRestauration> refused = new ArrayList<PointDeRestauration>(); // TODO reinit when come back to this fragment
+    private List<PointDeRestauration> refused = new ArrayList<>(); // TODO reinit when come back to this fragment
 
     private TextView restaurantTitle;
-    private TextView restaurantPrice;
+    private TextView restaurantPrix;
     private TextView restaurantDistance;
     private TextView restaurantTempsAttente;
     private RatingBar rateBar;
@@ -65,6 +65,8 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
     private LinearLayout cantinder_layout;
     private LinearLayout cantinder_like_dislike_layout;
     private LinearLayout cantinder_empty_cardBoard_layout;
+
+    private List<PointDeRestauration> restaurationList;
 
 
     public CantinderFragment() {
@@ -96,9 +98,13 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         restaurantTitle = (TextView) inflatedView.findViewById(R.id.restaurantTitle);
         restaurantTempsAttente = (TextView) inflatedView.findViewById(R.id.restaurantTempsAttente);
         restaurantDistance = (TextView) inflatedView.findViewById(R.id.restaurantDistance);
-        restaurantPrice = (TextView) inflatedView.findViewById(R.id.restaurantPrice);
+        restaurantPrix = (TextView) inflatedView.findViewById(R.id.restaurantPrice);
 //        restaurantGrade = (TextView) inflatedView.findViewById(R.id.restaurantGrade);
         rateBar = (RatingBar) inflatedView.findViewById(R.id.restaurantGrade);
+        currentUser = PrefUtils.recupererUtilisateur(getActivity());
+
+        restaurationList = filtrePointDeRestauration(Mock.getRestaurantLaDoua(),currentUser);
+
 
         currentPointDeRestauration = getNextRestaurant();
         displayRestaurant();
@@ -111,13 +117,11 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         super.onAttach(context);
         if (context instanceof OnCantinderFragmentInteractionListener) {
             mListener = (OnCantinderFragmentInteractionListener) context;
-            currentUser = PrefUtils.recupererUtilisateur(getActivity());
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFavorisFragmentInteractionListener");
         }
     }
-
 
 
     @Override
@@ -128,12 +132,12 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == acceptButton.getId()){
+        if (v.getId() == acceptButton.getId()) {
             acceptRestaurant();
-        } else if (v.getId() == declineButton.getId()){
+        } else if (v.getId() == declineButton.getId()) {
             declineRestaurant();
-        } else if (v.getId() == emptyCantinderButton.getId()){
-            if (mListener!= null)
+        } else if (v.getId() == emptyCantinderButton.getId()) {
+            if (mListener != null)
                 mListener.onCantinderFragmentInteraction(0);
         }
     }
@@ -149,7 +153,6 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnCantinderFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onCantinderFragmentInteraction(int tabNumber);
     }
 
@@ -190,6 +193,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(this.getContext(), R.anim.like);
         //getView().startAnimation(hyperspaceJumpAnimation);
         cantinder_layout.startAnimation(hyperspaceJumpAnimation);
+        restaurationList.remove(currentPointDeRestauration);
         currentPointDeRestauration = getNextRestaurant();
         displayRestaurant();
     }
@@ -197,11 +201,12 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 
     /**
      * Gets the next restaurant, corresponding to the preferences and not already in the favorites
+     *
      * @return The next restaurant that might match. Null if no restaurant left (all in favorites)
      */
     private PointDeRestauration getNextRestaurant() {
         previousPointDeRestauration = currentPointDeRestauration;
-        for (PointDeRestauration r : getMostMatchingRestaurants()) {
+        for (PointDeRestauration r : restaurationList) {
             if (!isFavorite(r) && !isRefused(r)) {
                 return r;
             }
@@ -209,7 +214,6 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 
         Toast.makeText(getContext(), "No restaurant found", Toast.LENGTH_SHORT).show();
         return null;
-        //throw new RuntimeException("All restaurants are favorites or no restaurant found");
     }
 
     private SortedSet<PointDeRestauration> getMostMatchingRestaurants() {
@@ -223,31 +227,27 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
              */
             private double getScore(PointDeRestauration r) {
                 double score = 0;
-                if (r.getDistance(currentUser.getLongitude(),currentUser.getLatitude()) > pref.getDistance()) {
+                if (r.getDistance(currentUser.getLongitude(), currentUser.getLatitude()) > pref.getDistance()) {
                     score--;
-                }
-                else {
+                } else {
                     score++;
                 }
 
                 if (r.getNote() > pref.getNote()) {
                     score--;
-                }
-                else {
+                } else {
                     score++;
                 }
 
                 if (r.getPrix() > pref.getPrix()) {
                     score--;
-                }
-                else {
+                } else {
                     score++;
                 }
 
                 if (r.getTempsAttenteMoy() > pref.getTempsDattente()) {
                     score--;
-                }
-                else {
+                } else {
                     score++;
                 }
                 return score;
@@ -262,29 +262,29 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
             }
         });
 
-        List<PointDeRestauration> filteredList = filtrePointDeRestauration(Mock.getRestaurantLaDoua(),currentUser);
+        List<PointDeRestauration> filteredList = filtrePointDeRestauration(Mock.getRestaurantLaDoua(), currentUser);
 
 
-      //  mostMatchingPointDeRestaurations.addAll(Mock.getRestaurantLaDoua());
+        //  mostMatchingPointDeRestaurations.addAll(Mock.getRestaurantLaDoua());
 
         return new TreeSet<>(filteredList);
     }
 
-    private static List<PointDeRestauration> filtrePointDeRestauration(List<PointDeRestauration> pointDeRestaurationList,Utilisateur utilisateur){
+    private static List<PointDeRestauration> filtrePointDeRestauration(List<PointDeRestauration> pointDeRestaurationList, Utilisateur utilisateur) {
         FiltrePrix filtrePrix = new FiltrePrix();
-        FiltreDistance filtreDistance = new FiltreDistance(utilisateur.getLongitude(),utilisateur.getLatitude());
+        FiltreDistance filtreDistance = new FiltreDistance(utilisateur.getLongitude(), utilisateur.getLatitude());
         FiltreNote filtreNote = new FiltreNote();
         FiltreTempsDAttente filtreTempsDAttente = new FiltreTempsDAttente();
         FiltreTypeRegime filtreTypeRegime = new FiltreTypeRegime();
         FiltreTypePointDeRestauration filtreTypePointDeRestauration = new FiltreTypePointDeRestauration();
         List<PointDeRestauration> listFiltered = new ArrayList<>(pointDeRestaurationList);
 
-        listFiltered = filtreNote.appliqueFiltre(listFiltered,utilisateur.getPreferences().getNote());
-        listFiltered = filtrePrix.appliqueFiltre(listFiltered,(double)utilisateur.getPreferences().getPrix());
-        listFiltered = filtreDistance.appliqueFiltre(listFiltered,utilisateur.getPreferences().getDistance());
-        listFiltered = filtreTypePointDeRestauration.appliqueFiltre(listFiltered,utilisateur.getPreferences().getTypePointDeRestaurations());
-        listFiltered = filtreTempsDAttente.appliqueFiltre(listFiltered,utilisateur.getPreferences().getTempsDattente());
-        listFiltered = filtreTypeRegime.appliqueFiltre(listFiltered,utilisateur.getPreferences().getTypeRegime());
+        listFiltered = filtreNote.appliqueFiltre(listFiltered, utilisateur.getPreferences().getNote());
+        listFiltered = filtrePrix.appliqueFiltre(listFiltered, (double) utilisateur.getPreferences().getPrix());
+        listFiltered = filtreDistance.appliqueFiltre(listFiltered, utilisateur.getPreferences().getDistance());
+        listFiltered = filtreTypePointDeRestauration.appliqueFiltre(listFiltered, utilisateur.getPreferences().getTypePointDeRestaurations());
+        listFiltered = filtreTempsDAttente.appliqueFiltre(listFiltered, utilisateur.getPreferences().getTempsDattente());
+        listFiltered = filtreTypeRegime.appliqueFiltre(listFiltered, utilisateur.getPreferences().getTypeRegime());
 
 
         return listFiltered;
@@ -303,24 +303,21 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
      * Fills restaurant displays
      */
     private void displayRestaurant() {
-        String name = "", distance = "", price = "", tempsAtt = "";
-        int grade = 0;
-        if (restaurantTitle.isCursorVisible() && currentPointDeRestauration != null) {
-            name = currentPointDeRestauration.getName();
-            distance = String.valueOf((int) currentPointDeRestauration.getDistance(currentUser.getLongitude(), currentUser.getLatitude()));
-            price = String.valueOf(currentPointDeRestauration.getPrix());
-            tempsAtt = String.valueOf(currentPointDeRestauration.getTempsAttenteMoy());
-            grade = (int) currentPointDeRestauration.getNote();
-        }else{
+        double distance;
+        if (currentPointDeRestauration != null) {
+            distance = currentPointDeRestauration.getDistance(currentUser.getLongitude(), currentUser.getLatitude());
+
+            restaurantTitle.setText(currentPointDeRestauration.getName());
+            restaurantDistance.setText(String.format(getString(R.string.distance_restaurant), distance));
+            restaurantPrix.setText(String.format(getString(R.string.prix_restaurant), currentPointDeRestauration.getPrix()));
+            restaurantTempsAttente.setText(String.format(getString(R.string.temps), currentPointDeRestauration.getTempsAttenteMoy()));
+            rateBar.setNumStars((int)currentPointDeRestauration.getNote());
+        } else {
             cantinder_layout.setVisibility(View.GONE);
             cantinder_like_dislike_layout.setVisibility(View.GONE);
             cantinder_empty_cardBoard_layout.setVisibility(View.VISIBLE);
         }
 
-        restaurantTitle.setText(name);
-        restaurantDistance.setText(distance + " mètres");
-        restaurantPrice.setText(price + "€");
-        restaurantTempsAttente.setText(tempsAtt + " minutes");
-        rateBar.setNumStars(grade);
+
     }
 }

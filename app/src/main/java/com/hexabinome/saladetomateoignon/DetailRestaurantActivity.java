@@ -28,7 +28,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
 
     private PointDeRestauration pointDeRestauration;
 
-    private TextView noteTextview,priceTextView,timeTextView, distanceTextView,descriptionTextView;
+    private TextView noteTextview, prixTextView, tempsAttenteTextView, distanceTextView,descriptionTextView;
 
 
     private ImageView imageView;
@@ -58,19 +58,19 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         Utilisateur utilisateur = PrefUtils.recupererUtilisateur(this);
 
         noteTextview = (TextView) findViewById(R.id.note);
-        priceTextView = (TextView) findViewById(R.id.priceRestaurant);
-        timeTextView = (TextView) findViewById(R.id.restaurantTemps);
+        prixTextView = (TextView) findViewById(R.id.priceRestaurant);
+        tempsAttenteTextView = (TextView) findViewById(R.id.restaurantTemps);
         distanceTextView = (TextView) findViewById(R.id.distanceRestaurant);
         descriptionTextView = (TextView) findViewById(R.id.description);
         imageView = (ImageView) findViewById(R.id.imageRestaurant);
 
-        timeTextView.setText(String.format(getString(R.string.temps), pointDeRestauration.getTempsAttenteMoy()));
+        tempsAttenteTextView.setText(String.format(getString(R.string.temps), pointDeRestauration.getTempsAttenteMoy()));
 
         if(pointDeRestauration.getTypePointDeRestauration().contains(PointDeRestauration.TypePointDeRestauration.SUPERMARCHE)){
 
-            priceTextView.setText("-- €");
+            prixTextView.setText("-- €");
         } else {
-            priceTextView.setText(String.format(getString(R.string.prix_restaurant), pointDeRestauration.getPrix()));
+            prixTextView.setText(String.format(getString(R.string.prix_restaurant), pointDeRestauration.getPrix()));
         }
 
 
