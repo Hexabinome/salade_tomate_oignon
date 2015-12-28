@@ -49,38 +49,192 @@ public final class Mock {
         ArrayList<PointDeRestauration> preference = new ArrayList<PointDeRestauration>();
         //TODO : create a real list of the restaurants around INSA
 
-        // Restaurant RU crous
-        preference.add(new PointDeRestauration("Resto’U Jussieu", 3.20, 15, 3,
-                new HashSet<>(Arrays.asList(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)), null, 4.876355, 45.780984,"A Villeurbanne face au campus de la Doua de l’université Lyon 1 et de l’INSA, salle de 1 160 places.", PointDeRestauration.NO_PHOTO));
-        preference.add(new PointDeRestauration("La Grignote", 5.30, 5, 3,
-                new HashSet<>(Arrays.asList(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)), null, 4.874866, 45.784130,"A Villeurbanne face au campus de la Doua de l’université Lyon 1 et de l’INSA, salle de 34 places.", PointDeRestauration.NO_PHOTO));
-        preference.add(new PointDeRestauration("Resto’U Puvis de Chavannes", 3.20, 15, 3,
-                new HashSet<>(Arrays.asList(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)), null, 4.876355, 45.780984,"A Villeurbanne face au campus de la Doua de l’université Lyon 1 et CPE, salle de 813 places.", PointDeRestauration.NO_PHOTO));
+        PointDeRestauration jussieu = PointDeRestauration.builder()
+                .name("Resto’U Jussieu")
+                .prix(3.2)
+                .longitude(4.876355)
+                .latitude(45.780984)
+                .tempsAttenteMoy(15)
+                .note(3)
+                .description("A Villeurbanne face au campus de la Doua de l’université Lyon 1 et de l’INSA, salle de 1 160 places.")
+                .idPhoto(PointDeRestauration.NO_PHOTO)
+                .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
+                .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
+                .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
+                .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
+                .build();
+
+        PointDeRestauration grignote = PointDeRestauration.builder()
+                .name("La Grignote")
+                .prix(5.2)
+                .longitude(4.874866)
+                .latitude(45.784130)
+                .tempsAttenteMoy(10)
+                .note(2)
+                .description("A Villeurbanne face au campus de la Doua de l’université Lyon 1 et de l’INSA, salle de 34 places.")
+                .idPhoto(PointDeRestauration.NO_PHOTO)
+                .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
+                .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
+                .build();
+
+        PointDeRestauration puvis = PointDeRestauration.builder()
+                .name("Resto’U Puvis de Chavannes")
+                .prix(3.2)
+                .longitude(4.876355)
+                .latitude(45.780984)
+                .tempsAttenteMoy(15)
+                .note(2)
+                .idPhoto(PointDeRestauration.NO_PHOTO)
+                .description("A Villeurbanne face au campus de la Doua de l’université Lyon 1 et CPE, salle de 813 places.")
+                .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
+                .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
+                .build();
 
         // Restaurant INSA
-        preference.add(new PointDeRestauration("L'Olivier", 4.40, 25, 3,
-                new HashSet<>( Arrays.asList(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)), null, 4.878014, 45.782281, "Restauration italienne", PointDeRestauration.NO_PHOTO));
-        preference.add(new PointDeRestauration("Grillon", 4.40, 20, 4,
-                new HashSet<>(Arrays.asList(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)), null, 4.874866, 45.784130,"Restaurant grill", PointDeRestauration.NO_PHOTO));
-        preference.add(new PointDeRestauration("Le Castor et Pollux", 4.40, 10, 1,
-                new HashSet<>(Arrays.asList(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)), null, 4.869037, 45.783846, "Restaurant self-service traditionnel", PointDeRestauration.NO_PHOTO));
-        preference.add(new PointDeRestauration("Beurk", 4.40, 10, 1,
-                new HashSet<>( Arrays.asList(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)), null, 4.873614, 45.78108,"Comme son nom l'indique, c'est Beurk", PointDeRestauration.NO_PHOTO));
+        PointDeRestauration olivier = PointDeRestauration.builder()
+                .name("L'Olivier")
+                .prix(3.2)
+                .longitude(4.878014)
+                .latitude(45.782281)
+                .tempsAttenteMoy(15)
+                .note(2)
+                .description("Restauration italienne.")
+                .idPhoto(PointDeRestauration.NO_PHOTO)
+                .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
+                .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
+                .build();
+
+        PointDeRestauration grillon = PointDeRestauration.builder()
+                .name("Grillon")
+                .prix(4.2)
+                .longitude(4.874866)
+                .latitude(45.784130)
+                .tempsAttenteMoy(5)
+                .note(1)
+                .description("Restaurant grill.")
+                .idPhoto(PointDeRestauration.NO_PHOTO)
+                .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
+                .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
+                .build();
+
+        PointDeRestauration castor = PointDeRestauration.builder()
+                .name("Le Castor et Pollux")
+                .prix(4.4)
+                .longitude(4.869037)
+                .latitude(45.783846)
+                .tempsAttenteMoy(10)
+                .note(3)
+                .description("Restaurant self-service traditionnel.")
+                .idPhoto(PointDeRestauration.NO_PHOTO)
+                .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
+                .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
+                .build();
+
+        PointDeRestauration beurk = PointDeRestauration.builder()
+                .name("Le Beurk")
+                .prix(4.4)
+                .longitude(4.873614)
+                .latitude(45.78108)
+                .tempsAttenteMoy(10)
+                .note(1)
+                .description("Comme son nom l'indique, c'est Beurk.")
+                .idPhoto(PointDeRestauration.NO_PHOTO)
+                .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
+                .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
+                .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
+                .build();
 
         // Supermarché
-        preference.add(new PointDeRestauration("Supermarché : Carrefour Market", 5.60, 10, 1,
-                new HashSet<>(Arrays.asList(PointDeRestauration.TypePointDeRestauration.SUPERMARCHE)), null, 4.875102, 45.776971, "Carrefour Market, enseigne française de supermarchés appartenant au groupe Carrefour", PointDeRestauration.NO_PHOTO));
+        PointDeRestauration carrefour = PointDeRestauration.builder()
+                .name("Supermarché : Carrefour Market")
+                .prix(10)
+                .longitude(4.875102)
+                .latitude(45.776971)
+                .tempsAttenteMoy(10)
+                .note(1)
+                .description("Carrefour Market, enseigne française de supermarchés appartenant au groupe Carrefour.")
+                .idPhoto(PointDeRestauration.NO_PHOTO)
+                .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.SUPERMARCHE)
+                .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
+                .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
+                .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
+                .build();
 
         // cafeteria
-        preference.add(new PointDeRestauration("Cybercafé de la Doua", 3.20, 15, 3,
-                new HashSet<>(Arrays.asList(PointDeRestauration.TypePointDeRestauration.CAFETERIA)), null, 4.876355, 45.780984,"A Villeurbanne, situé sur le campus de la Doua de l’Université Lyon 1, à l’intérieur du déambulatoire 1er cycle, salle de 78 places.", R.drawable.cybercafe_doua));
-        preference.add(new PointDeRestauration("Cafet’U Puvis de Chavannes", 3.20, 15, 3,
-                new HashSet<>(Arrays.asList(PointDeRestauration.TypePointDeRestauration.CAFETERIA)), null, 4.876355, 45.780984,"Située à Villeurbanne face au campus de la Doua de l’Université Lyon 1 et CPE.", PointDeRestauration.NO_PHOTO));
-        preference.add(new PointDeRestauration("Cafet’U Astrée", 3.20, 15, 1,
-                new HashSet<>(Arrays.asList(PointDeRestauration.TypePointDeRestauration.CAFETERIA)), null, 4.876355, 45.780984,"A Villeurbanne, situé sur le campus de la Doua de l’Université Lyon 1, à l’intérieur du bâtiment Astrée, salle de 90 places.",R.drawable.cafe_astree));
-        preference.add(new PointDeRestauration("Cafet’U Jussieu", 3.20, 15, 2,
-                new HashSet<>(Arrays.asList(PointDeRestauration.TypePointDeRestauration.CAFETERIA)), null, 4.876355, 45.780984,"A Villeurbanne face au campus de la Doua de l’université Lyon 1 et de l’INSA.", PointDeRestauration.NO_PHOTO));
+        PointDeRestauration cyber = PointDeRestauration.builder()
+                .name("Cybercafé de la Doua")
+                .prix(3.2)
+                .longitude(4.876355)
+                .latitude(45.780984)
+                .tempsAttenteMoy(15)
+                .note(3)
+                .description("A Villeurbanne, situé sur le campus de la Doua de l’Université Lyon 1, à l’intérieur du déambulatoire 1er cycle, salle de 78 places.")
+                .idPhoto(R.drawable.cybercafe_doua)
+                .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.CAFETERIA)
+                .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
+                .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
+                .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
+                .build();
 
+        // cafeteria
+        PointDeRestauration cafetpuvis = PointDeRestauration.builder()
+                .name("Cafet’U Puvis de Chavannes")
+                .prix(3.2)
+                .longitude(4.876355)
+                .latitude(45.780984)
+                .tempsAttenteMoy(10)
+                .note(3)
+                .description("Située à Villeurbanne face au campus de la Doua de l’Université Lyon 1 et CPE.")
+                .idPhoto(PointDeRestauration.NO_PHOTO)
+                .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.CAFETERIA)
+                .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
+                .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
+                .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
+                .build();
+
+        PointDeRestauration astree = PointDeRestauration.builder()
+                .name("Cafet’U Astrée")
+                .prix(3.2)
+                .longitude(4.876355)
+                .latitude(45.780984)
+                .tempsAttenteMoy(10)
+                .note(3)
+                .description("A Villeurbanne, situé sur le campus de la Doua de l’Université Lyon 1, à l’intérieur du bâtiment Astrée, salle de 90 places.")
+                .idPhoto(R.drawable.cafe_astree)
+                .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.CAFETERIA)
+                .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
+                .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
+                .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
+                .build();
+
+        PointDeRestauration cafetJussieu = PointDeRestauration.builder()
+                .name("Cafet’U Jussieu")
+                .prix(3.2)
+                .longitude(4.876355)
+                .latitude(45.780984)
+                .tempsAttenteMoy(10)
+                .note(3)
+                .description("A Villeurbanne face au campus de la Doua de l’université Lyon 1 et de l’INSA.")
+                .idPhoto(PointDeRestauration.NO_PHOTO)
+                .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.CAFETERIA)
+                .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
+                .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
+                .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
+                .build();
+
+
+        preference.add(jussieu);
+        preference.add(grignote);
+        preference.add(puvis);
+        preference.add(beurk);
+        preference.add(castor);
+        preference.add(grillon);
+        preference.add(olivier);
+        preference.add(astree);
+        preference.add(cafetJussieu);
+        preference.add(cafetpuvis);
+        preference.add(cyber);
+        preference.add(carrefour);
 
 
         return preference;

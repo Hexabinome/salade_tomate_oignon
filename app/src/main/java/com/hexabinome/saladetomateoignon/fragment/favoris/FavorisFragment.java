@@ -37,6 +37,7 @@ public class FavorisFragment extends Fragment {
 
     private ListView preferenceListView;
     private AlphaInAnimationAdapter animationAdapter;
+    private RestaurantAdapter restaurantAdapter;
 
     public FavorisFragment() {
         // Required empty public constructor
@@ -73,9 +74,8 @@ public class FavorisFragment extends Fragment {
 
 
         // Create an ArrayAdapter for the ListView
-        final RestaurantAdapter mArrayAdapter;
-        mArrayAdapter = new RestaurantAdapter(preferenceList, getContext());
-        animationAdapter = new AlphaInAnimationAdapter(mArrayAdapter);
+        restaurantAdapter = new RestaurantAdapter(preferenceList, getContext());
+        animationAdapter = new AlphaInAnimationAdapter(restaurantAdapter);
         animationAdapter.setAbsListView(preferenceListView);
 
 
@@ -86,7 +86,7 @@ public class FavorisFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), DetailRestaurantActivity.class);
-                PointDeRestauration pointDeRestauration = mArrayAdapter.getItem(position);
+                PointDeRestauration pointDeRestauration = restaurantAdapter.getItem(position);
                 String restaurantJson = new Gson().toJson(pointDeRestauration);
                 intent.putExtra(DetailRestaurantActivity.RESTAURANT_EXTRA, restaurantJson);
                 startActivity(intent);
@@ -119,6 +119,9 @@ public class FavorisFragment extends Fragment {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if(isVisibleToUser && isPreferencesChanged){
+
+            // TODO : update the list
+
             animationAdapter.reset();
             animationAdapter.notifyDataSetChanged();
             isPreferencesChanged = false;

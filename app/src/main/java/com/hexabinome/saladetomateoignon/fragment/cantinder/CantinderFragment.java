@@ -68,13 +68,6 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
     }
 
 
-    // TODO: Rename and change types and number of parameters
-    public static CantinderFragment newInstance(String param1, String param2) {
-        CantinderFragment fragment = new CantinderFragment();
-        Bundle args = new Bundle();
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
