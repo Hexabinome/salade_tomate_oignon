@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.hexabinome.saladetomateoignon.modele.Mock;
 import com.hexabinome.saladetomateoignon.modele.Utilisateur;
@@ -24,6 +26,8 @@ public class SubscribeActivity extends AppCompatActivity {
     private Button btnValidate;
 
     private Toolbar toolbar;
+
+    private RadioButton radioButtonEtudiant, radioButtonProf;
 
     private boolean isValidEmail = false, isValidPassword = false;
 
@@ -45,6 +49,8 @@ public class SubscribeActivity extends AppCompatActivity {
         inputEmail = (EditText) findViewById(R.id.input_email);
         inputPassword = (EditText) findViewById(R.id.input_password);
         inputVerifyPassword = (EditText) findViewById(R.id.input_verify_password);
+        radioButtonEtudiant = (RadioButton) findViewById(R.id.radio_etudiant);
+        radioButtonProf = (RadioButton) findViewById(R.id.radio_prof);
 
         inputLayoutFirstName = (TextInputLayout) findViewById(R.id.input_layout_firstname);
         inputLayoutLastName = (TextInputLayout) findViewById(R.id.input_layout_lastname);
@@ -82,12 +88,17 @@ public class SubscribeActivity extends AppCompatActivity {
         if (!confirmPassword()) {
             return;
         }
+
+        Utilisateur.TypeUtilisateur typeUtilisateur = Utilisateur.TypeUtilisateur.ETUDIANT;
+        if(radioButtonProf.isChecked())
+            typeUtilisateur = Utilisateur.TypeUtilisateur.PROFESSEUR;
+
         //changer d'activité pour main activity, passer directement sur le fragment préférences ?
         Utilisateur user = new Utilisateur(
                 inputLastName.getText().toString(),
                 inputFirstName.getText().toString(),
                 inputEmail.getText().toString(),
-                inputPassword.getText().toString());
+                inputPassword.getText().toString(), typeUtilisateur);
         //On ajoute l'utilisateur a la liste des utilisateurs de test
         Mock.addUtilisateur(user);
         //On enregistre l'utilisateur dans les preferences de l'appli

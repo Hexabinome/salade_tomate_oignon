@@ -61,7 +61,17 @@ public class RestaurantAdapter extends ArrayAdapter<PointDeRestauration> {
         final Utilisateur utilisateur = PrefUtils.recupererUtilisateur(context);
 
         viewHolder.nameTextView.setText(p.getName());
-        viewHolder.priceTextView.setText(String.format(context.getString(R.string.prix_restaurant), p.getPrix()));
+        double prix = p.getPrix();
+
+        if(p.getTypePointDeRestauration().contains(PointDeRestauration.TypePointDeRestauration.SUPERMARCHE)){
+
+            viewHolder.priceTextView.setText("-- €"); // pas de prix moyen pour les supermachés
+        } else {
+            if(utilisateur.getTypeUtilisateur() == Utilisateur.TypeUtilisateur.PROFESSEUR)
+                prix += 2; // +2 € pour les profs
+            viewHolder.priceTextView.setText(String.format(context.getString(R.string.prix_restaurant), prix));
+        }
+
 
         viewHolder.ratingBar.setNumStars((int) p.getNote());
         viewHolder.distanceTextView.setText(String.format(context.getString(R.string.distance_restaurant), p.getDistance(utilisateur.getLongitude(), utilisateur.getLatitude())));

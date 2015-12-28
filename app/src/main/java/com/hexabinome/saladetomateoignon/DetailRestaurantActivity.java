@@ -65,7 +65,15 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         imageView = (ImageView) findViewById(R.id.imageRestaurant);
 
         timeTextView.setText(String.format(getString(R.string.temps), pointDeRestauration.getTempsAttenteMoy()));
-        priceTextView.setText(String.format(getString(R.string.prix_restaurant), pointDeRestauration.getPrix()));
+
+        if(pointDeRestauration.getTypePointDeRestauration().contains(PointDeRestauration.TypePointDeRestauration.SUPERMARCHE)){
+
+            priceTextView.setText("-- €");
+        } else {
+            priceTextView.setText(String.format(getString(R.string.prix_restaurant), pointDeRestauration.getPrix()));
+        }
+
+
         distanceTextView.setText(String.format(getString(R.string.distance_restaurant), pointDeRestauration.getDistance(utilisateur.getLongitude(), utilisateur.getLatitude())));
         noteTextview.setText(String.format(getString(R.string.note_restaurant), pointDeRestauration.getNote()));
         descriptionTextView.setText(pointDeRestauration.getDescription());

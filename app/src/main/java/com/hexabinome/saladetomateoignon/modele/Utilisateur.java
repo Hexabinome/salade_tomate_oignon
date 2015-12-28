@@ -16,9 +16,11 @@ public class Utilisateur {
 
     private double longitude,latitude;
 
+    private TypeUtilisateur typeUtilisateur;
+
     private Preferences preferences;
 
-    public Utilisateur(String nom,String prenom,String email, String motDePasse){
+    public Utilisateur(String nom,String prenom,String email, String motDePasse,TypeUtilisateur typeUtilisateur){
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
@@ -29,7 +31,11 @@ public class Utilisateur {
         // default position to IT department
         this.longitude = 4.872990;
         this.latitude = 45.783924;
+        this.typeUtilisateur = typeUtilisateur;
+    }
 
+    public TypeUtilisateur getTypeUtilisateur() {
+        return typeUtilisateur;
     }
 
     public double getLongitude() {
@@ -96,5 +102,21 @@ public class Utilisateur {
                 ", preferences=" + preferences +
                 ", prenom='" + prenom + '\'' +
                 '}';
+    }
+
+    public enum TypeUtilisateur {
+        ETUDIANT("Étudiant"),
+        PROFESSEUR("Professeur");
+
+        private String name;
+
+        TypeUtilisateur(String name){
+            this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return name;
+        }
     }
 }

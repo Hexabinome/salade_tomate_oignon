@@ -107,6 +107,30 @@
         android:layout_width="fill_parent"
         android:layout_height="30dp"/>
 
+    <TextView
+        android:text="@string/who_you_are"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/radioButton"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+        <RadioButton android:id="@+id/radio_etudiant"
+                     android:checked="true"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="Étudiant"/>
+        <RadioButton android:id="@+id/radio_prof"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="Professeur"/>
+    </RadioGroup>
+    <Space
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"/>
+
     <Button
         android:enabled="false"
         android:id="@+id/validateButton"

@@ -31,4 +31,5 @@
     <string name="distance_restaurant">%.2f m</string>
     <string name="note_restaurant">%.1f/5</string>
     <string name="empty_cardBoard_button"> Aller aux Restaurants Favoris !</string>
+    <string name="who_you_are">Vous êtes ? :</string>
 </resources>

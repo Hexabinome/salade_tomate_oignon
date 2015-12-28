@@ -25,10 +25,10 @@ public final class Mock {
 
     public static void generateUsers() {
         utilisateurs = new HashMap<String, Utilisateur>();
-        utilisateurs.put("DWobrock@insa-lyon.fr", new Utilisateur("Wobrock", "David", "DWobrock@insa-lyon.fr", "1234"));
-        utilisateurs.put("JCornevin@insa-lyon.fr", new Utilisateur("Cornevin", "Jolan", "JCornevin@insa-lyon.fr", "1234"));
-        utilisateurs.put("RRoyer@insa-lyon.fr", new Utilisateur("Royer", "Robin", "RRoyer@insa-lyon.fr", "1234"));
-        utilisateurs.put("elmhaidara@gmail.com", new Utilisateur("Haidara", "Mohamed El Mouctar", "elmhaidara@gmail.com", "1234"));
+        utilisateurs.put("DWobrock@insa-lyon.fr", new Utilisateur("Wobrock", "David", "DWobrock@insa-lyon.fr", "1234", Utilisateur.TypeUtilisateur.ETUDIANT));
+        utilisateurs.put("JCornevin@insa-lyon.fr", new Utilisateur("Cornevin", "Jolan", "JCornevin@insa-lyon.fr", "1234", Utilisateur.TypeUtilisateur.ETUDIANT));
+        utilisateurs.put("RRoyer@insa-lyon.fr", new Utilisateur("Royer", "Robin", "RRoyer@insa-lyon.fr", "1234", Utilisateur.TypeUtilisateur.ETUDIANT));
+        utilisateurs.put("elmhaidara@gmail.com", new Utilisateur("Haidara", "Mohamed El Mouctar", "elmhaidara@gmail.com", "1234", Utilisateur.TypeUtilisateur.PROFESSEUR));
 
     }
 
@@ -147,11 +147,11 @@ public final class Mock {
         // Supermarché
         PointDeRestauration carrefour = PointDeRestauration.builder()
                 .name("Supermarché : Carrefour Market")
-                .prix(10)
+                .prix(0.0)
                 .longitude(4.875102)
                 .latitude(45.776971)
                 .tempsAttenteMoy(10)
-                .note(1)
+                .note(3)
                 .description("Carrefour Market, enseigne française de supermarchés appartenant au groupe Carrefour.")
                 .idPhoto(PointDeRestauration.NO_PHOTO)
                 .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.SUPERMARCHE)
