@@ -16,7 +16,7 @@ public class Restaurant {
     private double prix;
     private int tempsAttenteMoy;
     private double note;
-    private TypePointDeRestauration typePointDeRestauration;
+    private List<TypePointDeRestauration> typePointDeRestauration;
     private List<TypeRegime> regimeList;
     private Location location;
     private String description;
@@ -26,7 +26,7 @@ public class Restaurant {
     public static final int NO_PHOTO = -1;
 
     public Restaurant(String myname, double myprice, int tempsAttenteMoy,
-                      double note, TypePointDeRestauration typePointDeRestauration, List<TypeRegime> regimes, double longitude, double latitude, String description,int idPhoto ) {
+                      double note, List<TypePointDeRestauration> typePointDeRestauration, List<TypeRegime> regimes, double longitude, double latitude, String description,int idPhoto ) {
         this.prix = myprice;
         this.name = myname;
         this.tempsAttenteMoy = tempsAttenteMoy;
@@ -44,7 +44,7 @@ public class Restaurant {
         return idPhoto;
     }
 
-    public TypePointDeRestauration getTypePointDeRestauration() {
+    public List<TypePointDeRestauration> getTypePointDeRestauration() {
         return typePointDeRestauration;
     }
 
