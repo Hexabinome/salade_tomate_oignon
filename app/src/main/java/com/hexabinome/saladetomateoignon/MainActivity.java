@@ -118,7 +118,6 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onPreferencesFragmentNotVisible(boolean isPreferencesChanged) {
-        // TODO : tell favoris fragment to update
         if(isPreferencesChanged){
             FavorisFragment favorisFragment = (FavorisFragment) customFragmentPagerAdapter.getItem(0);
             favorisFragment.setIsPreferencesChanged(true);
