@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- see this page for more details : http://developer.android.com/training/material/theme.html -->
 <resources>
-    <color name="colorPrimary">#fab95c</color>
-    <color name="colorPrimaryDark">#c18633</color>
-    <color name="colorAccent">@color/colorPrimary</color>
-    <color name="white">#FFFFFF</color>
+    <color name="colorPrimary">#00BCD4</color>
+    <color name="colorPrimaryDark">#0097A7</color>
+    <color name="colorAccent">#26C6DA</color>
+
+
     <color name="grey">#eeeeee</color>
     //Color Swatches provided by http://designmodo.github.io/Flat-UI/
     <color name="fbutton_color_turquoise">#1abc9c</color>

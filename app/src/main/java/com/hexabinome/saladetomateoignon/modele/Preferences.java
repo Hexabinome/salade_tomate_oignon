@@ -48,7 +48,9 @@ public class Preferences {
         set.add(PointDeRestauration.TypePointDeRestauration.CAFETERIA);
         set.add(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE);
 
-        return new Preferences(distance, tempsDattente, prix, type, note);
+        Preferences defaultPref = new Preferences(distance, tempsDattente, prix, type, note);
+        defaultPref.setTypePointDeRestaurations(set);
+        return defaultPref;
     }
 
     public Set<PointDeRestauration.TypePointDeRestauration> getTypePointDeRestaurations() {
