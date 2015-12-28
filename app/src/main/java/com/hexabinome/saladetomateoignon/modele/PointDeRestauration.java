@@ -6,7 +6,6 @@ import android.location.Location;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -18,7 +17,7 @@ public class PointDeRestauration {
     private int tempsAttenteMoy;
     private double note;
     private Set<TypePointDeRestauration> typePointDeRestauration;
-    private Set<TypeRegime> regimeList;
+    private Set<TypeRegime> regimeSet;
     private Location location;
     private String description;
     private int idPhoto;
@@ -33,7 +32,7 @@ public class PointDeRestauration {
         this.tempsAttenteMoy = tempsAttenteMoy;
         this.note = note;
         this.typePointDeRestauration = typePointDeRestauration;
-        this.regimeList = regimes;
+        this.regimeSet = regimes;
         this.location = new Location(this.name);
         this.location.setLongitude(longitude);
         this.location.setLatitude(latitude);
@@ -49,8 +48,8 @@ public class PointDeRestauration {
         return typePointDeRestauration;
     }
 
-    public Set<TypeRegime> getRegimeList() {
-        return regimeList;
+    public Set<TypeRegime> getRegimeSet() {
+        return regimeSet;
     }
 
     public String getDescription() {
@@ -115,7 +114,7 @@ public class PointDeRestauration {
         CAFETERIA("Caféteria"),
         COMMERCE("Commerce"),
         FASTFOOD("Fast food"),
-        RESTAURANT_UNIVERSITAIRE("PointDeRestauration universitaire"),
+        RESTAURANT_UNIVERSITAIRE("Restaurant universitaire"),
         SUPERMARCHE("Supermarché");
 
         private String name;
