@@ -18,7 +18,6 @@ public class FiltreTypeRegime implements Filtre<PointDeRestauration.TypeRegime> 
         }
 
 
-
         for(PointDeRestauration pointDeRestauration : pointDeRestaurations){
             if(pointDeRestauration.getRegimeSet() != null && pointDeRestauration.getRegimeSet().contains(typeRegime)){
                 deRestaurations.add(pointDeRestauration);

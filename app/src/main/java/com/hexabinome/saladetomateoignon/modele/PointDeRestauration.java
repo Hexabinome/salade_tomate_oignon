@@ -225,4 +225,21 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
             return name;
         }
     }
+
+
+    @Override
+    public String toString() {
+        return "PointDeRestauration{" +
+                "name='" + name + '\'' +
+                ", prix=" + prix +
+                ", tempsAttenteMoy=" + tempsAttenteMoy +
+                ", note=" + note +
+                ", typePointDeRestauration=" + typePointDeRestauration +
+                ", regimeSet=" + regimeSet +
+                ", location=" + location +
+                ", description='" + description + '\'' +
+                ", idPhoto=" + idPhoto +
+                ", adresse='" + adresse + '\'' +
+                '}';
+    }
 }

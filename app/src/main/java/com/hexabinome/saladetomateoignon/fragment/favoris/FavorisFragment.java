@@ -5,16 +5,17 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.hexabinome.saladetomateoignon.DetailRestaurantActivity;
 import com.hexabinome.saladetomateoignon.PrefUtils;
-import com.hexabinome.saladetomateoignon.modele.Mock;
 import com.hexabinome.saladetomateoignon.R;
 import com.hexabinome.saladetomateoignon.modele.PointDeRestauration;
 import com.hexabinome.saladetomateoignon.modele.Utilisateur;
@@ -34,6 +35,8 @@ public class FavorisFragment extends Fragment {
 
     private OnFavorisFragmentInteractionListener mListener;
 
+    public static final String TAG ="FavorisFragment";
+
 
     private ListView preferenceListView;
     private AlphaInAnimationAdapter animationAdapter;
@@ -43,10 +46,10 @@ public class FavorisFragment extends Fragment {
         // Required empty public constructor
     }
 
-    boolean isPreferencesChanged = false;
+    boolean isNewFavorisAdded = false;
 
-    public void setIsPreferencesChanged(boolean isPreferencesChanged) {
-        this.isPreferencesChanged = isPreferencesChanged;
+    public void setIsNewFavorisAdded(boolean isNewFavorisAdded) {
+        this.isNewFavorisAdded = isNewFavorisAdded;
     }
 
 
@@ -66,7 +69,8 @@ public class FavorisFragment extends Fragment {
 
         Utilisateur user = PrefUtils.recupererUtilisateur(getContext());
 
-        List<PointDeRestauration> preferenceList = sortRestaurantList(Mock.getRestaurantLaDoua(), user);
+        List<PointDeRestauration> preferenceList = new ArrayList<>(user.getFavoris());
+        Log.d(TAG, user.toString());
 
         // Access the ListView
 
@@ -118,13 +122,18 @@ public class FavorisFragment extends Fragment {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if(isVisibleToUser && isPreferencesChanged){
+        if(isVisibleToUser && isNewFavorisAdded){
 
             // TODO : update the list
+            Utilisateur user = PrefUtils.recupererUtilisateur(getContext());
+
+            List<PointDeRestauration> preferenceList = new ArrayList<>(user.getFavoris());
+
+            restaurantAdapter.setPointDeRestaurationList(preferenceList);
 
             animationAdapter.reset();
             animationAdapter.notifyDataSetChanged();
-            isPreferencesChanged = false;
+            isNewFavorisAdded = false;
         }
     }
 

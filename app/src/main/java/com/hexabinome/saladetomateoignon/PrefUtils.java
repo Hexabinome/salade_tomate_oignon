@@ -16,6 +16,8 @@ public class PrefUtils {
     public static final String UTILISATEUR = "__UTILISATEUR__" ;
     public static final String PREFS_FIRST_LAUNCH = "__FIRST__";
 
+    public static final String TAG="PrefUtils";
+
     public static void sauvegardeUtilisateur(Context activity, Utilisateur value) {
         SharedPreferences sharedPreferences = activity.getSharedPreferences(activity.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();

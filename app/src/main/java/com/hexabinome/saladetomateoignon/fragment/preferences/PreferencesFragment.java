@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,7 +55,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
     private DiscreteSeekBar distanceSeekBar, attenteSeekBar, prixSeekBar;
     private RatingBar noteRatingBar;
 
-    private Preferences preferences,oldPreferences;
+    private Preferences preferences, oldPreferences;
     private Utilisateur user;
 
     /**
@@ -62,7 +63,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
      */
     private RelativeLayout checkBoxesLayout;
 
-    Map<PointDeRestauration.TypePointDeRestauration,CheckBox> checkBoxMap = new HashMap<>();
+    Map<PointDeRestauration.TypePointDeRestauration, CheckBox> checkBoxMap = new HashMap<>();
 
 
     private static final String TAG = "PreferencesFragment";
@@ -129,34 +130,33 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
     }
 
 
-
-    private void configureCheckBoxes(){
+    private void configureCheckBoxes() {
 
         int offsetId = 1994;
 
         // checkboxes creation
-        for (PointDeRestauration.TypePointDeRestauration typePointDeRestauration : PointDeRestauration.TypePointDeRestauration.values()){
+        for (PointDeRestauration.TypePointDeRestauration typePointDeRestauration : PointDeRestauration.TypePointDeRestauration.values()) {
             CheckBox checkBox = new CheckBox(getContext());
-            checkBox.setId(typePointDeRestauration.ordinal()+offsetId);
+            checkBox.setId(typePointDeRestauration.ordinal() + offsetId);
             checkBox.setText(typePointDeRestauration.toString());
 
 
-            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-            if(checkBox.getId() > offsetId){
-                layoutParams.addRule(RelativeLayout.BELOW, checkBox.getId() -1 );
+            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            if (checkBox.getId() > offsetId) {
+                layoutParams.addRule(RelativeLayout.BELOW, checkBox.getId() - 1);
             }
 
             checkBox.setTextColor(ContextCompat.getColor(getContext(), R.color.colorPrimaryDark));
             checkBoxesLayout.addView(checkBox, layoutParams);
 
             checkBox.setTag(typePointDeRestauration);
-            checkBoxMap.put(typePointDeRestauration,checkBox);
+            checkBoxMap.put(typePointDeRestauration, checkBox);
 
 
         }
 
         // checkboxes enabling
-        for(PointDeRestauration.TypePointDeRestauration typePointDeRestauration : preferences.getTypePointDeRestaurations()){
+        for (PointDeRestauration.TypePointDeRestauration typePointDeRestauration : preferences.getTypePointDeRestaurations()) {
             checkBoxMap.get(typePointDeRestauration).setChecked(true);
         }
 
@@ -213,8 +213,8 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
 
         preferences.getTypePointDeRestaurations().clear();
 
-        for(CheckBox checkBox : checkBoxMap.values()){
-            if(checkBox.isChecked()){
+        for (CheckBox checkBox : checkBoxMap.values()) {
+            if (checkBox.isChecked()) {
                 preferences.getTypePointDeRestaurations().add((PointDeRestauration.TypePointDeRestauration) checkBox.getTag());
             }
         }
@@ -223,6 +223,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
     }
 
     private void saveUserPreferences() {
+        user = PrefUtils.recupererUtilisateur(getActivity());
         user.setPreferences(preferences);
         PrefUtils.sauvegardeUtilisateur(getContext(), user);
     }
@@ -234,17 +235,8 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
             updatePreferences();
             saveUserPreferences();
 
-          //  Log.d(TAG,preferences.toString());
-            //Log.d(TAG,oldPreferences.toString());
-
-
-            if(preferences.equals(oldPreferences)) {
-                mListener.onPreferencesFragmentNotVisible(false);
-              //  Toast.makeText(getContext(), "Equals", Toast.LENGTH_SHORT).show();
-            }
-            else {
-                mListener.onPreferencesFragmentNotVisible(true);
-             //   Toast.makeText(getContext(),"Not equals",Toast.LENGTH_SHORT).show();
+            if (!preferences.equals(oldPreferences)) {
+                mListener.onPreferencesChanged();
             }
 
             oldPreferences = new Preferences(preferences);
@@ -272,7 +264,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnPreferencesFragmentInteractionListener {
-        void onPreferencesFragmentNotVisible(boolean isPreferencesChanged);
+        void onPreferencesChanged();
 
         void onPreferencesDisconnectButtonClicked();
     }

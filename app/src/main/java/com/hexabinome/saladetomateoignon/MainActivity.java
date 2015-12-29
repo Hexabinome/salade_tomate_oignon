@@ -24,14 +24,15 @@ import com.hexabinome.saladetomateoignon.fragment.preferences.PreferencesFragmen
 public class MainActivity extends AppCompatActivity implements
         CantinderFragment.OnCantinderFragmentInteractionListener,
         FavorisFragment.OnFavorisFragmentInteractionListener,
-        PreferencesFragment.OnPreferencesFragmentInteractionListener, TabLayout.OnTabSelectedListener {
+        PreferencesFragment.OnPreferencesFragmentInteractionListener,
+        TabLayout.OnTabSelectedListener {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
     public final static String POSITION = "POSITION";
     private Toolbar toolbar;
     CustomFragmentPagerAdapter customFragmentPagerAdapter;
-
+    private boolean isDisconnectButtonClicked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +46,9 @@ public class MainActivity extends AppCompatActivity implements
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         customFragmentPagerAdapter = new CustomFragmentPagerAdapter(getSupportFragmentManager(), this);
 
-        customFragmentPagerAdapter.addFragment(new FavorisFragment(),"Favoris",R.drawable.ic_star2);
-        customFragmentPagerAdapter.addFragment(new CantinderFragment(),"Cantinder", R.drawable.ic_eye);
-        customFragmentPagerAdapter.addFragment(new PreferencesFragment(),"Préférences",R.drawable.ic_preferences);
+        customFragmentPagerAdapter.addFragment(new FavorisFragment(), "Favoris", R.drawable.ic_star2);
+        customFragmentPagerAdapter.addFragment(new CantinderFragment(), "Cantinder", R.drawable.ic_eye);
+        customFragmentPagerAdapter.addFragment(new PreferencesFragment(), "Préférences", R.drawable.ic_preferences);
 
         viewPager.setAdapter(customFragmentPagerAdapter);
 
@@ -62,7 +63,6 @@ public class MainActivity extends AppCompatActivity implements
             if (tab != null)
                 tab.setCustomView(customFragmentPagerAdapter.getTabView(i));
         }
-
 
 
         // set the tab showed at launch
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements
 
         switch (id) {
             case R.id.action_a_propos:
-                Toast.makeText(this,"TODO : afficher un dialogue avec quelques info",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "TODO : afficher un dialogue avec quelques info", Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -112,16 +112,22 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onCantinderFragmentInteraction(int tabNumber) {
         if (viewPager != null)
-            viewPager.setCurrentItem(tabNumber,true);
+            viewPager.setCurrentItem(tabNumber, true);
 
     }
 
     @Override
-    public void onPreferencesFragmentNotVisible(boolean isPreferencesChanged) {
-        if(isPreferencesChanged){
-            FavorisFragment favorisFragment = (FavorisFragment) customFragmentPagerAdapter.getItem(0);
-            favorisFragment.setIsPreferencesChanged(true);
-        }
+    public void onNewFavorisAdded() {
+        FavorisFragment favorisFragment = (FavorisFragment) customFragmentPagerAdapter.getItem(0);
+        favorisFragment.setIsNewFavorisAdded(true);
+
+    }
+
+    @Override
+    public void onPreferencesChanged() {
+        CantinderFragment favorisFragment = (CantinderFragment) customFragmentPagerAdapter.getItem(1);
+        // TODO : to complete
+
     }
 
     @Override
@@ -135,12 +141,12 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         View view = tab.getCustomView();
-        if(view != null){
+        if (view != null) {
             TextView textView = (TextView) view.findViewById(R.id.tabName);
             textView.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
 
             ImageView imageView = (ImageView) view.findViewById(R.id.tab_image);
-            imageView.setColorFilter(ContextCompat.getColor(this,R.color.colorPrimary));
+            imageView.setColorFilter(ContextCompat.getColor(this, R.color.colorPrimary));
 
             viewPager.setCurrentItem(tab.getPosition());
         }
@@ -149,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onTabUnselected(TabLayout.Tab tab) {
         View view = tab.getCustomView();
-        if(view != null){
+        if (view != null) {
             TextView textView = (TextView) view.findViewById(R.id.tabName);
             textView.setTextColor(Color.BLACK);
 
@@ -166,10 +172,10 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onBackPressed() {
-        if(viewPager.getCurrentItem() == 1){
+        if (viewPager.getCurrentItem() == 1) {
             super.onBackPressed();
         } else {
-            viewPager.setCurrentItem(1,true);
+            viewPager.setCurrentItem(1, true);
         }
     }
 }

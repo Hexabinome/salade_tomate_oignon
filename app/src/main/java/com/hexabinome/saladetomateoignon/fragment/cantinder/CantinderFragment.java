@@ -4,6 +4,7 @@ import android.content.Context;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +46,7 @@ import info.hoang8f.widget.FButton;
 public class CantinderFragment extends Fragment implements View.OnClickListener {
 
     private OnCantinderFragmentInteractionListener mListener;
+    public static final String TAG = "CantinderFragment";
 
     private Utilisateur currentUser;
 
@@ -67,6 +69,8 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
     private LinearLayout cantinder_empty_cardBoard_layout;
 
     private List<PointDeRestauration> restaurationList;
+
+    boolean isReady = false;
 
 
     public CantinderFragment() {
@@ -103,7 +107,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         rateBar = (RatingBar) inflatedView.findViewById(R.id.restaurantGrade);
         currentUser = PrefUtils.recupererUtilisateur(getActivity());
 
-        restaurationList = filtrePointDeRestauration(Mock.getRestaurantLaDoua(),currentUser);
+        restaurationList = filtrePointDeRestauration(Mock.getRestaurantLaDoua(), currentUser);
 
 
         currentPointDeRestauration = getNextRestaurant();
@@ -121,6 +125,8 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
             throw new RuntimeException(context.toString()
                     + " must implement OnFavorisFragmentInteractionListener");
         }
+
+        isReady = true;
     }
 
 
@@ -128,6 +134,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
     public void onDetach() {
         super.onDetach();
         mListener = null;
+        isReady = false;
     }
 
     @Override
@@ -154,6 +161,8 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
      */
     public interface OnCantinderFragmentInteractionListener {
         void onCantinderFragmentInteraction(int tabNumber);
+
+        void onNewFavorisAdded();
     }
 
     /**
@@ -186,6 +195,8 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         if (currentPointDeRestauration != null) {
             // Add current restaurant to favorties
             currentUser.addToFavorites(currentPointDeRestauration);
+            PrefUtils.sauvegardeUtilisateur(getActivity(), currentUser);
+            mListener.onNewFavorisAdded();
         }
         // Next restaurant
 
@@ -291,6 +302,15 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
     }
 
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        if (!isVisibleToUser && isReady) {
+            PrefUtils.sauvegardeUtilisateur(getActivity(), currentUser);
+        }
+    }
+
     private boolean isFavorite(PointDeRestauration r) {
         return currentUser.isFavorite(r);
     }
@@ -311,7 +331,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
             restaurantDistance.setText(String.format(getString(R.string.distance_restaurant), distance));
             restaurantPrix.setText(String.format(getString(R.string.prix_restaurant), currentPointDeRestauration.getPrix()));
             restaurantTempsAttente.setText(String.format(getString(R.string.temps), currentPointDeRestauration.getTempsAttenteMoy()));
-            rateBar.setNumStars((int)currentPointDeRestauration.getNote());
+            rateBar.setNumStars((int) currentPointDeRestauration.getNote());
         } else {
             cantinder_layout.setVisibility(View.GONE);
             cantinder_like_dislike_layout.setVisibility(View.GONE);

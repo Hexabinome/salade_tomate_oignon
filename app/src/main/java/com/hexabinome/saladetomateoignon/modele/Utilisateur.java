@@ -34,6 +34,11 @@ public class Utilisateur {
         this.typeUtilisateur = typeUtilisateur;
     }
 
+
+    public Set<PointDeRestauration> getFavoris() {
+        return favoris;
+    }
+
     public TypeUtilisateur getTypeUtilisateur() {
         return typeUtilisateur;
     }
@@ -96,11 +101,15 @@ public class Utilisateur {
     @Override
     public String toString() {
         return "Utilisateur{" +
-                "nom='" + nom + '\'' +
+                "prenom='" + prenom + '\'' +
+                ", nom='" + nom + '\'' +
                 ", email='" + email + '\'' +
                 ", motDePasse='" + motDePasse + '\'' +
+                ", favoris=" + favoris +
+                ", longitude=" + longitude +
+                ", latitude=" + latitude +
+                ", typeUtilisateur=" + typeUtilisateur +
                 ", preferences=" + preferences +
-                ", prenom='" + prenom + '\'' +
                 '}';
     }
 
