@@ -47,7 +47,6 @@ public final class Mock {
 
     public static ArrayList<PointDeRestauration> getRestaurantLaDoua() {
         ArrayList<PointDeRestauration> preference = new ArrayList<PointDeRestauration>();
-        //TODO : create a real list of the restaurants around INSA
 
         PointDeRestauration jussieu = PointDeRestauration.builder()
                 .name("Resto’U Jussieu")

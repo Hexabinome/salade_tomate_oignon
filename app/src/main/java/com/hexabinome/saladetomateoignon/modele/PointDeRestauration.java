@@ -24,8 +24,10 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
     private int idPhoto;
     private String adresse;
 
-    public static LatLngBounds LADOUA_LATLNGBOUNDS = new LatLngBounds(new LatLng(45.77476, 4.86031), new LatLng(45.78827, 4.88769));
-    public static final int NO_PHOTO = -1;
+    public static LatLngBounds LADOUA_LATLNGBOUNDS = new LatLngBounds(new LatLng(45.77476, 4.86031),
+            new LatLng(45.78827, 4.88769));
+    public static final int NO_PHOTO = - 1;
+    private String menuDuJour;
 
 
     private PointDeRestauration() {
@@ -35,7 +37,9 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
     }
 
     public PointDeRestauration(String myname, double myprice, int tempsAttenteMoy,
-                               double note, Set<TypePointDeRestauration> typePointDeRestauration, Set<TypeRegime> regimes, double longitude, double latitude, String description, int idPhoto) {
+                               double note, Set<TypePointDeRestauration> typePointDeRestauration,
+                               Set<TypeRegime> regimes, double longitude, double latitude,
+                               String description, int idPhoto, String menuDuJour) {
         this.prix = myprice;
         this.name = myname;
         this.tempsAttenteMoy = tempsAttenteMoy;
@@ -47,6 +51,11 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
         this.location.setLatitude(latitude);
         this.description = description;
         this.idPhoto = idPhoto;
+        this.menuDuJour = menuDuJour;
+    }
+
+    public String getMenuDuJour() {
+        return menuDuJour;
     }
 
     public int getIdPhoto() {
@@ -86,7 +95,7 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
     }
 
     public double getDistance(double destinationLongitude, double destinationLatitude) {
-        Location destionation = new Location("UserLocation");
+        Location destionation = new Location("?");
         destionation.setLatitude(destinationLatitude);
         destionation.setLongitude(destinationLongitude);
 
@@ -97,83 +106,89 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
         return note;
     }
 
-    public static Builder builder(){
+    public static Builder builder() {
         return new Builder();
     }
 
     @Override
     public int compareTo(PointDeRestauration another) {
-        if(this.equals(another))
+        if (this.equals(another))
             return 0;
         else
             return 1;
     }
 
-    public static class Builder{
+    public static class Builder {
         private PointDeRestauration instance = new PointDeRestauration();
 
-        public Builder name(String name){
+        public Builder name(String name) {
             instance.name = name;
 
             return this;
         }
 
-        public Builder prix(double prix){
+        public Builder prix(double prix) {
             instance.prix = prix;
             return this;
         }
 
-        public Builder note(double note){
+        public Builder note(double note) {
             instance.note = note;
             return this;
         }
 
-        public Builder idPhoto(int idPhoto){
+        public Builder idPhoto(int idPhoto) {
             instance.idPhoto = idPhoto;
             return this;
         }
 
-        public Builder adresse(String adresse){
+        public Builder adresse(String adresse) {
             instance.adresse = adresse;
             return this;
         }
 
-        public Builder location(Location location){
+        public Builder location(Location location) {
             instance.location = location;
             return this;
         }
 
-        public Builder longitude(double longitude){
+        public Builder longitude(double longitude) {
             instance.location.setLongitude(longitude);
             return this;
         }
 
-        public Builder latitude(double latitude){
+        public Builder latitude(double latitude) {
             instance.location.setLatitude(latitude);
             return this;
         }
 
-        public Builder tempsAttenteMoy(int tempsAttenteMoy){
+        public Builder tempsAttenteMoy(int tempsAttenteMoy) {
             instance.tempsAttenteMoy = tempsAttenteMoy;
             return this;
         }
 
-        public Builder description(String description){
+        public Builder description(String description) {
             instance.description = description;
             return this;
         }
 
-        public Builder addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration typePointDeRestauration){
+        public Builder addTypePointDeRestauration(
+                PointDeRestauration.TypePointDeRestauration typePointDeRestauration) {
             instance.typePointDeRestauration.add(typePointDeRestauration);
             return this;
         }
 
-        public Builder addTypeDeRegime(PointDeRestauration.TypeRegime typeRegime){
+        public Builder addTypeDeRegime(PointDeRestauration.TypeRegime typeRegime) {
             instance.regimeSet.add(typeRegime);
             return this;
         }
 
-        public PointDeRestauration build(){
+        public Builder menuDujour(String menu){
+            instance.menuDuJour = menu;
+            return this;
+        }
+
+        public PointDeRestauration build() {
             return instance;
         }
     }
@@ -181,7 +196,7 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || !(o instanceof PointDeRestauration)) {
+        if (o == null || ! (o instanceof PointDeRestauration)) {
             return false;
         }
 
@@ -240,6 +255,7 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
                 ", description='" + description + '\'' +
                 ", idPhoto=" + idPhoto +
                 ", adresse='" + adresse + '\'' +
+                ", menuDuJour='" + menuDuJour + '\'' +
                 '}';
     }
 }
