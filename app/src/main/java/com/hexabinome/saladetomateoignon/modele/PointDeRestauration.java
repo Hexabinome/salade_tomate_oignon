@@ -34,6 +34,7 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
         typePointDeRestauration = new HashSet<>();
         regimeSet = new HashSet<>();
         location = new Location("?");
+        idPhoto = NO_PHOTO;
     }
 
     public PointDeRestauration(String myname, double myprice, int tempsAttenteMoy,
@@ -203,6 +204,8 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
         PointDeRestauration r = (PointDeRestauration) o;
         return this.getName().equals(r.getName());
     }
+
+
 
     public enum TypeRegime {
         PAS_DE_REGIME("Pas de régime"),

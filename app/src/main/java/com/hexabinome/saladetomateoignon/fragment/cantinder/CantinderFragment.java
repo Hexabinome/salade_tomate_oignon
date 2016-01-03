@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -67,6 +69,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
     private ImageButton declineButton;
     private ImageButton acceptButton;
     private FButton emptyCantinderButton;
+    private ImageView restaurantImageView;
 
     private LinearLayout cantinder_layout;
     private LinearLayout cantinder_like_dislike_layout;
@@ -94,6 +97,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         declineButton = (ImageButton) inflatedView.findViewById(R.id.reject);
         acceptButton = (ImageButton) inflatedView.findViewById(R.id.accept);
         emptyCantinderButton = (FButton) inflatedView.findViewById(R.id.empty_cardBoard_button);
+        restaurantImageView = (ImageView) inflatedView.findViewById(R.id.restaurantImageView);
 
         cantinder_layout = (LinearLayout) inflatedView.findViewById(R.id.cantinder_board);
         cantinder_like_dislike_layout = (LinearLayout) inflatedView.findViewById(
@@ -291,11 +295,14 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
             List<PointDeRestauration> pointDeRestaurationList, Utilisateur utilisateur) {
         FiltrePrix filtrePrix = new FiltrePrix(utilisateur.getPreferences().getPrix());
         FiltreDistance filtreDistance = new FiltreDistance(utilisateur.getLongitude(),
-                utilisateur.getLatitude(),utilisateur.getPreferences().getDistance());
+                utilisateur.getLatitude(), utilisateur.getPreferences().getDistance());
         FiltreNote filtreNote = new FiltreNote(utilisateur.getPreferences().getNote());
-        FiltreTempsDAttente filtreTempsDAttente = new FiltreTempsDAttente(utilisateur.getPreferences().getTempsDattente());
-        FiltreTypeRegime filtreTypeRegime = new FiltreTypeRegime(utilisateur.getPreferences().getTypeRegime());
-        FiltreTypePointDeRestauration filtreTypePointDeRestauration = new FiltreTypePointDeRestauration(utilisateur.getPreferences().getTypePointDeRestaurations());
+        FiltreTempsDAttente filtreTempsDAttente = new FiltreTempsDAttente(
+                utilisateur.getPreferences().getTempsDattente());
+        FiltreTypeRegime filtreTypeRegime = new FiltreTypeRegime(
+                utilisateur.getPreferences().getTypeRegime());
+        FiltreTypePointDeRestauration filtreTypePointDeRestauration = new FiltreTypePointDeRestauration(
+                utilisateur.getPreferences().getTypePointDeRestaurations());
 
         Set<Filtre> filtreHashSet = new HashSet<>();
 
@@ -308,7 +315,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 
         List<PointDeRestauration> listFiltered = new ArrayList<>(pointDeRestaurationList);
 
-        for(Filtre filtre : filtreHashSet){
+        for (Filtre filtre : filtreHashSet) {
             listFiltered = filtre.appliqueFiltre(listFiltered);
         }
 
@@ -363,6 +370,13 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
             restaurantTempsAttente.setText(String.format(getString(R.string.temps),
                     currentPointDeRestauration.getTempsAttenteMoy()));
             rateBar.setNumStars((int) currentPointDeRestauration.getNote());
+            if (currentPointDeRestauration.getIdPhoto() != PointDeRestauration.NO_PHOTO)
+                restaurantImageView.setImageDrawable(ContextCompat.getDrawable(getContext(),
+                        currentPointDeRestauration.getIdPhoto()));
+            else {
+                restaurantImageView.setImageDrawable(ContextCompat.getDrawable(getContext(),R.drawable.image_restaurant));
+            }
+
         } else {
             // TODO : faire autre choses
             cantinder_layout.setVisibility(View.GONE);

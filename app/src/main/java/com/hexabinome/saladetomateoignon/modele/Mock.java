@@ -152,7 +152,7 @@ public final class Mock {
                 .tempsAttenteMoy(10)
                 .note(3)
                 .description("Carrefour Market, enseigne française de supermarchés appartenant au groupe Carrefour.")
-                .idPhoto(PointDeRestauration.NO_PHOTO)
+                .idPhoto(R.drawable.carrefour)
                 .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.SUPERMARCHE)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
