@@ -148,7 +148,6 @@ public class FavorisFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFavorisFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFavorisFragmentInteraction(Uri uri);
     }
 

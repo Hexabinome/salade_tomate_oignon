@@ -212,7 +212,7 @@ public final class Mock {
                 .longitude(4.876355)
                 .latitude(45.780984)
                 .tempsAttenteMoy(10)
-                .note(3)
+                .note(5)
                 .description("A Villeurbanne face au campus de la Doua de l’université Lyon 1 et de l’INSA.")
                 .idPhoto(PointDeRestauration.NO_PHOTO)
                 .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.CAFETERIA)

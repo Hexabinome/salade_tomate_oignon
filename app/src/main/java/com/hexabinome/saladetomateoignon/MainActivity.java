@@ -125,9 +125,8 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onPreferencesChanged() {
-        CantinderFragment favorisFragment = (CantinderFragment) customFragmentPagerAdapter.getItem(1);
-        // TODO : to complete
-
+        CantinderFragment cantinderFragment = (CantinderFragment) customFragmentPagerAdapter.getItem(1);
+        cantinderFragment.setIsPreferencesChanged(true);
     }
 
     @Override
