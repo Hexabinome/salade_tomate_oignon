@@ -204,19 +204,22 @@
                 android:padding="@dimen/pref_card_margin">
 
                 <RatingBar
+                    android:layout_marginTop="10dp"
                     android:id="@+id/prefNote"
                     style="@style/CustomRatingBar"
                     android:layout_width="wrap_content"
-                    android:layout_height="55dp"
+                    android:layout_height="45dp"
                     android:layout_gravity="center"
                     android:max="5"
+                    android:scaleX="1.5"
+                    android:scaleY="1.5"
                     android:numStars="5"
-                    android:stepSize="1"/>
+                    android:stepSize="0.5"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sélectionner le prix moyen des points de restauration que vous recherchez."
+                    android:text="Sélectionner une note pour les points de restauration."
                     android:textAppearance="@style/PreferencesDecriptionTextStyle"/>
             </LinearLayout>
         </android.support.v7.widget.CardView>

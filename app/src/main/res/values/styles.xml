@@ -97,6 +97,7 @@
         <item name="android:textSize">13sp</item>
     </style>
 
+    <!-- http://kozyr.zydako.net/2010/05/23/pretty-ratingbar/ -->
     <style name="CustomRatingBar" parent="@android:style/Widget.RatingBar">
         <item name="android:progressDrawable">@drawable/ratingbar</item>
     </style>
