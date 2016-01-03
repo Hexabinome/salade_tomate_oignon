@@ -8,9 +8,16 @@ import java.util.List;
 /**
  * Created by haidara on 28/12/15.
  */
-public class FiltreTypeRegime implements Filtre<PointDeRestauration.TypeRegime> {
+public class FiltreTypeRegime implements Filtre {
+
+    private PointDeRestauration.TypeRegime typeRegime;
+
+    public FiltreTypeRegime(PointDeRestauration.TypeRegime typeRegime){
+        this.typeRegime = typeRegime;
+    }
+
     @Override
-    public List<PointDeRestauration> appliqueFiltre(final List<PointDeRestauration> pointDeRestaurations, PointDeRestauration.TypeRegime typeRegime) {
+    public List<PointDeRestauration> appliqueFiltre(final List<PointDeRestauration> pointDeRestaurations) {
         List<PointDeRestauration> deRestaurations = new ArrayList<>();
 
         if(typeRegime == PointDeRestauration.TypeRegime.PAS_DE_REGIME){

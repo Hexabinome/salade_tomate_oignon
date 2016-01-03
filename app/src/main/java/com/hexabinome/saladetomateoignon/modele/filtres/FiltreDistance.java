@@ -8,19 +8,21 @@ import java.util.List;
 /**
  * Created by haidara on 28/12/15.
  */
-public class FiltreDistance implements Filtre<Integer> {
+public class FiltreDistance implements Filtre {
 
     private double longitude;
     private double latitude;
+    private int distance;
 
-    public FiltreDistance(double longitude,double latitude){
+    public FiltreDistance(double longitude,double latitude, int distance){
         this.longitude = longitude;
         this.latitude = latitude;
+        this.distance = distance;
     }
 
 
     @Override
-    public List<PointDeRestauration> appliqueFiltre(final List<PointDeRestauration> pointDeRestaurations, Integer distance) {
+    public List<PointDeRestauration> appliqueFiltre(final List<PointDeRestauration> pointDeRestaurations) {
         List<PointDeRestauration> deRestaurationArrayList = new ArrayList<>();
 
         for (PointDeRestauration p : pointDeRestaurations) {

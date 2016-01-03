@@ -8,9 +8,17 @@ import java.util.List;
 /**
  * Created by haidara on 28/12/15.
  */
-public class FiltreTempsDAttente implements Filtre<Integer> {
+public class FiltreTempsDAttente implements Filtre {
+
+
+    private int temps;
+
+    public FiltreTempsDAttente(int temps){
+        this.temps = temps;
+    }
+
     @Override
-    public List<PointDeRestauration> appliqueFiltre(final List<PointDeRestauration> pointDeRestaurationList, Integer temps) {
+    public List<PointDeRestauration> appliqueFiltre(final List<PointDeRestauration> pointDeRestaurationList) {
         List<PointDeRestauration> deRestaurationArrayList = new ArrayList<>();
 
 

@@ -23,6 +23,7 @@ import com.hexabinome.saladetomateoignon.modele.Mock;
 import com.hexabinome.saladetomateoignon.modele.PointDeRestauration;
 import com.hexabinome.saladetomateoignon.modele.Preferences;
 import com.hexabinome.saladetomateoignon.modele.Utilisateur;
+import com.hexabinome.saladetomateoignon.modele.filtres.Filtre;
 import com.hexabinome.saladetomateoignon.modele.filtres.FiltreDistance;
 import com.hexabinome.saladetomateoignon.modele.filtres.FiltreNote;
 import com.hexabinome.saladetomateoignon.modele.filtres.FiltrePrix;
@@ -32,7 +33,9 @@ import com.hexabinome.saladetomateoignon.modele.filtres.FiltreTypeRegime;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -286,27 +289,28 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 
     private static List<PointDeRestauration> filtrePointDeRestauration(
             List<PointDeRestauration> pointDeRestaurationList, Utilisateur utilisateur) {
-        FiltrePrix filtrePrix = new FiltrePrix();
+        FiltrePrix filtrePrix = new FiltrePrix(utilisateur.getPreferences().getPrix());
         FiltreDistance filtreDistance = new FiltreDistance(utilisateur.getLongitude(),
-                utilisateur.getLatitude());
-        FiltreNote filtreNote = new FiltreNote();
-        FiltreTempsDAttente filtreTempsDAttente = new FiltreTempsDAttente();
-        FiltreTypeRegime filtreTypeRegime = new FiltreTypeRegime();
-        FiltreTypePointDeRestauration filtreTypePointDeRestauration = new FiltreTypePointDeRestauration();
+                utilisateur.getLatitude(),utilisateur.getPreferences().getDistance());
+        FiltreNote filtreNote = new FiltreNote(utilisateur.getPreferences().getNote());
+        FiltreTempsDAttente filtreTempsDAttente = new FiltreTempsDAttente(utilisateur.getPreferences().getTempsDattente());
+        FiltreTypeRegime filtreTypeRegime = new FiltreTypeRegime(utilisateur.getPreferences().getTypeRegime());
+        FiltreTypePointDeRestauration filtreTypePointDeRestauration = new FiltreTypePointDeRestauration(utilisateur.getPreferences().getTypePointDeRestaurations());
+
+        Set<Filtre> filtreHashSet = new HashSet<>();
+
+        filtreHashSet.add(filtreDistance);
+        filtreHashSet.add(filtreNote);
+        filtreHashSet.add(filtreTypeRegime);
+        filtreHashSet.add(filtrePrix);
+        filtreHashSet.add(filtreTempsDAttente);
+        filtreHashSet.add(filtreTypePointDeRestauration);
+
         List<PointDeRestauration> listFiltered = new ArrayList<>(pointDeRestaurationList);
 
-        listFiltered = filtreNote.appliqueFiltre(listFiltered,
-                utilisateur.getPreferences().getNote());
-        listFiltered = filtrePrix.appliqueFiltre(listFiltered,
-                (double) utilisateur.getPreferences().getPrix());
-        listFiltered = filtreDistance.appliqueFiltre(listFiltered,
-                utilisateur.getPreferences().getDistance());
-        listFiltered = filtreTypePointDeRestauration.appliqueFiltre(listFiltered,
-                utilisateur.getPreferences().getTypePointDeRestaurations());
-        listFiltered = filtreTempsDAttente.appliqueFiltre(listFiltered,
-                utilisateur.getPreferences().getTempsDattente());
-        listFiltered = filtreTypeRegime.appliqueFiltre(listFiltered,
-                utilisateur.getPreferences().getTypeRegime());
+        for(Filtre filtre : filtreHashSet){
+            listFiltered = filtre.appliqueFiltre(listFiltered);
+        }
 
 
         return listFiltered;
@@ -345,6 +349,9 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
     private void displayRestaurant() {
         double distance;
         if (currentPointDeRestauration != null) {
+            cantinder_layout.setVisibility(View.VISIBLE);
+            cantinder_like_dislike_layout.setVisibility(View.VISIBLE);
+            cantinder_empty_cardBoard_layout.setVisibility(View.GONE);
             distance = currentPointDeRestauration.getDistance(currentUser.getLongitude(),
                     currentUser.getLatitude());
 

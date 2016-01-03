@@ -9,9 +9,16 @@ import java.util.Set;
 /**
  * Created by haidara on 28/12/15.
  */
-public class FiltreTypePointDeRestauration implements Filtre<Set<PointDeRestauration.TypePointDeRestauration>> {
+public class FiltreTypePointDeRestauration implements Filtre {
+
+    private Set<PointDeRestauration.TypePointDeRestauration> typePointDeRestaurationSet;
+
+    public FiltreTypePointDeRestauration(Set<PointDeRestauration.TypePointDeRestauration> typePointDeRestaurationSet){
+        this.typePointDeRestaurationSet = typePointDeRestaurationSet;
+    }
+
     @Override
-    public List<PointDeRestauration> appliqueFiltre(final List<PointDeRestauration> pointDeRestaurations, Set<PointDeRestauration.TypePointDeRestauration> typePointDeRestaurationSet) {
+    public List<PointDeRestauration> appliqueFiltre(final List<PointDeRestauration> pointDeRestaurations ) {
         List<PointDeRestauration> deRestaurationArrayList = new ArrayList<>();
 
 

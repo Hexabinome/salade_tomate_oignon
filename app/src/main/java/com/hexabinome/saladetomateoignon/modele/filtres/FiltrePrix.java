@@ -8,9 +8,16 @@ import java.util.List;
 /**
  * Created by haidara on 28/12/15.
  */
-public class FiltrePrix implements Filtre<Double> {
+public class FiltrePrix implements Filtre {
+
+    private double prix;
+
+    public FiltrePrix(double prix){
+        this.prix = prix;
+    }
+
     @Override
-    public List<PointDeRestauration> appliqueFiltre(final List<PointDeRestauration> pointDeRestaurations, Double prix) {
+    public List<PointDeRestauration> appliqueFiltre(final List<PointDeRestauration> pointDeRestaurations) {
         List<PointDeRestauration> deRestaurationArrayList = new ArrayList<>();
 
 
