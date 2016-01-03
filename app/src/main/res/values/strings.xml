@@ -26,9 +26,12 @@
     bergkase cream cheese fromage frais cheesy feet port-salut airedale. St. agur blue cheese rubber
     cheese caerphilly cheddar cheesecake cream cheese manchego lancashire. Roquefort squirty cheese
     the big cheese.</string>
-    <string name="temps">%d mn d\'attente moyen</string>
+    <string name="temps">%dmn d\'attente moyen</string>
+    <string name="temps2">%dmn</string>
     <string name="prix_restaurant">%.2f €</string>
+    <string name="prix_restaurant_entier">%d €</string>
     <string name="distance_restaurant">%.2f mètres</string>
+    <string name="distance_restaurant_entier">%d mètres</string>
     <string name="note_restaurant">%.1f/5</string>
     <string name="empty_cardBoard_button"> Aller aux Restaurants Favoris !</string>
     <string name="who_you_are">Vous êtes ? :</string>

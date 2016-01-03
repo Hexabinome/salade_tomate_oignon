@@ -15,6 +15,7 @@ import android.widget.CheckBox;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.hexabinome.saladetomateoignon.PrefUtils;
 import com.hexabinome.saladetomateoignon.R;
@@ -58,6 +59,8 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
     private Preferences preferences, oldPreferences;
     private Utilisateur user;
 
+    private TextView distanceTextView, tempsTextView,prixTextView;
+
     /**
      * Relative layout for checkboxes
      */
@@ -100,6 +103,9 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         attenteSeekBar = (DiscreteSeekBar) inflatedView.findViewById(R.id.prefTempsAttente);
         prixSeekBar = (DiscreteSeekBar) inflatedView.findViewById(R.id.prefPrixRestaurant);
         noteRatingBar = (RatingBar) inflatedView.findViewById(R.id.prefNote);
+        distanceTextView = (TextView) inflatedView.findViewById(R.id.distanceChoisie);
+        prixTextView = (TextView) inflatedView.findViewById(R.id.prixChoisi);
+        tempsTextView = (TextView) inflatedView.findViewById(R.id.tempsChoisi);
 
         regimeSpinner = (Spinner) inflatedView.findViewById(R.id.regime);
         configureSpinner();
@@ -107,8 +113,70 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         checkBoxesLayout = (RelativeLayout) inflatedView.findViewById(R.id.checkboxLayout);
 
         distanceSeekBar.setProgress(preferences.getDistance());
+        distanceTextView.setText(
+                String.format(getString(R.string.distance_restaurant_entier),
+                        preferences.getDistance()));
+
+        distanceSeekBar.setOnProgressChangeListener(new DiscreteSeekBar.OnProgressChangeListener() {
+            @Override
+            public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
+                distanceTextView.setText(
+                        String.format(getString(R.string.distance_restaurant_entier),
+                                value));
+            }
+
+            @Override
+            public void onStartTrackingTouch(DiscreteSeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(DiscreteSeekBar seekBar) {
+
+            }
+        });
+
         attenteSeekBar.setProgress(preferences.getTempsDattente());
+        tempsTextView.setText(
+                String.format(getString(R.string.temps2), preferences.getTempsDattente()));
+        attenteSeekBar.setOnProgressChangeListener(new DiscreteSeekBar.OnProgressChangeListener() {
+            @Override
+            public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
+                tempsTextView.setText(
+                        String.format(getString(R.string.temps2), value));
+            }
+
+            @Override
+            public void onStartTrackingTouch(DiscreteSeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(DiscreteSeekBar seekBar) {
+
+            }
+        });
+
         prixSeekBar.setProgress(preferences.getPrix());
+        prixTextView.setText(
+                String.format(getString(R.string.prix_restaurant_entier), preferences.getPrix()));
+        prixSeekBar.setOnProgressChangeListener(new DiscreteSeekBar.OnProgressChangeListener() {
+            @Override
+            public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
+                prixTextView.setText(
+                        String.format(getString(R.string.prix_restaurant_entier), value));
+            }
+
+            @Override
+            public void onStartTrackingTouch(DiscreteSeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(DiscreteSeekBar seekBar) {
+
+            }
+        });
         noteRatingBar.setRating((float) preferences.getNote());
 
         configureCheckBoxes();
