@@ -15,34 +15,37 @@
                   android:paddingTop="@dimen/activity_vertical_margin"
                   tools:context=".fragment.preferences.PreferencesFragment">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                      xmlns:tools="http://schemas.android.com/tools"
-                      android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
-                      android:orientation="horizontal"
-                      android:baselineAligned="false">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Distance: "
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                />
 
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.25"
-                android:gravity="center">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="@string/distance_restaurant"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                />
+        </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Distance"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="20dp"/>
-            </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.15"
-                android:gravity="center">
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/pref_card_margin">
 
                 <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
                     android:id="@+id/prefDistanceRestaurant"
@@ -54,37 +57,55 @@
                     app:dsb_progressColor="@color/colorPrimary"
                     app:dsb_trackColor="@color/colorPrimaryDark"
                     />
-            </RelativeLayout>
-        </LinearLayout>
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                      xmlns:tools="http://schemas.android.com/tools"
-                      android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
-                      android:orientation="horizontal">
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.25"
-                android:gravity="center">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Temps\nd'attente"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="20dp"/>
-            </RelativeLayout>
+                    android:text="Sélectionner la distance maximale pour la recherche."
+                    android:textAppearance="@style/PreferencesDecriptionTextStyle"/>
 
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.15"
-                android:gravity="center">
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <Space
+            android:layout_width="fill_parent"
+            android:layout_height="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Temps d'attente: "
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="0mn"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                />
+        </LinearLayout>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="@dimen/pref_card_margin">
 
                 <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+
                     android:id="@+id/prefTempsAttente"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -94,37 +115,51 @@
                     app:dsb_progressColor="@color/colorPrimary"
                     app:dsb_trackColor="@color/colorPrimaryDark"
                     />
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                      xmlns:tools="http://schemas.android.com/tools"
-                      android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
-                      android:orientation="horizontal">
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.25"
-                android:gravity="center">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:text="Prix\n maximal"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="20dp"/>
-            </RelativeLayout>
+                    android:text="Sélectionner le temps d'attente maximal."
+                    android:textAppearance="@style/PreferencesDecriptionTextStyle"/>
 
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.15"
-                android:gravity="center">
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+        x
+
+        <Space
+            android:layout_width="fill_parent"
+            android:layout_height="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Prix moyen: "
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="@string/prix_restaurant"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                />
+        </LinearLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="@dimen/pref_card_margin">
 
                 <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
                     android:id="@+id/prefPrixRestaurant"
@@ -136,50 +171,56 @@
                     app:dsb_progressColor="@color/colorPrimary"
                     app:dsb_trackColor="@color/colorPrimaryDark"
                     />
-            </RelativeLayout>
-        </LinearLayout>
-
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                      xmlns:tools="http://schemas.android.com/tools"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:baselineAligned="false"
-                      android:orientation="horizontal">
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.25"
-                android:gravity="center">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:text="Note"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="20dp"/>
-            </RelativeLayout>
+                    android:text="Sélectionner le prix moyen des points de restauration que vous recherchez."
+                    android:textAppearance="@style/PreferencesDecriptionTextStyle"/>
 
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.08"
-                android:gravity="center">
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <Space
+            android:layout_width="fill_parent"
+            android:layout_height="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Note"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            />
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="@dimen/pref_card_margin">
 
                 <RatingBar
                     android:id="@+id/prefNote"
+                    style="@style/CustomRatingBar"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
+                    android:layout_height="55dp"
+                    android:layout_gravity="center"
+                    android:max="5"
                     android:numStars="5"
                     android:stepSize="1"/>
-            </RelativeLayout>
-        </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sélectionner le prix moyen des points de restauration que vous recherchez."
+                    android:textAppearance="@style/PreferencesDecriptionTextStyle"/>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                       xmlns:tools="http://schemas.android.com/tools"
@@ -192,9 +233,9 @@
             <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
+                android:gravity="center"
                 android:paddingEnd="20dp"
-                android:paddingStart="15dp"
-                android:gravity="center">
+                android:paddingStart="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -210,7 +251,7 @@
                 android:id="@+id/checkboxLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                
+
                 android:gravity="center">
 
             </RelativeLayout>
@@ -220,8 +261,8 @@
                       xmlns:tools="http://schemas.android.com/tools"
                       android:layout_width="fill_parent"
                       android:layout_height="wrap_content"
-                      android:orientation="horizontal"
-                      android:baselineAligned="false">
+                      android:baselineAligned="false"
+                      android:orientation="horizontal">
 
             <RelativeLayout
                 android:layout_width="fill_parent"

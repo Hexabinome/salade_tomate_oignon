@@ -18,16 +18,17 @@
     </style>
 
 
-
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
     <!-- Cantinder fragment styles -->
-    <style name="ActionButton" >
+    <style name="ActionButton">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">180dp</item>
         <item name="android:layout_weight">.50</item>
@@ -91,4 +92,12 @@
         <item name="android:letterSpacing">0.02</item>
     </style>
 
+    <style name="PreferencesDecriptionTextStyle" parent="@style/TextAppearance.AppCompat.Small">
+        <item name="android:textStyle">italic</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="CustomRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/ratingbar</item>
+    </style>
 </resources>
