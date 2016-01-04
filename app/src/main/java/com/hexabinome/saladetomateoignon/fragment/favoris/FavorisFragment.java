@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -39,6 +40,7 @@ public class FavorisFragment extends Fragment {
 
 
     private ListView preferenceListView;
+    private TextView empty_favoris_textView;
     private AlphaInAnimationAdapter animationAdapter;
     private RestaurantAdapter restaurantAdapter;
 
@@ -65,11 +67,17 @@ public class FavorisFragment extends Fragment {
         //TODO : change the layout of the list
 
         View inflatedView = inflater.inflate(R.layout.fragment_favoris, container, false);
-
+        empty_favoris_textView = (TextView) inflatedView.findViewById(R.id.empty_favoris_list);
 
         Utilisateur user = PrefUtils.recupererUtilisateur(getContext());
 
         List<PointDeRestauration> preferenceList = new ArrayList<>(user.getFavoris());
+
+        if (!preferenceList.isEmpty())
+        {
+            empty_favoris_textView.setVisibility(View.GONE);
+        }
+
         Log.d(TAG, user.toString());
 
         // Access the ListView
@@ -128,6 +136,11 @@ public class FavorisFragment extends Fragment {
             Utilisateur user = PrefUtils.recupererUtilisateur(getContext());
 
             List<PointDeRestauration> preferenceList = new ArrayList<>(user.getFavoris());
+            preferenceList = sortRestaurantList(preferenceList,user);
+            if (!preferenceList.isEmpty())
+            {
+                empty_favoris_textView.setVisibility(View.GONE);
+            }
 
             restaurantAdapter.setPointDeRestaurationList(preferenceList);
 

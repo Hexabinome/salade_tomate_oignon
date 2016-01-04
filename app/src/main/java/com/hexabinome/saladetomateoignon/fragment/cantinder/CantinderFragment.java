@@ -147,10 +147,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
             acceptRestaurant();
         } else if (v.getId() == declineButton.getId()) {
             declineRestaurant();
-        } //else if (v.getId() == emptyCantinderButton.getId()) {
-          //  if (mListener != null)
-          //      mListener.onCantinderFragmentInteraction(0);
-        //}
+        }
     }
 
     /**
