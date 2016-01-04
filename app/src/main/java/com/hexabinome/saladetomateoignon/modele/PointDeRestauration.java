@@ -23,6 +23,7 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
     private String description;
     private int idPhoto;
     private String adresse;
+    private String critic;
 
     public static LatLngBounds LADOUA_LATLNGBOUNDS = new LatLngBounds(new LatLng(45.77476, 4.86031),
             new LatLng(45.78827, 4.88769));
@@ -94,6 +95,8 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
     public int getTempsAttenteMoy() {
         return tempsAttenteMoy;
     }
+
+    public String getCritic(){ return critic; }
 
     public double getDistance(double destinationLongitude, double destinationLatitude) {
         Location destionation = new Location("?");
@@ -189,6 +192,10 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
             return this;
         }
 
+        public Builder critic (String critic){
+            instance.critic = critic;
+            return this;
+        }
         public PointDeRestauration build() {
             return instance;
         }
@@ -256,6 +263,7 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
                 ", regimeSet=" + regimeSet +
                 ", location=" + location +
                 ", description='" + description + '\'' +
+                ", critique='" + critic + '\'' +
                 ", idPhoto=" + idPhoto +
                 ", adresse='" + adresse + '\'' +
                 ", menuDuJour='" + menuDuJour + '\'' +
