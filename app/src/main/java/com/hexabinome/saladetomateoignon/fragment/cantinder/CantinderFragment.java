@@ -64,11 +64,11 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
     private TextView restaurantPrix;
     private TextView restaurantDistance;
     private TextView restaurantTempsAttente;
+    private TextView emptyCantinderTextview;
     private RatingBar rateBar;
 
     private ImageButton declineButton;
     private ImageButton acceptButton;
-    private FButton emptyCantinderButton;
     private ImageView restaurantImageView;
 
     private LinearLayout cantinder_layout;
@@ -96,7 +96,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         View inflatedView = inflater.inflate(R.layout.fragment_cantinder, container, false);
         declineButton = (ImageButton) inflatedView.findViewById(R.id.reject);
         acceptButton = (ImageButton) inflatedView.findViewById(R.id.accept);
-        emptyCantinderButton = (FButton) inflatedView.findViewById(R.id.empty_cardBoard_button);
+        emptyCantinderTextview = (TextView) inflatedView.findViewById(R.id.empty_cardBoard_textview);
         restaurantImageView = (ImageView) inflatedView.findViewById(R.id.restaurantImageView);
 
         cantinder_layout = (LinearLayout) inflatedView.findViewById(R.id.cantinder_board);
@@ -107,7 +107,6 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 
         declineButton.setOnClickListener(this);
         acceptButton.setOnClickListener(this);
-        emptyCantinderButton.setOnClickListener(this);
 
         restaurantTitle = (TextView) inflatedView.findViewById(R.id.restaurantTitle);
         restaurantTempsAttente = (TextView) inflatedView.findViewById(R.id.restaurantTempsAttente);
@@ -148,10 +147,10 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
             acceptRestaurant();
         } else if (v.getId() == declineButton.getId()) {
             declineRestaurant();
-        } else if (v.getId() == emptyCantinderButton.getId()) {
-            if (mListener != null)
-                mListener.onCantinderFragmentInteraction(0);
-        }
+        } //else if (v.getId() == emptyCantinderButton.getId()) {
+          //  if (mListener != null)
+          //      mListener.onCantinderFragmentInteraction(0);
+        //}
     }
 
     /**
