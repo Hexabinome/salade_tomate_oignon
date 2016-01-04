@@ -61,6 +61,7 @@ public final class Mock {
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
+                .critic("c pa bon lol")
                 .build();
 
         PointDeRestauration grignote = PointDeRestauration.builder()
@@ -74,6 +75,7 @@ public final class Mock {
                 .idPhoto(PointDeRestauration.NO_PHOTO)
                 .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
+                .critic("c pa bon lol")
                 .build();
 
         PointDeRestauration puvis = PointDeRestauration.builder()
@@ -87,6 +89,7 @@ public final class Mock {
                 .description("A Villeurbanne face au campus de la Doua de l’université Lyon 1 et CPE, salle de 813 places.")
                 .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
+                .critic("c pa bon lol")
                 .build();
 
         // Restaurant INSA
@@ -101,6 +104,7 @@ public final class Mock {
                 .idPhoto(PointDeRestauration.NO_PHOTO)
                 .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
+                .critic("c pa bon lol")
                 .build();
 
         PointDeRestauration grillon = PointDeRestauration.builder()
@@ -114,6 +118,7 @@ public final class Mock {
                 .idPhoto(PointDeRestauration.NO_PHOTO)
                 .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
+                .critic("c pa bon lol")
                 .build();
 
         PointDeRestauration castor = PointDeRestauration.builder()
@@ -127,6 +132,7 @@ public final class Mock {
                 .idPhoto(PointDeRestauration.NO_PHOTO)
                 .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
+                .critic("c pa bon lol")
                 .build();
 
         PointDeRestauration beurk = PointDeRestauration.builder()
@@ -141,6 +147,7 @@ public final class Mock {
                 .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
+                .critic("c pa bon lol")
                 .build();
 
         // Supermarché
@@ -157,6 +164,7 @@ public final class Mock {
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
+                .critic("c pa bon lol")
                 .build();
 
         // cafeteria
@@ -173,6 +181,7 @@ public final class Mock {
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
+                .critic("c pa bon lol")
                 .build();
 
         // cafeteria
@@ -189,6 +198,7 @@ public final class Mock {
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
+                .critic("c pa bon lol")
                 .build();
 
         PointDeRestauration astree = PointDeRestauration.builder()
@@ -204,6 +214,7 @@ public final class Mock {
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
+                .critic("c pa bon lol")
                 .build();
 
         PointDeRestauration cafetJussieu = PointDeRestauration.builder()
@@ -219,6 +230,7 @@ public final class Mock {
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
+                .critic("c pa bon lol")
                 .build();
 
 

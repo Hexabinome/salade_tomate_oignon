@@ -28,7 +28,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
 
     private PointDeRestauration pointDeRestauration;
 
-    private TextView noteTextview, prixTextView, tempsAttenteTextView, distanceTextView,descriptionTextView;
+    private TextView noteTextview, prixTextView, tempsAttenteTextView, distanceTextView,descriptionTextView, criticTextView;
 
 
     private ImageView imageView;
@@ -62,6 +62,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         tempsAttenteTextView = (TextView) findViewById(R.id.restaurantTemps);
         distanceTextView = (TextView) findViewById(R.id.distanceRestaurant);
         descriptionTextView = (TextView) findViewById(R.id.description);
+        criticTextView = (TextView) findViewById(R.id.critic);
         imageView = (ImageView) findViewById(R.id.imageRestaurant);
 
         tempsAttenteTextView.setText(String.format(getString(R.string.temps), pointDeRestauration.getTempsAttenteMoy()));
@@ -73,7 +74,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
             prixTextView.setText(String.format(getString(R.string.prix_restaurant), pointDeRestauration.getPrix()));
         }
 
-
+        criticTextView.setText(pointDeRestauration.getCritic());
         distanceTextView.setText(String.format(getString(R.string.distance_restaurant), pointDeRestauration.getDistance(utilisateur.getLongitude(), utilisateur.getLatitude())));
         noteTextview.setText(String.format(getString(R.string.note_restaurant), pointDeRestauration.getNote()));
         descriptionTextView.setText(pointDeRestauration.getDescription());

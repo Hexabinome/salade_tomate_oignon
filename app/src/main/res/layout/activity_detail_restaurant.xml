@@ -151,10 +151,11 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Related"
+                        android:text="Avis"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
 
                     <TextView
+                        android:id="@+id/critic"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/cheese_ipsum"/>
