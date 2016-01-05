@@ -4,6 +4,7 @@ import android.content.Context;
 
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.percent.PercentRelativeLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -71,8 +72,8 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
     private ImageButton acceptButton;
     private ImageView restaurantImageView;
 
-    private LinearLayout cantinder_layout;
-    private LinearLayout cantinder_like_dislike_layout;
+    private PercentRelativeLayout cantinder_layout;
+    private PercentRelativeLayout cantinder_like_dislike_layout;
     private LinearLayout cantinder_empty_cardBoard_layout;
 
     private List<PointDeRestauration> restaurationList;
@@ -99,8 +100,8 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         emptyCantinderTextview = (TextView) inflatedView.findViewById(R.id.empty_cardBoard_textview);
         restaurantImageView = (ImageView) inflatedView.findViewById(R.id.restaurantImageView);
 
-        cantinder_layout = (LinearLayout) inflatedView.findViewById(R.id.cantinder_board);
-        cantinder_like_dislike_layout = (LinearLayout) inflatedView.findViewById(
+        cantinder_layout = (PercentRelativeLayout) inflatedView.findViewById(R.id.cantinder_board);
+        cantinder_like_dislike_layout = (PercentRelativeLayout) inflatedView.findViewById(
                 R.id.cantinder_like_dislike_layout);
         cantinder_empty_cardBoard_layout = (LinearLayout) inflatedView.findViewById(
                 R.id.empty_cardBoard_layout);
