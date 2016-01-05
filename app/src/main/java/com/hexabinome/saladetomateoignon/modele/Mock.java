@@ -136,13 +136,13 @@ public final class Mock {
                 .build();
 
         PointDeRestauration beurk = PointDeRestauration.builder()
-                .name("Le Beurk")
+                .name("Puit du Saule")
                 .prix(4.4)
                 .longitude(4.873614)
                 .latitude(45.78108)
                 .tempsAttenteMoy(10)
                 .note(1)
-                .description("Comme son nom l'indique, c'est Beurk.")
+                .description("Restaurant pour les professeurs de l'INSA.")
                 .idPhoto(PointDeRestauration.NO_PHOTO)
                 .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
