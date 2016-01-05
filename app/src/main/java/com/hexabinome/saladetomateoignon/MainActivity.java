@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -69,14 +70,11 @@ public class MainActivity extends AppCompatActivity implements
                 tab.setCustomView(customFragmentPagerAdapter.getTabView(i));
         }
 
-
         // set the tab showed at launch
-        if (currentUser.isPremiereConnexion()) {
-            currentUser.premiereConnexion();
-            PrefUtils.sauvegardeUtilisateur(this, currentUser);
+        if (PrefUtils.getBooleanFromPrefs(this,PrefUtils.PREFS_FIRST_LAUNCH,true)) {
+            PrefUtils.saveBooleanToPrefs(this,PrefUtils.PREFS_FIRST_LAUNCH,false);
             viewPager.setCurrentItem(2);
-        }
-        else {
+        }else {
             viewPager.setCurrentItem(1);
         }
     }

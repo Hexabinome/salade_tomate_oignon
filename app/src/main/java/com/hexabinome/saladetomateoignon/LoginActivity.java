@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -81,6 +82,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         PrefUtils.sauvegardeUtilisateur(this, user);
+        PrefUtils.saveBooleanToPrefs(this, PrefUtils.PREFS_FIRST_LAUNCH, true);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();

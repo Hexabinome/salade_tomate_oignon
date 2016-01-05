@@ -28,18 +28,12 @@ public class Utilisateur {
         this.motDePasse = motDePasse;
         this.preferences = Preferences.getDefaultPreferences();
         this.prenom = prenom;
-        this.premiereConnexion = true;
 
         // default position to IT department
         this.longitude = 4.872990;
         this.latitude = 45.783924;
         this.typeUtilisateur = typeUtilisateur;
     }
-
-
-    public boolean isPremiereConnexion() { return premiereConnexion; }
-
-    public void premiereConnexion() { this.premiereConnexion = false; }
 
     public Set<PointDeRestauration> getFavoris() {
         return favoris;
