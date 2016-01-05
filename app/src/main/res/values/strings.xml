@@ -37,6 +37,7 @@
     <string name="empty"> "Il n'y a plus de restaurants avec ces preferences autour de vous ! Pensez
     à modifier vos preferences ! "</string>
     <string name="empty_favoris_list"> "Vous n'avez pas encore de restautants favoris !"</string>
+    <string name="google_app_id">AIzaSyDz63TC0pjEQTHr23m75IID2KLDhJvzZ18</string>
 
 
 </resources>
