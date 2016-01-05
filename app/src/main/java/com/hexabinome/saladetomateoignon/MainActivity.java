@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.hexabinome.saladetomateoignon.fragment.cantinder.CantinderFragment;
 import com.hexabinome.saladetomateoignon.fragment.favoris.FavorisFragment;
 import com.hexabinome.saladetomateoignon.fragment.preferences.PreferencesFragment;
+import com.hexabinome.saladetomateoignon.modele.Utilisateur;
 
 
 public class MainActivity extends AppCompatActivity implements
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements
         PreferencesFragment.OnPreferencesFragmentInteractionListener,
         TabLayout.OnTabSelectedListener {
 
+    private Utilisateur currentUser;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     public final static String POSITION = "POSITION";
@@ -41,6 +43,9 @@ public class MainActivity extends AppCompatActivity implements
 
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
+
+        //get back the user
+        currentUser = PrefUtils.recupererUtilisateur(this);
 
         // Get the ViewPager and set it's PagerAdapter so that it can display items
         viewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -66,8 +71,14 @@ public class MainActivity extends AppCompatActivity implements
 
 
         // set the tab showed at launch
-        viewPager.setCurrentItem(1);
-
+        if (currentUser.isPremiereConnexion()) {
+            currentUser.premiereConnexion();
+            PrefUtils.sauvegardeUtilisateur(this, currentUser);
+            viewPager.setCurrentItem(2);
+        }
+        else {
+            viewPager.setCurrentItem(1);
+        }
     }
 
     @Override

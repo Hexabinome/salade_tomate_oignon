@@ -12,6 +12,7 @@ public class Utilisateur {
     private String nom;
     private String email;
     private String motDePasse;
+    private boolean premiereConnexion;
     private Set<PointDeRestauration> favoris = new HashSet<PointDeRestauration>();
 
     private double longitude,latitude;
@@ -27,6 +28,7 @@ public class Utilisateur {
         this.motDePasse = motDePasse;
         this.preferences = Preferences.getDefaultPreferences();
         this.prenom = prenom;
+        this.premiereConnexion = true;
 
         // default position to IT department
         this.longitude = 4.872990;
@@ -34,6 +36,10 @@ public class Utilisateur {
         this.typeUtilisateur = typeUtilisateur;
     }
 
+
+    public boolean isPremiereConnexion() { return premiereConnexion; }
+
+    public void premiereConnexion() { this.premiereConnexion = false; }
 
     public Set<PointDeRestauration> getFavoris() {
         return favoris;
