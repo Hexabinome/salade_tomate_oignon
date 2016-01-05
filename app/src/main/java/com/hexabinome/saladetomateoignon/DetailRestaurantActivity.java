@@ -114,6 +114,6 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         mMap.addMarker(new MarkerOptions().position(restaurant_to_show).title(pointDeRestauration.getName()));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(restaurant_to_show));
         // zoom to la doua
-        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(pointDeRestauration.LADOUA_LATLNGBOUNDS, 0));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(PointDeRestauration.LADOUA_LATLNGBOUNDS, 0));
     }
 }

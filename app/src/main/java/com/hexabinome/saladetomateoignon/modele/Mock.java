@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,9 +16,10 @@ import java.util.Map;
  * @author Mohamed El Mouctar HAIDARA
  */
 public final class Mock {
+
     private static Map<String, Utilisateur> utilisateurs;
 
-
+    private static List<PointDeRestauration> pointDeRestaurations = createRestaurant();
 
     private Mock() {
 
@@ -41,11 +43,7 @@ public final class Mock {
         }
     }
 
-    public static void addUtilisateur(Utilisateur user) {
-        utilisateurs.put(user.getEmail(), user);
-    }
-
-    public static ArrayList<PointDeRestauration> getRestaurantLaDoua() {
+    private static List<PointDeRestauration> createRestaurant(){
         ArrayList<PointDeRestauration> preference = new ArrayList<PointDeRestauration>();
 
         PointDeRestauration jussieu = PointDeRestauration.builder()
@@ -56,8 +54,10 @@ public final class Mock {
                 .tempsAttenteMoy(15)
                 .idPhoto(R.drawable.jussieu)
                 .note(3)
-                .description("A Villeurbanne face au campus de la Doua de l’université Lyon 1 et de l’INSA, salle de 1 160 places.")
-                .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
+                .description(
+                        "A Villeurbanne face au campus de la Doua de l’université Lyon 1 et de l’INSA, salle de 1 160 places.")
+                .addTypePointDeRestauration(
+                        PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
@@ -249,6 +249,14 @@ public final class Mock {
 
 
         return preference;
+    }
+
+    public static void addUtilisateur(Utilisateur user) {
+        utilisateurs.put(user.getEmail(), user);
+    }
+
+    public static List<PointDeRestauration> getRestaurantLaDoua() {
+        return pointDeRestaurations;
     }
 
 

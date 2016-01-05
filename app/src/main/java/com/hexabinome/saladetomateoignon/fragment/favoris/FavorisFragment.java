@@ -78,8 +78,6 @@ public class FavorisFragment extends Fragment {
             empty_favoris_textView.setVisibility(View.GONE);
         }
 
-        Log.d(TAG, user.toString());
-
         // Access the ListView
 
         preferenceListView = (ListView) inflatedView.findViewById(R.id.favoris_listview);
@@ -132,7 +130,6 @@ public class FavorisFragment extends Fragment {
         super.setUserVisibleHint(isVisibleToUser);
         if(isVisibleToUser && isNewFavorisAdded){
 
-            // TODO : update the list
             Utilisateur user = PrefUtils.recupererUtilisateur(getContext());
 
             List<PointDeRestauration> preferenceList = new ArrayList<>(user.getFavoris());
