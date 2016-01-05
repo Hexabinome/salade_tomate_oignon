@@ -123,7 +123,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Notez ce restaurants !"
+                        android:text="Notez ce restaurant !"
                         android:gravity="center_horizontal"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
 
