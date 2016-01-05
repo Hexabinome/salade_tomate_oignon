@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.h6ah4i.android.tablayouthelper.TabLayoutHelper;
 import com.hexabinome.saladetomateoignon.fragment.cantinder.CantinderFragment;
 import com.hexabinome.saladetomateoignon.fragment.favoris.FavorisFragment;
 import com.hexabinome.saladetomateoignon.fragment.preferences.PreferencesFragment;
@@ -70,6 +71,10 @@ public class MainActivity extends AppCompatActivity implements
                 tab.setCustomView(customFragmentPagerAdapter.getTabView(i));
         }
 
+        CustomTabLayoutHelper tabLayoutHelper = new CustomTabLayoutHelper(tabLayout,viewPager);
+        tabLayoutHelper.setAutoAdjustTabModeEnabled(true);
+        tabLayoutHelper.setOnTabSelectedListener(this);
+
         // set the tab showed at launch
         if (PrefUtils.getBooleanFromPrefs(this,PrefUtils.PREFS_FIRST_LAUNCH,true)) {
             PrefUtils.saveBooleanToPrefs(this,PrefUtils.PREFS_FIRST_LAUNCH,false);
@@ -77,6 +82,8 @@ public class MainActivity extends AppCompatActivity implements
         }else {
             viewPager.setCurrentItem(1);
         }
+
+
     }
 
     @Override

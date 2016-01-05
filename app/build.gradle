@@ -40,4 +40,5 @@ dependencies {
     compile "com.android.support:appcompat-v7:${supportLibVersion}"
     compile "com.android.support:percent:${supportLibVersion}"
     compile 'com.google.android.gms:play-services:8.4.0'
+    compile 'com.h6ah4i.android.tablayouthelper:tablayouthelper:0.7.0'
 }
