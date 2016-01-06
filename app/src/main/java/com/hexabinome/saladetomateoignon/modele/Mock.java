@@ -31,7 +31,7 @@ public final class Mock {
         utilisateurs.put("JCornevin@insa-lyon.fr", new Utilisateur("Cornevin", "Jolan", "JCornevin@insa-lyon.fr", "1234", Utilisateur.TypeUtilisateur.ETUDIANT));
         utilisateurs.put("RRoyer@insa-lyon.fr", new Utilisateur("Royer", "Robin", "RRoyer@insa-lyon.fr", "1234", Utilisateur.TypeUtilisateur.ETUDIANT));
         utilisateurs.put("elmhaidara@gmail.com", new Utilisateur("Haidara", "Mohamed El Mouctar", "elmhaidara@gmail.com", "1234", Utilisateur.TypeUtilisateur.PROFESSEUR));
-
+        utilisateurs.put("dumblecore@poudlard.fr", new Utilisateur("Dumblecore", "Albus", "jadore@crepes.fr", "42", Utilisateur.TypeUtilisateur.PROFESSEUR));
     }
 
     public static Utilisateur getUtilisateur(String email, String motDePasse) {

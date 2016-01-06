@@ -1,6 +1,8 @@
 package com.hexabinome.saladetomateoignon.fragment.preferences;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -17,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.hexabinome.saladetomateoignon.MainActivity;
 import com.hexabinome.saladetomateoignon.PrefUtils;
 import com.hexabinome.saladetomateoignon.R;
 import com.hexabinome.saladetomateoignon.modele.PointDeRestauration;
@@ -241,8 +244,26 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.disconnect) {
-            mListener.onPreferencesDisconnectButtonClicked();
-            disconnectClicked = true;
+            //verifier que l'utilsateur souhaite vraiment se deconnecter
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.setTitle("Deconnexion");
+            alertDialog.setMessage("Est-ce que vous vous voulez vraiment deconnecter?");
+            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Oui",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            mListener.onPreferencesDisconnectButtonClicked();
+                            disconnectClicked = true;
+                        }
+                    });
+            alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Non",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();}});
+            alertDialog.show();
+
+
 
         }
     }
