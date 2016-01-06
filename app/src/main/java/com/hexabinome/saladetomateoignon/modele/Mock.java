@@ -62,6 +62,7 @@ public final class Mock {
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
                 .critic("c pa bon lol")
+                .addAvis(new Avis(3, "J'ai beaucoup aimé ce restaurants gastronomique", "Robin Royer"))
                 .build();
 
         PointDeRestauration grignote = PointDeRestauration.builder()
@@ -76,6 +77,7 @@ public final class Mock {
                 .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
                 .critic("c pa bon lol")
+                .addAvis(new Avis(3, "J'ai beaucoup aimé ce restaurants gastronomique", "Robin Royer"))
                 .build();
 
         PointDeRestauration puvis = PointDeRestauration.builder()
@@ -90,6 +92,7 @@ public final class Mock {
                 .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
                 .critic("c pa bon lol")
+                .addAvis(new Avis(3, "J'ai beaucoup aimé ce restaurants gastronomique", "Robin Royer"))
                 .build();
 
         // Restaurant INSA
@@ -105,6 +108,7 @@ public final class Mock {
                 .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
                 .critic("c pa bon lol")
+                .addAvis(new Avis(3, "J'ai beaucoup aimé ce restaurants gastronomique", "Robin Royer"))
                 .build();
 
         PointDeRestauration grillon = PointDeRestauration.builder()
@@ -119,6 +123,7 @@ public final class Mock {
                 .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
                 .critic("c pa bon lol")
+                .addAvis(new Avis(3, "J'ai beaucoup aimé ce restaurants gastronomique", "Robin Royer"))
                 .build();
 
         PointDeRestauration castor = PointDeRestauration.builder()
@@ -133,6 +138,7 @@ public final class Mock {
                 .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
                 .critic("c pa bon lol")
+                .addAvis(new Avis(3, "J'ai beaucoup aimé ce restaurants gastronomique", "Robin Royer"))
                 .build();
 
         PointDeRestauration beurk = PointDeRestauration.builder()
@@ -148,6 +154,7 @@ public final class Mock {
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
                 .critic("c pa bon lol")
+                .addAvis(new Avis(3, "J'ai beaucoup aimé ce restaurants gastronomique", "Robin Royer"))
                 .build();
 
         // Supermarché
@@ -165,6 +172,7 @@ public final class Mock {
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
                 .critic("c pa bon lol")
+                .addAvis(new Avis(3, "J'ai beaucoup aimé ce restaurants gastronomique", "Robin Royer"))
                 .build();
 
         // cafeteria
@@ -182,6 +190,7 @@ public final class Mock {
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
                 .critic("c pa bon lol")
+                .addAvis(new Avis(3, "J'ai beaucoup aimé ce restaurants gastronomique", "Robin Royer"))
                 .build();
 
         // cafeteria
@@ -199,6 +208,7 @@ public final class Mock {
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
                 .critic("c pa bon lol")
+                .addAvis(new Avis(3, "J'ai beaucoup aimé ce restaurants gastronomique", "Robin Royer"))
                 .build();
 
         PointDeRestauration astree = PointDeRestauration.builder()
@@ -215,6 +225,7 @@ public final class Mock {
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
                 .critic("c pa bon lol")
+                .addAvis(new Avis(3, "J'ai beaucoup aimé ce restaurants gastronomique", "Robin Royer"))
                 .build();
 
         PointDeRestauration cafetJussieu = PointDeRestauration.builder()
@@ -231,6 +242,7 @@ public final class Mock {
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
                 .critic("c pa bon lol")
+                .addAvis(new Avis(3,"J'ai beaucoup aimé ce restaurants gastronomique","Robin Royer"))
                 .build();
 
 

@@ -6,7 +6,9 @@ import android.location.Location;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -20,6 +22,7 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
     private double note;
     private Set<TypePointDeRestauration> typePointDeRestauration;
     private Set<TypeRegime> regimeSet;
+    private List<Avis> avisList;
     private Location location;
     private String description;
     private int idPhoto;
@@ -35,13 +38,14 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
     private PointDeRestauration() {
         typePointDeRestauration = new HashSet<>();
         regimeSet = new HashSet<>();
+        avisList = new ArrayList<>();
         location = new Location("?");
         idPhoto = NO_PHOTO;
     }
 
     public PointDeRestauration(String myname, double myprice, int tempsAttenteMoy,
                                double note, Set<TypePointDeRestauration> typePointDeRestauration,
-                               Set<TypeRegime> regimes, double longitude, double latitude,
+                               Set<TypeRegime> regimes, List<Avis> avis, double longitude, double latitude,
                                String description, int idPhoto, String menuDuJour) {
         this.prix = myprice;
         this.name = myname;
@@ -49,6 +53,7 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
         this.note = note;
         this.typePointDeRestauration = typePointDeRestauration;
         this.regimeSet = regimes;
+        this.avisList = avis;
         this.location = new Location(this.name);
         this.location.setLongitude(longitude);
         this.location.setLatitude(latitude);
@@ -76,6 +81,10 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
     public Set<TypeRegime> getRegimeSet() {
         return regimeSet;
     }
+
+    public List<Avis> getAvisList() { return avisList; }
+
+    public void addAvis ( Avis avis) { avisList.add(avis); }
 
     public String getDescription() {
         return description;
@@ -185,6 +194,11 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
 
         public Builder addTypeDeRegime(PointDeRestauration.TypeRegime typeRegime) {
             instance.regimeSet.add(typeRegime);
+            return this;
+        }
+
+        public Builder addAvis(Avis avis){
+            instance.avisList.add(avis);
             return this;
         }
 
