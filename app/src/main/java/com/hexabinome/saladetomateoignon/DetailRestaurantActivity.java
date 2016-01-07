@@ -1,17 +1,21 @@
 package com.hexabinome.saladetomateoignon;
 
 import android.app.ActionBar;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -98,22 +102,23 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
     }
 
     private void addComment(LinearLayout layout, Avis avis){
-        LinearLayout HorLayout = new LinearLayout(this);
-        HorLayout.setOrientation(LinearLayout.HORIZONTAL);
-        HorLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        HorLayout.setPadding(20,30,20,30);
+
+        LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.comment, null);
+
+        TextView nameTextView = (TextView) view.findViewById(R.id.name);
+        RatingBar noteRatingBar = (RatingBar) view.findViewById(R.id.note);
+        TextView commentTextView = (TextView) view.findViewById(R.id.comment);
+
+
         String name = avis.getAuteur();
         String comment = avis.getCommentaire();
         double note = avis.getNote();
-        TextView nameTextView = new TextView(this);
-        nameTextView.setText(name+'\n'+String.valueOf((int)note)+"/5");
-        nameTextView.setTypeface(null, Typeface.BOLD);
-        nameTextView.setGravity(Gravity.CENTER);
-        TextView commentTextView = new TextView(this);
+        nameTextView.setText(name);
+        noteRatingBar.setRating(((float) note));
         commentTextView.setText(comment);
-        HorLayout.addView(nameTextView);
-        HorLayout.addView(commentTextView);
-        layout.addView(HorLayout);
+        layout.addView(view);
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
