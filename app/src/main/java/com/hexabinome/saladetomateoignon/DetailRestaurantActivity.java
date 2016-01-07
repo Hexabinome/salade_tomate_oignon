@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -40,9 +41,10 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
 
     private PointDeRestauration pointDeRestauration;
 
-    private TextView noteTextview, prixTextView, tempsAttenteTextView, distanceTextView,descriptionTextView;
+    private TextView noteTextview, prixTextView, tempsAttenteTextView, distanceTextView,descriptionTextView, avisTextView;
     private LinearLayout criticLayout;
-
+    private Button ajoutAvis;
+    private RatingBar noteRatingBar;
 
     private ImageView imageView;
     private GoogleMap mMap;
@@ -77,7 +79,9 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         descriptionTextView = (TextView) findViewById(R.id.description);
         criticLayout = (LinearLayout) findViewById(R.id.comments);
         imageView = (ImageView) findViewById(R.id.imageRestaurant);
-
+        noteRatingBar = (RatingBar) findViewById(R.id.notation);
+        avisTextView = (TextView) findViewById(R.id.avis);
+        ajoutAvis = (Button) findViewById(R.id.addcomment);
         tempsAttenteTextView.setText(String.format(getString(R.string.temps), pointDeRestauration.getTempsAttenteMoy()));
 
         if(pointDeRestauration.getTypePointDeRestauration().contains(PointDeRestauration.TypePointDeRestauration.SUPERMARCHE)){
@@ -87,7 +91,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
             prixTextView.setText(String.format(getString(R.string.prix_restaurant), pointDeRestauration.getPrix()));
         }
 
-        List<Avis> avis = pointDeRestauration.getAvisList();
+        final List<Avis> avis = pointDeRestauration.getAvisList();
         for(int i =0; i < avis.size(); i++)
         {
             addComment(criticLayout, avis.get(i));
@@ -98,7 +102,16 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         if(pointDeRestauration.getIdPhoto() != PointDeRestauration.NO_PHOTO){
             imageView.setImageDrawable(getDrawable(pointDeRestauration.getIdPhoto()));
         }
-
+        ajoutAvis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Utilisateur user = PrefUtils.recupererUtilisateur(getApplicationContext());
+                Avis avis = new Avis(noteRatingBar.getRating(),avisTextView.getText().toString(), user.getPrenom()+user.getNom());
+                pointDeRestauration.addAvis(avis);
+                finish();
+                startActivity(getIntent());
+            }
+        });
     }
 
     private void addComment(LinearLayout layout, Avis avis){
