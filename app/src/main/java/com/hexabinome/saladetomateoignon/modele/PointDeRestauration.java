@@ -212,6 +212,11 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
 
 
     @Override
+    public int hashCode(){
+        return name.hashCode();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o == null || ! (o instanceof PointDeRestauration)) {
             return false;

@@ -1,5 +1,7 @@
 package com.hexabinome.saladetomateoignon.modele;
 
+import android.util.Log;
+
 import com.hexabinome.saladetomateoignon.R;
 
 import java.util.ArrayList;
@@ -244,7 +246,6 @@ public final class Mock {
                 .addAvis(new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer"))
                 .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra"))
                 .build();
-
 
         preference.add(jussieu);
         preference.add(grignote);

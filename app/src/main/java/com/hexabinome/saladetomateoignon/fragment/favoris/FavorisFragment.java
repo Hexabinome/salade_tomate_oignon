@@ -64,7 +64,6 @@ public class FavorisFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        //TODO : change the layout of the list
 
         View inflatedView = inflater.inflate(R.layout.fragment_favoris, container, false);
         empty_favoris_textView = (TextView) inflatedView.findViewById(R.id.empty_favoris_list);
