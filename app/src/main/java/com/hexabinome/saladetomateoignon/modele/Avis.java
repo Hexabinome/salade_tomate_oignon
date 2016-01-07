@@ -14,4 +14,16 @@ public class Avis {
         commentaire = monCommentaire;
         auteur = monUserName;
     }
+
+    public double getNote() {
+        return note;
+    }
+
+    public String getCommentaire() {
+        return commentaire;
+    }
+
+    public String getAuteur() {
+        return auteur;
+    }
 }

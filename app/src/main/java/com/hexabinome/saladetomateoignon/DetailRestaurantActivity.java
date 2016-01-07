@@ -1,12 +1,17 @@
 package com.hexabinome.saladetomateoignon;
 
+import android.app.ActionBar;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -18,8 +23,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 
 import com.google.gson.Gson;
+import com.hexabinome.saladetomateoignon.modele.Avis;
 import com.hexabinome.saladetomateoignon.modele.PointDeRestauration;
 import com.hexabinome.saladetomateoignon.modele.Utilisateur;
+
+import java.util.List;
 
 public class DetailRestaurantActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -28,7 +36,8 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
 
     private PointDeRestauration pointDeRestauration;
 
-    private TextView noteTextview, prixTextView, tempsAttenteTextView, distanceTextView,descriptionTextView, criticTextView;
+    private TextView noteTextview, prixTextView, tempsAttenteTextView, distanceTextView,descriptionTextView;
+    private LinearLayout criticLayout;
 
 
     private ImageView imageView;
@@ -62,7 +71,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         tempsAttenteTextView = (TextView) findViewById(R.id.restaurantTemps);
         distanceTextView = (TextView) findViewById(R.id.distanceRestaurant);
         descriptionTextView = (TextView) findViewById(R.id.description);
-        criticTextView = (TextView) findViewById(R.id.critic);
+        criticLayout = (LinearLayout) findViewById(R.id.comments);
         imageView = (ImageView) findViewById(R.id.imageRestaurant);
 
         tempsAttenteTextView.setText(String.format(getString(R.string.temps), pointDeRestauration.getTempsAttenteMoy()));
@@ -74,7 +83,11 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
             prixTextView.setText(String.format(getString(R.string.prix_restaurant), pointDeRestauration.getPrix()));
         }
 
-        criticTextView.setText(pointDeRestauration.getCritic());
+        List<Avis> avis = pointDeRestauration.getAvisList();
+        for(int i =0; i < avis.size(); i++)
+        {
+            addComment(criticLayout, avis.get(i));
+        }
         distanceTextView.setText(String.format(getString(R.string.distance_restaurant), pointDeRestauration.getDistance(utilisateur.getLongitude(), utilisateur.getLatitude())));
         noteTextview.setText(String.format(getString(R.string.note_restaurant), pointDeRestauration.getNote()));
         descriptionTextView.setText(pointDeRestauration.getDescription());
@@ -84,6 +97,24 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
 
     }
 
+    private void addComment(LinearLayout layout, Avis avis){
+        LinearLayout HorLayout = new LinearLayout(this);
+        HorLayout.setOrientation(LinearLayout.HORIZONTAL);
+        HorLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        HorLayout.setPadding(20,30,20,30);
+        String name = avis.getAuteur();
+        String comment = avis.getCommentaire();
+        double note = avis.getNote();
+        TextView nameTextView = new TextView(this);
+        nameTextView.setText(name+'\n'+String.valueOf((int)note)+"/5");
+        nameTextView.setTypeface(null, Typeface.BOLD);
+        nameTextView.setGravity(Gravity.CENTER);
+        TextView commentTextView = new TextView(this);
+        commentTextView.setText(comment);
+        HorLayout.addView(nameTextView);
+        HorLayout.addView(commentTextView);
+        layout.addView(HorLayout);
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return super.onCreateOptionsMenu(menu);
