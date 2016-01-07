@@ -17,4 +17,6 @@
     <style name="MooTextAppearanceSpinnerItem" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
         <item name="android:textColor">#fab95c</item>
     </style>
+
+
 </resources>
