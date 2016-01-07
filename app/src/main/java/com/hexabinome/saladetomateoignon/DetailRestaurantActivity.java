@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
@@ -112,6 +113,11 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
                 startActivity(getIntent());
             }
         });
+
+        //initilialiser snack bar
+        final View coordinatorLayoutView = findViewById(R.id.main_content);
+        Snackbar.make(coordinatorLayoutView, "Snackbar", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
     }
 
     private void addComment(LinearLayout layout, Avis avis){
