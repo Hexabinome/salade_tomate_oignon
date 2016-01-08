@@ -1,19 +1,14 @@
 package com.hexabinome.saladetomateoignon;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -43,7 +38,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
     private PointDeRestauration pointDeRestauration;
 
     private TextView noteTextview, prixTextView, tempsAttenteTextView, distanceTextView,descriptionTextView, avisTextView;
-    private LinearLayout criticLayout;
+    private LinearLayout avisLayout;
     private Button ajoutAvis;
     private RatingBar noteRatingBar;
 
@@ -78,7 +73,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         tempsAttenteTextView = (TextView) findViewById(R.id.restaurantTemps);
         distanceTextView = (TextView) findViewById(R.id.distanceRestaurant);
         descriptionTextView = (TextView) findViewById(R.id.description);
-        criticLayout = (LinearLayout) findViewById(R.id.comments);
+        avisLayout = (LinearLayout) findViewById(R.id.comments);
         imageView = (ImageView) findViewById(R.id.imageRestaurant);
         noteRatingBar = (RatingBar) findViewById(R.id.notation);
         avisTextView = (TextView) findViewById(R.id.avis);
@@ -95,7 +90,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         final List<Avis> avis = pointDeRestauration.getAvisList();
         for(int i =0; i < avis.size(); i++)
         {
-            addComment(criticLayout, avis.get(i));
+            addComment(avisLayout, avis.get(i));
         }
         distanceTextView.setText(String.format(getString(R.string.distance_restaurant), pointDeRestauration.getDistance(utilisateur.getLongitude(), utilisateur.getLatitude())));
         noteTextview.setText(String.format(getString(R.string.note_restaurant), pointDeRestauration.getNote()));
@@ -107,22 +102,19 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
             @Override
             public void onClick(View view) {
                 Utilisateur user = PrefUtils.recupererUtilisateur(getApplicationContext());
-                Avis avis = new Avis(noteRatingBar.getRating(),avisTextView.getText().toString(), user.getPrenom()+user.getNom());
+                Avis avis = new Avis(noteRatingBar.getRating(), avisTextView.getText().toString(),
+                        user.getPrenom() + user.getNom());
                 pointDeRestauration.addAvis(avis);
                 finish();
                 startActivity(getIntent());
             }
         });
 
-        //initilialiser snack bar
-        final View coordinatorLayoutView = findViewById(R.id.main_content);
-        Snackbar.make(coordinatorLayoutView, "Snackbar", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
     }
 
     private void addComment(LinearLayout layout, Avis avis){
 
-        LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.comment, null);
 
         TextView nameTextView = (TextView) view.findViewById(R.id.name);

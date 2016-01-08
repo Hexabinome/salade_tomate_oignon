@@ -69,8 +69,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.25"
-                    android:gravity="center"
                     android:drawableTop="@drawable/ic_star"
+                    android:gravity="center"
                     android:text="@string/note_restaurant"
                     android:textAppearance="@style/LabelTextAppearance"
                     />
@@ -80,8 +80,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.25"
-                    android:gravity="center"
                     android:drawableTop="@drawable/ic_euro"
+                    android:gravity="center"
                     android:text="@string/prix_restaurant"
                     android:textAppearance="@style/LabelTextAppearance"/>
 
@@ -90,8 +90,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.25"
-                    android:gravity="center"
                     android:drawableTop="@drawable/ic_watch"
+                    android:gravity="center"
                     android:text="@string/temps"
                     android:textAppearance="@style/LabelTextAppearance"
                     />
@@ -99,11 +99,11 @@
                 <TextView
 
                     android:id="@+id/distanceRestaurant"
-                    android:gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.25"
                     android:drawableTop="@drawable/ic_location"
+                    android:gravity="center"
                     android:text="@string/distance_restaurant"
                     android:textAppearance="@style/LabelTextAppearance"/>
 
@@ -134,37 +134,8 @@
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/card_margin"
-                android:layout_marginLeft="@dimen/card_margin"
-                android:layout_marginRight="@dimen/card_margin">
-            <!-- debut de la partie avis-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:id="@+id/comments"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Avis"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
 
 
-                    </LinearLayout>
-
-
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-            <!-- fin des avis-->
 
             <LinearLayout
                 style="@style/Widget.CardContent"
@@ -174,15 +145,15 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Notez ce restaurant !"
                     android:gravity="center_horizontal"
+                    android:text="Notez ce restaurant !"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
 
                 <RatingBar
                     android:id="@+id/notation"
+                    style="@style/CustomRatingBar"
                     android:layout_width="wrap_content"
                     android:layout_height="45dp"
-                    style="@style/CustomRatingBar"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:max="5"
@@ -191,12 +162,14 @@
                     android:scaleY="1.5"
                     android:stepSize="0.5"
                     />
+
                 <EditText
                     android:id="@+id/avis"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/add_comment"
                     android:maxLength="140"/>
+
                 <Button
                     android:id="@+id/addcomment"
                     android:layout_width="match_parent"
@@ -204,7 +177,6 @@
                     android:text="Valider"/>
 
             </LinearLayout>
-
 
 
             <android.support.v7.widget.CardView
@@ -228,9 +200,9 @@
 
                     <fragment
                         android:id="@+id/map"
+                        android:name="com.google.android.gms.maps.SupportMapFragment"
                         android:layout_width="match_parent"
                         android:layout_height="250dp"
-                        android:name="com.google.android.gms.maps.SupportMapFragment"
                         />
 
 
@@ -238,6 +210,16 @@
 
             </android.support.v7.widget.CardView>
 
+
+            <LinearLayout
+                android:id="@+id/comments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="@dimen/activity_horizontal_margin">
+
+            </LinearLayout>
+            <!-- fin des avis-->
 
         </LinearLayout>
 
