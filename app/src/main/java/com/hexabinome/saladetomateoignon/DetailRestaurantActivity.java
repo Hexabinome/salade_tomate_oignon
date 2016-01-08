@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -33,21 +34,24 @@ import com.hexabinome.saladetomateoignon.modele.Utilisateur;
 
 import java.util.List;
 
-public class DetailRestaurantActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class DetailRestaurantActivity extends AppCompatActivity implements OnMapReadyCallback,
+        CustomMarkFragment.CustomMarkFragmentListener {
 
     public static final String RESTAURANT_EXTRA = "restaurant_courant";
-
 
     private PointDeRestauration pointDeRestauration;
 
     private TextView noteTextview, prixTextView, tempsAttenteTextView, distanceTextView, descriptionTextView, avisTextView;
+
     private LinearLayout avisLayout;
-    private Button ajoutAvis;
     private RatingBar noteRatingBar;
     private FloatingActionButton deleteFloatingActionButton;
 
     private ImageView imageView;
     private GoogleMap mMap;
+
+    private float oldMark;
+    LayoutInflater inflater;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +66,8 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        LayoutInflater inflater = (LayoutInflater) getSystemService(
-                Context.LAYOUT_INFLATER_SERVICE);
+        inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -82,11 +86,10 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         avisLayout = (LinearLayout) findViewById(R.id.comments);
         imageView = (ImageView) findViewById(R.id.imageRestaurant);
         noteRatingBar = (RatingBar) findViewById(R.id.notation);
-        avisTextView = (TextView) findViewById(R.id.avis);
-        ajoutAvis = (Button) findViewById(R.id.addcomment);
         deleteFloatingActionButton = (FloatingActionButton) findViewById(R.id.delete);
         tempsAttenteTextView.setText(
                 String.format(getString(R.string.temps), pointDeRestauration.getTempsAttenteMoy()));
+
 
         if (pointDeRestauration.getTypePointDeRestauration()
                 .contains(PointDeRestauration.TypePointDeRestauration.SUPERMARCHE)) {
@@ -115,16 +118,17 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         if (pointDeRestauration.getIdPhoto() != PointDeRestauration.NO_PHOTO) {
             imageView.setImageDrawable(getDrawable(pointDeRestauration.getIdPhoto()));
         }
-        ajoutAvis.setOnClickListener(new View.OnClickListener() {
+
+        noteRatingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
-            public void onClick(View view) {
-                Utilisateur user = PrefUtils.recupererUtilisateur(getApplicationContext());
-                Avis avis = new Avis(noteRatingBar.getRating(), avisTextView.getText().toString(),
-                        user.getPrenom() + user.getNom(), "12/12/2015");
-                pointDeRestauration.addAvis(avis);
-                finish();
-                startActivity(getIntent());
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                if (fromUser) {
+                    CustomMarkFragment dialog = new CustomMarkFragment();
+                    dialog.setParam(pointDeRestauration.getName(), rating);
+                    dialog.show(getFragmentManager(), "tag");
+                }
             }
+
         });
 
         deleteFloatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -152,11 +156,11 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
                 alertDialog.show();
             }
         });
-
+        oldMark = 0;
     }
 
-    private void addComment(LinearLayout layout, LayoutInflater inflater, Avis avis) {
 
+    private void addComment(LinearLayout layout, LayoutInflater inflater, Avis avis) {
 
         View view = inflater.inflate(R.layout.comment, null);
 
@@ -165,7 +169,6 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         TextView commentTextView = (TextView) view.findViewById(R.id.comment);
         TextView dateTextView = (TextView) view.findViewById(R.id.date);
 
-
         String name = avis.getAuteur();
         String comment = avis.getCommentaire();
         double note = avis.getNote();
@@ -173,8 +176,8 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         noteRatingBar.setRating(((float) note));
         commentTextView.setText(comment);
         dateTextView.setText(avis.getDate());
-        layout.addView(view);
 
+        layout.addView(view);
     }
 
     @Override
@@ -210,5 +213,19 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         // zoom to la doua
         mMap.moveCamera(
                 CameraUpdateFactory.newLatLngBounds(PointDeRestauration.LADOUA_LATLNGBOUNDS, 0));
+    }
+
+    public void onMarkPositiveClick(String avis) {
+        oldMark = noteRatingBar.getRating();
+        if (!avis.isEmpty()) {
+            Utilisateur user = PrefUtils.recupererUtilisateur(getApplicationContext());
+            Avis newAvis = new Avis(noteRatingBar.getRating(), avis,
+                    user.getPrenom() + user.getNom(), "12/12/2015");
+            addComment(avisLayout, inflater, newAvis);
+        }
+    }
+
+    public void onMarkNegativeClick() {
+        noteRatingBar.setRating(oldMark);
     }
 }

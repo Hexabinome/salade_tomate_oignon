@@ -38,5 +38,8 @@
     <string name="empty_favoris_list"> "  Vous n'avez pas encore de restautants favoris!"</string>
     <string name="google_app_id">AIzaSyDz63TC0pjEQTHr23m75IID2KLDhJvzZ18</string>
     <string name="add_comment">Laissez un avis</string>
+    <string name="add_optional_comment">Laissez un avis (optionnel)</string>
+    <string name="valider">Valider</string>
+    <string name="annuler">Annuler</string>
 
 </resources>
