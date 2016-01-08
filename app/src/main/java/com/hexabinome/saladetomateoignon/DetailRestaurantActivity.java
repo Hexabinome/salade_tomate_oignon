@@ -58,6 +58,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -90,10 +91,12 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         final List<Avis> avis = pointDeRestauration.getAvisList();
         for(int i =0; i < avis.size(); i++)
         {
-            addComment(avisLayout, avis.get(i));
+            addComment(avisLayout, inflater, avis.get(i));
         }
-        distanceTextView.setText(String.format(getString(R.string.distance_restaurant), pointDeRestauration.getDistance(utilisateur.getLongitude(), utilisateur.getLatitude())));
-        noteTextview.setText(String.format(getString(R.string.note_restaurant), pointDeRestauration.getNote()));
+        distanceTextView.setText(String.format(getString(R.string.distance_restaurant), pointDeRestauration.getDistance(
+                utilisateur.getLongitude(), utilisateur.getLatitude())));
+        noteTextview.setText(String.format(getString(R.string.note_restaurant),
+                pointDeRestauration.getNote()));
         descriptionTextView.setText(pointDeRestauration.getDescription());
         if(pointDeRestauration.getIdPhoto() != PointDeRestauration.NO_PHOTO){
             imageView.setImageDrawable(getDrawable(pointDeRestauration.getIdPhoto()));
@@ -112,10 +115,10 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
 
     }
 
-    private void addComment(LinearLayout layout, Avis avis){
+    private void addComment(LinearLayout layout, LayoutInflater inflater, Avis avis){
 
-        LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.comment, null);
+
+        View view = inflater.inflate(R.layout.comment, layout);
 
         TextView nameTextView = (TextView) view.findViewById(R.id.name);
         RatingBar noteRatingBar = (RatingBar) view.findViewById(R.id.note);
@@ -128,7 +131,6 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         nameTextView.setText(name);
         noteRatingBar.setRating(((float) note));
         commentTextView.setText(comment);
-        layout.addView(view);
 
     }
     @Override
