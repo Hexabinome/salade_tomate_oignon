@@ -110,7 +110,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
             public void onClick(View view) {
                 Utilisateur user = PrefUtils.recupererUtilisateur(getApplicationContext());
                 Avis avis = new Avis(noteRatingBar.getRating(), avisTextView.getText().toString(),
-                        user.getPrenom() + user.getNom());
+                        user.getPrenom() + user.getNom(),"12/12/2015");
                 pointDeRestauration.addAvis(avis);
                 finish();
                 startActivity(getIntent());
@@ -127,6 +127,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         TextView nameTextView = (TextView) view.findViewById(R.id.name);
         RatingBar noteRatingBar = (RatingBar) view.findViewById(R.id.note);
         TextView commentTextView = (TextView) view.findViewById(R.id.comment);
+        TextView dateTextView = (TextView) view.findViewById(R.id.date);
 
 
         String name = avis.getAuteur();
@@ -135,6 +136,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         nameTextView.setText(name);
         noteRatingBar.setRating(((float) note));
         commentTextView.setText(comment);
+        dateTextView.setText(avis.getDate());
         layout.addView(view);
 
     }
