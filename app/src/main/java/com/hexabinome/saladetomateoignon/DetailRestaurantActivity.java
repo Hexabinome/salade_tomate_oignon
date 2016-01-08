@@ -85,7 +85,11 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
 
             prixTextView.setText("-- €");
         } else {
-            prixTextView.setText(String.format(getString(R.string.prix_restaurant), pointDeRestauration.getPrix()));
+            if(utilisateur.getTypeUtilisateur() == Utilisateur.TypeUtilisateur.PROFESSEUR)
+                prixTextView.setText(String.format(getString(R.string.prix_restaurant), pointDeRestauration.getPrix()+PointDeRestauration.DIFFERENCE_PRIX));
+            {
+                prixTextView.setText(String.format(getString(R.string.prix_restaurant), pointDeRestauration.getPrix()));
+            }
         }
 
         final List<Avis> avis = pointDeRestauration.getAvisList();

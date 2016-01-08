@@ -33,6 +33,11 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
     public static final int NO_PHOTO = - 1;
     private String menuDuJour;
 
+    /**
+     * Deux euros de différence entre le prix affiché pour un professeur et un étudiant
+     */
+    public static double DIFFERENCE_PRIX = 2;
+
 
     private PointDeRestauration() {
         typePointDeRestauration = new HashSet<>();

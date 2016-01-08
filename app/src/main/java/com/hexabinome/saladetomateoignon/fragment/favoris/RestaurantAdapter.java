@@ -68,7 +68,7 @@ public class RestaurantAdapter extends ArrayAdapter<PointDeRestauration> {
             viewHolder.priceTextView.setText("-- €"); // pas de prix moyen pour les supermachés
         } else {
             if(utilisateur.getTypeUtilisateur() == Utilisateur.TypeUtilisateur.PROFESSEUR)
-                prix += 2; // +2 € pour les profs
+                prix += PointDeRestauration.DIFFERENCE_PRIX; // +2 € pour les profs
             viewHolder.priceTextView.setText(String.format(context.getString(R.string.prix_restaurant), prix));
         }
 

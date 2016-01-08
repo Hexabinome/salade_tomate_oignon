@@ -362,11 +362,25 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
             restaurantTitle.setText(currentPointDeRestauration.getName());
             restaurantDistance.setText(
                     String.format(getString(R.string.distance_restaurant), distance));
-            restaurantPrix.setText(String.format(getString(R.string.prix_restaurant),
-                    currentPointDeRestauration.getPrix()));
+            if(currentPointDeRestauration.getTypePointDeRestauration().contains(
+                    PointDeRestauration.TypePointDeRestauration.SUPERMARCHE)){
+                restaurantPrix.setVisibility(View.GONE);
+            } else {
+                if(currentUser.getTypeUtilisateur() == Utilisateur.TypeUtilisateur.PROFESSEUR){
+                    restaurantPrix.setText(String.format(getString(R.string.prix_restaurant),
+                            currentPointDeRestauration.getPrix()+PointDeRestauration.DIFFERENCE_PRIX));
+                } else {
+
+                    restaurantPrix.setText(String.format(getString(R.string.prix_restaurant),
+                            currentPointDeRestauration.getPrix()));
+                }
+            }
+
             restaurantTempsAttente.setText(String.format(getString(R.string.temps),
                     currentPointDeRestauration.getTempsAttenteMoy()));
             rateBar.setNumStars((int) currentPointDeRestauration.getNote());
+
+
             if (currentPointDeRestauration.getIdPhoto() != PointDeRestauration.NO_PHOTO)
                 restaurantImageView.setImageDrawable(ContextCompat.getDrawable(getContext(),
                         currentPointDeRestauration.getIdPhoto()));
