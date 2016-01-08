@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -52,6 +53,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
 
     private ImageView imageView;
     private GoogleMap mMap;
+    private View userAvisView;
 
     private float oldMark;
     LayoutInflater inflater;
@@ -107,10 +109,16 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
                         pointDeRestauration.getPrix()));
             }
         }
-
+        // adding static avis
         final List<Avis> avis = pointDeRestauration.getAvisList();
         for (int i = 0; i < avis.size(); i++) {
-            addComment(avisLayout, inflater, avis.get(i));
+            addComment(avisLayout, inflater, avis.get(i), false);
+        }
+        //adding user's avis
+        Avis userAvis = PrefUtils.getAvisRestaurantFromPref(this, pointDeRestauration.getName());
+        if (userAvis != null)
+        {
+            userAvisView = addComment(avisLayout, inflater, userAvis, true);
         }
         distanceTextView.setText(String.format(getString(R.string.distance_restaurant),
                 pointDeRestauration.getDistance(
@@ -141,20 +149,16 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
                         DetailRestaurantActivity.this);
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.setTitle("Suppression");
-                alertDialog.setMessage("Voulez vous supprimez le point de restaurant " + pointDeRestauration.getName());
+                alertDialog.setMessage("Voulez vous supprimer le point de restaurant " + pointDeRestauration.getName());
                 alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Oui",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
                                 Utilisateur user = PrefUtils.recupererUtilisateur(getApplicationContext());
-                                Log.d(TAG,user.getFavoris().toString());
                                 user.getFavoris().remove(pointDeRestauration);
-                                Log.d(TAG, user.getFavoris().toString());
 
-
-                                PrefUtils.sauvegardeUtilisateur(DetailRestaurantActivity.this,user);
+                                PrefUtils.sauvegardeUtilisateur(DetailRestaurantActivity.this, user);
                                 finish();
-
                             }
                         });
                 alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Non",
@@ -170,24 +174,58 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
     }
 
 
-    private void addComment(LinearLayout layout, LayoutInflater inflater, Avis avis) {
+    private View addComment(LinearLayout layout, LayoutInflater inflater, Avis avis, boolean userComment) {
 
         View view = inflater.inflate(R.layout.comment, null);
 
         TextView nameTextView = (TextView) view.findViewById(R.id.name);
-        RatingBar noteRatingBar = (RatingBar) view.findViewById(R.id.note);
+        final RatingBar noteRatingBarComment = (RatingBar) view.findViewById(R.id.note);
         TextView commentTextView = (TextView) view.findViewById(R.id.comment);
         TextView dateTextView = (TextView) view.findViewById(R.id.date);
+        ImageButton imageButton = (ImageButton) view.findViewById(R.id.delete_comment);
+
+        if(userComment){
+            imageButton.setVisibility(View.VISIBLE);
+            imageButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                            DetailRestaurantActivity.this);
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.setTitle("Suppression");
+                    alertDialog.setMessage("Voulez vous supprimer vraiment votre commentaire ? ");
+                    alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Oui",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                    noteRatingBar.setRating(0);
+                                    userAvisView.setVisibility(View.GONE);
+                                    PrefUtils.saveAvisRestaurantFromPref(DetailRestaurantActivity.this, pointDeRestauration.getName(), null);
+                                }
+                            });
+                    alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Non",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+
+                }
+            });
+        }
 
         String name = avis.getAuteur();
         String comment = avis.getCommentaire();
         double note = avis.getNote();
         nameTextView.setText(name);
-        noteRatingBar.setRating(((float) note));
+        noteRatingBarComment.setRating(((float) note));
         commentTextView.setText(comment);
         dateTextView.setText(avis.getDate());
 
         layout.addView(view);
+        return view;
     }
 
     @Override
@@ -227,12 +265,16 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
 
     public void onMarkPositiveClick(String avis) {
         oldMark = noteRatingBar.getRating();
-        if (!avis.isEmpty()) {
-            Utilisateur user = PrefUtils.recupererUtilisateur(getApplicationContext());
-            Avis newAvis = new Avis(noteRatingBar.getRating(), avis,
-                    user.getPrenom() + user.getNom(), "12/12/2015");
-            addComment(avisLayout, inflater, newAvis);
+
+        if (userAvisView != null)
+        {
+            userAvisView.setVisibility(View.GONE);
         }
+        Utilisateur user = PrefUtils.recupererUtilisateur(getApplicationContext());
+        Avis newAvis = new Avis(noteRatingBar.getRating(), avis,
+                user.getPrenom() + user.getNom(), "12/12/2015");
+        userAvisView = addComment(avisLayout, inflater, newAvis, true);
+        PrefUtils.saveAvisRestaurantFromPref(this, pointDeRestauration.getName(), newAvis);
     }
 
     public void onMarkNegativeClick() {
