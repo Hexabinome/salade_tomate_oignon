@@ -1,8 +1,11 @@
 package com.hexabinome.saladetomateoignon;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -37,10 +40,11 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
 
     private PointDeRestauration pointDeRestauration;
 
-    private TextView noteTextview, prixTextView, tempsAttenteTextView, distanceTextView,descriptionTextView, avisTextView;
+    private TextView noteTextview, prixTextView, tempsAttenteTextView, distanceTextView, descriptionTextView, avisTextView;
     private LinearLayout avisLayout;
     private Button ajoutAvis;
     private RatingBar noteRatingBar;
+    private FloatingActionButton deleteFloatingActionButton;
 
     private ImageView imageView;
     private GoogleMap mMap;
@@ -58,7 +62,8 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) getSystemService(
+                Context.LAYOUT_INFLATER_SERVICE);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -79,30 +84,35 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         noteRatingBar = (RatingBar) findViewById(R.id.notation);
         avisTextView = (TextView) findViewById(R.id.avis);
         ajoutAvis = (Button) findViewById(R.id.addcomment);
-        tempsAttenteTextView.setText(String.format(getString(R.string.temps), pointDeRestauration.getTempsAttenteMoy()));
+        deleteFloatingActionButton = (FloatingActionButton) findViewById(R.id.delete);
+        tempsAttenteTextView.setText(
+                String.format(getString(R.string.temps), pointDeRestauration.getTempsAttenteMoy()));
 
-        if(pointDeRestauration.getTypePointDeRestauration().contains(PointDeRestauration.TypePointDeRestauration.SUPERMARCHE)){
+        if (pointDeRestauration.getTypePointDeRestauration()
+                .contains(PointDeRestauration.TypePointDeRestauration.SUPERMARCHE)) {
 
             prixTextView.setText("-- €");
         } else {
-            if(utilisateur.getTypeUtilisateur() == Utilisateur.TypeUtilisateur.PROFESSEUR)
-                prixTextView.setText(String.format(getString(R.string.prix_restaurant), pointDeRestauration.getPrix()+PointDeRestauration.DIFFERENCE_PRIX));
+            if (utilisateur.getTypeUtilisateur() == Utilisateur.TypeUtilisateur.PROFESSEUR)
+                prixTextView.setText(String.format(getString(R.string.prix_restaurant),
+                        pointDeRestauration.getPrix() + PointDeRestauration.DIFFERENCE_PRIX));
             {
-                prixTextView.setText(String.format(getString(R.string.prix_restaurant), pointDeRestauration.getPrix()));
+                prixTextView.setText(String.format(getString(R.string.prix_restaurant),
+                        pointDeRestauration.getPrix()));
             }
         }
 
         final List<Avis> avis = pointDeRestauration.getAvisList();
-        for(int i =0; i < avis.size(); i++)
-        {
+        for (int i = 0; i < avis.size(); i++) {
             addComment(avisLayout, inflater, avis.get(i));
         }
-        distanceTextView.setText(String.format(getString(R.string.distance_restaurant), pointDeRestauration.getDistance(
-                utilisateur.getLongitude(), utilisateur.getLatitude())));
+        distanceTextView.setText(String.format(getString(R.string.distance_restaurant),
+                pointDeRestauration.getDistance(
+                        utilisateur.getLongitude(), utilisateur.getLatitude())));
         noteTextview.setText(String.format(getString(R.string.note_restaurant),
                 pointDeRestauration.getNote()));
         descriptionTextView.setText(pointDeRestauration.getDescription());
-        if(pointDeRestauration.getIdPhoto() != PointDeRestauration.NO_PHOTO){
+        if (pointDeRestauration.getIdPhoto() != PointDeRestauration.NO_PHOTO) {
             imageView.setImageDrawable(getDrawable(pointDeRestauration.getIdPhoto()));
         }
         ajoutAvis.setOnClickListener(new View.OnClickListener() {
@@ -110,16 +120,42 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
             public void onClick(View view) {
                 Utilisateur user = PrefUtils.recupererUtilisateur(getApplicationContext());
                 Avis avis = new Avis(noteRatingBar.getRating(), avisTextView.getText().toString(),
-                        user.getPrenom() + user.getNom(),"12/12/2015");
+                        user.getPrenom() + user.getNom(), "12/12/2015");
                 pointDeRestauration.addAvis(avis);
                 finish();
                 startActivity(getIntent());
             }
         });
 
+        deleteFloatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                        DetailRestaurantActivity.this);
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.setTitle("Suppression");
+                alertDialog.setMessage("Voulez vous supprimez le point de restaurant " + pointDeRestauration.getName());
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Oui",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                finish();
+                                // TODO : supprimer le point de restauration de la liste
+                            }
+                        });
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Non",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+            }
+        });
+
     }
 
-    private void addComment(LinearLayout layout, LayoutInflater inflater, Avis avis){
+    private void addComment(LinearLayout layout, LayoutInflater inflater, Avis avis) {
 
 
         View view = inflater.inflate(R.layout.comment, null);
@@ -140,6 +176,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         layout.addView(view);
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return super.onCreateOptionsMenu(menu);
@@ -167,9 +204,11 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
 
         LatLng restaurant_to_show = new LatLng(latitude, longitude);
 
-        mMap.addMarker(new MarkerOptions().position(restaurant_to_show).title(pointDeRestauration.getName()));
+        mMap.addMarker(new MarkerOptions().position(restaurant_to_show)
+                .title(pointDeRestauration.getName()));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(restaurant_to_show));
         // zoom to la doua
-        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(PointDeRestauration.LADOUA_LATLNGBOUNDS, 0));
+        mMap.moveCamera(
+                CameraUpdateFactory.newLatLngBounds(PointDeRestauration.LADOUA_LATLNGBOUNDS, 0));
     }
 }
