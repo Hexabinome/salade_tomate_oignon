@@ -51,7 +51,7 @@ public class CustomMarkFragment extends DialogFragment {
         } catch (ClassCastException e) {
             // The activity doesn't implement the interface, throw exception
             throw new ClassCastException(activity.toString()
-                    + " must implement NoticeDialogListener");
+                    + " must implement CustomMarkFragmentListener");
         }
     }
 

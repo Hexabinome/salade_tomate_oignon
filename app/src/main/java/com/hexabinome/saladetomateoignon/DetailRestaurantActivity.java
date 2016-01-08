@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,6 +39,8 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         CustomMarkFragment.CustomMarkFragmentListener {
 
     public static final String RESTAURANT_EXTRA = "restaurant_courant";
+
+    public static final String TAG = "DetailRestaurantActivi";
 
     private PointDeRestauration pointDeRestauration;
 
@@ -143,8 +146,15 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
+                                Utilisateur user = PrefUtils.recupererUtilisateur(getApplicationContext());
+                                Log.d(TAG,user.getFavoris().toString());
+                                user.getFavoris().remove(pointDeRestauration);
+                                Log.d(TAG, user.getFavoris().toString());
+
+
+                                PrefUtils.sauvegardeUtilisateur(DetailRestaurantActivity.this,user);
                                 finish();
-                                // TODO : supprimer le point de restauration de la liste
+
                             }
                         });
                 alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Non",
