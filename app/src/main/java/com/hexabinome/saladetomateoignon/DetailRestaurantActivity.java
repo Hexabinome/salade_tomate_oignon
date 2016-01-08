@@ -118,7 +118,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
     private void addComment(LinearLayout layout, LayoutInflater inflater, Avis avis){
 
 
-        View view = inflater.inflate(R.layout.comment, layout);
+        View view = inflater.inflate(R.layout.comment, null);
 
         TextView nameTextView = (TextView) view.findViewById(R.id.name);
         RatingBar noteRatingBar = (RatingBar) view.findViewById(R.id.note);
@@ -131,6 +131,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         nameTextView.setText(name);
         noteRatingBar.setRating(((float) note));
         commentTextView.setText(comment);
+        layout.addView(view);
 
     }
     @Override
