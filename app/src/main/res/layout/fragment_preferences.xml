@@ -295,7 +295,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:theme="@style/MooTheme"/>
+                    />
 
             </RelativeLayout>
         </LinearLayout>
