@@ -45,7 +45,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
 
     private PointDeRestauration pointDeRestauration;
 
-    private TextView noteTextview, prixTextView, tempsAttenteTextView, distanceTextView, descriptionTextView, avisTextView;
+    private TextView noteTextview, prixTextView, tempsAttenteTextView, distanceTextView, descriptionTextView, menuDuJourTextView;
 
     private LinearLayout avisLayout;
     private RatingBar noteRatingBar;
@@ -94,6 +94,13 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         deleteFloatingActionButton = (FloatingActionButton) findViewById(R.id.delete);
         tempsAttenteTextView.setText(
                 String.format(getString(R.string.temps), pointDeRestauration.getTempsAttenteMoy()));
+        menuDuJourTextView = (TextView) findViewById(R.id.menuDujour);
+
+        if(pointDeRestauration.getMenuDuJour() != null){
+            menuDuJourTextView.setText(pointDeRestauration.getMenuDuJour());
+        } else {
+            findViewById(R.id.menuCardview).setVisibility(View.GONE);
+        }
 
 
         if (pointDeRestauration.getTypePointDeRestauration()
@@ -116,8 +123,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         }
         //adding user's avis
         Avis userAvis = PrefUtils.getAvisRestaurantFromPref(this, pointDeRestauration.getName());
-        if (userAvis != null)
-        {
+        if (userAvis != null) {
             userAvisView = addComment(avisLayout, inflater, userAvis, true);
         }
         distanceTextView.setText(String.format(getString(R.string.distance_restaurant),
@@ -126,6 +132,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         noteTextview.setText(String.format(getString(R.string.note_restaurant),
                 pointDeRestauration.getNote()));
         descriptionTextView.setText(pointDeRestauration.getDescription());
+
         if (pointDeRestauration.getIdPhoto() != PointDeRestauration.NO_PHOTO) {
             imageView.setImageDrawable(getDrawable(pointDeRestauration.getIdPhoto()));
         }
@@ -149,7 +156,8 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
                         DetailRestaurantActivity.this);
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.setTitle("Suppression");
-                alertDialog.setMessage("Voulez vous supprimer le point de restaurant " + pointDeRestauration.getName());
+                alertDialog.setMessage(
+                        "Voulez vous supprimer le point de restaurant " + pointDeRestauration.getName());
                 alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Oui",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -157,7 +165,8 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
                                 Utilisateur user = PrefUtils.recupererUtilisateur(getApplicationContext());
                                 user.getFavoris().remove(pointDeRestauration);
 
-                                PrefUtils.sauvegardeUtilisateur(DetailRestaurantActivity.this, user);
+                                PrefUtils.sauvegardeUtilisateur(DetailRestaurantActivity.this,
+                                        user);
                                 finish();
                             }
                         });
@@ -174,7 +183,8 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
     }
 
 
-    private View addComment(LinearLayout layout, LayoutInflater inflater, Avis avis, boolean userComment) {
+    private View addComment(LinearLayout layout, LayoutInflater inflater, Avis avis,
+                            boolean userComment) {
 
         View view = inflater.inflate(R.layout.comment, null);
 
@@ -184,7 +194,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         TextView dateTextView = (TextView) view.findViewById(R.id.date);
         ImageButton imageButton = (ImageButton) view.findViewById(R.id.delete_comment);
 
-        if(userComment){
+        if (userComment) {
             imageButton.setVisibility(View.VISIBLE);
             imageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -201,7 +211,9 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
                                     dialog.dismiss();
                                     noteRatingBar.setRating(0);
                                     userAvisView.setVisibility(View.GONE);
-                                    PrefUtils.saveAvisRestaurantFromPref(DetailRestaurantActivity.this, pointDeRestauration.getName(), null);
+                                    PrefUtils.saveAvisRestaurantFromPref(
+                                            DetailRestaurantActivity.this,
+                                            pointDeRestauration.getName(), null);
                                 }
                             });
                     alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Non",
@@ -266,8 +278,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
     public void onMarkPositiveClick(String avis) {
         oldMark = noteRatingBar.getRating();
 
-        if (userAvisView != null)
-        {
+        if (userAvisView != null) {
             userAvisView.setVisibility(View.GONE);
         }
         Utilisateur user = PrefUtils.recupererUtilisateur(getApplicationContext());

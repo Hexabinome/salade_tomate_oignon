@@ -65,6 +65,7 @@ public final class Mock {
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
                 .addAvis(new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer","12/12/2015"))
                 .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra","05/01/2015"))
+                .menuDujour("Brochette de dinde sauce mexicaine steak hache sauce")
                 .build();
 
         PointDeRestauration grignote = PointDeRestauration.builder()
@@ -74,12 +75,17 @@ public final class Mock {
                 .latitude(45.784130)
                 .tempsAttenteMoy(10)
                 .note(2)
-                .description("A Villeurbanne face au campus de la Doua de l’université Lyon 1 et de l’INSA, salle de 34 places.")
+                .description(
+                        "A Villeurbanne face au campus de la Doua de l’université Lyon 1 et de l’INSA, salle de 34 places.")
                 .idPhoto(R.drawable.grignote)
-                .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
+                .addTypePointDeRestauration(
+                        PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
-                .addAvis(new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer","02/15/2014"))
+                .addAvis(
+                        new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer",
+                                "02/15/2014"))
                 .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra","12/11/2013"))
+                .menuDujour("Steak hache sauce poivre farfalles aricots verts")
                 .build();
 
         PointDeRestauration puvis = PointDeRestauration.builder()
@@ -95,6 +101,7 @@ public final class Mock {
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
                 .addAvis(new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer","17/04/2015"))
                 .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra","22/03/2015"))
+                .menuDujour("Omelette paysanne")
                 .build();
 
         // Restaurant INSA
@@ -107,10 +114,14 @@ public final class Mock {
                 .note(2)
                 .description("Restauration italienne.")
                 .idPhoto(PointDeRestauration.NO_PHOTO)
-                .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
+                .addTypePointDeRestauration(
+                        PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
-                .addAvis(new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer","12/01/2014"))
+                .addAvis(
+                        new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer",
+                                "12/01/2014"))
                 .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra","09/03/2015"))
+                .menuDujour("Gratin de choux fleur")
                 .build();
 
         PointDeRestauration grillon = PointDeRestauration.builder()
@@ -122,10 +133,14 @@ public final class Mock {
                 .note(1)
                 .description("Restaurant grill.")
                 .idPhoto(PointDeRestauration.NO_PHOTO)
-                .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
+                .addTypePointDeRestauration(
+                        PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
-                .addAvis(new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer","01/10/2015"))
+                .addAvis(
+                        new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer",
+                                "01/10/2015"))
                 .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra","10/12/2014"))
+                .menuDujour("Blanquette de veau riz")
                 .build();
 
         PointDeRestauration castor = PointDeRestauration.builder()
@@ -139,8 +154,13 @@ public final class Mock {
                 .idPhoto(PointDeRestauration.NO_PHOTO)
                 .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
-                .addAvis(new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer","12/12/2015"))
+                .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
+                .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
+                .addAvis(
+                        new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer",
+                                "12/12/2015"))
                 .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra","01/10/2015"))
+                .menuDujour("Epinards sauce brune")
                 .build();
 
         PointDeRestauration beurk = PointDeRestauration.builder()
@@ -157,6 +177,7 @@ public final class Mock {
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
                 .addAvis(new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer","12/03/2013"))
                 .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra","12/12/2012"))
+                .menuDujour("Rôti de dinde")
                 .build();
 
         // Supermarché
@@ -167,14 +188,15 @@ public final class Mock {
                 .latitude(45.776971)
                 .tempsAttenteMoy(10)
                 .note(3)
-                .description("Carrefour Market, enseigne française de supermarchés appartenant au groupe Carrefour.")
+                .description(
+                        "Carrefour Market, enseigne française de supermarchés appartenant au groupe Carrefour.")
                 .idPhoto(R.drawable.carrefour)
                 .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.SUPERMARCHE)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
-                .addAvis(new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer","12/10/2014"))
-                .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra","12/12/2013"))
+                .addAvis(new Avis(2, "Les caissières ne sont pas très sympa", "Alexis Andra", "12/12/2013"))
+                .addAvis(new Avis(2, "Il fait trop froid dans le magasin", "Alexis Papin", "12/06/2013"))
                 .build();
 
         // cafeteria
@@ -191,8 +213,8 @@ public final class Mock {
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
-                .addAvis(new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer","06/10/2015"))
-                .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra","12/05/2015"))
+                .addAvis(new Avis(3, "Cyber très sympa avec de bon sandwich", "David Wobrock","06/10/2015"))
+                .addAvis(new Avis(2, "C'etait vraiment bon avec une bonne ambiance", "Alexis Andra","12/05/2015"))
                 .build();
 
         // cafeteria
@@ -223,11 +245,13 @@ public final class Mock {
                 .description("A Villeurbanne, situé sur le campus de la Doua de l’Université Lyon 1, à l’intérieur du bâtiment Astrée, salle de 90 places.")
                 .idPhoto(R.drawable.cafe_astree)
                 .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.CAFETERIA)
+                .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
                 .addAvis(new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer","12/10/2015"))
                 .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra","12/09/2015"))
+                .menuDujour("Différents sandwichs : thon, poulet, viande hachée")
                 .build();
 
         PointDeRestauration cafetJussieu = PointDeRestauration.builder()
@@ -245,6 +269,7 @@ public final class Mock {
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
                 .addAvis(new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer","12/12/2015"))
                 .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra","06/12/2015"))
+                .menuDujour("Différents sandwichs : thon, poulet, viande hachée")
                 .build();
 
         preference.add(jussieu);

@@ -21,11 +21,7 @@
     <string name="CantinderTest_Grade">4</string>
     <string name="CantinderTest_Price">4.5</string>
     <string name="preference_file_key">com.hexabinome.saladetomateoignon</string>
-    <string name="cheese_ipsum">Jarlsberg lancashire edam. Dolcelatte hard cheese brie st. agur blue
-    cheese caerphilly bavarian bergkase cheese and biscuits mascarpone. Cheeseburger swiss bavarian
-    bergkase cream cheese fromage frais cheesy feet port-salut airedale. St. agur blue cheese rubber
-    cheese caerphilly cheddar cheesecake cream cheese manchego lancashire. Roquefort squirty cheese
-    the big cheese.</string>
+    <string name="cheese_ipsum">Jarlsberg lancashire edam. Dolcelatte hard cheese brie st.</string>
     <string name="temps">%dmn d\'attente</string>
     <string name="temps2">%dmn</string>
     <string name="prix_restaurant">%.2f €</string>
