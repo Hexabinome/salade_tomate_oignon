@@ -23,6 +23,9 @@ import com.hexabinome.saladetomateoignon.fragment.favoris.FavorisFragment;
 import com.hexabinome.saladetomateoignon.fragment.preferences.PreferencesFragment;
 import com.hexabinome.saladetomateoignon.modele.Utilisateur;
 
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
+import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
+
 
 public class MainActivity extends AppCompatActivity implements
         CantinderFragment.OnCantinderFragmentInteractionListener,
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements
     private Toolbar toolbar;
     CustomFragmentPagerAdapter customFragmentPagerAdapter;
     private boolean isDisconnectButtonClicked = false;
+    private static final String SHOWCASE_ID = "help";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,8 +86,7 @@ public class MainActivity extends AppCompatActivity implements
         }else {
             viewPager.setCurrentItem(1);
         }
-
-
+        showCasePresentation();
     }
 
     @Override
@@ -193,4 +196,29 @@ public class MainActivity extends AppCompatActivity implements
             viewPager.setCurrentItem(1, true);
         }
     }
+
+    private void showCasePresentation(){
+        ShowcaseConfig config = new ShowcaseConfig();
+        config.setDelay(500); // half second between each showcase view
+
+        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(this, SHOWCASE_ID);
+
+        sequence.setConfig(config);
+
+        sequence.addSequenceItem(tabLayout.getTabAt(2).getCustomView(),
+                "Ici vous pourrez modifiez vos criteres minimum de choix des points de " +
+                        "restauration", "J'ai compris");
+
+        sequence.addSequenceItem(tabLayout.getTabAt(1).getCustomView(),
+                "Retrouvez ici les points de restaurations correspondant a vos preferences, Vous" +
+                        " pourrez les liker ou les disliker en fonction de vos goûts", "J'ai compris");
+
+        sequence.addSequenceItem(tabLayout.getTabAt(0).getCustomView(),
+                "Tous vos points des restaurations favoris se retrouveront ici," +
+                        " libre a vous de les noter, de consulter leurs localisations, descriptions" +
+                        " ou bien de les supprimer de vos favoris", "J'ai compris");
+
+        sequence.start();
+    }
+
 }

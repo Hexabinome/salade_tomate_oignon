@@ -31,6 +31,9 @@ import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 import java.util.HashMap;
 import java.util.Map;
 
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
+import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -63,6 +66,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
     private Utilisateur user;
 
     private TextView distanceTextView, tempsTextView,prixTextView;
+
 
     /**
      * Relative layout for checkboxes
@@ -340,6 +344,8 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         }
         super.onPause();
     }
+
+
 
 
     /**

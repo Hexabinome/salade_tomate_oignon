@@ -43,4 +43,5 @@ dependencies {
     compile 'com.h6ah4i.android.tablayouthelper:tablayouthelper:0.7.0'
     compile "com.android.support:support-v4:${supportLibVersion}"
     compile 'com.github.techery:ProperRatingBar:v0.0.3'
+    compile 'com.github.deano2390:MaterialShowcaseView:1.0.5@aar'
 }
