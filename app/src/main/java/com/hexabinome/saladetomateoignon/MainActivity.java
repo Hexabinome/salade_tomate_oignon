@@ -206,16 +206,16 @@ public class MainActivity extends AppCompatActivity implements
         sequence.setConfig(config);
 
         sequence.addSequenceItem(tabLayout.getTabAt(2).getCustomView(),
-                "Ici vous pourrez modifiez vos criteres minimum de choix des points de " +
+                "Ici vous pourrez modifier vos critères de choix pour les points de " +
                         "restauration", "J'ai compris");
 
         sequence.addSequenceItem(tabLayout.getTabAt(1).getCustomView(),
-                "Retrouvez ici les points de restaurations correspondant a vos preferences, Vous" +
+                "Retrouvez ici les points de restauration correspondant à vos préférences, Vous" +
                         " pourrez les liker ou les disliker en fonction de vos goûts", "J'ai compris");
 
         sequence.addSequenceItem(tabLayout.getTabAt(0).getCustomView(),
                 "Tous vos points des restaurations favoris se retrouveront ici," +
-                        " libre a vous de les noter, de consulter leurs localisations, descriptions" +
+                        " libre à vous de les noter, de consulter leurs localisations, descriptions" +
                         " ou bien de les supprimer de vos favoris", "J'ai compris");
 
         sequence.start();
