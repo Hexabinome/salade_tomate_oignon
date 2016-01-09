@@ -74,10 +74,17 @@ public class LoginActivity extends AppCompatActivity {
 
     private void submitForm() {
 
-        Utilisateur user = Mock.getUtilisateur(inputEmail.getText().toString(), inputPassword.getText().toString());
-        if (user == null) {
+        if(!Mock.existsUser(inputEmail.getText().toString()))
+        {
             //l'utilisateur n'existe pas
             inputLayoutEmail.setError(getString(R.string.err_unknown_user));
+            return;
+        }
+
+        Utilisateur user = Mock.getUtilisateur(inputEmail.getText().toString(), inputPassword.getText().toString());
+        if (user == null) {
+            //l'utilisateur existe mais le mdp n'est pas correct
+            inputLayoutPassword.setError(getString(R.string.err_bad_password));
             return;
         }
 

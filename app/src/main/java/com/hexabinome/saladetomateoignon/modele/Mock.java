@@ -45,6 +45,11 @@ public final class Mock {
         }
     }
 
+    public static boolean existsUser(String email)
+    {
+        return utilisateurs.containsKey(email);
+    }
+
     private static List<PointDeRestauration> createRestaurant(){
         ArrayList<PointDeRestauration> preference = new ArrayList<PointDeRestauration>();
 
