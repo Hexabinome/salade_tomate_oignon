@@ -301,14 +301,22 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         double latitude = pointDeRestauration.getLocation().getLatitude();
         double longitude = pointDeRestauration.getLocation().getLongitude();
 
-        LatLng restaurant_to_show = new LatLng(latitude, longitude);
+        final LatLng restaurant_to_show = new LatLng(latitude, longitude);
 
-        mMap.addMarker(new MarkerOptions().position(restaurant_to_show)
-                .title(pointDeRestauration.getName()));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(restaurant_to_show));
-        // zoom to la doua
-        mMap.moveCamera(
-                CameraUpdateFactory.newLatLngBounds(PointDeRestauration.LADOUA_LATLNGBOUNDS, 0));
+        mMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
+            @Override
+            public void onMapLoaded() {
+                mMap.addMarker(new MarkerOptions().position(restaurant_to_show)
+                        .title(pointDeRestauration.getName()));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(restaurant_to_show));
+                // zoom to la doua
+                mMap.moveCamera(
+                        CameraUpdateFactory.newLatLngBounds(PointDeRestauration.LADOUA_LATLNGBOUNDS,
+                                0));
+            }
+        });
+
+
     }
 
     public void onMarkPositiveClick(String avis) {
