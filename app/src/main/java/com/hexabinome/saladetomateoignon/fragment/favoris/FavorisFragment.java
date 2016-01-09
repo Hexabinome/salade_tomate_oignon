@@ -195,4 +195,21 @@ public class FavorisFragment extends Fragment {
         }
         return sortedList;
     }
+
+    @Override
+    public void onResume() {
+
+        Toast.makeText(getContext(), "Update needed here!", Toast.LENGTH_SHORT).show();
+
+        Utilisateur user = PrefUtils.recupererUtilisateur(getContext());
+
+        List<PointDeRestauration> preferenceList = new ArrayList<>(user.getFavoris());
+        preferenceList = sortRestaurantList(preferenceList,user);
+
+        restaurantAdapter.setPointDeRestaurationList(preferenceList);
+            animationAdapter.reset();
+            animationAdapter.notifyDataSetChanged();
+
+        super.onResume();
+    }
 }
