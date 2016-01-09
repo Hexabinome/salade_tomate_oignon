@@ -93,7 +93,7 @@
                     android:layout_weight="0.25"
                     android:drawableTop="@drawable/ic_watch"
                     android:gravity="center"
-                    android:text="@string/temps"
+                    android:text="@string/temps_attente"
                     android:textAppearance="@style/LabelTextAppearance"
                     />
 
@@ -110,6 +110,14 @@
 
             </LinearLayout>
 
+            <TextView
+                android:layout_marginTop="@dimen/card_margin"
+                android:layout_marginStart="@dimen/card_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/PreferencesDecriptionTextStyle"
+                android:text="@string/description_temps_moyen"/>
+
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -123,6 +131,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_description"
                         android:text="Description"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
 
@@ -135,6 +144,145 @@
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/card_margin">
+
+                <LinearLayout
+                    style="@style/Widget.CardContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_time"
+                        android:paddingBottom="4dp"
+                        android:text="Temps d'attente"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/temps1"
+                            android:textAppearance="@style/LabelTextAppearance"/>
+
+                        <TextView
+                            android:id="@+id/temps1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:gravity="center"
+                            android:text="@string/temps_attente"
+                            android:textAppearance="@style/LabelTextAppearance"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/temps2"
+                            android:textAppearance="@style/LabelTextAppearance"/>
+
+                        <TextView
+                            android:id="@+id/temps2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:gravity="center"
+                            android:text="@string/temps_attente"
+                            android:textAppearance="@style/LabelTextAppearance"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/temps3"
+                            android:textAppearance="@style/LabelTextAppearance"/>
+
+
+                        <TextView
+                            android:id="@+id/temps3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:gravity="center"
+                            android:text="@string/temps_attente"
+                            android:textAppearance="@style/LabelTextAppearance"
+                            />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/temps4"
+                            android:textAppearance="@style/LabelTextAppearance"/>
+
+
+                        <TextView
+                            android:id="@+id/temps4"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:gravity="center"
+                            android:text="@string/temps_attente"
+                            android:textAppearance="@style/LabelTextAppearance"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/temps5"
+                            android:textAppearance="@style/LabelTextAppearance"/>
+
+                        <TextView
+                            android:id="@+id/temps5"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:gravity="center"
+                            android:text="@string/temps_attente"
+                            android:textAppearance="@style/LabelTextAppearance"
+                            />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
 
             <android.support.v7.widget.CardView
                 android:id="@+id/menuCardview"
@@ -150,6 +298,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_restaurant"
                         android:text="Menu du jour"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
 
@@ -161,8 +310,6 @@
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
-
-
 
 
             <LinearLayout
@@ -200,23 +347,23 @@
 
                 <fragment
                     android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:name="com.google.android.gms.maps.SupportMapFragment"/>
+                    android:layout_height="match_parent"/>
 
                 <ImageView
                     android:id="@+id/transparent_image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/fbutton_color_transparent" />
+                    android:background="@color/fbutton_color_transparent"/>
             </RelativeLayout>
 
             <LinearLayout
                 android:id="@+id/comments"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="@dimen/activity_horizontal_margin">
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
 
             </LinearLayout>
             <!-- fin des avis-->

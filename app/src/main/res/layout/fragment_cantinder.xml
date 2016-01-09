@@ -74,7 +74,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/cantinder_board_horizontal_margin"
-                    android:text="@string/CantinderTest_TempsAttente"
+                    android:text="@string/temps_attente_moyen"
                     android:textAppearance="@style/LabelTextAppearance"/>
 
                 <TextView
@@ -83,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="@dimen/cantinder_board_horizontal_margin"
-                    android:text="@string/CantinderTest_Price"
+                    android:text="@string/prix_restaurant"
                     android:textAppearance="@style/LabelTextAppearance"/>
             </RelativeLayout>
             <RelativeLayout
@@ -97,7 +97,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/cantinder_board_horizontal_margin"
-                    android:text="@string/CantinderTest_Distance"
+                    android:text="@string/distance_restaurant"
                     android:textAppearance="@style/LabelTextAppearance"/>
 
                 <RatingBar

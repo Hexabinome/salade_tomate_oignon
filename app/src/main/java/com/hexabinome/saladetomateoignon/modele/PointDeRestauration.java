@@ -2,6 +2,7 @@ package com.hexabinome.saladetomateoignon.modele;
 
 
 import android.location.Location;
+import android.util.SparseIntArray;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
@@ -13,12 +14,11 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
- * Created by robinroyer on 10/12/2015.
+ * Classe représentant un point de restauration.
  */
 public class PointDeRestauration implements Comparable<PointDeRestauration> {
     private String name;
     private double prix;
-    private int tempsAttenteMoy;
     private double note;
     private Set<TypePointDeRestauration> typePointDeRestauration;
     private Set<TypeRegime> regimeSet;
@@ -27,6 +27,18 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
     private String description;
     private int idPhoto;
     private String adresse;
+
+    /**
+     * Nombre de tranches horaires
+     */
+    private static final int NB_TRANCHE_HEURE = 5;
+
+    /**
+     * Un tableau qui contient le temps d'attente par tranche de 30mn de 11h30 à 14h
+     */
+    private SparseIntArray tempsDattenteParTranche ;
+
+
 
     public static LatLngBounds LADOUA_LATLNGBOUNDS = new LatLngBounds(new LatLng(45.77476, 4.86031),
             new LatLng(45.78827, 4.88769));
@@ -45,15 +57,15 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
         avisList = new ArrayList<>();
         location = new Location("?");
         idPhoto = NO_PHOTO;
+        tempsDattenteParTranche = new SparseIntArray(NB_TRANCHE_HEURE);
     }
 
-    public PointDeRestauration(String myname, double myprice, int tempsAttenteMoy,
+    public PointDeRestauration(String myname, double myprice,
                                double note, Set<TypePointDeRestauration> typePointDeRestauration,
                                Set<TypeRegime> regimes, List<Avis> avis, double longitude, double latitude,
                                String description, int idPhoto, String menuDuJour) {
         this.prix = myprice;
         this.name = myname;
-        this.tempsAttenteMoy = tempsAttenteMoy;
         this.note = note;
         this.typePointDeRestauration = typePointDeRestauration;
         this.regimeSet = regimes;
@@ -107,7 +119,11 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
     }
 
     public int getTempsAttenteMoy() {
-        return tempsAttenteMoy;
+        int somme = 0;
+        for (int i = 0; i < tempsDattenteParTranche.size(); i++) {
+            somme += tempsDattenteParTranche.valueAt(i);
+        }
+        return somme/tempsDattenteParTranche.size();
     }
 
 
@@ -179,10 +195,7 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
             return this;
         }
 
-        public Builder tempsAttenteMoy(int tempsAttenteMoy) {
-            instance.tempsAttenteMoy = tempsAttenteMoy;
-            return this;
-        }
+
 
         public Builder description(String description) {
             instance.description = description;
@@ -210,9 +223,18 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
             return this;
         }
 
+        public Builder addTempsDattente(int idTranche,int tempsMinute){
+            instance.tempsDattenteParTranche.put(idTranche,tempsMinute);
+            return this;
+        }
+
         public PointDeRestauration build() {
             return instance;
         }
+    }
+
+    public int getTempsDattente(int id){
+        return tempsDattenteParTranche.get(id,0);
     }
 
 
@@ -276,14 +298,15 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
         return "PointDeRestauration{" +
                 "name='" + name + '\'' +
                 ", prix=" + prix +
-                ", tempsAttenteMoy=" + tempsAttenteMoy +
                 ", note=" + note +
                 ", typePointDeRestauration=" + typePointDeRestauration +
                 ", regimeSet=" + regimeSet +
+                ", avisList=" + avisList +
                 ", location=" + location +
                 ", description='" + description + '\'' +
                 ", idPhoto=" + idPhoto +
                 ", adresse='" + adresse + '\'' +
+                ", tempsDattenteParTranche=" + tempsDattenteParTranche +
                 ", menuDuJour='" + menuDuJour + '\'' +
                 '}';
     }

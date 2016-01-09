@@ -17,14 +17,11 @@
     <string name="action_about">A propos</string>
     <string name="Cantinder_DetailRestaurant">Previous restaurant details</string>
     <string name="CantinderTest_Title">TACOS - Snack du campus</string>
-    <string name="CantinderTest_TempsAttente">10</string>
-    <string name="CantinderTest_Distance">1.4</string>
-    <string name="CantinderTest_Grade">4</string>
-    <string name="CantinderTest_Price">4.5</string>
     <string name="preference_file_key">com.hexabinome.saladetomateoignon</string>
     <string name="cheese_ipsum">Jarlsberg lancashire edam. Dolcelatte hard cheese brie st.</string>
-    <string name="temps">%dmn d\'attente</string>
-    <string name="temps2">%dmn</string>
+    <string name="temps_attente">%dmn d\'attente*</string>
+    <string name="temps_attente_moyen">%dmn d\'attente en moyenne</string>
+    <string name="temps_attente_2">%dmn</string>
     <string name="prix_restaurant">%.2f €</string>
     <string name="prix_restaurant_entier">%d €</string>
     <string name="distance_restaurant">%.2f mètres</string>
@@ -38,5 +35,10 @@
     <string name="add_optional_comment">Laissez un avis (optionnel)</string>
     <string name="valider">Valider</string>
     <string name="annuler">Annuler</string>
-
+    <string name="temps1">11h30 – 12h00</string>
+    <string name="temps2">12h00 – 12h30</string>
+    <string name="temps3">12h30 – 13h00</string>
+    <string name="temps4">13h00 – 13h30</string>
+    <string name="temps5">13h30 – 14h00</string>
+    <string name="description_temps_moyen">*Temps moyen d\'attente entre 11h30 14h00.</string>
 </resources>

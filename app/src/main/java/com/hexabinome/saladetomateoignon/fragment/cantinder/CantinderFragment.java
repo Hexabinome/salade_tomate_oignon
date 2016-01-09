@@ -1,6 +1,5 @@
 package com.hexabinome.saladetomateoignon.fragment.cantinder;
 
-import android.app.SearchManager;
 import android.content.Context;
 
 import android.content.Intent;
@@ -9,7 +8,6 @@ import android.support.design.widget.Snackbar;
 import android.support.percent.PercentRelativeLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,8 +43,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
-
-import info.hoang8f.widget.FButton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -404,7 +400,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
                 }
             }
 
-            restaurantTempsAttente.setText(String.format(getString(R.string.temps),
+            restaurantTempsAttente.setText(String.format(getString(R.string.temps_attente_moyen),
                     currentPointDeRestauration.getTempsAttenteMoy()));
             rateBar.setNumStars((int) currentPointDeRestauration.getNote());
 

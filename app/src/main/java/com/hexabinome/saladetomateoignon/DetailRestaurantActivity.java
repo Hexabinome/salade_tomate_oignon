@@ -5,23 +5,19 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -37,6 +33,7 @@ import com.hexabinome.saladetomateoignon.modele.Avis;
 import com.hexabinome.saladetomateoignon.modele.PointDeRestauration;
 import com.hexabinome.saladetomateoignon.modele.Utilisateur;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DetailRestaurantActivity extends AppCompatActivity implements OnMapReadyCallback,
@@ -49,6 +46,8 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
     private PointDeRestauration pointDeRestauration;
 
     private TextView noteTextview, prixTextView, tempsAttenteTextView, distanceTextView, descriptionTextView, menuDuJourTextView;
+
+    private List<TextView> tempsDattenteTextViews = new ArrayList<>();
 
     private LinearLayout avisLayout;
     private RatingBar noteRatingBar;
@@ -128,9 +127,18 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         imageView = (ImageView) findViewById(R.id.imageRestaurant);
         noteRatingBar = (RatingBar) findViewById(R.id.notation);
         deleteFloatingActionButton = (FloatingActionButton) findViewById(R.id.delete);
+
         tempsAttenteTextView.setText(
-                String.format(getString(R.string.temps), pointDeRestauration.getTempsAttenteMoy()));
+                String.format(getString(R.string.temps_attente), pointDeRestauration.getTempsAttenteMoy()));
+
         menuDuJourTextView = (TextView) findViewById(R.id.menuDujour);
+
+        tempsDattenteTextViews.add((TextView)findViewById(R.id.temps1));
+        tempsDattenteTextViews.add((TextView)findViewById(R.id.temps2));
+        tempsDattenteTextViews.add((TextView)findViewById(R.id.temps3));
+        tempsDattenteTextViews.add((TextView)findViewById(R.id.temps4));
+        tempsDattenteTextViews.add((TextView)findViewById(R.id.temps5));
+
 
         if(pointDeRestauration.getMenuDuJour() != null){
             menuDuJourTextView.setText(pointDeRestauration.getMenuDuJour());
@@ -141,7 +149,6 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
 
         if (pointDeRestauration.getTypePointDeRestauration()
                 .contains(PointDeRestauration.TypePointDeRestauration.SUPERMARCHE)) {
-
             prixTextView.setText("-- €");
         } else {
             if (utilisateur.getTypeUtilisateur() == Utilisateur.TypeUtilisateur.PROFESSEUR)
@@ -198,7 +205,8 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
-                                Utilisateur user = PrefUtils.recupererUtilisateur(getApplicationContext());
+                                Utilisateur user = PrefUtils.recupererUtilisateur(
+                                        getApplicationContext());
                                 user.getFavoris().remove(pointDeRestauration);
 
                                 PrefUtils.sauvegardeUtilisateur(DetailRestaurantActivity.this,
@@ -216,6 +224,8 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
             }
         });
         oldMark = 0;
+
+        configureTempsDattente();
     }
 
 
@@ -334,5 +344,12 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
 
     public void onMarkNegativeClick() {
         noteRatingBar.setRating(oldMark);
+    }
+
+    private void configureTempsDattente(){
+        for (int i = 0; i < tempsDattenteTextViews.size(); i++) {
+            TextView textView = tempsDattenteTextViews.get(i);
+            textView.setText(String.format(getString(R.string.temps_attente_2),pointDeRestauration.getTempsDattente(i+1)));
+        }
     }
 }

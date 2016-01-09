@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,6 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.hexabinome.saladetomateoignon.MainActivity;
 import com.hexabinome.saladetomateoignon.PrefUtils;
 import com.hexabinome.saladetomateoignon.R;
 import com.hexabinome.saladetomateoignon.modele.PointDeRestauration;
@@ -30,9 +28,6 @@ import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
-import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -145,12 +140,12 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
 
         attenteSeekBar.setProgress(preferences.getTempsDattente());
         tempsTextView.setText(
-                String.format(getString(R.string.temps2), preferences.getTempsDattente()));
+                String.format(getString(R.string.temps_attente_2), preferences.getTempsDattente()));
         attenteSeekBar.setOnProgressChangeListener(new DiscreteSeekBar.OnProgressChangeListener() {
             @Override
             public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
                 tempsTextView.setText(
-                        String.format(getString(R.string.temps2), value));
+                        String.format(getString(R.string.temps_attente_2), value));
             }
 
             @Override

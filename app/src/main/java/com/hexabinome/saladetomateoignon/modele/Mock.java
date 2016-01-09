@@ -58,7 +58,6 @@ public final class Mock {
                 .prix(3.2)
                 .longitude(4.876355)
                 .latitude(45.780984)
-                .tempsAttenteMoy(15)
                 .idPhoto(R.drawable.jussieu)
                 .note(3)
                 .description(
@@ -71,6 +70,11 @@ public final class Mock {
                 .addAvis(new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer","12/12/2015"))
                 .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra","05/01/2015"))
                 .menuDujour("Brochette de dinde sauce mexicaine steak hache sauce.")
+                .addTempsDattente(1,10)
+                .addTempsDattente(2,15)
+                .addTempsDattente(3,25)
+                .addTempsDattente(4,15)
+                .addTempsDattente(5,5)
                 .build();
 
         PointDeRestauration grignote = PointDeRestauration.builder()
@@ -78,7 +82,6 @@ public final class Mock {
                 .prix(5.2)
                 .longitude(4.874866)
                 .latitude(45.784130)
-                .tempsAttenteMoy(10)
                 .note(2)
                 .description(
                         "A Villeurbanne face au campus de la Doua de l’université Lyon 1 et de l’INSA, salle de 34 places.")
@@ -89,8 +92,13 @@ public final class Mock {
                 .addAvis(
                         new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer",
                                 "02/15/2014"))
-                .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra","12/11/2013"))
+                .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra", "12/11/2013"))
                 .menuDujour("Steak hache sauce poivre farfalles aricots verts.")
+                .addTempsDattente(1, 10)
+                .addTempsDattente(2, 15)
+                .addTempsDattente(3, 25)
+                .addTempsDattente(4, 15)
+                .addTempsDattente(5, 5)
                 .build();
 
         PointDeRestauration puvis = PointDeRestauration.builder()
@@ -98,15 +106,23 @@ public final class Mock {
                 .prix(3.2)
                 .longitude(4.876355)
                 .latitude(45.780984)
-                .tempsAttenteMoy(15)
                 .note(2)
                 .idPhoto(PointDeRestauration.NO_PHOTO)
-                .description("A Villeurbanne face au campus de la Doua de l’université Lyon 1 et CPE, salle de 813 places.")
-                .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
+                .description(
+                        "A Villeurbanne face au campus de la Doua de l’université Lyon 1 et CPE, salle de 813 places.")
+                .addTypePointDeRestauration(
+                        PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
-                .addAvis(new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer","17/04/2015"))
-                .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra","22/03/2015"))
+                .addAvis(
+                        new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer",
+                                "17/04/2015"))
+                .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra", "22/03/2015"))
                 .menuDujour("Omelette paysanne.")
+                .addTempsDattente(1, 10)
+                .addTempsDattente(2, 15)
+                .addTempsDattente(3, 25)
+                .addTempsDattente(4, 15)
+                .addTempsDattente(5, 5)
                 .build();
 
         // Restaurant INSA
@@ -115,7 +131,6 @@ public final class Mock {
                 .prix(3.2)
                 .longitude(4.878014)
                 .latitude(45.782281)
-                .tempsAttenteMoy(15)
                 .note(2)
                 .description("Restauration italienne.")
                 .idPhoto(PointDeRestauration.NO_PHOTO)
@@ -125,8 +140,13 @@ public final class Mock {
                 .addAvis(
                         new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer",
                                 "12/01/2014"))
-                .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra","09/03/2015"))
+                .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra", "09/03/2015"))
                 .menuDujour("Gratin de choux fleur.")
+                .addTempsDattente(1, 10)
+                .addTempsDattente(2, 15)
+                .addTempsDattente(3, 25)
+                .addTempsDattente(4, 15)
+                .addTempsDattente(5, 5)
                 .build();
 
         PointDeRestauration grillon = PointDeRestauration.builder()
@@ -134,7 +154,6 @@ public final class Mock {
                 .prix(4.2)
                 .longitude(4.874866)
                 .latitude(45.784130)
-                .tempsAttenteMoy(5)
                 .note(1)
                 .description("Restaurant grill.")
                 .idPhoto(PointDeRestauration.NO_PHOTO)
@@ -144,8 +163,13 @@ public final class Mock {
                 .addAvis(
                         new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer",
                                 "01/10/2015"))
-                .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra","10/12/2014"))
+                .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra", "10/12/2014"))
                 .menuDujour("Blanquette de veau riz.")
+                .addTempsDattente(1, 10)
+                .addTempsDattente(2, 15)
+                .addTempsDattente(3, 25)
+                .addTempsDattente(4, 15)
+                .addTempsDattente(5, 5)
                 .build();
 
         PointDeRestauration castor = PointDeRestauration.builder()
@@ -153,19 +177,24 @@ public final class Mock {
                 .prix(4.4)
                 .longitude(4.869037)
                 .latitude(45.783846)
-                .tempsAttenteMoy(10)
                 .note(3)
                 .description("Restaurant self-service traditionnel.")
                 .idPhoto(PointDeRestauration.NO_PHOTO)
-                .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
+                .addTypePointDeRestauration(
+                        PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
                 .addAvis(
                         new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer",
                                 "12/12/2015"))
-                .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra","01/10/2015"))
+                .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra", "01/10/2015"))
                 .menuDujour("Epinards sauce brune.")
+                .addTempsDattente(1, 10)
+                .addTempsDattente(2, 15)
+                .addTempsDattente(3, 25)
+                .addTempsDattente(4, 15)
+                .addTempsDattente(5, 5)
                 .build();
 
         PointDeRestauration beurk = PointDeRestauration.builder()
@@ -173,16 +202,23 @@ public final class Mock {
                 .prix(4.4)
                 .longitude(4.873614)
                 .latitude(45.78108)
-                .tempsAttenteMoy(10)
                 .note(1)
                 .description("Restaurant pour les professeurs de l'INSA.")
                 .idPhoto(PointDeRestauration.NO_PHOTO)
-                .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
+                .addTypePointDeRestauration(
+                        PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
-                .addAvis(new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer","12/03/2013"))
-                .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra","12/12/2012"))
+                .addAvis(
+                        new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer",
+                                "12/03/2013"))
+                .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra", "12/12/2012"))
                 .menuDujour("Rôti de dinde.")
+                .addTempsDattente(1, 15)
+                .addTempsDattente(2, 25)
+                .addTempsDattente(3, 30)
+                .addTempsDattente(4, 20)
+                .addTempsDattente(5, 10)
                 .build();
 
         // Supermarché
@@ -191,7 +227,6 @@ public final class Mock {
                 .prix(0.0)
                 .longitude(4.875102)
                 .latitude(45.776971)
-                .tempsAttenteMoy(10)
                 .note(3)
                 .description(
                         "Carrefour Market, enseigne française de supermarchés appartenant au groupe Carrefour.")
@@ -200,8 +235,15 @@ public final class Mock {
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
-                .addAvis(new Avis(2, "Les caissières ne sont pas très sympa", "Alexis Andra", "12/12/2013"))
-                .addAvis(new Avis(2, "Il fait trop froid dans le magasin", "Alexis Papin", "12/06/2013"))
+                .addAvis(new Avis(2, "Les caissières ne sont pas très sympa", "Alexis Andra",
+                        "12/12/2013"))
+                .addAvis(new Avis(2, "Il fait trop froid dans le magasin", "Alexis Papin",
+                        "12/06/2013"))
+                .addTempsDattente(1, 10)
+                .addTempsDattente(2, 15)
+                .addTempsDattente(3, 15)
+                .addTempsDattente(4, 15)
+                .addTempsDattente(5, 5)
                 .build();
 
         // cafeteria
@@ -210,16 +252,23 @@ public final class Mock {
                 .prix(3.2)
                 .longitude(4.876355)
                 .latitude(45.780984)
-                .tempsAttenteMoy(15)
                 .note(3)
-                .description("A Villeurbanne, situé sur le campus de la Doua de l’Université Lyon 1, à l’intérieur du déambulatoire 1er cycle, salle de 78 places.")
+                .description(
+                        "A Villeurbanne, situé sur le campus de la Doua de l’Université Lyon 1, à l’intérieur du déambulatoire 1er cycle, salle de 78 places.")
                 .idPhoto(R.drawable.cybercafe_doua)
                 .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.CAFETERIA)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
-                .addAvis(new Avis(3, "Cyber très sympa avec de bon sandwich", "David Wobrock","06/10/2015"))
-                .addAvis(new Avis(2, "C'etait vraiment bon avec une bonne ambiance", "Alexis Andra","12/05/2015"))
+                .addAvis(new Avis(3, "Cyber très sympa avec de bon sandwich", "David Wobrock",
+                        "06/10/2015"))
+                .addAvis(new Avis(2, "C'etait vraiment bon avec une bonne ambiance", "Alexis Andra",
+                        "12/05/2015"))
+                .addTempsDattente(1, 10)
+                .addTempsDattente(2, 15)
+                .addTempsDattente(3, 20)
+                .addTempsDattente(4, 15)
+                .addTempsDattente(5, 5)
                 .build();
 
         // cafeteria
@@ -228,16 +277,23 @@ public final class Mock {
                 .prix(3.2)
                 .longitude(4.876355)
                 .latitude(45.780984)
-                .tempsAttenteMoy(10)
                 .note(3)
-                .description("Située à Villeurbanne face au campus de la Doua de l’Université Lyon 1 et CPE.")
+                .description(
+                        "Située à Villeurbanne face au campus de la Doua de l’Université Lyon 1 et CPE.")
                 .idPhoto(PointDeRestauration.NO_PHOTO)
                 .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.CAFETERIA)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
-                .addAvis(new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer","12/12/2015"))
-                .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra","12/06/2015"))
+                .addAvis(
+                        new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer",
+                                "12/12/2015"))
+                .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra", "12/06/2015"))
+                .addTempsDattente(1, 5)
+                .addTempsDattente(2, 10)
+                .addTempsDattente(3, 10)
+                .addTempsDattente(4, 10)
+                .addTempsDattente(5, 5)
                 .build();
 
         PointDeRestauration astree = PointDeRestauration.builder()
@@ -245,18 +301,26 @@ public final class Mock {
                 .prix(3.2)
                 .longitude(4.876355)
                 .latitude(45.780984)
-                .tempsAttenteMoy(10)
                 .note(3)
-                .description("A Villeurbanne, situé sur le campus de la Doua de l’Université Lyon 1, à l’intérieur du bâtiment Astrée, salle de 90 places.")
+                .description(
+                        "A Villeurbanne, situé sur le campus de la Doua de l’Université Lyon 1, à l’intérieur du bâtiment Astrée, salle de 90 places.")
                 .idPhoto(R.drawable.cafe_astree)
                 .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.CAFETERIA)
-                .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
+                .addTypePointDeRestauration(
+                        PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
-                .addAvis(new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer","12/10/2015"))
-                .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra","12/09/2015"))
+                .addAvis(
+                        new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer",
+                                "12/10/2015"))
+                .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra", "12/09/2015"))
                 .menuDujour("Différents sandwichs : thon, poulet, viande hachée.")
+                .addTempsDattente(1, 5)
+                .addTempsDattente(2, 10)
+                .addTempsDattente(3, 15)
+                .addTempsDattente(4, 15)
+                .addTempsDattente(5, 5)
                 .build();
 
         PointDeRestauration cafetJussieu = PointDeRestauration.builder()
@@ -264,7 +328,6 @@ public final class Mock {
                 .prix(3.2)
                 .longitude(4.876355)
                 .latitude(45.780984)
-                .tempsAttenteMoy(10)
                 .note(5)
                 .description("A Villeurbanne face au campus de la Doua de l’université Lyon 1 et de l’INSA.")
                 .idPhoto(PointDeRestauration.NO_PHOTO)
@@ -275,6 +338,11 @@ public final class Mock {
                 .addAvis(new Avis(3, "J'ai beaucoup aimé ce restaurant gastronomique", "Robin Royer","12/12/2015"))
                 .addAvis(new Avis(2, "C'etait vraiment pas bon", "Alexis Andra","06/12/2015"))
                 .menuDujour("Différents sandwichs : thon, poulet, viande hachée.")
+                .addTempsDattente(1,10)
+                .addTempsDattente(2,15)
+                .addTempsDattente(3,25)
+                .addTempsDattente(4,15)
+                .addTempsDattente(5,5)
                 .build();
 
         preference.add(jussieu);
