@@ -1,7 +1,9 @@
 package com.hexabinome.saladetomateoignon.fragment.cantinder;
 
+import android.app.SearchManager;
 import android.content.Context;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.percent.PercentRelativeLayout;
@@ -20,6 +22,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.hexabinome.saladetomateoignon.DetailRestaurantActivity;
 import com.hexabinome.saladetomateoignon.PrefUtils;
 import com.hexabinome.saladetomateoignon.R;
 import com.hexabinome.saladetomateoignon.modele.Mock;
@@ -146,6 +150,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
     public void onClick(View v) {
         if (v.getId() == acceptButton.getId()) {
             acceptRestaurant();
+
         } else if (v.getId() == declineButton.getId()) {
             declineRestaurant();
         }
@@ -211,6 +216,29 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         restaurationList.remove(currentPointDeRestauration);
         currentPointDeRestauration = getNextRestaurant();
         displayRestaurant();
+
+        Snackbar snackbar = Snackbar.make(getView(), "Vous avez liké un point de restauration.",
+                Snackbar.LENGTH_SHORT);
+        snackbar.setAction("Details", new AfficherDetailsListener());
+        snackbar.show();
+    }
+
+    /**
+     * Cet ecouteur est utilise quand un utilisateur clique sur le snackbar qui est affiche apres avoir like un point de restauration.
+     */
+    private class AfficherDetailsListener implements View.OnClickListener
+    {
+        @Override
+        public void onClick(View v) {
+            //trouver le resto qui a ete like
+            PointDeRestauration pointDeRestauration = previousPointDeRestauration;
+            String restaurantJson = new Gson().toJson(pointDeRestauration);
+
+            //rediriger vers activity avec details du resto like...
+            Intent detailActivity = new Intent(getActivity(), DetailRestaurantActivity.class);
+            detailActivity.putExtra(DetailRestaurantActivity.RESTAURANT_EXTRA, restaurantJson);
+            startActivity(detailActivity);
+        }
     }
 
 
