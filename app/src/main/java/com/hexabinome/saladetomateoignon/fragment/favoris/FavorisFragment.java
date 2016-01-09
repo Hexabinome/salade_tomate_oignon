@@ -129,10 +129,8 @@ public class FavorisFragment extends Fragment {
         super.setUserVisibleHint(isVisibleToUser);
         if(isVisibleToUser && isNewFavorisAdded){
 
-            Utilisateur user = PrefUtils.recupererUtilisateur(getContext());
+            List<PointDeRestauration> preferenceList = getPreferenceList();
 
-            List<PointDeRestauration> preferenceList = new ArrayList<>(user.getFavoris());
-            preferenceList = sortRestaurantList(preferenceList,user);
             if (!preferenceList.isEmpty())
             {
                 empty_favoris_textView.setVisibility(View.GONE);
@@ -144,6 +142,13 @@ public class FavorisFragment extends Fragment {
             animationAdapter.notifyDataSetChanged();
             isNewFavorisAdded = false;
         }
+    }
+
+    private List<PointDeRestauration> getPreferenceList()
+    {
+        Utilisateur user = PrefUtils.recupererUtilisateur(getContext());
+        List<PointDeRestauration> preferenceList = new ArrayList<>(user.getFavoris());
+        return sortRestaurantList(preferenceList,user);
     }
 
     /**
@@ -198,15 +203,7 @@ public class FavorisFragment extends Fragment {
 
     @Override
     public void onResume() {
-
-        Toast.makeText(getContext(), "Update needed here!", Toast.LENGTH_SHORT).show();
-
-        Utilisateur user = PrefUtils.recupererUtilisateur(getContext());
-
-        List<PointDeRestauration> preferenceList = new ArrayList<>(user.getFavoris());
-        preferenceList = sortRestaurantList(preferenceList,user);
-
-        restaurantAdapter.setPointDeRestaurationList(preferenceList);
+        restaurantAdapter.setPointDeRestaurationList(getPreferenceList());
             animationAdapter.reset();
             animationAdapter.notifyDataSetChanged();
 
