@@ -43,6 +43,7 @@ public class FavorisFragment extends Fragment {
     private TextView empty_favoris_textView;
     private AlphaInAnimationAdapter animationAdapter;
     private RestaurantAdapter restaurantAdapter;
+    private int numberOfFavourites = 0;
 
     public FavorisFragment() {
         // Required empty public constructor
@@ -148,6 +149,10 @@ public class FavorisFragment extends Fragment {
     {
         Utilisateur user = PrefUtils.recupererUtilisateur(getContext());
         List<PointDeRestauration> preferenceList = new ArrayList<>(user.getFavoris());
+
+        //stoquer le numero des elements favouris (on en a besoin dans onResume)
+        numberOfFavourites = preferenceList.size();
+
         return sortRestaurantList(preferenceList,user);
     }
 
@@ -203,10 +208,12 @@ public class FavorisFragment extends Fragment {
 
     @Override
     public void onResume() {
-        restaurantAdapter.setPointDeRestaurationList(getPreferenceList());
+        //faire un MAJ de la liste des favouris si sa taille a change
+        if(numberOfFavourites != getPreferenceList().size()) {
+            restaurantAdapter.setPointDeRestaurationList(getPreferenceList());
             animationAdapter.reset();
             animationAdapter.notifyDataSetChanged();
-
+        }
         super.onResume();
     }
 }
