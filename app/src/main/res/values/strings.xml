@@ -41,4 +41,5 @@
     <string name="temps4">13h00 – 13h30</string>
     <string name="temps5">13h30 – 14h00</string>
     <string name="description_temps_moyen">*Temps moyen d\'attente entre 11h30 14h00.</string>
+    <string name="gps_desactive">Votre GPS semble inactif, souhaitez vous l\'activer?. Pour bénéficier d\'une meilleure utilisation de l\'application, nous avons besoin de votre position.</string>
 </resources>

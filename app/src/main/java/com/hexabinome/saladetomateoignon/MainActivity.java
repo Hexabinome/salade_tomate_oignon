@@ -58,11 +58,15 @@ public class MainActivity extends AppCompatActivity implements
 
         // Get the ViewPager and set it's PagerAdapter so that it can display items
         viewPager = (ViewPager) findViewById(R.id.viewpager);
-        customFragmentPagerAdapter = new CustomFragmentPagerAdapter(getSupportFragmentManager(), this);
+        customFragmentPagerAdapter = new CustomFragmentPagerAdapter(getSupportFragmentManager(),
+                this);
 
-        customFragmentPagerAdapter.addFragment(new FavorisFragment(), "Favoris", R.drawable.ic_star2);
-        customFragmentPagerAdapter.addFragment(new CantinderFragment(), "Cantinder", R.drawable.ic_eye);
-        customFragmentPagerAdapter.addFragment(new PreferencesFragment(), "Préférences", R.drawable.ic_preferences);
+        customFragmentPagerAdapter.addFragment(new FavorisFragment(), "Favoris",
+                R.drawable.ic_star2);
+        customFragmentPagerAdapter.addFragment(new CantinderFragment(), "Cantinder",
+                R.drawable.ic_eye);
+        customFragmentPagerAdapter.addFragment(new PreferencesFragment(), "Préférences",
+                R.drawable.ic_preferences);
 
         viewPager.setAdapter(customFragmentPagerAdapter);
 
@@ -93,24 +97,29 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void checkGPS() {
-        final LocationManager manager = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);
+        final LocationManager manager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
-        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+        if (! manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             buildAlertMessageNoGps();
         }
     }
 
     private void buildAlertMessageNoGps() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Votre GPS semble inactif, souhaitez vous l'activer?")
+        builder.setMessage(
+                getString(R.string.gps_desactive))
                 .setCancelable(false)
+                .setTitle("GPS désactivé")
                 .setPositiveButton("Activer", new DialogInterface.OnClickListener() {
-                    public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
-                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    public void onClick(@SuppressWarnings("unused") final DialogInterface dialog,
+                                        @SuppressWarnings("unused") final int id) {
+                        startActivity(new Intent(
+                                android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
                     }
                 })
-                .setNegativeButton("Quitter", new DialogInterface.OnClickListener() {
-                    public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                .setNegativeButton("Quitter l'application", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog,
+                                        @SuppressWarnings("unused") final int id) {
                         dialog.cancel();
                         finishAffinity();
                     }
@@ -147,7 +156,8 @@ public class MainActivity extends AppCompatActivity implements
 
         switch (id) {
             case R.id.action_a_propos:
-                Toast.makeText(this, "TODO : afficher un dialogue avec quelques info", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "TODO : afficher un dialogue avec quelques info",
+                        Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -175,7 +185,8 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onPreferencesChanged() {
-        CantinderFragment cantinderFragment = (CantinderFragment) customFragmentPagerAdapter.getItem(1);
+        CantinderFragment cantinderFragment = (CantinderFragment) customFragmentPagerAdapter.getItem(
+                1);
         cantinderFragment.setIsPreferencesChanged(true);
     }
 
@@ -242,7 +253,8 @@ public class MainActivity extends AppCompatActivity implements
 
         sequence.addSequenceItem(tabLayout.getTabAt(1).getCustomView(),
                 "Retrouvez ici les points de restauration correspondant à vos préférences, Vous" +
-                        " pourrez les liker ou les disliker en fonction de vos goûts", "J'ai compris");
+                        " pourrez les liker ou les disliker en fonction de vos goûts",
+                "J'ai compris");
 
         sequence.addSequenceItem(tabLayout.getTabAt(0).getCustomView(),
                 "Tous vos points des restaurations favoris se retrouveront ici," +
