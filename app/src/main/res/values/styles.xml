@@ -2,22 +2,31 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+        <!-- Couleur de l'application -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="actionOverflowMenuStyle">@style/CMOptionsMenu</item>
+
+        <!-- pour avoir la Toolbar -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+
+        <!-- Style pour tous les boutons de l'application -->
         <item name="android:buttonStyle">@style/ButtonStyle</item>
+
+        <!-- style pour les options menu -->
+        <item name="android:itemBackground">@android:color/white</item>
+        <item name="android:itemTextAppearance">@style/MenuItemTextStyle</item>
     </style>
 
+    <!-- Theme pour l'activé DetailRestaurantActivity pour avoir un status bar transparant -->
     <style name="CustomApptheme" parent="AppTheme">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
 
+    <!-- pour ne pas avoir d'action bar dans le LoginActivity -->
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -29,7 +38,6 @@
 
     <!-- Cantinder fragment styles -->
     <style name="ActionButton">
-
         <item name="android:scaleType">fitCenter</item>
     </style>
 
@@ -55,6 +63,8 @@
         <item name="android:backgroundTint">@color/colorPrimary</item>
     </style>
 
+
+    <!-- les deux prochains styles permettent de changer le style du text dans le tabLayout -->
     <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
         <item name="tabTextAppearance">@style/MyTabTextAppearance</item>
     </style>
@@ -64,9 +74,9 @@
     </style>
 
 
-    <style name="CMOptionsMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
-        <item name="android:popupBackground">@android:color/white</item>
-        <item name="android:actionMenuTextColor">@android:color/background_dark</item>
+    <style name="MenuItemTextStyle" parent="style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@android:color/background_dark</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
 
