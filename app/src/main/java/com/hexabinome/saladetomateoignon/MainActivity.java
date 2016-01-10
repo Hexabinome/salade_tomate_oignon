@@ -1,7 +1,10 @@
 package com.hexabinome.saladetomateoignon;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -75,19 +78,47 @@ public class MainActivity extends AppCompatActivity implements
                 tab.setCustomView(customFragmentPagerAdapter.getTabView(i));
         }
 
-        CustomTabLayoutHelper tabLayoutHelper = new CustomTabLayoutHelper(tabLayout,viewPager);
+        CustomTabLayoutHelper tabLayoutHelper = new CustomTabLayoutHelper(tabLayout, viewPager);
         tabLayoutHelper.setAutoAdjustTabModeEnabled(true);
         tabLayoutHelper.setOnTabSelectedListener(this);
 
         // set the tab showed at launch
-        if (PrefUtils.getBooleanFromPrefs(this,PrefUtils.PREFS_FIRST_LAUNCH,true)) {
-            PrefUtils.saveBooleanToPrefs(this,PrefUtils.PREFS_FIRST_LAUNCH,false);
+        if (PrefUtils.getBooleanFromPrefs(this, PrefUtils.PREFS_FIRST_LAUNCH, true)) {
+            PrefUtils.saveBooleanToPrefs(this, PrefUtils.PREFS_FIRST_LAUNCH, false);
             viewPager.setCurrentItem(2);
-        }else {
+        } else {
             viewPager.setCurrentItem(1);
         }
         showCasePresentation();
     }
+
+    private void checkGPS() {
+        final LocationManager manager = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);
+
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            buildAlertMessageNoGps();
+        }
+    }
+
+    private void buildAlertMessageNoGps() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Votre GPS semble inactif, souhaitez vous l'activer?")
+                .setCancelable(false)
+                .setPositiveButton("Activer", new DialogInterface.OnClickListener() {
+                    public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                })
+                .setNegativeButton("Quitter", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        dialog.cancel();
+                        finishAffinity();
+                    }
+                });
+        final AlertDialog alert = builder.create();
+        alert.show();
+    }
+
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -197,7 +228,7 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    private void showCasePresentation(){
+    private void showCasePresentation() {
         ShowcaseConfig config = new ShowcaseConfig();
         config.setDelay(500); // half second between each showcase view
 
@@ -221,4 +252,17 @@ public class MainActivity extends AppCompatActivity implements
         sequence.start();
     }
 
+    @Override
+    protected void onResume() {
+
+        /*
+        Note: il suffit de faire le gps check ici, car on-resume est egalement appele quand l'acitvite est active la premiere fois.
+        Notament il ne faut pas appeler le meme test dans onCreate(), sinon on aura deux boites d'alarmes si le GPS est deactive.
+        */
+        super.onResume();
+
+
+        //run gps availability check
+        checkGPS();
+    }
 }
