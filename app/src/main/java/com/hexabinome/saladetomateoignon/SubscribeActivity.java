@@ -126,7 +126,7 @@ public class SubscribeActivity extends AppCompatActivity {
         String LastName = inputLastName.getText().toString().trim();
 
         if (LastName.isEmpty()) {
-            inputLayoutFirstName.setError(getString(R.string.err_msg_last_name));
+            inputLayoutLastName.setError(getString(R.string.err_msg_last_name));
             requestFocus(inputLastName);
             return false;
         } else {
