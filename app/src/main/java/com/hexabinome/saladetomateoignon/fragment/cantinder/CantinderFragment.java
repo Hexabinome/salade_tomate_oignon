@@ -149,7 +149,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 
         } else if (v.getId() == declineButton.getId()) {
             declineRestaurant();
-        } else if( v.getId() == refreshButton.getId()){
+        } else if (v.getId() == refreshButton.getId()) {
             majRestaurationList();
         }
     }
@@ -182,12 +182,27 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 
         Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(this.getContext(),
                 R.anim.dislike);
-//        getView().startAnimation(hyperspaceJumpAnimation);
         cantinder_layout.startAnimation(hyperspaceJumpAnimation);
 
+        hyperspaceJumpAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
 
-        currentPointDeRestauration = getNextRestaurant();
-        displayRestaurant();
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                currentPointDeRestauration = getNextRestaurant();
+                displayRestaurant();
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
 
     }
 
@@ -209,23 +224,39 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         // Next restaurant
         Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(this.getContext(),
                 R.anim.like);
+        hyperspaceJumpAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                restaurationList.remove(currentPointDeRestauration);
+                currentPointDeRestauration = getNextRestaurant();
+                displayRestaurant();
+
+                Snackbar snackbar = Snackbar.make(getView(),
+                        "Vous avez liké un point de restauration.",
+                        Snackbar.LENGTH_SHORT);
+                snackbar.setAction("Details", new AfficherDetailsListener());
+                snackbar.show();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
         //getView().startAnimation(hyperspaceJumpAnimation);
         cantinder_layout.startAnimation(hyperspaceJumpAnimation);
-        restaurationList.remove(currentPointDeRestauration);
-        currentPointDeRestauration = getNextRestaurant();
-        displayRestaurant();
 
-        Snackbar snackbar = Snackbar.make(getView(), "Vous avez liké un point de restauration.",
-                Snackbar.LENGTH_SHORT);
-        snackbar.setAction("Details", new AfficherDetailsListener());
-        snackbar.show();
     }
 
     /**
      * Cet ecouteur est utilise quand un utilisateur clique sur le snackbar qui est affiche apres avoir like un point de restauration.
      */
-    private class AfficherDetailsListener implements View.OnClickListener
-    {
+    private class AfficherDetailsListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
             //trouver le resto qui a ete like
@@ -393,13 +424,13 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
             restaurantTitle.setText(currentPointDeRestauration.getNom());
             restaurantDistance.setText(
                     String.format(getString(R.string.distance_restaurant), distance));
-            if(currentPointDeRestauration.getTypePointDeRestauration().contains(
-                    PointDeRestauration.TypePointDeRestauration.SUPERMARCHE)){
+            if (currentPointDeRestauration.getTypePointDeRestauration().contains(
+                    PointDeRestauration.TypePointDeRestauration.SUPERMARCHE)) {
                 restaurantPrix.setVisibility(View.GONE);
             } else {
-                if(currentUser.getTypeUtilisateur() == Utilisateur.TypeUtilisateur.PROFESSEUR){
+                if (currentUser.getTypeUtilisateur() == Utilisateur.TypeUtilisateur.PROFESSEUR) {
                     restaurantPrix.setText(String.format(getString(R.string.prix_restaurant),
-                            currentPointDeRestauration.getPrix()+PointDeRestauration.DIFFERENCE_PRIX));
+                            currentPointDeRestauration.getPrix() + PointDeRestauration.DIFFERENCE_PRIX));
                 } else {
 
                     restaurantPrix.setText(String.format(getString(R.string.prix_restaurant),
@@ -416,7 +447,8 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
                 restaurantImageView.setImageDrawable(ContextCompat.getDrawable(getContext(),
                         currentPointDeRestauration.getIdPhoto()));
             else {
-                restaurantImageView.setImageDrawable(ContextCompat.getDrawable(getContext(),R.drawable.image_restaurant));
+                restaurantImageView.setImageDrawable(
+                        ContextCompat.getDrawable(getContext(), R.drawable.image_restaurant));
             }
 
         } else {
