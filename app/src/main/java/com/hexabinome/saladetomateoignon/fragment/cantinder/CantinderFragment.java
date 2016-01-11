@@ -97,7 +97,8 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         View inflatedView = inflater.inflate(R.layout.fragment_cantinder, container, false);
         declineButton = (ImageButton) inflatedView.findViewById(R.id.reject);
         acceptButton = (ImageButton) inflatedView.findViewById(R.id.accept);
-        emptyCantinderTextview = (TextView) inflatedView.findViewById(R.id.empty_cardBoard_textview);
+        emptyCantinderTextview = (TextView) inflatedView.findViewById(
+                R.id.empty_cardBoard_textview);
         restaurantImageView = (ImageView) inflatedView.findViewById(R.id.restaurantImageView);
 
         cantinder_layout = (PercentRelativeLayout) inflatedView.findViewById(R.id.cantinder_board);
@@ -196,14 +197,15 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
      */
     public void acceptRestaurant() {
 
-        if (currentPointDeRestauration != null) {
-            // Add current restaurant to favorties
-            currentUser.addToFavorites(currentPointDeRestauration);
-            PrefUtils.sauvegardeUtilisateur(getActivity(), currentUser);
-            mListener.onNewFavorisAdded();
-        }
-        // Next restaurant
+        currentUser = PrefUtils.recupererUtilisateur(getContext());
 
+        // Add current restaurant to favorties
+        currentUser.addToFavorites(currentPointDeRestauration);
+        PrefUtils.sauvegardeUtilisateur(getActivity(), currentUser);
+        mListener.onNewFavorisAdded();
+
+
+        // Next restaurant
 
         Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(this.getContext(),
                 R.anim.like);
