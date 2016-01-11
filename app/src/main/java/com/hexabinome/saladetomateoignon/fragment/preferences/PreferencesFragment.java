@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -60,13 +61,13 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
     private Preferences preferences, oldPreferences;
     private Utilisateur user;
 
-    private TextView distanceTextView, tempsTextView,prixTextView;
+    private TextView distanceTextView, tempsTextView, prixTextView;
 
 
     /**
      * Relative layout for checkboxes
      */
-    private RelativeLayout checkBoxesLayout;
+    private LinearLayout checkBoxesLayout;
 
     Map<PointDeRestauration.TypePointDeRestauration, CheckBox> checkBoxMap = new HashMap<>();
 
@@ -112,7 +113,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         regimeSpinner = (Spinner) inflatedView.findViewById(R.id.regime);
         configureSpinner();
 
-        checkBoxesLayout = (RelativeLayout) inflatedView.findViewById(R.id.checkboxLayout);
+        checkBoxesLayout = (LinearLayout) inflatedView.findViewById(R.id.checkboxLayout);
 
         distanceSeekBar.setProgress(preferences.getDistance());
         distanceTextView.setText(
@@ -206,23 +207,21 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         int offsetId = 1994;
 
         // checkboxes creation
-        for (PointDeRestauration.TypePointDeRestauration typePointDeRestauration : PointDeRestauration.TypePointDeRestauration.values()) {
+        for (PointDeRestauration.TypePointDeRestauration typePointDeRestauration : PointDeRestauration.TypePointDeRestauration
+                .values()) {
             CheckBox checkBox = new CheckBox(getContext());
             checkBox.setId(typePointDeRestauration.ordinal() + offsetId);
             checkBox.setText(typePointDeRestauration.toString());
 
 
-            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            if (checkBox.getId() > offsetId) {
-                layoutParams.addRule(RelativeLayout.BELOW, checkBox.getId() - 1);
-            }
+            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
             checkBox.setTextColor(ContextCompat.getColor(getContext(), R.color.colorPrimaryDark));
             checkBoxesLayout.addView(checkBox, layoutParams);
 
             checkBox.setTag(typePointDeRestauration);
             checkBoxMap.put(typePointDeRestauration, checkBox);
-
 
         }
 
@@ -260,9 +259,10 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
             alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Non",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();}});
+                            dialog.dismiss();
+                        }
+                    });
             alertDialog.show();
-
 
 
         }
@@ -273,7 +273,8 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
      */
     private void configureSpinner() {
 
-        ArrayAdapter<PointDeRestauration.TypeRegime> regimeArrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item);
+        ArrayAdapter<PointDeRestauration.TypeRegime> regimeArrayAdapter = new ArrayAdapter<>(
+                getContext(), android.R.layout.simple_spinner_item);
         regimeArrayAdapter.addAll(PointDeRestauration.TypeRegime.values());
         regimeArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         regimeSpinner.setAdapter(regimeArrayAdapter);
@@ -281,7 +282,8 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         regimeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                regimeSelectionne = (PointDeRestauration.TypeRegime) parent.getItemAtPosition(position);
+                regimeSelectionne = (PointDeRestauration.TypeRegime) parent.getItemAtPosition(
+                        position);
             }
 
             @Override
@@ -304,7 +306,8 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
 
         for (CheckBox checkBox : checkBoxMap.values()) {
             if (checkBox.isChecked()) {
-                preferences.getTypePointDeRestaurations().add((PointDeRestauration.TypePointDeRestauration) checkBox.getTag());
+                preferences.getTypePointDeRestaurations()
+                        .add((PointDeRestauration.TypePointDeRestauration) checkBox.getTag());
             }
         }
 
@@ -320,11 +323,11 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if (!isVisibleToUser && isReady) {
+        if (! isVisibleToUser && isReady) {
             updatePreferences();
             saveUserPreferences();
 
-            if (!preferences.equals(oldPreferences)) {
+            if (! preferences.equals(oldPreferences)) {
                 mListener.onPreferencesChanged();
             }
 
@@ -334,14 +337,12 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onPause() {
-        if (!disconnectClicked) {
+        if (! disconnectClicked) {
             updatePreferences();
             saveUserPreferences();
         }
         super.onPause();
     }
-
-
 
 
     /**
