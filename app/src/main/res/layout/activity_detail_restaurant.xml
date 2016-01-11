@@ -111,7 +111,15 @@
             </LinearLayout>
 
             <TextView
-                android:layout_marginTop="@dimen/card_margin"
+                android:id="@+id/prixTypeUtilisateur"
+            android:layout_marginTop="@dimen/card_margin"
+            android:layout_marginStart="@dimen/card_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/PreferencesDecriptionTextStyle"
+            android:text="@string/prix_par_type_utilisateur"/>
+
+            <TextView
                 android:layout_marginStart="@dimen/card_margin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

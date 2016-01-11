@@ -45,7 +45,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
 
     private PointDeRestauration pointDeRestauration;
 
-    private TextView noteTextview, prixTextView, tempsAttenteTextView, distanceTextView, descriptionTextView, menuDuJourTextView;
+    private TextView noteTextview, prixTextView, tempsAttenteTextView, distanceTextView, descriptionTextView, menuDuJourTextView, prixParTypeUtilisateurTextView;
 
     private List<TextView> tempsDattenteTextViews = new ArrayList<>();
 
@@ -127,6 +127,8 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         imageView = (ImageView) findViewById(R.id.imageRestaurant);
         noteRatingBar = (RatingBar) findViewById(R.id.notation);
         deleteFloatingActionButton = (FloatingActionButton) findViewById(R.id.delete);
+        prixParTypeUtilisateurTextView = (TextView) findViewById(R.id.prixTypeUtilisateur);
+        prixParTypeUtilisateurTextView.setText(String.format(getString(R.string.prix_par_type_utilisateur),utilisateur.getTypeUtilisateur()));
 
         tempsAttenteTextView.setText(
                 String.format(getString(R.string.temps_attente),

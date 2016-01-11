@@ -19,10 +19,10 @@
     <string name="CantinderTest_Title">TACOS - Snack du campus</string>
     <string name="preference_file_key">com.hexabinome.saladetomateoignon</string>
     <string name="cheese_ipsum">Jarlsberg lancashire edam. Dolcelatte hard cheese brie st.</string>
-    <string name="temps_attente">%dmn d\'attente*</string>
+    <string name="temps_attente">%dmn d\'attente**</string>
     <string name="temps_attente_moyen">%dmn d\'attente en moyenne</string>
     <string name="temps_attente_2">%dmn</string>
-    <string name="prix_restaurant">%.2f €</string>
+    <string name="prix_restaurant">%.2f €*</string>
     <string name="prix_restaurant_entier">%d €</string>
     <string name="distance_restaurant">%.2f mètres</string>
     <string name="distance_restaurant_entier">%d mètres</string>
@@ -40,7 +40,7 @@
     <string name="temps3">12h30 – 13h00</string>
     <string name="temps4">13h00 – 13h30</string>
     <string name="temps5">13h30 – 14h00</string>
-    <string name="description_temps_moyen">*Temps moyen d\'attente entre 11h30 14h00.</string>
+    <string name="description_temps_moyen">**Temps moyen d\'attente entre 11h30 14h00.</string>
     <string name="gps_desactive">Votre GPS semble inactif, souhaitez vous l\'activer?. Pour bénéficier d\'une meilleure utilisation de l\'application, nous avons besoin de votre position.</string>
     <string name="description_application">Application développée dans le cadre d\'un projet au sein de l\'INSA de Lyon.</string>
     <string name="developpeurs">Développeurs :\n
@@ -56,4 +56,5 @@
     <string name="action_deconnexion">Déconnexion</string>
     <string name="aide">Aide</string>
     <string name="connecte_en_tant_que">Connecté en tant que %s.</string>
+    <string name="prix_par_type_utilisateur">*Prix pour un %s</string>
 </resources>
