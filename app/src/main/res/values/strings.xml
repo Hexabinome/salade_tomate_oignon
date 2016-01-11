@@ -29,7 +29,7 @@
     <string name="note_restaurant">%.1f/5</string>
     <string name="who_you_are">Vous êtes ? :</string>
     <string name="empty_restaurant"> "Il n'y a plus de restaurants avec ces preferences autour de vous ! Pensez à modifier vos preferences ! "</string>
-    <string name="empty_favoris_list"> "  Vous n'avez pas encore de restautants favoris!"</string>
+    <string name="empty_favoris_list"> "  Vous n'avez pas de restautants favoris!"</string>
     <string name="google_app_id">AIzaSyDz63TC0pjEQTHr23m75IID2KLDhJvzZ18</string>
     <string name="add_comment">Laissez un avis</string>
     <string name="add_optional_comment">Laissez un avis (optionnel)</string>

@@ -214,6 +214,11 @@ public class FavorisFragment extends Fragment {
             animationAdapter.reset();
             animationAdapter.notifyDataSetChanged();
         }
+
+        // s'il ny'a plus de point de restauration, on affiche un message
+        if(getPreferenceList().size() == 0) {
+            empty_favoris_textView.setVisibility(View.VISIBLE);
+        }
         super.onResume();
     }
 }
