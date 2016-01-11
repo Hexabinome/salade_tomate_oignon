@@ -1,8 +1,7 @@
 package com.hexabinome.saladetomateoignon.fragment.preferences;
 
-import android.app.AlertDialog;
+
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -11,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -51,7 +49,6 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
 
     private OnPreferencesFragmentInteractionListener mListener;
 
-    private Button btnDisconnect;
     private PointDeRestauration.TypeRegime regimeSelectionne;
     private Spinner regimeSpinner;
 
@@ -89,8 +86,6 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
                              Bundle savedInstanceState) {
 
         View inflatedView = inflater.inflate(R.layout.fragment_preferences, container, false);
-        btnDisconnect = (Button) inflatedView.findViewById(R.id.disconnect);
-        btnDisconnect.setOnClickListener(this);
         //load user
         user = PrefUtils.recupererUtilisateur(getActivity());
 
@@ -242,30 +237,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.disconnect) {
-            //verifier que l'utilsateur souhaite vraiment se deconnecter
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
-            AlertDialog alertDialog = alertDialogBuilder.create();
-            alertDialog.setTitle("Deconnexion");
-            alertDialog.setMessage("Souhaitez vous vraiment vous deconnecter?");
-            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Oui",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                            mListener.onPreferencesDisconnectButtonClicked();
-                            disconnectClicked = true;
-                        }
-                    });
-            alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Non",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-            alertDialog.show();
 
-
-        }
     }
 
     /**
@@ -344,6 +316,9 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         super.onPause();
     }
 
+    public void setDisconnectClicked(boolean disconnectClicked) {
+        this.disconnectClicked = disconnectClicked;
+    }
 
     /**
      * This interface must be implemented by activities that contain this
@@ -358,6 +333,5 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
     public interface OnPreferencesFragmentInteractionListener {
         void onPreferencesChanged();
 
-        void onPreferencesDisconnectButtonClicked();
     }
 }

@@ -65,7 +65,6 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
     private TextView restaurantPrix;
     private TextView restaurantDistance;
     private TextView restaurantTempsAttente;
-    private TextView emptyCantinderTextview;
     private RatingBar rateBar;
 
     private ImageButton declineButton;
@@ -97,8 +96,6 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         View inflatedView = inflater.inflate(R.layout.fragment_cantinder, container, false);
         declineButton = (ImageButton) inflatedView.findViewById(R.id.reject);
         acceptButton = (ImageButton) inflatedView.findViewById(R.id.accept);
-        emptyCantinderTextview = (TextView) inflatedView.findViewById(
-                R.id.empty_cardBoard_textview);
         restaurantImageView = (ImageView) inflatedView.findViewById(R.id.restaurantImageView);
 
         cantinder_layout = (PercentRelativeLayout) inflatedView.findViewById(R.id.cantinder_board);
@@ -415,7 +412,6 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
             }
 
         } else {
-            // TODO : faire autre choses
             cantinder_layout.setVisibility(View.GONE);
             cantinder_like_dislike_layout.setVisibility(View.GONE);
             cantinder_empty_cardBoard_layout.setVisibility(View.VISIBLE);

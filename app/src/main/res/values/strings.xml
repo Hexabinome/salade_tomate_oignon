@@ -53,4 +53,5 @@
     <string name="pref_description_prix">Sélectionner le prix maximal pour un repas.</string>
     <string name="pref_description_temps">Sélectionner le temps d\'attente maximal.</string>
     <string name="pref_description_distance">Sélectionner la distance maximale pour la recherche.</string>
+    <string name="action_deconnexion">Déconnexion</string>
 </resources>

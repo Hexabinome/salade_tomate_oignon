@@ -157,6 +157,9 @@ public class MainActivity extends AppCompatActivity implements
             case R.id.action_a_propos:
                 aProposDialog();
                 return true;
+            case R.id.action_deconnexion:
+                deconnexion();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -188,13 +191,6 @@ public class MainActivity extends AppCompatActivity implements
         cantinderFragment.setIsPreferencesChanged(true);
     }
 
-    @Override
-    public void onPreferencesDisconnectButtonClicked() {
-        PrefUtils.resetPrefs(this);
-        Intent intent = new Intent(this, LoginActivity.class);
-        finish();
-        startActivity(intent);
-    }
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
@@ -290,5 +286,37 @@ public class MainActivity extends AppCompatActivity implements
 
         //run gps availability check
         checkGPS();
+    }
+
+    private void deconnexion(){
+        //verifier que l'utilsateur souhaite vraiment se deconnecter
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.setTitle("Deconnexion");
+        alertDialog.setMessage("Souhaitez vous vraiment vous deconnecter?");
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Oui",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // on dit au PreferenceFragment de ne pas sauvegarder les preferences
+                        PreferencesFragment preferencesFragment = (PreferencesFragment) customFragmentPagerAdapter.getItem(2);
+                        preferencesFragment.setDisconnectClicked(true);
+                        dialog.dismiss();
+                        PrefUtils.resetPrefs(MainActivity.this);
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        finish();
+                        startActivity(intent);
+                    }
+                });
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Non",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
+
+
+
+
     }
 }
