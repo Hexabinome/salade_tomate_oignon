@@ -42,4 +42,10 @@
     <string name="temps5">13h30 – 14h00</string>
     <string name="description_temps_moyen">*Temps moyen d\'attente entre 11h30 14h00.</string>
     <string name="gps_desactive">Votre GPS semble inactif, souhaitez vous l\'activer?. Pour bénéficier d\'une meilleure utilisation de l\'application, nous avons besoin de votre position.</string>
+    <string name="description_application">Application développée dans le cadre d\'un projet au sein de l\'INSA de Lyon.</string>
+    <string name="developpeurs">Développeurs :\n
+        \t - Alexis Andra \n\t - Jolan Cornevin \n\t - Mohamed El Mouctar Haidara \n\t - Alexis Papin \n\t - Robin Royer \n\t - Maximilian Schiedermeier
+    </string>
+    <string name="code_source">Code source : https://github.com/Hexabinome/salade_tomate_oignon</string>
+    <string name="remarque">Pour toute remarque : mohamed.haidara@insa-lyon.fr</string>
 </resources>

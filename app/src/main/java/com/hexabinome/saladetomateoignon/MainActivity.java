@@ -106,8 +106,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private void buildAlertMessageNoGps() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(
-                getString(R.string.gps_desactive))
+        builder.setMessage(getString(R.string.gps_desactive))
                 .setCancelable(false)
                 .setTitle("GPS désactivé")
                 .setPositiveButton("Activer", new DialogInterface.OnClickListener() {
@@ -156,8 +155,7 @@ public class MainActivity extends AppCompatActivity implements
 
         switch (id) {
             case R.id.action_a_propos:
-                Toast.makeText(this, "TODO : afficher un dialogue avec quelques info",
-                        Toast.LENGTH_SHORT).show();
+                aProposDialog();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -262,6 +260,21 @@ public class MainActivity extends AppCompatActivity implements
                         " ou bien de les supprimer de vos favoris", "J'ai compris");
 
         sequence.start();
+    }
+
+    private void aProposDialog(){
+        View aproposView = getLayoutInflater().inflate( R.layout.a_propos_layout,null,false);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(aproposView)
+                .setTitle("A propos")
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        builder.create().show();
     }
 
     @Override
