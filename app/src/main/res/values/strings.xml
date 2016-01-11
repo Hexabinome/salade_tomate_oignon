@@ -48,4 +48,9 @@
     </string>
     <string name="code_source">Code source : https://github.com/Hexabinome/salade_tomate_oignon</string>
     <string name="remarque">Pour toute remarque : mohamed.haidara@insa-lyon.fr</string>
+    <string name="pref_description_note">Sélectionner une note sur 5 pour les points de restauration.</string>
+    <string name="pref_description_regime">Sélectionner votre type de régime préféré.</string>
+    <string name="pref_description_prix">Sélectionner le prix maximal pour un repas.</string>
+    <string name="pref_description_temps">Sélectionner le temps d\'attente maximal.</string>
+    <string name="pref_description_distance">Sélectionner la distance maximale pour la recherche.</string>
 </resources>

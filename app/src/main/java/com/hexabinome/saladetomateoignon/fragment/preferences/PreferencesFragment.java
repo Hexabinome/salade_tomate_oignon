@@ -202,6 +202,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
 
     private void configureCheckBoxes() {
 
+        // un offset pour ne pas commencer l'id des checkbox inseré à 0. Bug sinon
         int offsetId = 1994;
 
         // checkboxes creation
