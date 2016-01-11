@@ -74,8 +74,8 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         mapFragment.getMapAsync(this);
 
 
-
-        final NestedScrollView mainScrollView = (NestedScrollView) findViewById(R.id.nested_scroll_view);
+        final NestedScrollView mainScrollView = (NestedScrollView) findViewById(
+                R.id.nested_scroll_view);
         ImageView transparentImageView = (ImageView) findViewById(R.id.transparent_image);
 
         // override the OnTouchlistener to let the user scroll on the map and on the scrollView
@@ -129,18 +129,19 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         deleteFloatingActionButton = (FloatingActionButton) findViewById(R.id.delete);
 
         tempsAttenteTextView.setText(
-                String.format(getString(R.string.temps_attente), pointDeRestauration.getTempsAttenteMoy()));
+                String.format(getString(R.string.temps_attente),
+                        pointDeRestauration.getTempsAttenteMoy()));
 
         menuDuJourTextView = (TextView) findViewById(R.id.menuDujour);
 
-        tempsDattenteTextViews.add((TextView)findViewById(R.id.temps1));
-        tempsDattenteTextViews.add((TextView)findViewById(R.id.temps2));
-        tempsDattenteTextViews.add((TextView)findViewById(R.id.temps3));
-        tempsDattenteTextViews.add((TextView)findViewById(R.id.temps4));
-        tempsDattenteTextViews.add((TextView)findViewById(R.id.temps5));
+        tempsDattenteTextViews.add((TextView) findViewById(R.id.temps1));
+        tempsDattenteTextViews.add((TextView) findViewById(R.id.temps2));
+        tempsDattenteTextViews.add((TextView) findViewById(R.id.temps3));
+        tempsDattenteTextViews.add((TextView) findViewById(R.id.temps4));
+        tempsDattenteTextViews.add((TextView) findViewById(R.id.temps5));
 
 
-        if(pointDeRestauration.getMenuDuJour() != null){
+        if (pointDeRestauration.getMenuDuJour() != null) {
             menuDuJourTextView.setText(pointDeRestauration.getMenuDuJour());
         } else {
             findViewById(R.id.menuCardview).setVisibility(View.GONE);
@@ -151,10 +152,10 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
                 .contains(PointDeRestauration.TypePointDeRestauration.SUPERMARCHE)) {
             prixTextView.setText("-- €");
         } else {
-            if (utilisateur.getTypeUtilisateur() == Utilisateur.TypeUtilisateur.PROFESSEUR)
+            if (utilisateur.getTypeUtilisateur() == Utilisateur.TypeUtilisateur.PROFESSEUR) {
                 prixTextView.setText(String.format(getString(R.string.prix_restaurant),
                         pointDeRestauration.getPrix() + PointDeRestauration.DIFFERENCE_PRIX));
-            {
+            } else {
                 prixTextView.setText(String.format(getString(R.string.prix_restaurant),
                         pointDeRestauration.getPrix()));
             }
@@ -346,10 +347,11 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         noteRatingBar.setRating(oldMark);
     }
 
-    private void configureTempsDattente(){
+    private void configureTempsDattente() {
         for (int i = 0; i < tempsDattenteTextViews.size(); i++) {
             TextView textView = tempsDattenteTextViews.get(i);
-            textView.setText(String.format(getString(R.string.temps_attente_2),pointDeRestauration.getTempsDattente(i+1)));
+            textView.setText(String.format(getString(R.string.temps_attente_2),
+                    pointDeRestauration.getTempsDattente(i + 1)));
         }
     }
 }

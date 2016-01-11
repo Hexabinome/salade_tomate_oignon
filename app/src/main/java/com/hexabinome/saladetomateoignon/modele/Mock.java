@@ -179,7 +179,7 @@ public final class Mock {
                 .latitude(45.783846)
                 .note(3)
                 .description("Restaurant self-service traditionnel.")
-                .idPhoto(PointDeRestauration.NO_PHOTO)
+                .idPhoto(R.drawable.resto_u)
                 .addTypePointDeRestauration(
                         PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
@@ -204,7 +204,7 @@ public final class Mock {
                 .latitude(45.78108)
                 .note(1)
                 .description("Restaurant pour les professeurs de l'INSA.")
-                .idPhoto(PointDeRestauration.NO_PHOTO)
+                .idPhoto(R.drawable.resto_u)
                 .addTypePointDeRestauration(
                         PointDeRestauration.TypePointDeRestauration.RESTAURANT_UNIVERSITAIRE)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
@@ -280,7 +280,7 @@ public final class Mock {
                 .note(3)
                 .description(
                         "Située à Villeurbanne face au campus de la Doua de l’Université Lyon 1 et CPE.")
-                .idPhoto(PointDeRestauration.NO_PHOTO)
+                .idPhoto(R.drawable.resto_u)
                 .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.CAFETERIA)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
                 .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
