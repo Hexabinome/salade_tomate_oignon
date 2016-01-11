@@ -10,14 +10,13 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 /**
  * Classe représentant un point de restauration.
  */
 public class PointDeRestauration implements Comparable<PointDeRestauration> {
-    private String name;
+    private String nom;
     private double prix;
     private double note;
     private Set<TypePointDeRestauration> typePointDeRestauration;
@@ -34,7 +33,7 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
     private static final int NB_TRANCHE_HEURE = 5;
 
     /**
-     * Un tableau qui contient le temps d'attente par tranche de 30mn de 11h30 à 14h
+     * Une map qui contient le temps d'attente par tranche de 30mn de 11h30 à 14h
      */
     private SparseIntArray tempsDattenteParTranche ;
 
@@ -42,7 +41,16 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
 
     public static LatLngBounds LADOUA_LATLNGBOUNDS = new LatLngBounds(new LatLng(45.77476, 4.86031),
             new LatLng(45.78827, 4.88769));
+
+    /**
+     * Id photo pour les restaurant n'ayant pas de photo
+     */
     public static final int NO_PHOTO = - 1;
+
+
+    /**
+     * Texte representant le menu du jour
+     */
     private String menuDuJour;
 
     /**
@@ -65,12 +73,12 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
                                Set<TypeRegime> regimes, List<Avis> avis, double longitude, double latitude,
                                String description, int idPhoto, String menuDuJour) {
         this.prix = myprice;
-        this.name = myname;
+        this.nom = myname;
         this.note = note;
         this.typePointDeRestauration = typePointDeRestauration;
         this.regimeSet = regimes;
         this.avisList = avis;
-        this.location = new Location(this.name);
+        this.location = new Location(this.nom);
         this.location.setLongitude(longitude);
         this.location.setLatitude(latitude);
         this.description = description;
@@ -106,8 +114,8 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
         return description;
     }
 
-    public String getName() {
-        return name;
+    public String getNom() {
+        return nom;
     }
 
     public double getPrix() {
@@ -155,7 +163,7 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
         private PointDeRestauration instance = new PointDeRestauration();
 
         public Builder name(String name) {
-            instance.name = name;
+            instance.nom = name;
 
             return this;
         }
@@ -240,7 +248,7 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
 
     @Override
     public int hashCode(){
-        return name.hashCode();
+        return nom.hashCode();
     }
 
     @Override
@@ -250,7 +258,7 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
         }
 
         PointDeRestauration r = (PointDeRestauration) o;
-        return this.getName().equals(r.getName());
+        return this.getNom().equals(r.getNom());
     }
 
 
@@ -296,7 +304,7 @@ public class PointDeRestauration implements Comparable<PointDeRestauration> {
     @Override
     public String toString() {
         return "PointDeRestauration{" +
-                "name='" + name + '\'' +
+                "nom='" + nom + '\'' +
                 ", prix=" + prix +
                 ", note=" + note +
                 ", typePointDeRestauration=" + typePointDeRestauration +

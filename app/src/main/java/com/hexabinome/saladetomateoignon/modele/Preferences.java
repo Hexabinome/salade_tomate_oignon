@@ -5,18 +5,33 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
- * Created by haidara on 20/12/15.
+ * Représente les preferences de l'utilisateur pour la recherche de restaurant.
  */
 public class Preferences {
 
+    /**
+     * Les types de point de restauration voulus par l'utilisateur
+     */
     private Set<PointDeRestauration.TypePointDeRestauration> typePointDeRestaurations;
 
+    /**
+     * La distance de recherche maximale souhaitée
+     */
     private int distance;
 
+    /**
+     * Temps d'attente max dans le restaurant
+     */
     private int tempsDattente;
 
+    /**
+     * Le prix maximal pour un repas normal
+     */
     private int prix;
 
+    /**
+     * Sa note minimale
+     */
     private double note;
 
 

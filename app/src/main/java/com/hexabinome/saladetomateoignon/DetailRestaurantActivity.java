@@ -112,7 +112,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle(pointDeRestauration.getName());
+            getSupportActionBar().setTitle(pointDeRestauration.getNom());
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
@@ -165,7 +165,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
             addComment(avisLayout, inflater, avis.get(i), false);
         }
         //adding user's avis
-        Avis userAvis = PrefUtils.getAvisRestaurantFromPref(this, pointDeRestauration.getName());
+        Avis userAvis = PrefUtils.getAvisRestaurantFromPref(this, pointDeRestauration.getNom());
         if (userAvis != null) {
             userAvisView = addComment(avisLayout, inflater, userAvis, true);
         }
@@ -185,7 +185,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 if (fromUser) {
                     CustomMarkFragment dialog = new CustomMarkFragment();
-                    dialog.setParam(pointDeRestauration.getName(), rating);
+                    dialog.setParam(pointDeRestauration.getNom(), rating);
                     dialog.show(getFragmentManager(), "tag");
                 }
             }
@@ -200,7 +200,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.setTitle("Suppression");
                 alertDialog.setMessage(
-                        "Voulez vous supprimer le point de restaurant " + pointDeRestauration.getName());
+                        "Voulez vous supprimer le point de restaurant " + pointDeRestauration.getNom());
                 alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Oui",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -259,7 +259,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
                                     userAvisView.setVisibility(View.GONE);
                                     PrefUtils.saveAvisRestaurantFromPref(
                                             DetailRestaurantActivity.this,
-                                            pointDeRestauration.getName(), null);
+                                            pointDeRestauration.getNom(), null);
                                 }
                             });
                     alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Non",
@@ -317,7 +317,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
             @Override
             public void onMapLoaded() {
                 mMap.addMarker(new MarkerOptions().position(restaurant_to_show)
-                        .title(pointDeRestauration.getName()));
+                        .title(pointDeRestauration.getNom()));
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(restaurant_to_show));
                 // zoom to la doua
                 mMap.moveCamera(
@@ -339,7 +339,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         Avis newAvis = new Avis(noteRatingBar.getRating(), avis,
                 user.getPrenom() + user.getNom(), "12/12/2015");
         userAvisView = addComment(avisLayout, inflater, newAvis, true);
-        PrefUtils.saveAvisRestaurantFromPref(this, pointDeRestauration.getName(), newAvis);
+        PrefUtils.saveAvisRestaurantFromPref(this, pointDeRestauration.getNom(), newAvis);
     }
 
     public void onMarkNegativeClick() {

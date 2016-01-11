@@ -60,7 +60,7 @@ public class RestaurantAdapter extends ArrayAdapter<PointDeRestauration> {
         final PointDeRestauration p = pointDeRestaurationList.get(pos);
         final Utilisateur utilisateur = PrefUtils.recupererUtilisateur(context);
 
-        viewHolder.nameTextView.setText(p.getName());
+        viewHolder.nameTextView.setText(p.getNom());
         double prix = p.getPrix();
 
         if(p.getTypePointDeRestauration().contains(PointDeRestauration.TypePointDeRestauration.SUPERMARCHE)){
