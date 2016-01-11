@@ -251,7 +251,6 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
             }
         }
 
-        Toast.makeText(getContext(), "No restaurant found", Toast.LENGTH_SHORT).show();
         return null;
     }
 

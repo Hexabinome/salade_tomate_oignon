@@ -26,7 +26,9 @@ import com.hexabinome.saladetomateoignon.fragment.favoris.FavorisFragment;
 import com.hexabinome.saladetomateoignon.fragment.preferences.PreferencesFragment;
 import com.hexabinome.saladetomateoignon.modele.Utilisateur;
 
+import uk.co.deanwild.materialshowcaseview.IShowcaseListener;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
 import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 
 
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements
         CantinderFragment.OnCantinderFragmentInteractionListener,
         FavorisFragment.OnFavorisFragmentInteractionListener,
         PreferencesFragment.OnPreferencesFragmentInteractionListener,
-        TabLayout.OnTabSelectedListener {
+        TabLayout.OnTabSelectedListener, IShowcaseListener {
 
     private Utilisateur currentUser;
     private TabLayout tabLayout;
@@ -44,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements
     CustomFragmentPagerAdapter customFragmentPagerAdapter;
     private boolean isDisconnectButtonClicked = false;
     private static final String SHOWCASE_ID = "help";
+    private static final String PREF_SHOWCASE = "pref_showcase";
+    private static final String CANTINDER_SHOWCASE = "cantinder_showcase";
+    private static final String FAVORIS_SHOWCASE = "favoris_showcase";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -237,29 +242,51 @@ public class MainActivity extends AppCompatActivity implements
         ShowcaseConfig config = new ShowcaseConfig();
         config.setDelay(500); // half second between each showcase view
 
-        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(this, SHOWCASE_ID);
-
+        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(this,SHOWCASE_ID);
         sequence.setConfig(config);
 
-        sequence.addSequenceItem(tabLayout.getTabAt(2).getCustomView(),
-                "Ici vous pourrez modifier vos critères de choix pour les points de " +
-                        "restauration", "J'ai compris");
+        MaterialShowcaseView favorisShowCaseView = new MaterialShowcaseView.Builder(this)
+                .setDismissOnTouch(true)
+                .setListener(this)
+                .setTarget(tabLayout.getTabAt(0).getCustomView())
+                .setContentText(
+                        "Tous vos points des restaurations favoris se retrouveront ici. Consulter leurs détails et supprimer les si besoin")
+                .setDismissText("Jai compris").build();
+        favorisShowCaseView.setTag(FAVORIS_SHOWCASE);
+        sequence.addSequenceItem(favorisShowCaseView);
 
-        sequence.addSequenceItem(tabLayout.getTabAt(1).getCustomView(),
-                "Retrouvez ici les points de restauration correspondant à vos préférences, Vous" +
-                        " pourrez les liker ou les disliker en fonction de vos goûts",
-                "J'ai compris");
 
-        sequence.addSequenceItem(tabLayout.getTabAt(0).getCustomView(),
-                "Tous vos points des restaurations favoris se retrouveront ici," +
-                        " libre à vous de les noter, de consulter leurs localisations, descriptions" +
-                        " ou bien de les supprimer de vos favoris", "J'ai compris");
+        MaterialShowcaseView cantinderShowCaseVIew = new MaterialShowcaseView.Builder(this)
+                .setTarget(tabLayout.getTabAt(1).getCustomView())
+                .setDismissOnTouch(true)
+                .setListener(this)
+                .setContentText(
+                        "Retrouvez ici les points de restauration correspondant à vos préférences. Vous pourrez les liker ou les disliker en fonction de vos goûts.")
+                .setDismissText("Jai compris").build();
+        cantinderShowCaseVIew.setTag(CANTINDER_SHOWCASE);
+
+
+        sequence.addSequenceItem(cantinderShowCaseVIew);
+
+        MaterialShowcaseView preferencesShowCaseView = new MaterialShowcaseView.Builder(this)
+                .setTarget(tabLayout.getTabAt(2).getCustomView())
+                .setDismissOnTouch(true)
+                .setListener(this)
+                .setContentText(
+                        "Ici, modifier vos critères de choix pour les points de restauration")
+                .setDismissText("Jai compris").build();
+        preferencesShowCaseView.setTag(PREF_SHOWCASE);
+
+        sequence.addSequenceItem(preferencesShowCaseView);
+
+
+
 
         sequence.start();
     }
 
-    private void aProposDialog(){
-        View aproposView = getLayoutInflater().inflate( R.layout.a_propos_layout,null,false);
+    private void aProposDialog() {
+        View aproposView = getLayoutInflater().inflate(R.layout.a_propos_layout, null, false);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(aproposView)
@@ -288,7 +315,7 @@ public class MainActivity extends AppCompatActivity implements
         checkGPS();
     }
 
-    private void deconnexion(){
+    private void deconnexion() {
         //verifier que l'utilsateur souhaite vraiment se deconnecter
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         AlertDialog alertDialog = alertDialogBuilder.create();
@@ -298,7 +325,8 @@ public class MainActivity extends AppCompatActivity implements
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // on dit au PreferenceFragment de ne pas sauvegarder les preferences
-                        PreferencesFragment preferencesFragment = (PreferencesFragment) customFragmentPagerAdapter.getItem(2);
+                        PreferencesFragment preferencesFragment = (PreferencesFragment) customFragmentPagerAdapter
+                                .getItem(2);
                         preferencesFragment.setDisconnectClicked(true);
                         dialog.dismiss();
                         PrefUtils.resetPrefs(MainActivity.this);
@@ -316,7 +344,22 @@ public class MainActivity extends AppCompatActivity implements
         alertDialog.show();
 
 
+    }
 
+    @Override
+    public void onShowcaseDisplayed(MaterialShowcaseView materialShowcaseView) {
+        String tag = (String) materialShowcaseView.getTag();
+        if(CANTINDER_SHOWCASE.equals(tag)){
+            viewPager.setCurrentItem(1);
+        }else if(FAVORIS_SHOWCASE.equals(tag)){
+            viewPager.setCurrentItem(0);
+        } else if(PREF_SHOWCASE.equals(tag)){
+            viewPager.setCurrentItem(2);
+        }
+    }
+
+    @Override
+    public void onShowcaseDismissed(MaterialShowcaseView materialShowcaseView) {
 
     }
 }
