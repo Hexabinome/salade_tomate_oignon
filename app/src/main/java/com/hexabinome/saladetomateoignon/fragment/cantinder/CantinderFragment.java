@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.percent.PercentRelativeLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -432,6 +433,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         currentUser = PrefUtils.recupererUtilisateur(getActivity());
 
         restaurationList = filtrePointDeRestauration(Mock.getRestaurantLaDoua(), currentUser);
+        refused.clear();
 
         currentPointDeRestauration = getNextRestaurant();
         displayRestaurant();
