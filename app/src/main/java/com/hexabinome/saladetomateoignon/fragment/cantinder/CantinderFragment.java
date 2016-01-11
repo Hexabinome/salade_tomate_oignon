@@ -313,14 +313,20 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 
     private static List<PointDeRestauration> filtrePointDeRestauration(
             List<PointDeRestauration> pointDeRestaurationList, Utilisateur utilisateur) {
+
         FiltrePrix filtrePrix = new FiltrePrix(utilisateur.getPreferences().getPrix());
+
         FiltreDistance filtreDistance = new FiltreDistance(utilisateur.getLongitude(),
                 utilisateur.getLatitude(), utilisateur.getPreferences().getDistance());
+
         FiltreNote filtreNote = new FiltreNote(utilisateur.getPreferences().getNote());
+
         FiltreTempsDAttente filtreTempsDAttente = new FiltreTempsDAttente(
                 utilisateur.getPreferences().getTempsDattente());
+
         FiltreTypeRegime filtreTypeRegime = new FiltreTypeRegime(
                 utilisateur.getPreferences().getTypeRegime());
+
         FiltreTypePointDeRestauration filtreTypePointDeRestauration = new FiltreTypePointDeRestauration(
                 utilisateur.getPreferences().getTypePointDeRestaurations());
 
