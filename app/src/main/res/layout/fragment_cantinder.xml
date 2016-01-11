@@ -11,24 +11,32 @@
         android:id="@+id/empty_cardBoard_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
         android:layout_centerHorizontal="true"
+        android:gravity="center"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="gone"
+        >
 
         <TextView
-            android:id="@+id/empty_cardBoard_textview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:lineSpacingExtra="8sp"
             android:text="@string/empty_restaurant"/>
+
+        <ImageButton
+            android:id="@+id/refresh_button"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimary"
+            android:src="@drawable/ic_cached"/>
+
 
     </LinearLayout>
 
     <!-- Partie présentation restaurant -->
     <android.support.percent.PercentRelativeLayout
-        app:layout_heightPercent="68%"
+
         android:id="@+id/cantinder_board"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -36,24 +44,25 @@
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_marginTop="10dp"
         android:background="@drawable/cantinder_board_layout"
-        android:elevation="@dimen/cardview_default_elevation">
+        android:elevation="@dimen/cardview_default_elevation"
+        app:layout_heightPercent="68%">
 
 
         <ImageView
             android:id="@+id/restaurantImageView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_heightPercent="70%"
             android:scaleType="centerCrop"
             android:src="@drawable/image_restaurant"
+            app:layout_heightPercent="70%"
             />
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_below="@id/restaurantImageView"
             android:orientation="vertical"
-            app:layout_heightPercent="30%"
-            android:layout_width="match_parent"
-            android:layout_height="0dp">
+            app:layout_heightPercent="30%">
 
             <TextView
                 android:id="@+id/restaurantTitle"
@@ -64,6 +73,7 @@
                 android:textAlignment="center"
                 android:textAppearance="@style/LabelTextAppearance"
                 android:textStyle="bold"/>
+
             <RelativeLayout
 
                 android:layout_width="match_parent"
@@ -86,6 +96,7 @@
                     android:text="@string/prix_restaurant"
                     android:textAppearance="@style/LabelTextAppearance"/>
             </RelativeLayout>
+
             <RelativeLayout
 
                 android:layout_width="match_parent"
@@ -116,32 +127,32 @@
 
     <!-- Partie boutons decline/accept -->
     <android.support.percent.PercentRelativeLayout
-        app:layout_heightPercent="30%"
-        android:layout_alignParentBottom="true"
         android:id="@+id/cantinder_like_dislike_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:layout_alignParentBottom="true"
+        android:padding="10dp"
+        app:layout_heightPercent="30%">
 
         <ImageButton
             android:id="@+id/reject"
-            app:layout_widthPercent="45%"
             style="@style/ActionButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/roundedbutton"
             android:src="@drawable/dislike"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+            app:layout_widthPercent="45%"/>
 
 
         <ImageButton
             android:id="@+id/accept"
-            app:layout_widthPercent="55%"
             style="@style/ActionButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_toEndOf="@id/reject"
             android:background="@drawable/roundedbutton"
             android:src="@drawable/like"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+            app:layout_widthPercent="55%"/>
 
     </android.support.percent.PercentRelativeLayout>
 

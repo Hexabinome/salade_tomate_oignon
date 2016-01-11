@@ -65,6 +65,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
     private TextView restaurantDistance;
     private TextView restaurantTempsAttente;
     private RatingBar rateBar;
+    private ImageButton refreshButton;
 
     private ImageButton declineButton;
     private ImageButton acceptButton;
@@ -102,6 +103,8 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
                 R.id.cantinder_like_dislike_layout);
         cantinder_empty_cardBoard_layout = (LinearLayout) inflatedView.findViewById(
                 R.id.empty_cardBoard_layout);
+        refreshButton = (ImageButton) inflatedView.findViewById(R.id.refresh_button);
+        refreshButton.setOnClickListener(this);
 
         declineButton.setOnClickListener(this);
         acceptButton.setOnClickListener(this);
@@ -146,6 +149,8 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 
         } else if (v.getId() == declineButton.getId()) {
             declineRestaurant();
+        } else if( v.getId() == refreshButton.getId()){
+            majRestaurationList();
         }
     }
 
@@ -202,7 +207,6 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 
 
         // Next restaurant
-
         Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(this.getContext(),
                 R.anim.like);
         //getView().startAnimation(hyperspaceJumpAnimation);
