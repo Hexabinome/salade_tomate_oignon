@@ -12,15 +12,13 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.h6ah4i.android.tablayouthelper.TabLayoutHelper;
+
 import com.hexabinome.saladetomateoignon.fragment.cantinder.CantinderFragment;
 import com.hexabinome.saladetomateoignon.fragment.favoris.FavorisFragment;
 import com.hexabinome.saladetomateoignon.fragment.preferences.PreferencesFragment;
@@ -91,14 +89,18 @@ public class MainActivity extends AppCompatActivity implements
         tabLayoutHelper.setAutoAdjustTabModeEnabled(true);
         tabLayoutHelper.setOnTabSelectedListener(this);
 
-        // set the tab showed at launch
-        if (PrefUtils.getBooleanFromPrefs(this, PrefUtils.PREFS_FIRST_LAUNCH, true)) {
+        // onglet affiché au démarrage
+        if (PrefUtils.getBooleanFromPrefs(this, PrefUtils.PREFS_FIRST_LAUNCH, true)) { // premier lancement
             PrefUtils.saveBooleanToPrefs(this, PrefUtils.PREFS_FIRST_LAUNCH, false);
-            viewPager.setCurrentItem(2);
+
+            // astuce pour colorer l'onglet Favoris lors du showcase view la première fois
+            viewPager.setCurrentItem(1);
+            viewPager.setCurrentItem(0);
+            showCasePresentation();
         } else {
             viewPager.setCurrentItem(1);
         }
-        showCasePresentation();
+
     }
 
     private void checkGPS() {
@@ -164,6 +166,9 @@ public class MainActivity extends AppCompatActivity implements
                 return true;
             case R.id.action_deconnexion:
                 deconnexion();
+                return true;
+            case R.id.action_aide:
+                aide();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -242,7 +247,7 @@ public class MainActivity extends AppCompatActivity implements
         ShowcaseConfig config = new ShowcaseConfig();
         config.setDelay(500); // half second between each showcase view
 
-        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(this,SHOWCASE_ID);
+        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(this);
         sequence.setConfig(config);
 
         MaterialShowcaseView favorisShowCaseView = new MaterialShowcaseView.Builder(this)
@@ -315,6 +320,9 @@ public class MainActivity extends AppCompatActivity implements
         checkGPS();
     }
 
+    /**
+     * Déclénché si l'utilisateur souhaite se déconnecter
+     */
     private void deconnexion() {
         //verifier que l'utilsateur souhaite vraiment se deconnecter
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -344,6 +352,10 @@ public class MainActivity extends AppCompatActivity implements
         alertDialog.show();
 
 
+    }
+
+    private void aide(){
+        showCasePresentation();
     }
 
     @Override
