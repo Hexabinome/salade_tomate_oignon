@@ -267,6 +267,7 @@ public class MainActivity extends AppCompatActivity implements
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(aproposView)
+                .setIcon(R.drawable.catering_icon)
                 .setTitle("A propos")
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
