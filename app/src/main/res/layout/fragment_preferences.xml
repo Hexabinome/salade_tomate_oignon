@@ -290,7 +290,6 @@
                     android:id="@+id/regime"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
                     android:textColor="@color/colorPrimaryDark"
                     />
 
@@ -302,6 +301,16 @@
 
             </LinearLayout>
         </android.support.v7.widget.CardView>
+
+        <Space
+            android:layout_width="fill_parent"
+            android:layout_height="20dp"/>
+        <TextView
+            android:id="@+id/connecte_en_tant_que"
+            android:textAppearance="@style/PreferencesDecriptionTextStyle"
+            android:text="@string/connecte_en_tant_que"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
 
     </LinearLayout>

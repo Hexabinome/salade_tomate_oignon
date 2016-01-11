@@ -58,7 +58,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
     private Preferences preferences, oldPreferences;
     private Utilisateur user;
 
-    private TextView distanceTextView, tempsTextView, prixTextView;
+    private TextView distanceTextView, tempsTextView, prixTextView, connecteEnTantqueTextView;
 
 
     /**
@@ -104,7 +104,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         distanceTextView = (TextView) inflatedView.findViewById(R.id.distanceChoisie);
         prixTextView = (TextView) inflatedView.findViewById(R.id.prixChoisi);
         tempsTextView = (TextView) inflatedView.findViewById(R.id.tempsChoisi);
-
+        connecteEnTantqueTextView = (TextView) inflatedView.findViewById(R.id.connecte_en_tant_que);
         regimeSpinner = (Spinner) inflatedView.findViewById(R.id.regime);
         configureSpinner();
 
@@ -178,6 +178,10 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         noteRatingBar.setRating((float) preferences.getNote());
 
         configureCheckBoxes();
+
+
+
+        connecteEnTantqueTextView.setText(String.format(getString(R.string.connecte_en_tant_que),user.getTypeUtilisateur()));
 
         return inflatedView;
     }
@@ -334,4 +338,6 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         void onPreferencesChanged();
 
     }
+
+
 }
