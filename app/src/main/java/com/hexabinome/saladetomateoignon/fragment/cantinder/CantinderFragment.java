@@ -240,7 +240,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 
                 Snackbar snackbar = Snackbar.make(getView(),
                         "Vous avez liké un point de restauration.",
-                        Snackbar.LENGTH_SHORT);
+                        Snackbar.LENGTH_LONG);
                 snackbar.setAction("Details", new AfficherDetailsListener());
                 snackbar.show();
             }
