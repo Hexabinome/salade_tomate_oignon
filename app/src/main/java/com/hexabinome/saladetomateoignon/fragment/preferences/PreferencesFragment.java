@@ -28,6 +28,9 @@ import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.techery.properratingbar.ProperRatingBar;
+import io.techery.properratingbar.RatingListener;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -52,7 +55,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
     private Spinner regimeSpinner;
 
     private DiscreteSeekBar distanceSeekBar, attenteSeekBar, prixSeekBar;
-    private RatingBar noteRatingBar;
+    private ProperRatingBar noteRatingBar;
 
     private Preferences preferences, oldPreferences;
     private Utilisateur user;
@@ -99,7 +102,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         distanceSeekBar = (DiscreteSeekBar) inflatedView.findViewById(R.id.prefDistanceRestaurant);
         attenteSeekBar = (DiscreteSeekBar) inflatedView.findViewById(R.id.prefTempsAttente);
         prixSeekBar = (DiscreteSeekBar) inflatedView.findViewById(R.id.prefPrixRestaurant);
-        noteRatingBar = (RatingBar) inflatedView.findViewById(R.id.prefNote);
+        noteRatingBar = (ProperRatingBar) inflatedView.findViewById(R.id.prefNote);
         distanceTextView = (TextView) inflatedView.findViewById(R.id.distanceChoisie);
         prixTextView = (TextView) inflatedView.findViewById(R.id.prixChoisi);
         tempsTextView = (TextView) inflatedView.findViewById(R.id.tempsChoisi);
@@ -174,9 +177,10 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
 
             }
         });
-        noteRatingBar.setRating((float) preferences.getNote());
+        noteRatingBar.setRating((int) preferences.getNote());
 
         configureCheckBoxes();
+
 
 
 

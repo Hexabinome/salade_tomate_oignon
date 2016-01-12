@@ -36,6 +36,9 @@ import com.hexabinome.saladetomateoignon.modele.Utilisateur;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.techery.properratingbar.ProperRatingBar;
+import io.techery.properratingbar.RatingListener;
+
 public class DetailRestaurantActivity extends AppCompatActivity implements OnMapReadyCallback,
         CustomMarkFragment.CustomMarkFragmentListener {
 
@@ -50,7 +53,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
     private List<TextView> tempsDattenteTextViews = new ArrayList<>();
 
     private LinearLayout avisLayout;
-    private RatingBar noteRatingBar;
+    private ProperRatingBar noteRatingBar;
     private FloatingActionButton deleteFloatingActionButton;
 
     private ImageView imageView;
@@ -125,7 +128,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         descriptionTextView = (TextView) findViewById(R.id.description);
         avisLayout = (LinearLayout) findViewById(R.id.comments);
         imageView = (ImageView) findViewById(R.id.imageRestaurant);
-        noteRatingBar = (RatingBar) findViewById(R.id.notation);
+        noteRatingBar = (ProperRatingBar) findViewById(R.id.notation);
         deleteFloatingActionButton = (FloatingActionButton) findViewById(R.id.delete);
         prixParTypeUtilisateurTextView = (TextView) findViewById(R.id.prixTypeUtilisateur);
         prixParTypeUtilisateurTextView.setText(String.format(getString(R.string.prix_par_type_utilisateur),utilisateur.getTypeUtilisateur()));
@@ -183,7 +186,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
             imageView.setImageDrawable(getDrawable(pointDeRestauration.getIdPhoto()));
         }
 
-        noteRatingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+   /*     noteRatingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 if (fromUser) {
@@ -193,6 +196,15 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
                 }
             }
 
+        });*/
+
+        noteRatingBar.setListener(new RatingListener() {
+            @Override
+            public void onRatePicked(ProperRatingBar properRatingBar) {
+                CustomMarkFragment dialog = new CustomMarkFragment();
+                dialog.setParam(pointDeRestauration.getNom(), properRatingBar.getRating());
+                dialog.show(getFragmentManager(), "tag");
+            }
         });
 
         deleteFloatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -238,7 +250,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         View view = inflater.inflate(R.layout.comment, null);
 
         TextView nameTextView = (TextView) view.findViewById(R.id.name);
-        final RatingBar noteRatingBarComment = (RatingBar) view.findViewById(R.id.note);
+        final ProperRatingBar noteRatingBarComment = (ProperRatingBar) view.findViewById(R.id.note);
         TextView commentTextView = (TextView) view.findViewById(R.id.comment);
         TextView dateTextView = (TextView) view.findViewById(R.id.date);
         ImageButton imageButton = (ImageButton) view.findViewById(R.id.delete_comment);
@@ -281,7 +293,7 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         String comment = avis.getCommentaire();
         double note = avis.getNote();
         nameTextView.setText(name);
-        noteRatingBarComment.setRating(((float) note));
+        noteRatingBarComment.setRating(((int) note));
         commentTextView.setText(comment);
         dateTextView.setText(avis.getDate());
 
@@ -340,13 +352,13 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
         }
         Utilisateur user = PrefUtils.recupererUtilisateur(getApplicationContext());
         Avis newAvis = new Avis(noteRatingBar.getRating(), avis,
-                user.getPrenom() + user.getNom(), "12/12/2015");
+                user.getPrenom() + user.getNom(), "12/01/2016");
         userAvisView = addComment(avisLayout, inflater, newAvis, true);
         PrefUtils.saveAvisRestaurantFromPref(this, pointDeRestauration.getNom(), newAvis);
     }
 
     public void onMarkNegativeClick() {
-        noteRatingBar.setRating(oldMark);
+        noteRatingBar.setRating((int)oldMark);
     }
 
     private void configureTempsDattente() {

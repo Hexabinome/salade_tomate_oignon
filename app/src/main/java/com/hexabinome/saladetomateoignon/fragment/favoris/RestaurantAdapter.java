@@ -15,6 +15,8 @@ import com.hexabinome.saladetomateoignon.modele.Utilisateur;
 
 import java.util.List;
 
+import io.techery.properratingbar.ProperRatingBar;
+
 /**
  * Cette class permet de remplir chaque item de la liste
  */
@@ -46,7 +48,7 @@ public class RestaurantAdapter extends ArrayAdapter<PointDeRestauration> {
             // Now we can fill the layout with the right values
             viewHolder.nameTextView = (TextView) convertView.findViewById(R.id.name);
             viewHolder.priceTextView = (TextView) convertView.findViewById(R.id.price);
-            viewHolder.ratingBar = (RatingBar) convertView.findViewById(R.id.rating);
+            viewHolder.ratingBar = (ProperRatingBar) convertView.findViewById(R.id.rating);
             viewHolder.distanceTextView = (TextView) convertView.findViewById(R.id.dist);
 
             convertView.setTag(viewHolder);
@@ -73,7 +75,7 @@ public class RestaurantAdapter extends ArrayAdapter<PointDeRestauration> {
         }
 
 
-        viewHolder.ratingBar.setNumStars((int) p.getNote());
+        viewHolder.ratingBar.setRating((int) p.getNote());
         viewHolder.distanceTextView.setText(String.format(context.getString(R.string.distance_restaurant), p.getDistance(utilisateur.getLongitude(), utilisateur.getLatitude())));
 
 
@@ -103,7 +105,7 @@ public class RestaurantAdapter extends ArrayAdapter<PointDeRestauration> {
     private static class ViewHolder {
         public TextView nameTextView;
         public TextView priceTextView;
-        public RatingBar ratingBar;
+        public ProperRatingBar ratingBar;
         public TextView distanceTextView;
     }
 

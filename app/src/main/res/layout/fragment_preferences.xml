@@ -204,18 +204,21 @@
                 android:orientation="vertical"
                 android:padding="@dimen/pref_card_margin">
 
-                <RatingBar
+
+                <io.techery.properratingbar.ProperRatingBar
                     android:id="@+id/prefNote"
-                    style="@style/CustomRatingBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="45dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:max="5"
-                    android:numStars="5"
-                    android:scaleX="1.5"
-                    android:scaleY="1.5"
-                    android:stepSize="0.5"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="40sp"
+                    android:textStyle="bold"
+                    app:prb_clickable="true"
+                    app:prb_defaultRating="4"
+                    app:prb_symbolicTick="★"
+                    app:prb_symbolicTickNormalColor="@android:color/darker_gray"
+                    app:prb_symbolicTickSelectedColor="@color/rating_color"
+                    app:prb_totalTicks="5"
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
