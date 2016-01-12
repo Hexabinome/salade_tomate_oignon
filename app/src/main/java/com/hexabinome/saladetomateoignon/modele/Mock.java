@@ -350,10 +350,10 @@ public final class Mock {
                 .name("Snack du campus")
                 .prix(6)
                 .addTempsDattente(1, 15)
-                .addTempsDattente(2,20)
-                .addTempsDattente(3,20)
-                .addTempsDattente(4,15)
-                .addTempsDattente(5,10)
+                .addTempsDattente(2, 20)
+                .addTempsDattente(3, 20)
+                .addTempsDattente(4, 15)
+                .addTempsDattente(5, 10)
                 .note(5)
                 .longitude(4.874531)
                 .latitude(45.777121)
@@ -367,8 +367,33 @@ public final class Mock {
                 .addAvis(new Avis(5,
                         "Tout ce qu'on attend d'un bon tacos, à bon prix, et avec des gérants qui ont toujours le sourire et la pêche ! :D",
                         "Pouya Farrahi Far", "10/10/2015"))
-                .addAvis(new Avis(5,"Très bon, pas cher, garant de la survie dans un monde hostile peuplé de placards vides, de la flemme du vendredi soir, ou pire encore ...","Antoine Caron","10/11/2015"))
+                .addAvis(new Avis(5, "Très bon, pas cher, garant de la survie dans un monde hostile peuplé de placards vides, de la flemme du vendredi soir, ou pire encore ...", "Antoine Caron", "10/11/2015"))
                 .build();
+
+        PointDeRestauration kebabMosaic = PointDeRestauration.builder()
+            .name("Sandwicherie Mosaic")
+            .prix(5)
+            .addTempsDattente(1, 10)
+            .addTempsDattente(2, 16)
+            .addTempsDattente(3, 18)
+            .addTempsDattente(4, 10)
+            .addTempsDattente(5, 12)
+            .note(4)
+            .longitude(4.873662)
+            .latitude(45.778761)
+            .description("Le crème du kebab autour du campus.")
+            .idPhoto(R.drawable.mosaik_kebab)
+            .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.FASTFOOD)
+            .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
+            .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
+            .menuDujour("Kebab frite.")
+            .addAvis(new Avis(4,
+                    "Halil vous reçoit toujours avec le sourire ses employés sont super sympas\n" +
+                            "Au contraire de beaucoup de kebabs qui se le font livrer, le cone de viande est préparé sur place par halil\n" +
+                            "Le restaurant est sympa et on ne peut plus propre\n" +
+                            "et à l'arrivée le kebab est tres bon",
+                    "Ahmid D.", "18/03/2008"))
+            .build();
 
         preference.add(jussieu);
         preference.add(grignote);
@@ -383,6 +408,7 @@ public final class Mock {
         preference.add(cyber);
         preference.add(carrefour);
         preference.add(tacos);
+        preference.add(kebabMosaic);
 
 
         return preference;
