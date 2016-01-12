@@ -23,6 +23,7 @@ import com.hexabinome.saladetomateoignon.modele.Utilisateur;
 import com.nhaarman.listviewanimations.appearance.simple.AlphaInAnimationAdapter;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -69,10 +70,9 @@ public class FavorisFragment extends Fragment {
         View inflatedView = inflater.inflate(R.layout.fragment_favoris, container, false);
         empty_favoris_textView = (TextView) inflatedView.findViewById(R.id.empty_favoris_list);
 
-        Utilisateur user = PrefUtils.recupererUtilisateur(getContext());
+        //Utilisateur user = PrefUtils.recupererUtilisateur(getContext());
 
-        List<PointDeRestauration> preferenceList = new ArrayList<>(user.getFavoris());
-
+        List<PointDeRestauration> preferenceList = getPreferenceList();
         if (!preferenceList.isEmpty())
         {
             empty_favoris_textView.setVisibility(View.GONE);
@@ -85,6 +85,7 @@ public class FavorisFragment extends Fragment {
 
         // Create an ArrayAdapter for the ListView
         restaurantAdapter = new RestaurantAdapter(preferenceList, getContext());
+
         animationAdapter = new AlphaInAnimationAdapter(restaurantAdapter);
         animationAdapter.setAbsListView(preferenceListView);
 
