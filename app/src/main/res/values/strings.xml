@@ -15,7 +15,7 @@
     <string name="err_unknown_user">L\'utilisateur n\'est pas valide</string>
     <string name="err_bad_password">Le mot de passe n\'est pas correct</string>
     <string name="action_about">A propos</string>
-    <string name="Cantinder_DetailRestaurant">Previous restaurant details</string>
+    <string name="Cantinder_DetailRestaurant">Détails restaurants précédents</string>
     <string name="CantinderTest_Title">TACOS - Snack du campus</string>
     <string name="preference_file_key">com.hexabinome.saladetomateoignon</string>
     <string name="cheese_ipsum">Jarlsberg lancashire edam. Dolcelatte hard cheese brie st.</string>
@@ -28,8 +28,8 @@
     <string name="distance_restaurant_entier">%d mètres</string>
     <string name="note_restaurant">%.1f/5</string>
     <string name="who_you_are">Vous êtes ? :</string>
-    <string name="empty_restaurant"> "Il n'y a plus de restaurants avec ces preferences autour de vous ! Pensez à modifier vos preferences ! "</string>
-    <string name="empty_favoris_list"> "  Vous n'avez pas de restautants favoris!"</string>
+    <string name="empty_restaurant"> "Aucun restaurants trouvé! Modifier vos preferences. "</string>
+    <string name="empty_favoris_list"> "  Vous n'avez pas encore de restautants favoris!"</string>
     <string name="google_app_id">AIzaSyDz63TC0pjEQTHr23m75IID2KLDhJvzZ18</string>
     <string name="add_comment">Laissez un avis</string>
     <string name="add_optional_comment">Laissez un avis (optionnel)</string>

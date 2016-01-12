@@ -346,29 +346,53 @@ public final class Mock {
                 .addTempsDattente(5,5)
                 .build();
 
-        PointDeRestauration tacos = PointDeRestauration.builder()
-                .name("Snack du campus")
-                .prix(6)
-                .addTempsDattente(1, 15)
-                .addTempsDattente(2,20)
-                .addTempsDattente(3,20)
-                .addTempsDattente(4,15)
-                .addTempsDattente(5,10)
-                .note(5)
-                .longitude(4.874531)
-                .latitude(45.777121)
-                .description("Tacos hyper sympa avec snoop dogg")
-                .idPhoto(R.drawable.snack_campus)
-                .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.FASTFOOD)
-                .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
-                .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
-                .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
-                .menuDujour("Tacos tous les jours.")
-                .addAvis(new Avis(5,
-                        "Tout ce qu'on attend d'un bon tacos, à bon prix, et avec des gérants qui ont toujours le sourire et la pêche ! :D",
-                        "Pouya Farrahi Far", "10/10/2015"))
-                .addAvis(new Avis(5,"Très bon, pas cher, garant de la survie dans un monde hostile peuplé de placards vides, de la flemme du vendredi soir, ou pire encore ...","Antoine Caron","10/11/2015"))
-                .build();
+            PointDeRestauration tacos = PointDeRestauration.builder()
+                    .name("Snack du campus")
+                    .prix(6)
+                    .addTempsDattente(1, 15)
+                    .addTempsDattente(2, 20)
+                    .addTempsDattente(3, 20)
+                    .addTempsDattente(4, 15)
+                    .addTempsDattente(5, 10)
+                    .note(5)
+                    .longitude(4.874531)
+                    .latitude(45.777121)
+                    .description("Tacos hyper sympa, jeune et très rapide")
+                    .idPhoto(R.drawable.snack_campus)
+                    .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.FASTFOOD)
+                    .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
+                    .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
+                    .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
+                    .menuDujour("Tacos tous les jours.")
+                    .addAvis(new Avis(5,
+                            "Tout ce qu'on attend d'un bon tacos, à bon prix, et avec des gérants qui ont toujours le sourire et la pêche ! :D",
+                            "Pouya Farrahi Far", "10/10/2015"))
+                    .addAvis(new Avis(5, "Très bon, pas cher, garant de la survie dans un monde hostile peuplé de placards vides, de la flemme du vendredi soir, ou pire encore ...", "Antoine Caron", "10/11/2015"))
+                    .build();
+
+            PointDeRestauration ninkazi = PointDeRestauration.builder()
+                    .name("Ninkasi, la doua")
+                    .prix(6)
+                    .addTempsDattente(1, 15)
+                    .addTempsDattente(2, 20)
+                    .addTempsDattente(3, 20)
+                    .addTempsDattente(4, 15)
+                    .addTempsDattente(5, 10)
+                    .note(5)
+                    .longitude(4.8694047)
+                    .latitude(45.7780525)
+                    .description("Ninkasi, nouveau restaurant branché avec de bonne bières")
+                    .idPhoto(R.drawable.ninkasi)
+                    .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.FASTFOOD)
+                    .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
+                    .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETALIEN)
+                    .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
+                    .menuDujour("Hamburger au tomates confites et frites à volonté.")
+                    .addAvis(new Avis(5,
+                            "Peux être un peux cher pour les étudiants, mais on en à pour son argent",
+                            "Pouya Farrahi Far", "10/10/2015"))
+                    .addAvis(new Avis(5, "Proche campus, fidèle au Ninkasi, service parfois un peu lent et fermeture trop peu tardive.", "Antoine Caron", "10/11/2015"))
+                    .build();
 
         preference.add(jussieu);
         preference.add(grignote);
@@ -383,6 +407,7 @@ public final class Mock {
         preference.add(cyber);
         preference.add(carrefour);
         preference.add(tacos);
+        preference.add(ninkazi);
 
 
         return preference;

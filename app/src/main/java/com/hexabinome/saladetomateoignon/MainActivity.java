@@ -285,8 +285,6 @@ public class MainActivity extends AppCompatActivity implements
         sequence.addSequenceItem(preferencesShowCaseView);
 
 
-
-
         sequence.start();
     }
 

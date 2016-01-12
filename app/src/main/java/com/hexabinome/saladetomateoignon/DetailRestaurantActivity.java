@@ -73,9 +73,9 @@ public class DetailRestaurantActivity extends AppCompatActivity implements OnMap
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-
         final NestedScrollView mainScrollView = (NestedScrollView) findViewById(
                 R.id.nested_scroll_view);
+
         ImageView transparentImageView = (ImageView) findViewById(R.id.transparent_image);
 
         // override the OnTouchlistener to let the user scroll on the map and on the scrollView

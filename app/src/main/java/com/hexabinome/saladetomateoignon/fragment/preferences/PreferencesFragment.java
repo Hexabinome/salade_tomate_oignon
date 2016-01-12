@@ -36,7 +36,6 @@ import java.util.Map;
  */
 public class PreferencesFragment extends Fragment implements View.OnClickListener {
 
-
     /**
      * Boolean to know if the Fragment has been attached to the Activity
      */
