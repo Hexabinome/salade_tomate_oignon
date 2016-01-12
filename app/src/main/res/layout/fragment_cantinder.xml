@@ -111,15 +111,24 @@
                     android:text="@string/distance_restaurant"
                     android:textAppearance="@style/LabelTextAppearance"/>
 
-                <RatingBar
+                <io.techery.properratingbar.ProperRatingBar
                     android:id="@+id/restaurantGrade"
-                    style="?android:attr/ratingBarStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_below="@id/name"
+                    android:layout_centerInParent="true"
+                    android:layout_centerVertical="true"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:prb_clickable="false"
                     android:layout_alignParentEnd="true"
+                    app:prb_defaultRating="0"
+                    app:prb_symbolicTick="★"
+                    app:prb_symbolicTickNormalColor="@android:color/darker_gray"
+                    app:prb_symbolicTickSelectedColor="@color/rating_color"
+                    app:prb_totalTicks="5"
                     android:layout_marginEnd="@dimen/cantinder_board_horizontal_margin"
-                    android:isIndicator="true"
-                    android:textStyle="italic"
                     />
             </RelativeLayout>
         </LinearLayout>

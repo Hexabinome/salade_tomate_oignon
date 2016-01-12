@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:orientation="horizontal"
                 android:padding="14sp">
 
@@ -23,18 +24,25 @@
         android:textStyle="italic"
         />
 
-    <RatingBar
+
+
+    <io.techery.properratingbar.ProperRatingBar
         android:id="@+id/rating"
-        style="?android:attr/ratingBarStyleSmall"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_below="@id/name"
         android:layout_centerInParent="true"
         android:layout_centerVertical="true"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:isIndicator="true"
-        android:textStyle="italic"
+        android:textSize="19sp"
+        android:layout_marginTop="3dp"
+        android:textStyle="bold"
+        app:prb_clickable="false"
+        app:prb_defaultRating="4"
+        app:prb_symbolicTick="★"
+        app:prb_symbolicTickNormalColor="@android:color/darker_gray"
+        app:prb_symbolicTickSelectedColor="@color/rating_color"
+        app:prb_totalTicks="5"
         />
 
     <TextView

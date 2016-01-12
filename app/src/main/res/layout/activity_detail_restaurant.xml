@@ -112,19 +112,19 @@
 
             <TextView
                 android:id="@+id/prixTypeUtilisateur"
-            android:layout_marginTop="@dimen/card_margin"
-            android:layout_marginStart="@dimen/card_margin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/PreferencesDecriptionTextStyle"
-            android:text="@string/prix_par_type_utilisateur"/>
-
-            <TextView
-                android:layout_marginStart="@dimen/card_margin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/PreferencesDecriptionTextStyle"
-                android:text="@string/description_temps_moyen"/>
+                android:layout_marginStart="@dimen/card_margin"
+                android:layout_marginTop="@dimen/card_margin"
+                android:text="@string/prix_par_type_utilisateur"
+                android:textAppearance="@style/PreferencesDecriptionTextStyle"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/card_margin"
+                android:text="@string/description_temps_moyen"
+                android:textAppearance="@style/PreferencesDecriptionTextStyle"/>
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
@@ -332,18 +332,20 @@
                     android:text="Notez ce restaurant !"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
 
-                <RatingBar
+
+                <io.techery.properratingbar.ProperRatingBar
                     android:id="@+id/notation"
-                    style="@style/CustomRatingBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="45dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:max="5"
-                    android:numStars="5"
-                    android:scaleX="1.5"
-                    android:scaleY="1.5"
-                    android:stepSize="0.5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="40sp"
+                    android:textStyle="bold"
+                    app:prb_clickable="true"
+                    app:prb_defaultRating="0"
+                    app:prb_symbolicTick="★"
+                    app:prb_symbolicTickNormalColor="@android:color/darker_gray"
+                    app:prb_symbolicTickSelectedColor="@color/rating_color"
+                    app:prb_totalTicks="5"
                     />
 
             </LinearLayout>

@@ -43,6 +43,8 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import io.techery.properratingbar.ProperRatingBar;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -64,7 +66,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
     private TextView restaurantPrix;
     private TextView restaurantDistance;
     private TextView restaurantTempsAttente;
-    private RatingBar rateBar;
+    private ProperRatingBar rateBar;
     private ImageButton refreshButton;
 
     private ImageButton declineButton;
@@ -114,7 +116,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
         restaurantDistance = (TextView) inflatedView.findViewById(R.id.restaurantDistance);
         restaurantPrix = (TextView) inflatedView.findViewById(R.id.restaurantPrice);
 //        restaurantGrade = (TextView) inflatedView.findViewById(R.id.restaurantGrade);
-        rateBar = (RatingBar) inflatedView.findViewById(R.id.restaurantGrade);
+        rateBar = (ProperRatingBar) inflatedView.findViewById(R.id.restaurantGrade);
 
 
         majRestaurationList();
@@ -440,7 +442,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
 
             restaurantTempsAttente.setText(String.format(getString(R.string.temps_attente_moyen),
                     currentPointDeRestauration.getTempsAttenteMoy()));
-            rateBar.setNumStars((int) currentPointDeRestauration.getNote());
+            rateBar.setRating((int) currentPointDeRestauration.getNote());
 
 
             if (currentPointDeRestauration.getIdPhoto() != PointDeRestauration.NO_PHOTO)
