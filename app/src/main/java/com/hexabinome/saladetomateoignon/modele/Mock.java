@@ -395,6 +395,33 @@ public final class Mock {
                     "Ahmid D.", "18/03/2008"))
             .build();
 
+        PointDeRestauration ninkasi = PointDeRestauration.builder()
+                .name("Ninkasi La Doua")
+                .prix(5)
+                .addTempsDattente(1, 26)
+                .addTempsDattente(2, 28)
+                .addTempsDattente(3, 32)
+                .addTempsDattente(4, 23)
+                .addTempsDattente(5, 56)
+                .note(4)
+                .longitude(4.872987)
+                .latitude(45.778937)
+                .description("Le tout nouvel Ninkasi près du campus de La Doua ! Les plaisirs lyonnais pour les étudiants.")
+                .idPhoto(R.drawable.ninkasi)
+                .addTypePointDeRestauration(PointDeRestauration.TypePointDeRestauration.FASTFOOD)
+                .addTypeDeRegime(PointDeRestauration.TypeRegime.SANS_PORC)
+                .addTypeDeRegime(PointDeRestauration.TypeRegime.VEGETARIEN)
+                .menuDujour("Burger et bières lyonnaises.")
+                .addAvis(new Avis(3,
+                        "Serveur très agréable, ambiance chaleureuse et très bon burger accompagné d'un succulent coleslow. Cependant, les frites sont presque immangeables et il n'y avait pas assez de monnaie en caisse pour payer en liquide !",
+                        "Sacha Maurin", "18/12/2015"))
+                .addAvis(new Avis(4,
+                        "Dans un cadre agréable, déguster un burger composé soit-même et servi rapidement est un vrai bonheur. Les menus sont complétés par des sundaes aux divers coulis et autres \"toppings\", mais aussi et surtout par les bières brassées sur place, pour lesquelles la chaîne a été primées.\n" +
+                                "Toutefois, le service peut encore progresser, et on sent un certain manque d'expérience du personnel (ouverture récente), qui espérons-le s'améliora avec le temps.\n" +
+                                "Un conseil : pensez à bien préciser la cuisson des viandes aux serveurs !",
+                        "Guillaume CHAU", "11/10/2015"))
+                .build();
+
         preference.add(jussieu);
         preference.add(grignote);
         preference.add(puvis);
@@ -409,6 +436,7 @@ public final class Mock {
         preference.add(carrefour);
         preference.add(tacos);
         preference.add(kebabMosaic);
+        preference.add(ninkasi);
 
 
         return preference;
