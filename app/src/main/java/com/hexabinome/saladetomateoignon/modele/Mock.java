@@ -32,7 +32,7 @@ public final class Mock {
         utilisateurs.put("DWobrock@insa-lyon.fr", new Utilisateur("Wobrock", "David", "DWobrock@insa-lyon.fr", "1234", Utilisateur.TypeUtilisateur.ETUDIANT));
         utilisateurs.put("JCornevin@insa-lyon.fr", new Utilisateur("Cornevin", "Jolan", "JCornevin@insa-lyon.fr", "1234", Utilisateur.TypeUtilisateur.ETUDIANT));
         utilisateurs.put("RRoyer@insa-lyon.fr", new Utilisateur("Royer", "Robin", "RRoyer@insa-lyon.fr", "1234", Utilisateur.TypeUtilisateur.ETUDIANT));
-        utilisateurs.put("elmhaidara@gmail.com", new Utilisateur("Haidara", "Mohamed El Mouctar", "elmhaidara@gmail.com", "1234", Utilisateur.TypeUtilisateur.PROFESSEUR));
+        utilisateurs.put("elmhaidara@gmail.com", new Utilisateur("Haidara", "Mohamed El Mouctar", "elmhaidara@gmail.com", "1234", Utilisateur.TypeUtilisateur.ETUDIANT));
         utilisateurs.put("dumblecore@poudlard.fr", new Utilisateur("Dumblecore", "Albus", "jadore@crepes.fr", "42", Utilisateur.TypeUtilisateur.PROFESSEUR));
     }
 
@@ -348,7 +348,7 @@ public final class Mock {
 
         PointDeRestauration tacos = PointDeRestauration.builder()
                 .name("Snack du campus")
-                .prix(6)
+                .prix(5)
                 .addTempsDattente(1, 15)
                 .addTempsDattente(2, 20)
                 .addTempsDattente(3, 20)
