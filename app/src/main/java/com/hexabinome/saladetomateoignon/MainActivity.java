@@ -101,6 +101,8 @@ public class MainActivity extends AppCompatActivity implements
             viewPager.setCurrentItem(1);
         }
 
+        //get rid of all previous activitites:
+        setResult(3);
     }
 
     private void checkGPS() {

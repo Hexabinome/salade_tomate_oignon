@@ -103,10 +103,18 @@ public class SubscribeActivity extends AppCompatActivity {
         Mock.addUtilisateur(user);
         //On enregistre l'utilisateur dans les preferences de l'appli
         PrefUtils.sauvegardeUtilisateur(this, user);
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
 
+        //On redirige vers Mainactivity
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivityForResult(intent, 3);
+
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == 3) {
+            setResult(2);
+            finish();
+        }
     }
 
     private boolean validateFirstName() {

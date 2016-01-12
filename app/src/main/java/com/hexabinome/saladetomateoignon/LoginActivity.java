@@ -66,10 +66,18 @@ public class LoginActivity extends AppCompatActivity {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //redirect to subscribe activity if button clicked
                 Intent intent = new Intent(LoginActivity.this, SubscribeActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 2);
             }
         });
+    }
+
+    //react to result from child activity (inscribe)
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == 2) {
+            finish();
+        }
     }
 
     private void submitForm() {
