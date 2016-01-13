@@ -430,6 +430,7 @@ public class CantinderFragment extends Fragment implements View.OnClickListener 
                     PointDeRestauration.TypePointDeRestauration.SUPERMARCHE)) {
                 restaurantPrix.setVisibility(View.GONE);
             } else {
+                restaurantPrix.setVisibility(View.VISIBLE);
                 if (currentUser.getTypeUtilisateur() == Utilisateur.TypeUtilisateur.PROFESSEUR) {
                     restaurantPrix.setText(String.format(getString(R.string.prix_restaurant),
                             currentPointDeRestauration.getPrix() + PointDeRestauration.DIFFERENCE_PRIX));
