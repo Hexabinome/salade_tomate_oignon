@@ -6,10 +6,11 @@ Menu
 ======================
 Name  | Demo
 --- | ---
-*Connexion & inscription* | ![alt tag](http://url/to/img.png)
-*cantinder* | ![alt tag](http://url/to/img.png)
-*Preferences* | ![alt tag](http://url/to/img.png)
-*Points de restaurations* | ![alt tag](http://url/to/img.png)
+*Connexion & inscription* | <img src="https://github.com/Hexabinome/salade_tomate_oignon/tree/master/gifFolder/connexion.gif">
+*cantinder* | <img src="https://github.com/Hexabinome/salade_tomate_oignon/tree/master/gifFolder/cantinder.gif">
+*Preferences* | <img src="https://github.com/Hexabinome/salade_tomate_oignon/tree/master/gifFolder/preference.gif">
+*Points de restaurations* | <img src="https://github.com/Hexabinome/salade_tomate_oignon/tree/master/gifFolder/pointDeRestauration.gif">
+*menu contextuel* | <img src="https://github.com/Hexabinome/salade_tomate_oignon/tree/master/gifFolder/menuContextuel.gif">
 
 ## Environnement de développement
 Pour commencer à développer (je sais que vous en mourrez d'envie), il faut importer le projet dans 
