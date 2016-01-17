@@ -1,5 +1,15 @@
 # Salade Tomate Oignon
-Projet d'ingénieurie des interfaces utilisateurs...
+Projet d'ingénieurie des interfaces utilisateurs.
+
+
+Menu
+======================
+Name  | Demo
+--- | ---
+*Connexion & inscription* | ![alt tag](http://url/to/img.png)
+*cantinder* | ![alt tag](http://url/to/img.png)
+*Preferences* | ![alt tag](http://url/to/img.png)
+*Points de restaurations* | ![alt tag](http://url/to/img.png)
 
 ## Environnement de développement
 Pour commencer à développer (je sais que vous en mourrez d'envie), il faut importer le projet dans 
