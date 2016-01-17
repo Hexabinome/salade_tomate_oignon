@@ -6,11 +6,11 @@ Menu
 ======================
 Name  | Demo
 --- | ---
-*Connexion & inscription* | <img src="https://github.com/Hexabinome/salade_tomate_oignon/tree/master/gifFolder/connexion.gif">
-*cantinder* | <img src="https://github.com/Hexabinome/salade_tomate_oignon/tree/master/gifFolder/cantinder.gif">
-*Preferences* | <img src="https://github.com/Hexabinome/salade_tomate_oignon/tree/master/gifFolder/preference.gif">
-*Points de restaurations* | <img src="https://github.com/Hexabinome/salade_tomate_oignon/tree/master/gifFolder/pointDeRestauration.gif">
-*menu contextuel* | <img src="https://github.com/Hexabinome/salade_tomate_oignon/tree/master/gifFolder/menuContextuel.gif">
+*Connexion & inscription* | <img src="https://github.com/Hexabinome/salade_tomate_oignon/blob/master/gifFolder/connexion.gif" width="45%">
+*cantinder* | <img src="https://github.com/Hexabinome/salade_tomate_oignon/blob/master/gifFolder/cantinder.gif" width="45%">
+*Preferences* | <img src="https://github.com/Hexabinome/salade_tomate_oignon/blob/master/gifFolder/preference.gif" width="45%">
+*Points de restaurations* | <img src="https://github.com/Hexabinome/salade_tomate_oignon/blob/master/gifFolder/pointDeRestauration.gif" width="45%">
+*menu contextuel* | <img src="https://github.com/Hexabinome/salade_tomate_oignon/blob/master/gifFolder/menuContextuel.gif" width="45%">
 
 ## Environnement de développement
 Pour commencer à développer (je sais que vous en mourrez d'envie), il faut importer le projet dans 
