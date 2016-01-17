@@ -2,10 +2,10 @@
 Projet d'ingénieurie des interfaces utilisateurs.
 
 
-Menu
-======================
-Name  | Demo
---- | ---
+Presentation de L'interface
+==============
+Activité & fragment  | Demo |
+--- | --- |
 *Connexion & inscription* | <img src="https://github.com/Hexabinome/salade_tomate_oignon/blob/master/gifFolder/connexion.gif" width="45%">
 *cantinder* | <img src="https://github.com/Hexabinome/salade_tomate_oignon/blob/master/gifFolder/cantinder.gif" width="45%">
 *Preferences* | <img src="https://github.com/Hexabinome/salade_tomate_oignon/blob/master/gifFolder/preference.gif" width="45%">
