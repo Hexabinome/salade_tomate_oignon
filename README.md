@@ -38,10 +38,10 @@ Android Studio : **Import project (Eclipse ADT, Gradle etc.)**.
  - [Icons android](http://www.icons4android.com/)
 
 ## Contributeurs
- - Alexis Andra
- - Jolan Cornevin
- - Mohamed El Mouctar Haidara @haidaram
- - Alexis Papin
- - Robin Royer
- - Maximilan Schiedermeier
- - David Wobrock
+* Alexis Andra [@gazolik](https://github.com/Gazolik) [@gazolike](https://github.com/Gazolike)
+* Jolan Cornevin [@Djowood](https://github.com/Djowood)
+* Mohamed El Mouctar Haidara [@haidaraM](https://github.com/haidaraM)
+* Alexis Papin [@alexispapin](https://github.com/alexispapin)
+* Robin Royer [@robinroyer](https://github.com/robinroyer)
+* Maximilan Schiedermeier [@maxinsa42](https://github.com/maxinsa42) [@maxou42](https://github.com/maxou42)
+* David Wobrock [@David-Wobrock](https://github.com/David-Wobrock)
